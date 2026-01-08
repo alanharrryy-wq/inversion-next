@@ -1,0 +1,29 @@
+:root{
+  --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  --radius-xl: 18px;
+
+  --h-gold: #AB7B26;
+  --h-teal-dark: #026F86;
+  --h-teal: #02A7CA;
+  --h-brown: #553E13;
+
+  --c-bg: #070A0F;
+  --c-fg: #E9EEF6;
+  --c-card: rgba(255,255,255,0.06);
+  --c-border: rgba(255,255,255,0.12);
+
+  --c-accent: var(--h-teal);
+  --c-accent-2: var(--h-gold);
+  --c-danger: #FF4D6D;
+  --c-ok: #2EE59D;
+
+  --shadow-soft: 0 18px 60px rgba(0,0,0,0.45);
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --c-bg: #F7FAFF;
+    --c-fg: #0B1220;
+    --c-card: rgba(0,0,0,0.04);
+    --c-border: rgba(0,0,0,0.10);
+  }
+}

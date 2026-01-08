@@ -1,0 +1,22 @@
+import { SlideShell } from "@/shared/ui/slide/SlideShell"
+import { DataBox, TextList } from "@/shared/ui/slide/SlideBlocks"
+import type { SlideProps } from "@/entities/slide/model/slide.types"
+
+export default function Slide01(_props: SlideProps) {
+  return (
+    <SlideShell kicker="Deck" title="Agenda (ejemplo)">
+      <div className="grid h-full grid-cols-12 gap-6">
+        <div className="col-span-6">
+          <DataBox title="Hoy">
+            <TextList items={["Qué construimos", "Reglas de estructura", "Cómo agregar slides", "Cómo exportar"]} />
+          </DataBox>
+        </div>
+        <div className="col-span-6">
+          <DataBox title="Mañana">
+            <TextList items={["Flagships", "KPI dashboards", "Evidencias", "Módulos plug-in"]} />
+          </DataBox>
+        </div>
+      </div>
+    </SlideShell>
+  )
+}

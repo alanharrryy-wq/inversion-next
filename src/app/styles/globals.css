@@ -1,0 +1,25 @@
+:root {
+  color: var(--c-fg);
+  background: var(--c-bg);
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--c-accent) 35%, transparent);
+}
+
+a {
+  color: inherit;
+}
