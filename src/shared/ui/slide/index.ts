@@ -1,3 +1,3 @@
-export * from "./SlideShell"
-export * from "./SlideStage"
-export * from "./SlideBlocks"
+export { SlideShell } from "./SlideShell";
+export { SlideStage } from "./SlideStage";
+export { DataBox, TextList, Pill } from "./SlideBlocks";

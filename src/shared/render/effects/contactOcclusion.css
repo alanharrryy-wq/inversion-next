@@ -1,0 +1,41 @@
+/* =========================================================
+   Effect: contactOcclusion (v1)
+   - Volumen sutil en bordes/base
+   ========================================================= */
+
+:root {
+  --hi-contact-occlusion: 0.12;
+}
+
+/* Aplica a cualquier material glass */
+[data-material^="glass"] {
+  position: relative;
+}
+
+/* Capa de contacto */
+[data-material^="glass"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0, 0.0) 70%,
+      rgba(0,0,0, var(--hi-contact-occlusion)) 100%
+    ),
+    linear-gradient(
+      to right,
+      rgba(0,0,0, var(--hi-contact-occlusion)) 0%,
+      rgba(0,0,0, 0.0) 12%
+    ),
+    linear-gradient(
+      to left,
+      rgba(0,0,0, var(--hi-contact-occlusion)) 0%,
+      rgba(0,0,0, 0.0) 12%
+    );
+}

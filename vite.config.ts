@@ -13,6 +13,13 @@ export default defineConfig({
   server: {
     port: 5177,
     strictPort: true,
+    fs: {
+      deny: [
+        "**/.hitech-backups/**",
+        "**/scripts/hitech-templates/**",
+        "**/hitech-templates/**",
+      ],
+    },
   },
   test: {
     environment: "jsdom",

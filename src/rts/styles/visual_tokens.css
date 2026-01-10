@@ -1,0 +1,140 @@
+/* src/rts/styles/visual_tokens.css
+   HITECH RTS — Visual System Tokens (Foundation)
+   Strategic Canon ID: HITECH_RTS_EXEC_CANON_V1
+*/
+
+:root{
+  /* Brand (immutable palette anchors) */
+  --vs-gold: #AB7B26;
+  --vs-cyan: #02A7CA;
+  --vs-blue: #026F86;
+  --vs-brown: #553E13;
+
+  /* Executive neutrals */
+  --vs-bg-0: #020308;
+  --vs-bg-1: rgba(5, 8, 12, 0.92);
+  --vs-bg-2: rgba(7, 11, 16, 0.82);
+
+  --vs-fg-0: rgba(255,255,255,0.92);
+  --vs-fg-1: rgba(255,255,255,0.74);
+  --vs-fg-2: rgba(255,255,255,0.56);
+  --vs-fg-3: rgba(255,255,255,0.38);
+
+  /* Lines / strokes */
+  --vs-line-0: rgba(255,255,255,0.10);
+  --vs-line-1: rgba(255,255,255,0.16);
+  --vs-line-2: rgba(255,255,255,0.22);
+
+  /* Energy highlight (must be low-alpha in content) */
+  --vs-energy: rgba(0,240,255,0.18);
+
+  /* Radii */
+  --vs-r-1: 8px;
+  --vs-r-2: 12px;
+  --vs-r-3: 16px;
+  --vs-r-pill: 999px;
+
+  /* Spacing scale (8px baseline) */
+  --vs-s-1: 4px;
+  --vs-s-2: 8px;
+  --vs-s-3: 12px;
+  --vs-s-4: 16px;
+  --vs-s-5: 24px;
+  --vs-s-6: 32px;
+  --vs-s-7: 48px;
+  --vs-s-8: 64px;
+
+  /* Shadows (disciplined family) */
+  --vs-shadow-1: 0 10px 30px rgba(0,0,0,0.45);
+  --vs-shadow-2: 0 18px 50px rgba(0,0,0,0.55);
+
+  /* Motion tokens */
+  --vs-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --vs-fast: 160ms;
+  --vs-base: 260ms;
+  --vs-slow: 520ms;
+
+  /* Typography sizing (executive) */
+  --vs-h1: 52px;
+  --vs-h2: 28px;
+  --vs-body: 19px;
+  --vs-micro: 13px;
+}
+
+/* Base helpers (do not fight Tailwind; complement it) */
+.vs-kicker{
+  font-size: var(--vs-micro);
+  letter-spacing: 0.30em;
+  text-transform: uppercase;
+  color: var(--vs-fg-2);
+}
+
+.vs-title{
+  font-size: var(--vs-h1);
+  line-height: 1.08;
+  color: var(--vs-fg-0);
+  font-weight: 900;
+}
+
+.vs-h2{
+  font-size: var(--vs-h2);
+  line-height: 1.18;
+  color: var(--vs-fg-0);
+  font-weight: 800;
+}
+
+.vs-body{
+  font-size: var(--vs-body);
+  line-height: 1.45;
+  color: var(--vs-fg-1);
+  font-weight: 600;
+}
+
+.vs-micro{
+  font-size: var(--vs-micro);
+  line-height: 1.35;
+  color: var(--vs-fg-2);
+}
+
+.vs-rule{
+  height: 2px;
+  width: 100vw;
+  background: linear-gradient(90deg, var(--vs-cyan), rgba(255,255,255,0.10), transparent);
+  opacity: 0.75;
+}
+
+.vs-panel{
+  background: var(--vs-bg-1);
+  border: 1px solid var(--vs-line-0);
+  border-radius: var(--vs-r-3);
+  box-shadow: var(--vs-shadow-1);
+}
+
+.vs-panel--soft{
+  background: var(--vs-bg-2);
+  border: 1px solid var(--vs-line-0);
+  border-radius: var(--vs-r-2);
+}
+
+.vs-accent-gold{ color: var(--vs-gold); }
+.vs-accent-cyan{ color: var(--vs-cyan); }
+
+.vs-focus-ring{
+  outline: 2px solid rgba(2,167,202,0.35);
+  outline-offset: 2px;
+}
+
+/* 12-col grid helper (fixed gutters) */
+.vs-grid{
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--vs-s-5);
+}
+
+.vs-pad-outer{ padding: var(--vs-s-7); }
+.vs-pad-inner{ padding: var(--vs-s-6); }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .vs-motion{ transition: none !important; animation: none !important; }
+}

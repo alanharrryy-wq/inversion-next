@@ -1,0 +1,22 @@
+/* src/rts/styles/bridge_tokens.css
+   Optional bridge: map deck engine tokens (--c-*) to RTS tokens (--vs-*)
+   Activate by adding class "rts-bridge" on <html>.
+*/
+:root{
+  --vs-font-sans: var(--font-sans, ui-sans-serif, system-ui);
+}
+
+html.rts-bridge{
+  --c-bg: var(--vs-bg-0);
+  --c-fg: var(--vs-fg-0);
+  --c-card: var(--vs-bg-2);
+  --c-border: rgba(255,255,255,0.12);
+
+  --c-accent: var(--vs-cyan);
+  --c-accent-2: var(--vs-gold);
+}
+@media (prefers-color-scheme: light){
+  html.rts-bridge{
+    --c-border: rgba(0,0,0,0.10);
+  }
+}

@@ -1,0 +1,93 @@
+/* =========================================================
+   Effect: glintSlow (v2)
+   - Color variante (silver/gold/emerald/cyan/red)
+   - Más presencia sin neon
+   - Solo para glassCritical
+   ========================================================= */
+
+:root {
+  /* Presencia */
+  --hi-glint-opacity: 0.08; /* subimos default: estaba tímido */
+  --hi-glint-period: 14s;
+
+  /* Color (default: plata) */
+  --hi-glint-rgb: 235 245 255; /* silver */
+
+  /* Blend control (para que NO se tiña de oro) */
+  --hi-glint-blend: normal; /* normal = más “plata real” */
+}
+
+/* Activación: solo material critical */
+[data-material="glassCritical"] {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Variantes de color (si no pones data-glint, cae en plata) */
+[data-material="glassCritical"][data-glint="silver"] { --hi-glint-rgb: 235 245 255; }
+[data-material="glassCritical"][data-glint="gold"] { --hi-glint-rgb: 255 210 120; }
+[data-material="glassCritical"][data-glint="emerald"] { --hi-glint-rgb: 80 255 180; }
+[data-material="glassCritical"][data-glint="cyan"] { --hi-glint-rgb: 120 255 255; }
+[data-material="glassCritical"][data-glint="red"] { --hi-glint-rgb: 255 110 110; }
+
+/* Si algún día quieres “screen”, lo activas por atributo */
+[data-material="glassCritical"][data-glint-blend="screen"] { --hi-glint-blend: screen; }
+
+/* Capa glint */
+[data-material="glassCritical"]::after {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  pointer-events: none;
+  z-index: 0;
+
+  /* Glint más “ancho” para que no sea tímido */
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgb(var(--hi-glint-rgb) / 0.00) 34%,
+    rgb(var(--hi-glint-rgb) / calc(var(--hi-glint-opacity) * 0.35)) 42%,
+    rgb(var(--hi-glint-rgb) / var(--hi-glint-opacity)) 50%,
+    rgb(var(--hi-glint-rgb) / calc(var(--hi-glint-opacity) * 0.35)) 58%,
+    rgb(var(--hi-glint-rgb) / 0.00) 66%,
+    transparent 100%
+  );
+
+  /* Suavizado mínimo, no blur gordo */
+  filter: blur(0.7px);
+
+  opacity: 0;
+  transform: translateX(-18%) translateY(8%);
+
+  /* Controlado para que NO se pinte dorado por el set */
+  mix-blend-mode: var(--hi-glint-blend);
+
+  animation: hi-glintSlow var(--hi-glint-period) ease-in-out infinite;
+}
+
+/* Animación lenta, con “tiempo visible” extra */
+@keyframes hi-glintSlow {
+  0% {
+    opacity: 0;
+    transform: translateX(-22%) translateY(10%);
+  }
+  18% {
+    opacity: 0;
+  }
+  42% {
+    opacity: 1;
+    transform: translateX(-2%) translateY(2%);
+  }
+  55% {
+    opacity: 1;
+    transform: translateX(6%) translateY(-2%);
+  }
+  74% {
+    opacity: 0;
+    transform: translateX(18%) translateY(-8%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(22%) translateY(-10%);
+  }
+}

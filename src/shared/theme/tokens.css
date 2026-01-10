@@ -1,29 +1,67 @@
 :root{
-  --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-  --radius-xl: 18px;
+  /* Hitech Brand */
+  --hitech-gold: #AB7B26;
+  --hitech-teal-900: #026F86;
+  --hitech-teal-600: #02A7CA;
+  --hitech-brown: #553E13;
 
-  --h-gold: #AB7B26;
-  --h-teal-dark: #026F86;
-  --h-teal: #02A7CA;
-  --h-brown: #553E13;
+  /* Base palette */
+  --bg: #070A0F;
+  --panel: rgba(255,255,255,0.06);
+  --panel-2: rgba(255,255,255,0.10);
+  --border: rgba(255,255,255,0.14);
+  --text: rgba(255,255,255,0.92);
+  --muted: rgba(255,255,255,0.70);
+  --faint: rgba(255,255,255,0.55);
 
-  --c-bg: #070A0F;
-  --c-fg: #E9EEF6;
-  --c-card: rgba(255,255,255,0.06);
-  --c-border: rgba(255,255,255,0.12);
+  /* Accents */
+  --accent: var(--hitech-teal-600);
+  --accent-2: var(--hitech-teal-900);
+  --gold: var(--hitech-gold);
 
-  --c-accent: var(--h-teal);
-  --c-accent-2: var(--h-gold);
-  --c-danger: #FF4D6D;
-  --c-ok: #2EE59D;
+  /* Radii / spacing */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 22px;
 
-  --shadow-soft: 0 18px 60px rgba(0,0,0,0.45);
+  --space-1: 8px;
+  --space-2: 12px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 40px;
+
+  /* Typography */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New";
+
+  --h1: 56px;
+  --h2: 34px;
+  --h3: 22px;
+  --p: 18px;
+  --small: 14px;
+
+  /* Motion */
+  --ease: cubic-bezier(.2,.8,.2,1);
+  --dur-1: 160ms;
+  --dur-2: 280ms;
+  --dur-3: 420ms;
+
+  /* Deck geometry */
+  --deck-w: 1600px;
+  --deck-h: 900px;
 }
-@media (prefers-color-scheme: light){
-  :root{
-    --c-bg: #F7FAFF;
-    --c-fg: #0B1220;
-    --c-card: rgba(0,0,0,0.04);
-    --c-border: rgba(0,0,0,0.10);
-  }
+
+/* Utility-ish */
+.h-panel{
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  backdrop-filter: blur(10px);
+}
+
+.h-glow{
+  box-shadow:
+    0 0 0 1px rgba(2,167,202,.25),
+    0 10px 40px rgba(2,167,202,.18);
 }

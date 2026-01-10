@@ -1,0 +1,15 @@
+/* src/rts/styles/a11y.css
+   Small accessibility helpers (non-invasive).
+*/
+:where(.rts-root) :focus-visible{
+  outline: 2px solid color-mix(in oklab, var(--vs-cyan) 70%, white);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce){
+  :where(.rts-root) *{
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

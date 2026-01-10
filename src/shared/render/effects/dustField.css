@@ -1,0 +1,78 @@
+/* =========================================================
+   Effect: dustField (v1)
+   - Micro polvo ambiental
+   - Global, ultra sutil
+   ========================================================= */
+
+:root {
+  --hi-dust-opacity-a: 0.025;
+  --hi-dust-opacity-b: 0.015;
+  --hi-dust-period-a: 38s;
+  --hi-dust-period-b: 61s;
+}
+
+/* Capa A */
+.hi-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+
+  background:
+    radial-gradient(
+      1px 1px at 20% 30%,
+      rgba(255,255,255, var(--hi-dust-opacity-a)),
+      transparent 40%
+    ),
+    radial-gradient(
+      1px 1px at 70% 60%,
+      rgba(255,255,255, var(--hi-dust-opacity-a)),
+      transparent 40%
+    ),
+    radial-gradient(
+      1px 1px at 40% 80%,
+      rgba(255,255,255, var(--hi-dust-opacity-a)),
+      transparent 40%
+    );
+
+  animation: hi-dustA var(--hi-dust-period-a) linear infinite;
+}
+
+/* Capa B (desfasada) */
+.hi-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+
+  background:
+    radial-gradient(
+      1px 1px at 10% 20%,
+      rgba(255,255,255, var(--hi-dust-opacity-b)),
+      transparent 40%
+    ),
+    radial-gradient(
+      1px 1px at 80% 40%,
+      rgba(255,255,255, var(--hi-dust-opacity-b)),
+      transparent 40%
+    ),
+    radial-gradient(
+      1px 1px at 55% 75%,
+      rgba(255,255,255, var(--hi-dust-opacity-b)),
+      transparent 40%
+    );
+
+  animation: hi-dustB var(--hi-dust-period-b) linear infinite;
+}
+
+@keyframes hi-dustA {
+  from { transform: translateY(0px); }
+  to   { transform: translateY(-18px); }
+}
+
+@keyframes hi-dustB {
+  from { transform: translateY(0px); }
+  to   { transform: translateY(-26px); }
+}

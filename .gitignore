@@ -3,3 +3,12 @@ dist/
 .env
 .DS_Store
 .vscode/
+.hitech-backups/
+scripts/hitech-templates/
+hitech-templates/
+QA_GreenCast_*.txt
+*.bak.*
+*.bak_*
+*.incoming.*
+scripts/tmp_*
+scripts/hitech-templates__backup_*/

@@ -1,3 +1,13 @@
 @import "tailwindcss";
 @import "./shared/theme/tokens.css";
+@import "./shared/render/tokens/render.tokens.css";
+@import "./shared/render/stage/stage.css";
+@import "./shared/render/materials/materials.css";
+@import "./shared/render/effects/glintSlow.css";
+@import "./shared/render/effects/rimDynamic.css";
+@import "./shared/render/effects/mirrorCine.css";
+@import "./shared/render/effects/chartSurfaceHighlight.css";
+@import "./shared/render/effects/contactOcclusion.css";
+@import "./shared/render/effects/dustField.css";
 @import "./app/styles/globals.css";
+@import "./app/styles/hi-materials.css";

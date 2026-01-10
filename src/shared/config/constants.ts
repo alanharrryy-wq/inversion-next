@@ -1,19 +1,40 @@
 export const APP = {
-  name: (import.meta.env.VITE_APP_NAME as string | undefined) ?? "Inversion Next",
-  org: "Hitech",
-  year: 2026,
-} as const
+  name: "inversion-next",
+  title: "Hitech Inversion Next",
+  version: "0.1.0",
+  timezoneHint: "America/Mexico_City",
+} as const;
 
 export const BRAND = {
-  gold: "#AB7B26",
-  tealDark: "#026F86",
-  teal: "#02A7CA",
-  brown: "#553E13",
-} as const
+  colors: {
+    gold: "#AB7B26",
+    teal900: "#026F86",
+    teal600: "#02A7CA",
+    brown: "#553E13",
+  },
+} as const;
 
 export const DECK = {
-  appName: APP.name,
-  slideWidth: 1600,
-  slideHeight: 900,
+  width: 1600,
+  height: 900,
+  route: "/deck",
+  totalSlides: 12,
+  keyboard: {
+    next: ["ArrowRight", "PageDown", " "],
+    prev: ["ArrowLeft", "PageUp"],
+    first: ["Home"],
+    last: ["End"],
+  },
+} as const;
+
+export const UI = {
+  headerHeight: 92,
+  footerHeight: 64,
   safePadding: 56,
-} as const
+  maxContentWidth: 1480,
+} as const;
+
+export const TEXT = {
+  coverTagline: "Interactive deck engine",
+  footerRight: "Hitech",
+} as const;

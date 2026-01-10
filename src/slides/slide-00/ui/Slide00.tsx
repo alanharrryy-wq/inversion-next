@@ -19,6 +19,7 @@ export default function Slide00(_props: SlideProps) {
     >
       <div className="grid h-full grid-cols-12 gap-6">
         <div className="col-span-7">
+          <section data-material="glassCritical" data-glint="silver">
           <DataBox title="Qué es esto">
             <TextList
               items={[
@@ -29,11 +30,14 @@ export default function Slide00(_props: SlideProps) {
               ]}
             />
           </DataBox>
+          </section>
 
           <div className="mt-6 grid grid-cols-2 gap-6">
+            <section data-material="glassCritical" data-glint="gold">
             <DataBox title="Regla de oro">
               Una slide = una carpeta. Sin duplicados, sin magia rara.
             </DataBox>
+            </section>
             <DataBox title="Objetivo">
               Meter contenido rápido, consistente y visual, sin pelearte con la estructura.
             </DataBox>
@@ -41,6 +45,7 @@ export default function Slide00(_props: SlideProps) {
         </div>
 
         <div className="col-span-5">
+          <section data-material="glassCritical" data-glint="emerald">
           <DataBox title="Checklist de template">
             <TextList
               items={[
@@ -52,8 +57,9 @@ export default function Slide00(_props: SlideProps) {
               ]}
             />
           </DataBox>
+          </section>
 
-          <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-6">
+          <div data-material="glassCritical" data-glint="cyan" className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-6">
             <div className="text-sm font-semibold">Tip para Codex</div>
             <div className="mt-2 text-sm opacity-90">
               Pídele que genere la slide completa dentro de <span className="font-mono">src/slides/slide-XX</span>

@@ -1,0 +1,48 @@
+/* =========================================================
+   Render Materials v1
+   - No layout
+   - No effects
+   - Solo seteo de tokens
+   ========================================================= */
+
+/* ---------- GLASS: COLD (default panel) ---------- */
+[data-material="glassCold"] {
+  --hi-glass-opacity: 0.10;
+  --hi-glass-frost: 0.12;
+
+  --hi-rim-strength: 0.10;
+  --hi-spec-strength: 0.12;
+  --hi-grain-amount: 0.08;
+
+  --hi-glow-strength: 0.00;
+  --hi-glint-opacity: 0.00;
+}
+
+/* ---------- GLASS: CRITICAL (KPI / panel dominante) ---------- */
+[data-material="glassCritical"] {
+  --hi-glass-opacity: 0.12;
+  --hi-glass-frost: 0.10;
+
+  --hi-rim-strength: 0.14;
+  --hi-spec-strength: 0.16;
+
+  --hi-glow-strength: 0.06;
+  --hi-glint-opacity: 0.09;
+}
+
+/* ---------- METAL FRAME ---------- */
+[data-material="metalFrame"] {
+  --hi-rim-strength: 0.08;
+  --hi-spec-strength: 0.10;
+
+  --hi-glass-opacity: 0.00;
+  --hi-glass-frost: 0.00;
+  --hi-grain-amount: 0.00;
+}
+
+/* ---------- CHART INK ---------- */
+[data-material="chartInk"] {
+  --hi-ink-contrast: 0.80;
+  --hi-glow-strength: 0.00;
+  --hi-grain-amount: 0.00;
+}

@@ -7,9 +7,11 @@ export default function Slide01(_props: SlideProps) {
     <SlideShell kicker="Deck" title="Agenda (ejemplo)">
       <div className="grid h-full grid-cols-12 gap-6">
         <div className="col-span-6">
+          <section data-material="glassCritical" data-glint="red">
           <DataBox title="Hoy">
             <TextList items={["Qué construimos", "Reglas de estructura", "Cómo agregar slides", "Cómo exportar"]} />
           </DataBox>
+          </section>
         </div>
         <div className="col-span-6">
           <DataBox title="Mañana">

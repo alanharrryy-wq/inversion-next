@@ -1,28 +1,71 @@
-import type { ReactNode } from "react"
+import React from "react";
 
-export function DataBox(props: { title: string; children: ReactNode; className?: string }) {
+export function DataBox(props: { title: string; children: React.ReactNode; tone?: "default" | "accent" | "gold" }) {
+  const tone = props.tone ?? "default";
+  const border =
+    tone === "accent" ? "rgba(2,167,202,.45)" :
+    tone === "gold" ? "rgba(171,123,38,.55)" :
+    "var(--border)";
+
   return (
-    <section className={["rounded-2xl border border-white/10 bg-white/5 p-5", props.className ?? ""].join(" ")}>
-      <div className="text-sm font-semibold">{props.title}</div>
-      <div className="mt-3 text-sm opacity-90">{props.children}</div>
-    </section>
-  )
+    <div
+      className="h-panel"
+      style={{
+        padding: "18px 18px",
+        borderColor: border,
+        minHeight: 120,
+      }}
+    >
+      <div style={{ fontSize: 14, color: "var(--muted)", letterSpacing: .3, marginBottom: 8 }}>
+        {props.title}
+      </div>
+      <div style={{ fontSize: 18, color: "var(--text)", lineHeight: 1.35 }}>
+        {props.children}
+      </div>
+    </div>
+  );
 }
 
-export function TextList(props: { items: Array<string>; className?: string }) {
+export function TextList(props: { items: string[] }) {
   return (
-    <ul className={["list-disc space-y-2 pl-6 text-sm opacity-90", props.className ?? ""].join(" ")}>
+    <ul style={{ margin: 0, paddingLeft: 20, color: "var(--text)", fontSize: 18, lineHeight: 1.55 }}>
       {props.items.map((t, i) => (
-        <li key={i}>{t}</li>
+        <li key={i} style={{ marginBottom: 6, color: "var(--muted)" }}>
+          <span style={{ color: "var(--text)" }}>{t}</span>
+        </li>
       ))}
     </ul>
-  )
+  );
 }
 
-export function Pill(props: { children: ReactNode; className?: string }) {
+export function Pill(props: { label: string; tone?: "accent" | "gold" | "muted" }) {
+  const tone = props.tone ?? "muted";
+  const bg =
+    tone === "accent" ? "rgba(2,167,202,.20)" :
+    tone === "gold" ? "rgba(171,123,38,.22)" :
+    "rgba(255,255,255,.10)";
+
+  const border =
+    tone === "accent" ? "rgba(2,167,202,.35)" :
+    tone === "gold" ? "rgba(171,123,38,.40)" :
+    "rgba(255,255,255,.14)";
+
   return (
-    <span className={["inline-flex items-center rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs", props.className ?? ""].join(" ")}>
-      {props.children}
+    <span
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 8,
+        padding: "6px 10px",
+        borderRadius: 999,
+        background: bg,
+        border: `1px solid ${border}`,
+        color: "var(--text)",
+        fontSize: 13,
+        letterSpacing: .25,
+      }}
+    >
+      {props.label}
     </span>
-  )
+  );
 }

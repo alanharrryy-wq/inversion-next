@@ -1,0 +1,17 @@
+/* src/rts/styles/visual_base.css
+   Visual base styles. Keep minimal to avoid breaking Tailwind runtime.
+*/
+html, body, #root{
+  width: 100vw;
+  height: 100vh;
+}
+
+body{
+  background: var(--vs-bg-0);
+  color: var(--vs-fg-0);
+}
+
+/* Optional: selection styling (executive calm) */
+::selection{
+  background: rgba(2,167,202,0.28);
+}

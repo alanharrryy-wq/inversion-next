@@ -1,0 +1,48 @@
+/* =========================================================
+   Effect: mirrorCine (v1 - TURBO)
+   - Reflejo inferior cinematográfico
+   - Solo masa visual
+   ========================================================= */
+
+:root {
+  --hi-mirror-strength: 0.14;
+  --hi-mirror-blur: 10px;
+  --hi-mirror-fade: 55%;
+}
+
+/* Host del espejo (wrapper, no el componente) */
+[data-mirror="on"] {
+  position: relative;
+}
+
+/* Capa espejo */
+[data-mirror="on"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 42%;
+
+  pointer-events: none;
+
+  /* Copia visual */
+  background: inherit;
+
+  /* Voltear */
+  transform: scaleY(-1);
+
+  /* Blur controlado */
+  filter: blur(var(--hi-mirror-blur));
+
+  /* Fade cinematográfico */
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0, var(--hi-mirror-strength)) 0%,
+    rgba(0,0,0, 0.35) 25%,
+    rgba(0,0,0, 0.10) var(--hi-mirror-fade),
+    rgba(0,0,0, 0.0) 100%
+  );
+
+  opacity: var(--hi-mirror-strength);
+}
