@@ -24,6 +24,7 @@ async function enableMocking() {
 
 function registerHiQA() {
   if (!import.meta.env?.DEV) return
+  void import("./shared/render/qa/qa.stage.debug.css")
   window.__hiQA = {
     set(flag: string) {
       document.documentElement.dataset.qa = flag
