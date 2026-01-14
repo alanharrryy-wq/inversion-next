@@ -28,4 +28,19 @@ temp/
 scans/
 legacy/
 *_incoming/
+# Build outputs
+build/
+out/
+coverage/
+.cache/
+.next/
+dist/
+*.log
+
+# Temp / junk
+tmp/
+temp/
+scans/
+legacy/
+*_incoming/
 
