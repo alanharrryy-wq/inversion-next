@@ -18,6 +18,7 @@ export default defineConfig({
         "**/.hitech-backups/**",
         "**/scripts/hitech-templates/**",
         "**/hitech-templates/**",
+        "**/scripts/hitech-templates__backup_*/**",
       ],
     },
   },

@@ -16,5 +16,10 @@
     "strict": true
   },
   "include": ["vite.config.ts"],
-  "exclude": [".hitech-backups", "scripts/hitech-templates", "hitech-templates"]
+  "exclude": [
+    ".hitech-backups",
+    "scripts/hitech-templates",
+    "hitech-templates",
+    "scripts/hitech-templates__backup_*"
+  ]
 }

@@ -1,0 +1,84 @@
+/* QA debug toggles for stage/effects isolation */
+
+html[data-qa="black"] .hi-stage {
+  background: #000 !important;
+}
+
+html[data-qa="black"] .hi-stage::before,
+html[data-qa="black"] .hi-stage::after,
+html[data-qa="no-overlays"] .hi-stage::before,
+html[data-qa="no-overlays"] .hi-stage::after {
+  content: none !important;
+  background: none !important;
+  animation: none !important;
+}
+
+html[data-qa="no-dust"] {
+  --hi-dust-opacity-a: 0;
+  --hi-dust-opacity-b: 0;
+}
+
+html[data-qa="no-grain"] {
+  --hi-grain-url: none !important;
+}
+
+html[data-qa="no-grain"] .hi-grain,
+html[data-qa="no-grain"] .hi-grain::before,
+html[data-qa="no-grain"] .hi-screen::after,
+html[data-qa="no-grain"] .hi-chart::after {
+  opacity: 0 !important;
+  background-image: none !important;
+}
+
+html[data-qa="no-blend"] .hi-stage::before,
+html[data-qa="no-blend"] .hi-stage::after,
+html[data-qa="no-blend"] [data-material^="glass"]::before,
+html[data-qa="no-blend"] [data-material^="glass"]::after,
+html[data-qa="no-blend"] [data-chart-highlight="on"]::after,
+html[data-qa="no-blend"] [data-mirror="on"]::after,
+html[data-qa="no-blend"] .hi-panel::before,
+html[data-qa="no-blend"] .hi-panel::after,
+html[data-qa="no-blend"] .hi-screen::before,
+html[data-qa="no-blend"] .hi-screen::after,
+html[data-qa="no-blend"] .hi-chart::before,
+html[data-qa="no-blend"] .hi-chart::after,
+html[data-qa="no-blend"] .hi-glow,
+html[data-qa="no-blend"] .hi-grain,
+html[data-qa="no-blend"] .hi-grain::before,
+html[data-qa="no-blend"] .hi-glassfx,
+html[data-qa="no-blend"] .hi-glints,
+html[data-qa="no-blend"] .hi-specular,
+html[data-qa="no-blend"] .hi-inset,
+html[data-qa="no-blend"] .hi-rim,
+html[data-qa="no-blend"] .hi-mirror-wrap,
+html[data-qa="no-blend"] .hi-mirror {
+  mix-blend-mode: normal !important;
+}
+
+html[data-qa="no-filter"] .hi-stage::before,
+html[data-qa="no-filter"] .hi-stage::after,
+html[data-qa="no-filter"] [data-material^="glass"]::before,
+html[data-qa="no-filter"] [data-material^="glass"]::after,
+html[data-qa="no-filter"] [data-chart-highlight="on"]::after,
+html[data-qa="no-filter"] [data-mirror="on"]::after,
+html[data-qa="no-filter"] .hi-panel,
+html[data-qa="no-filter"] .hi-panel::before,
+html[data-qa="no-filter"] .hi-panel::after,
+html[data-qa="no-filter"] .hi-screen::before,
+html[data-qa="no-filter"] .hi-screen::after,
+html[data-qa="no-filter"] .hi-chart::before,
+html[data-qa="no-filter"] .hi-chart::after,
+html[data-qa="no-filter"] .hi-glow,
+html[data-qa="no-filter"] .hi-grain,
+html[data-qa="no-filter"] .hi-grain::before,
+html[data-qa="no-filter"] .hi-glassfx,
+html[data-qa="no-filter"] .hi-glints,
+html[data-qa="no-filter"] .hi-specular,
+html[data-qa="no-filter"] .hi-inset,
+html[data-qa="no-filter"] .hi-rim,
+html[data-qa="no-filter"] .hi-mirror-wrap,
+html[data-qa="no-filter"] .hi-mirror {
+  filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}

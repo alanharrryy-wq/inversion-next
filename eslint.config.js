@@ -9,6 +9,7 @@ export default tseslint.config(
       "**/.hitech-backups/**",
       "**/scripts/hitech-templates/**",
       "**/hitech-templates/**",
+      "**/scripts/hitech-templates__backup_*/**",
     ],
   },
   js.configs.recommended,
