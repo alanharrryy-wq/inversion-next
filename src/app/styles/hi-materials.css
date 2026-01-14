@@ -50,8 +50,8 @@
   border-radius: var(--hi-radius-xl);
   overflow: hidden;
   background:
-    radial-gradient(1200px 700px at 18% 22%, rgba(160, 210, 255, 0.12), transparent 58%),
-    radial-gradient(900px 520px at 72% 30%, rgba(80, 200, 255, 0.10), transparent 55%),
+    radial-gradient(1200px 700px at 18% 22%, rgba(203, 203, 203, 0.12), transparent 58%),
+    radial-gradient(900px 520px at 72% 30%, rgba(178, 178, 178, 0.10), transparent 55%),
     radial-gradient(1200px 900px at 55% 95%, rgba(255, 255, 255, 0.06), transparent 58%),
     linear-gradient(180deg, var(--hi-bg-2), var(--hi-bg-0));
   box-shadow: var(--hi-shadow-out);
@@ -64,7 +64,7 @@
   inset: -40px;
   background:
     radial-gradient(closest-side at 18% 18%, rgba(255, 255, 255, 0.05), transparent 60%),
-    radial-gradient(closest-side at 78% 22%, rgba(120, 220, 255, 0.04), transparent 62%),
+    radial-gradient(closest-side at 78% 22%, rgba(201, 201, 201, 0.04), transparent 62%),
     radial-gradient(closest-side at 45% 92%, rgba(255, 255, 255, 0.04), transparent 62%),
     radial-gradient(1200px 800px at 50% 50%, rgba(255, 255, 255, 0.02), transparent 70%),
     linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.38));
@@ -199,7 +199,7 @@
   border-radius: inherit;
   background:
     radial-gradient(700px 320px at 40% 10%, rgba(255, 255, 255, 0.10), transparent 62%),
-    radial-gradient(600px 280px at 70% 20%, rgba(90, 210, 255, 0.08), transparent 62%);
+    radial-gradient(600px 280px at 70% 20%, rgba(188, 188, 188, 0.08), transparent 62%);
   filter: blur(18px);
   opacity: 0.45;
   pointer-events: none;
@@ -238,7 +238,7 @@
   border-radius: inherit;
   background:
     linear-gradient(115deg, transparent 0 44%, rgba(255, 255, 255, 0.10) 48%, transparent 52%),
-    linear-gradient(115deg, transparent 0 62%, rgba(120, 220, 255, 0.08) 66%, transparent 70%),
+    linear-gradient(115deg, transparent 0 62%, rgba(201, 201, 201, 0.08) 66%, transparent 70%),
     radial-gradient(700px 260px at 80% 0%, rgba(255, 255, 255, 0.10), transparent 62%);
   opacity: 0.55;
   mix-blend-mode: screen;

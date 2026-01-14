@@ -47,9 +47,10 @@ void main(){
   vec3 base = vec3(0.028, 0.032, 0.045);
   vec3 steel = vec3(0.075, 0.090, 0.115);
   vec3 cyan = vec3(0.008, 0.655, 0.792); // ~ #02A7CA
+  float cyanL = dot(cyan, vec3(0.299, 0.587, 0.114));
 
   // bloom acumulado (controlado)
-  vec3 glow = cyan * field * 0.22;
+  vec3 glow = vec3(cyanL) * field * 0.22;
   vec3 color = mix(base, steel, field * 0.62) + glow;
 
   // partículas (grano + polvo)
