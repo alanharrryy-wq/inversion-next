@@ -122,7 +122,7 @@ function BarRow({ label, value }: { label: string; value: number }) {
           style={{
             width: `${value}%`,
             background:
-              "linear-gradient(90deg, rgba(76,205,255,0.12), rgba(76,205,255,0.55))"
+              "linear-gradient(90deg, rgba(181,181,181,0.12), rgba(181,181,181,0.55))"
           }}
         />
       </div>
@@ -141,7 +141,7 @@ function KpiDonut() {
               <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
                 <stop offset="0" stopColor="rgba(255,255,255,0.70)" />
                 <stop offset="0.35" stopColor="rgba(255,255,255,0.18)" />
-                <stop offset="1" stopColor="rgba(76,205,255,0.55)" />
+                <stop offset="1" stopColor="rgba(181,181,181,0.55)" />
               </linearGradient>
               <filter id="softGlow">
                 <feGaussianBlur stdDeviation="1.8" result="b" />
@@ -234,12 +234,12 @@ function BarsAndSignal() {
         <svg className="h-full w-full" viewBox="0 0 100 40" preserveAspectRatio="none">
           <path
             d="M0,32 C10,30 20,28 30,29 C40,30 50,22 60,20 C70,18 80,19 90,16 C95,15 98,14 100,13 L100,40 L0,40 Z"
-            fill="rgba(76,205,255,0.14)"
+            fill="rgba(181,181,181,0.14)"
           />
           <path
             d="M0,32 C10,30 20,28 30,29 C40,30 50,22 60,20 C70,18 80,19 90,16 C95,15 98,14 100,13"
             fill="none"
-            stroke="rgba(76,205,255,0.55)"
+            stroke="rgba(181,181,181,0.55)"
             strokeWidth="1.4"
           />
         </svg>
@@ -261,7 +261,7 @@ function MiniBar({ label, value, right }: { label: string; value: number; right:
           style={{
             width: `${value}%`,
             background:
-              "linear-gradient(90deg, rgba(76,205,255,0.10), rgba(76,205,255,0.55))"
+              "linear-gradient(90deg, rgba(181,181,181,0.10), rgba(181,181,181,0.55))"
           }}
         />
       </div>
@@ -294,7 +294,7 @@ function PerfChart() {
       <svg className="h-full w-full" viewBox="0 0 100 60" preserveAspectRatio="none">
         <path
           d="M0,50 C10,48 20,47 30,44 C40,40 50,38 60,34 C70,30 80,28 90,24 C95,22 98,21 100,20 L100,60 L0,60 Z"
-          fill="rgba(76,205,255,0.10)"
+          fill="rgba(181,181,181,0.10)"
         />
         <path
           d="M0,50 C10,48 20,47 30,44 C40,40 50,38 60,34 C70,30 80,28 90,24 C95,22 98,21 100,20"
@@ -320,3 +320,4 @@ function InsightsMock() {
     </div>
   )
 }
+
