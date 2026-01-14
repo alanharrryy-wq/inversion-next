@@ -50,9 +50,24 @@
   border-radius: var(--hi-radius-xl);
   overflow: hidden;
   background:
-    radial-gradient(1200px 700px at 18% 22%, rgba(203, 203, 203, 0.12), transparent 58%),
-    radial-gradient(900px 520px at 72% 30%, rgba(178, 178, 178, 0.10), transparent 55%),
-    radial-gradient(1200px 900px at 55% 95%, rgba(255, 255, 255, 0.06), transparent 58%),
+    radial-gradient(
+      1200px 700px at 18% 22%,
+      rgba(203, 203, 203, 0.12) 0%,
+      rgba(203, 203, 203, 0.06) 22%,
+      transparent 46%
+    ),
+    radial-gradient(
+      900px 520px at 72% 30%,
+      rgba(178, 178, 178, 0.10) 0%,
+      rgba(178, 178, 178, 0.05) 22%,
+      transparent 44%
+    ),
+    radial-gradient(
+      1200px 900px at 55% 95%,
+      rgba(255, 255, 255, 0.06) 0%,
+      rgba(255, 255, 255, 0.03) 22%,
+      transparent 46%
+    ),
     linear-gradient(180deg, var(--hi-bg-2), var(--hi-bg-0));
   box-shadow: var(--hi-shadow-out);
 }
@@ -63,10 +78,30 @@
   position: absolute;
   inset: -40px;
   background:
-    radial-gradient(closest-side at 18% 18%, rgba(255, 255, 255, 0.05), transparent 60%),
-    radial-gradient(closest-side at 78% 22%, rgba(201, 201, 201, 0.04), transparent 62%),
-    radial-gradient(closest-side at 45% 92%, rgba(255, 255, 255, 0.04), transparent 62%),
-    radial-gradient(1200px 800px at 50% 50%, rgba(255, 255, 255, 0.02), transparent 70%),
+    radial-gradient(
+      closest-side at 18% 18%,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.025) 20%,
+      transparent 45%
+    ),
+    radial-gradient(
+      closest-side at 78% 22%,
+      rgba(201, 201, 201, 0.04) 0%,
+      rgba(201, 201, 201, 0.02) 20%,
+      transparent 45%
+    ),
+    radial-gradient(
+      closest-side at 45% 92%,
+      rgba(255, 255, 255, 0.04) 0%,
+      rgba(255, 255, 255, 0.02) 18%,
+      transparent 40%
+    ),
+    radial-gradient(
+      1200px 800px at 50% 10%,
+      rgba(255, 255, 255, 0.02) 0%,
+      rgba(255, 255, 255, 0.01) 20%,
+      transparent 45%
+    ),
     linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.38));
   filter: blur(0.4px);
   opacity: 1;
@@ -85,6 +120,54 @@
   pointer-events: none;
 }
 
+/* Base glass plane (behind panels) */
+.hi-base-glass {
+  position: absolute;
+  inset: 12px;
+  border-radius: calc(var(--hi-radius-xl) - 6px);
+  pointer-events: none;
+  z-index: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.14),
+      rgba(255, 255, 255, 0.05) 12%,
+      transparent 22%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.03) 22%,
+      transparent 55%
+    ),
+    radial-gradient(
+      130% 120% at 50% 50%,
+      transparent 64%,
+      rgba(255, 255, 255, 0.05) 90%,
+      rgba(255, 255, 255, 0.08) 100%
+    ),
+    radial-gradient(
+      220px 140px at 84% 88%,
+      rgba(255, 255, 255, 0.08),
+      transparent 62%
+    ),
+    radial-gradient(
+      140% 120% at 50% 8%,
+      rgba(255, 255, 255, 0.04),
+      transparent 45%
+    ),
+    radial-gradient(
+      120% 120% at 50% 50%,
+      transparent 58%,
+      rgba(0, 0, 0, 0.28) 100%
+    );
+  box-shadow:
+    0 0 0 1px var(--hi-edge-outer),
+    inset 0 0 0 1px var(--hi-edge-inner),
+    0 18px 60px rgba(0, 0, 0, 0.45);
+  opacity: 0.42;
+}
+
 /* =========================
    PANEL GLASS + METAL (7-9 layers)
    ========================= */
@@ -93,8 +176,18 @@
   position: relative;
   border-radius: var(--hi-radius-lg);
   overflow: hidden;
+  --hi-edge-outer: var(--hi-edge-outer);
+  --hi-edge-inner: var(--hi-edge-inner);
+  --hi-spec-top-a: 0.16;
+  --hi-spec-top-b: 0.06;
+  --hi-spec-stop: 20%;
+  --hi-spec-fade: 55%;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.10));
-  box-shadow: var(--hi-shadow-mid);
+  box-shadow:
+    0 0 0 1px var(--hi-edge-outer),
+    inset 0 0 0 1px var(--hi-edge-inner),
+    0 10px 22px rgba(0, 0, 0, 0.38),
+    var(--hi-shadow-mid);
 }
 
 /* Layer 1: deep base */
@@ -103,8 +196,18 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(900px 480px at 30% 10%, rgba(255, 255, 255, 0.07), transparent 60%),
-    radial-gradient(900px 540px at 70% 20%, rgba(90, 200, 255, 0.05), transparent 62%),
+    radial-gradient(
+      900px 480px at 30% 10%,
+      rgba(255, 255, 255, 0.07) 0%,
+      rgba(255, 255, 255, 0.035) 18%,
+      transparent 42%
+    ),
+    radial-gradient(
+      900px 540px at 70% 20%,
+      rgba(181, 181, 181, 0.05) 0%,
+      rgba(181, 181, 181, 0.025) 18%,
+      transparent 42%
+    ),
     radial-gradient(1200px 700px at 50% 120%, rgba(0, 0, 0, 0.75), transparent 60%),
     linear-gradient(180deg, var(--hi-panel-core), var(--hi-panel-deep));
   backdrop-filter: blur(var(--hi-blur));
@@ -130,10 +233,32 @@
 /* Critical panel: deeper + more spec + stronger rim */
 .hi-panel-critical::before {
   background:
-    radial-gradient(900px 520px at 32% 12%, rgba(255, 255, 255, 0.10), transparent 60%),
-    radial-gradient(900px 540px at 78% 22%, rgba(90, 210, 255, 0.07), transparent 62%),
+    radial-gradient(
+      900px 520px at 32% 12%,
+      rgba(255, 255, 255, 0.10) 0%,
+      rgba(255, 255, 255, 0.05) 18%,
+      transparent 42%
+    ),
+    radial-gradient(
+      900px 540px at 78% 22%,
+      rgba(188, 188, 188, 0.07) 0%,
+      rgba(188, 188, 188, 0.035) 18%,
+      transparent 42%
+    ),
     radial-gradient(1200px 700px at 50% 120%, rgba(0, 0, 0, 0.82), transparent 60%),
     linear-gradient(180deg, rgba(24, 34, 44, 0.68), rgba(6, 10, 14, 0.62));
+}
+
+.hi-panel-critical {
+  --hi-edge-outer: rgba(255, 255, 255, 0.18);
+  --hi-edge-inner: rgba(255, 255, 255, 0.09);
+  --hi-spec-top-a: 0.19;
+  --hi-spec-top-b: 0.08;
+  box-shadow:
+    0 0 0 1px var(--hi-edge-outer),
+    inset 0 0 0 1px var(--hi-edge-inner),
+    0 10px 22px rgba(0, 0, 0, 0.38),
+    var(--hi-shadow-mid);
 }
 
 /* =========================
@@ -144,7 +269,12 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  box-shadow: var(--hi-shadow-in);
+  box-shadow:
+    var(--hi-shadow-in),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 45%),
+    radial-gradient(140% 120% at 50% 0%, rgba(255, 255, 255, 0.05), transparent 65%);
   pointer-events: none;
 }
 
@@ -154,8 +284,12 @@
   inset: 0;
   border-radius: inherit;
   background:
-    radial-gradient(900px 220px at 50% 0%, rgba(255, 255, 255, 0.12), transparent 58%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 32%);
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, var(--hi-spec-top-a)),
+      rgba(255, 255, 255, var(--hi-spec-top-b)) var(--hi-spec-stop),
+      transparent var(--hi-spec-fade)
+    );
   opacity: 0.85;
   mix-blend-mode: screen;
   pointer-events: none;
@@ -171,7 +305,7 @@
     conic-gradient(from 210deg,
       rgba(255, 255, 255, 0.22),
       rgba(255, 255, 255, 0.06) 20%,
-      rgba(120, 220, 255, 0.14) 34%,
+      rgba(201, 201, 201, 0.14) 34%,
       rgba(255, 255, 255, 0.04) 52%,
       rgba(255, 255, 255, 0.18) 78%,
       rgba(255, 255, 255, 0.06));
@@ -198,10 +332,20 @@
   inset: -18px;
   border-radius: inherit;
   background:
-    radial-gradient(700px 320px at 40% 10%, rgba(255, 255, 255, 0.10), transparent 62%),
-    radial-gradient(600px 280px at 70% 20%, rgba(188, 188, 188, 0.08), transparent 62%);
+    radial-gradient(
+      700px 320px at 40% 10%,
+      rgba(255, 255, 255, 0.10) 0%,
+      rgba(255, 255, 255, 0.05) 20%,
+      transparent 52%
+    ),
+    radial-gradient(
+      600px 280px at 70% 20%,
+      rgba(188, 188, 188, 0.08) 0%,
+      rgba(188, 188, 188, 0.04) 20%,
+      transparent 52%
+    );
   filter: blur(18px);
-  opacity: 0.45;
+  opacity: 0.36;
   pointer-events: none;
 }
 
@@ -223,6 +367,7 @@
   inset: 0;
   border-radius: inherit;
   background:
+    radial-gradient(220px 140px at 78% 14%, rgba(255, 255, 255, 0.12), transparent 62%),
     radial-gradient(420px 160px at 28% 22%, rgba(255, 255, 255, 0.08), transparent 68%),
     radial-gradient(520px 200px at 76% 18%, rgba(255, 255, 255, 0.06), transparent 70%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 50%);
@@ -236,14 +381,91 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
+  --hi-glint-a: 0.06;
+  --hi-glint-b: 0.04;
   background:
-    linear-gradient(115deg, transparent 0 44%, rgba(255, 255, 255, 0.10) 48%, transparent 52%),
-    linear-gradient(115deg, transparent 0 62%, rgba(201, 201, 201, 0.08) 66%, transparent 70%),
-    radial-gradient(700px 260px at 80% 0%, rgba(255, 255, 255, 0.10), transparent 62%);
-  opacity: 0.55;
+    linear-gradient(
+      115deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.0) 40%,
+      rgba(255, 255, 255, var(--hi-glint-a)) 47%,
+      rgba(255, 255, 255, 0.0) 54%,
+      transparent 100%
+    ),
+    linear-gradient(
+      102deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.0) 58%,
+      rgba(255, 255, 255, var(--hi-glint-b)) 62%,
+      rgba(255, 255, 255, 0.0) 68%,
+      transparent 100%
+    );
+  background-size: 140% 140%, 160% 160%;
+  background-position: 0% 0%, 10% -8%;
+  opacity: 1;
   mix-blend-mode: screen;
   filter: blur(0.2px);
   pointer-events: none;
+  animation: hi-glints-driftA 16s ease-in-out infinite;
+}
+
+.hi-glints::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.0) 36%,
+      rgba(255, 255, 255, var(--hi-glint-a)) 43%,
+      rgba(255, 255, 255, 0.0) 49%,
+      transparent 100%
+    ),
+    linear-gradient(
+      108deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.0) 64%,
+      rgba(255, 255, 255, var(--hi-glint-b)) 68%,
+      rgba(255, 255, 255, 0.0) 74%,
+      transparent 100%
+    );
+  background-size: 160% 160%, 180% 180%;
+  background-position: -10% 6%, 8% -4%;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: hi-glints-driftB 18s ease-in-out infinite;
+  animation-delay: -6s;
+}
+
+.hi-panel-critical .hi-glints {
+  --hi-glint-a: 0.08;
+  --hi-glint-b: 0.055;
+}
+
+@keyframes hi-glints-driftA {
+  0% {
+    background-position: 0% 0%, 10% -8%;
+  }
+  50% {
+    background-position: 6% -4%, 16% -2%;
+  }
+  100% {
+    background-position: 0% 0%, 10% -8%;
+  }
+}
+
+@keyframes hi-glints-driftB {
+  0% {
+    background-position: -10% 6%, 8% -4%;
+  }
+  50% {
+    background-position: -2% 2%, 14% -1%;
+  }
+  100% {
+    background-position: -10% 6%, 8% -4%;
+  }
 }
 
 /* =========================
@@ -253,13 +475,41 @@
 .hi-chart {
   border-radius: 14px;
   background:
+    repeating-linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.03) 0,
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px,
+      transparent 64px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.02) 0,
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px,
+      transparent 40px
+    ),
     linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.24)),
-    radial-gradient(600px 260px at 60% 0%, rgba(120, 220, 255, 0.10), transparent 60%);
+    radial-gradient(600px 260px at 60% 0%, rgba(201, 201, 201, 0.10), transparent 60%);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.06),
     inset 0 -30px 50px rgba(0, 0, 0, 0.55);
   position: relative;
   overflow: hidden;
+}
+
+.hi-chart svg path,
+.hi-chart svg line,
+.hi-chart svg polyline,
+.hi-chart svg circle {
+  filter:
+    drop-shadow(0 0 0.8px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 0 0.5px rgba(255, 255, 255, 0.12));
+}
+
+[data-chart-highlight="on"] {
+  --hi-chart-highlight-opacity: 0.06;
+  --hi-chart-highlight-period: 16s;
 }
 
 .hi-chart::before {
@@ -283,6 +533,30 @@
   opacity: 0.10;
   mix-blend-mode: overlay;
   pointer-events: none;
+}
+
+[data-chart-highlight="on"] .hi-chart::after {
+  background-image:
+    radial-gradient(1px 1px at 18% 24%, rgba(255, 255, 255, 0.12), transparent 60%),
+    radial-gradient(1px 1px at 72% 18%, rgba(255, 255, 255, 0.10), transparent 60%),
+    radial-gradient(1px 1px at 44% 76%, rgba(255, 255, 255, 0.08), transparent 60%),
+    var(--hi-grain-url);
+  background-size: 180px 180px, 240px 240px, 200px 200px, 260px 260px;
+  background-position: 0 0, 24px 12px, -12px 28px, 0 0;
+  opacity: 0.08;
+  animation: hi-chart-sparkle 18s linear infinite;
+}
+
+@keyframes hi-chart-sparkle {
+  0% {
+    background-position: 0 0, 24px 12px, -12px 28px, 0 0;
+  }
+  50% {
+    background-position: 18px -12px, 44px 22px, -28px 10px, 0 0;
+  }
+  100% {
+    background-position: 0 0, 24px 12px, -12px 28px, 0 0;
+  }
 }
 
 /* =========================
