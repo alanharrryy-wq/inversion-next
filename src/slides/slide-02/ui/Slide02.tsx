@@ -2,8 +2,11 @@ import { motion } from "framer-motion"
 import { SlideShell } from "@/shared/ui/slide/SlideShell"
 import { cn } from "@/shared/lib/cn"
 import { useHiGrain } from "@/shared/hooks/useHiGrain"
+import type { Slide02DashboardData } from "@/slides/slide-02/data/slide02.contract"
+import { getSlide02Mock } from "@/slides/slide-02/data/slide02.mock"
 
 export default function Slide02() {
+  const data = getSlide02Mock("slide02-v4")
   // grain procedural (sin assets)
   useHiGrain({ size: 256, alpha: 0.18, seed: "slide02-v4" })
 
@@ -16,20 +19,21 @@ export default function Slide02() {
       footerRight={<span className="font-mono">1600x900</span>}
     >
       <div className="relative grid h-full grid-cols-12 grid-rows-6 gap-6">
+        <div className="hi-base-glass" aria-hidden="true" />
         <GlassPanel className="col-span-5 row-span-2" title="Risk Summary">
-          <RiskMock />
+          <RiskMock data={data.riskSummary} />
         </GlassPanel>
 
         <GlassPanel critical className="col-span-4 row-span-2" title="KPI Tracker">
-          <KpiDonut />
+          <KpiDonut data={data.kpiTracker} />
         </GlassPanel>
 
         <GlassPanel className="col-span-3 row-span-2" title="AI Better">
-          <BarsAndSignal />
+          <BarsAndSignal data={data.aiBetter} />
         </GlassPanel>
 
         <GlassPanel className="col-span-5 row-span-4" title="Recent Activity">
-          <ActivityMock />
+          <ActivityMock data={data.recentActivity} />
         </GlassPanel>
 
         <GlassPanel className="col-span-4 row-span-4" title="Portfolio Performance">
@@ -39,7 +43,7 @@ export default function Slide02() {
         </GlassPanel>
 
         <GlassPanel className="col-span-3 row-span-4" title="AI Insights">
-          <InsightsMock />
+          <InsightsMock data={data.aiInsights} />
         </GlassPanel>
 
         <div className="hi-mirror-wrap">
@@ -84,25 +88,30 @@ function GlassPanel(props: {
   )
 }
 
-function RiskMock() {
+function RiskMock({ data }: { data: Slide02DashboardData["riskSummary"] }) {
+  const low = data.riskMix.find((entry) => entry.level === "Low")?.percent ?? 0
+  const medium = data.riskMix.find((entry) => entry.level === "Medium")?.percent ?? 0
+  const high = data.riskMix.find((entry) => entry.level === "High")?.percent ?? 0
+  const deltaLabel = `${data.deltaThisMonth >= 0 ? "+" : ""}${data.deltaThisMonth} this month`
+
   return (
     <div className="grid h-full grid-cols-2 gap-4">
       <div className="rounded-[14px] bg-white/5 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
         <div className="hi-dim text-xs">Active Risks</div>
-        <div className="mt-2 text-4xl font-semibold">11</div>
+        <div className="mt-2 text-4xl font-semibold">{data.activeRisks}</div>
         <div className="mt-2 inline-flex items-center gap-2 rounded-full bg-black/30 px-3 py-1 text-xs opacity-80">
           <span className="h-2 w-2 rounded-full bg-white/40" />
-          Medium
-          <span className="hi-dim">+27 this month</span>
+          {data.severity}
+          <span className="hi-dim">{deltaLabel}</span>
         </div>
       </div>
 
       <div className="rounded-[14px] bg-white/5 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
         <div className="hi-dim text-xs">Risk Mix</div>
         <div className="mt-3 space-y-3 text-xs">
-          <BarRow label="Low" value={62} />
-          <BarRow label="Medium" value={28} />
-          <BarRow label="High" value={10} />
+          <BarRow label="Low" value={low} />
+          <BarRow label="Medium" value={medium} />
+          <BarRow label="High" value={high} />
         </div>
       </div>
     </div>
@@ -130,7 +139,11 @@ function BarRow({ label, value }: { label: string; value: number }) {
   )
 }
 
-function KpiDonut() {
+function KpiDonut({ data }: { data: Slide02DashboardData["kpiTracker"] }) {
+  const ring = 2 * Math.PI * 44
+  const compositeLabel = `${(data.composite * 100).toFixed(1)}%`
+  const dashOffset = ring * (1 - data.donutProgress)
+
   return (
     <div className="grid h-full grid-cols-[1fr_170px] gap-4">
       <div className="flex items-center justify-center">
@@ -178,8 +191,8 @@ function KpiDonut() {
               stroke="url(#g1)"
               strokeWidth="10"
               strokeLinecap="round"
-              strokeDasharray={`${2 * Math.PI * 44}`}
-              strokeDashoffset={`${2 * Math.PI * 44 * (1 - 0.721)}`}
+              strokeDasharray={`${ring}`}
+              strokeDashoffset={`${dashOffset}`}
               transform="rotate(-90 60 60)"
               filter="url(#softGlow)"
             />
@@ -188,7 +201,7 @@ function KpiDonut() {
           <div className="absolute inset-[18px] rounded-full bg-black/45 backdrop-blur-[10px] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]" />
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center">
-              <div className="text-3xl font-semibold">72.1%</div>
+              <div className="text-3xl font-semibold">{compositeLabel}</div>
               <div className="hi-dim mt-1 text-xs">KPI composite</div>
             </div>
           </div>
@@ -198,12 +211,12 @@ function KpiDonut() {
       </div>
 
       <div className="space-y-2">
-        <Pill label="Forecast" value="1.1m" />
-        <Pill label="Target" value="2.5m" />
-        <Pill label="Actual" value="1.8m" />
+        <Pill label={data.forecast.label} value={formatValue(data.forecast)} />
+        <Pill label={data.target.label} value={formatValue(data.target)} />
+        <Pill label={data.actual.label} value={formatValue(data.actual)} />
         <div className="mt-3 rounded-[14px] bg-white/5 p-3 text-xs opacity-80">
-          Confidence: <span className="text-white/80">High</span> · Drift:{" "}
-          <span className="text-white/80">Low</span>
+          Confidence: <span className="text-white/80">{data.confidence}</span> · Drift:{" "}
+          <span className="text-white/80">{data.drift}</span>
         </div>
       </div>
     </div>
@@ -219,13 +232,18 @@ function Pill({ label, value }: { label: string; value: string }) {
   )
 }
 
-function BarsAndSignal() {
+function BarsAndSignal({ data }: { data: Slide02DashboardData["aiBetter"] }) {
   return (
     <div className="grid h-full grid-rows-[auto_auto_1fr] gap-3">
       <div className="space-y-2 text-xs opacity-80">
-        <MiniBar label="Forecast" value={70} right="1.00" />
-        <MiniBar label="Target" value={52} right="2.5m" />
-        <MiniBar label="Actual" value={60} right="1.8m" />
+        {data.kpiBars.map((bar) => (
+          <MiniBar
+            key={bar.label}
+            label={bar.label}
+            value={bar.percent}
+            right={formatValue(bar)}
+          />
+        ))}
       </div>
 
       <div className="hi-dim text-xs">Signal</div>
@@ -269,12 +287,16 @@ function MiniBar({ label, value, right }: { label: string; value: number; right:
   )
 }
 
-function ActivityMock() {
+function ActivityMock({ data }: { data: Slide02DashboardData["recentActivity"] }) {
   return (
     <div className="space-y-3">
-      <ActivityRow title="Mitigation plan initiated" meta="15m ago · Risk #42" />
-      <ActivityRow title="New trade executed" meta="1h ago · Strategy: Core" />
-      <ActivityRow title="KPI report generated" meta="2h ago · PDF export" />
+      {data.items.map((item) => (
+        <ActivityRow
+          key={item.timestamp}
+          title={item.title}
+          meta={`${item.timeAgo} · ${item.detail}`}
+        />
+      ))}
     </div>
   )
 }
@@ -307,17 +329,42 @@ function PerfChart() {
   )
 }
 
-function InsightsMock() {
+function InsightsMock({ data }: { data: Slide02DashboardData["aiInsights"] }) {
   return (
     <div className="grid h-full grid-rows-[auto_1fr] gap-3">
       <div className="rounded-[14px] bg-white/5 p-4 text-xs opacity-80 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
-        Operational efficiencies highlight opportunities for a{" "}
-        <span className="text-white/85">17%</span> streamlined workflow improvement in
-        the upcoming quarter.
-        <div className="hi-dim mt-2">Confidence: 0.81 · Source: MSW mock</div>
+        {data.summaryPrefix}{" "}
+        <span className="text-white/85">{data.highlightPercent}%</span>{" "}
+        {data.summarySuffix}
+        <div className="hi-dim mt-2">
+          Confidence: {data.confidence.toFixed(2)} · Source: {data.source}
+        </div>
       </div>
       <div className="hi-chart" />
     </div>
   )
+}
+
+type DisplayValue =
+  | Slide02DashboardData["kpiTracker"]["forecast"]
+  | Slide02DashboardData["aiBetter"]["kpiBars"][number]
+
+function formatValue(metric: DisplayValue) {
+  if ("rightValue" in metric) {
+    if (metric.rightDisplay) {
+      return metric.rightDisplay
+    }
+    if (metric.rightUnit) {
+      return `${metric.rightValue}${metric.rightUnit}`
+    }
+    return `${metric.rightValue}`
+  }
+  if (metric.display) {
+    return metric.display
+  }
+  if (metric.unit) {
+    return `${metric.value}${metric.unit}`
+  }
+  return `${metric.value}`
 }
 
