@@ -1,0 +1,17 @@
+/* src/rts/styles/visual_tokens.light.css
+   Light mode overrides for executive decks.
+*/
+@media (prefers-color-scheme: light){
+  :root{
+    --vs-bg-0: #F7FAFF;
+    --vs-bg-1: rgba(255,255,255,0.92);
+    --vs-bg-2: rgba(255,255,255,0.78);
+
+    --vs-fg-0: rgba(11,18,32,0.92);
+    --vs-fg-1: rgba(11,18,32,0.72);
+    --vs-fg-2: rgba(11,18,32,0.56);
+
+    /* Light-friendly status tints */
+    --vs-state-muted: rgba(11,18,32,0.06);
+  }
+}

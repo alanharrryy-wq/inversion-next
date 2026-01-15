@@ -1,0 +1,12 @@
+/* src/rts/styles/print.css
+   Print/PDF safety for deck exports.
+*/
+@media print{
+  html, body{
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .rts-root{
+    box-shadow: none !important;
+  }
+}

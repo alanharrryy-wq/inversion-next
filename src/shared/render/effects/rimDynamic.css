@@ -1,0 +1,60 @@
+/* =========================================================
+   Effect: rimDynamic (v1 - TURBO)
+   - Micro shimmer irregular
+   - No loop evidente
+   ========================================================= */
+
+:root {
+  --hi-rim-strength: 0.12;
+  --hi-rim-jitter-a: 0.035;
+  --hi-rim-jitter-b: 0.022;
+  --hi-rim-period-a: 19s;
+  --hi-rim-period-b: 31s;
+}
+
+/* Aplica a todo panel con material glass */
+[data-material^="glass"] {
+  position: relative;
+}
+
+/* Rim layer */
+[data-material^="glass"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255, calc(var(--hi-rim-strength) * 0.9)),
+      rgba(255,255,255, 0.0) 45%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255, calc(var(--hi-rim-strength) * 0.6)),
+      rgba(255,255,255, 0.0) 35%
+    );
+
+  opacity: 0.55;
+
+  animation:
+    hi-rimJitterA var(--hi-rim-period-a) ease-in-out infinite,
+    hi-rimJitterB var(--hi-rim-period-b) ease-in-out infinite;
+}
+
+/* Animaciones desfasadas */
+@keyframes hi-rimJitterA {
+  0%   { opacity: 0.52; }
+  50%  { opacity: calc(0.52 + var(--hi-rim-jitter-a)); }
+  100% { opacity: 0.52; }
+}
+
+@keyframes hi-rimJitterB {
+  0%   { opacity: 0.55; }
+  50%  { opacity: calc(0.55 + var(--hi-rim-jitter-b)); }
+  100% { opacity: 0.55; }
+}

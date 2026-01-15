@@ -1,0 +1,46 @@
+/* =========================================================
+   Effect: chartSurfaceHighlight (v1)
+   - Highlight lento y físico
+   ========================================================= */
+
+:root {
+  --hi-chart-highlight-opacity: 0.10;
+  --hi-chart-highlight-period: 14s;
+}
+
+/* Wrapper opt-in */
+[data-chart-highlight="on"] {
+  position: relative;
+}
+
+/* Capa highlight */
+[data-chart-highlight="on"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255, 0.0) 35%,
+    rgba(255,255,255, var(--hi-chart-highlight-opacity)) 50%,
+    rgba(255,255,255, 0.0) 65%,
+    transparent 100%
+  );
+
+  opacity: 0;
+  transform: translateX(-20%);
+  mix-blend-mode: screen;
+
+  animation: hi-chartHighlight var(--hi-chart-highlight-period) ease-in-out infinite;
+}
+
+@keyframes hi-chartHighlight {
+  0%   { opacity: 0; transform: translateX(-20%); }
+  30%  { opacity: 0; }
+  55%  { opacity: 1; transform: translateX(0%); }
+  75%  { opacity: 0; transform: translateX(20%); }
+  100% { opacity: 0; transform: translateX(20%); }
+}

@@ -1,0 +1,31 @@
+:root {
+  /* === STAGE === */
+  --hi-stage-key: 0.16;
+  --hi-stage-fill: 0.10;
+  --hi-stage-bounce: 0.07;
+  --hi-stage-vignette: 0.18;
+  --hi-stage-haze: 0.06;
+
+  /* === MATERIAL === */
+  --hi-glass-opacity: 0.10;
+  --hi-glass-frost: 0.12;
+  --hi-metal-strength: 0.18;
+  --hi-ink-contrast: 0.78;
+  --hi-edge-outer: rgba(255, 255, 255, 0.14);
+  --hi-edge-inner: rgba(255, 255, 255, 0.07);
+
+  /* === EFFECTS === */
+  --hi-rim-strength: 0.12;
+  --hi-spec-strength: 0.14;
+  --hi-glint-opacity: 0.06;
+  --hi-glow-strength: 0.08;
+  --hi-grain-amount: 0.08;
+  --hi-mirror-strength: 0.12;
+  --hi-dust-density: 0.04;
+
+  /* === MOTION === */
+  --hi-glint-period: 14s;
+  --hi-rim-shimmer-period: 24s;
+  --hi-chart-highlight-period: 12s;
+  --hi-dust-drift-period: 30s;
+}

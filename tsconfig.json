@@ -9,5 +9,11 @@
     "paths": {
       "@/*": ["./src/*"]
     }
-  }
+  },
+  "exclude": [
+    ".hitech-backups",
+    "scripts/hitech-templates",
+    "hitech-templates",
+    "scripts/hitech-templates__backup_*"
+  ]
 }

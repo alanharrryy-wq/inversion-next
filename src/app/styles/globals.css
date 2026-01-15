@@ -23,3 +23,147 @@ body {
 a {
   color: inherit;
 }
+
+/* =========================
+   HITECH | Premium Glass + Metal
+   Fecha: 2026-01-08
+========================= */
+
+:root{
+  --bg0: #0b0f14;
+  --bg1: #0f1622;
+  --panel: rgba(255,255,255,0.06);
+  --panel2: rgba(255,255,255,0.04);
+  --stroke: rgba(255,255,255,0.10);
+  --stroke2: rgba(255,255,255,0.06);
+  --text: rgba(245,247,250,0.95);
+  --muted: rgba(245,247,250,0.65);
+
+  /* accents (plateado/cyan) */
+  --steel: rgba(170, 190, 210, 0.75);
+  --cyan: rgba(2,167,202,0.85);
+  --cyanGlow: rgba(2,167,202,0.18);
+  --whiteGlow: rgba(255,255,255,0.10);
+}
+
+/* Fondo premium con viñeta + nebula suave */
+.hi-bg-premium{
+  background:
+    radial-gradient(1200px 700px at 70% 20%, rgba(2,167,202,0.10), transparent 55%),
+    radial-gradient(900px 600px at 25% 25%, rgba(255,255,255,0.06), transparent 60%),
+    radial-gradient(1200px 700px at 50% 120%, rgba(255,255,255,0.06), transparent 60%),
+    linear-gradient(180deg, var(--bg1), var(--bg0));
+}
+
+/* Grain (sin imagen) */
+.hi-grain{
+  position: relative;
+  isolation: isolate;
+}
+.hi-grain::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index: 1;
+  opacity: 0.20;
+  mix-blend-mode: overlay;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.06) 0 1px, transparent 2px),
+    radial-gradient(circle at 70% 60%, rgba(255,255,255,0.05) 0 1px, transparent 2px),
+    radial-gradient(circle at 40% 80%, rgba(255,255,255,0.04) 0 1px, transparent 2px);
+  background-size: 18px 18px, 22px 22px, 26px 26px;
+}
+
+/* Panel glass + metal */
+.hi-panel{
+  position: relative;
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.03));
+  border: 1px solid var(--stroke2);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.03) inset,
+    0 14px 50px rgba(0,0,0,0.50),
+    0 0 22px var(--cyanGlow);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  overflow: hidden;
+}
+
+/* Highlight superior “metal cepillado” */
+.hi-panel::after{
+  content:"";
+  position:absolute;
+  left:-40%;
+  top:-55%;
+  width: 180%;
+  height: 110%;
+  background:
+    linear-gradient(135deg,
+      rgba(255,255,255,0.10),
+      rgba(255,255,255,0.04) 35%,
+      rgba(255,255,255,0.02) 55%,
+      rgba(255,255,255,0.00) 70%);
+  transform: rotate(2deg);
+  pointer-events:none;
+  opacity: 0.8;
+}
+
+/* Borde exterior tipo “chasis” */
+.hi-frame{
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.05) inset,
+    0 30px 110px rgba(0,0,0,0.65);
+  overflow: hidden;
+}
+
+/* Text helpers */
+.hi-title{
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.hi-muted{ color: var(--muted); }
+
+/* Bars delgadas elegantes */
+.hi-bar{
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.10);
+  overflow: hidden;
+}
+.hi-bar > span{
+  display:block;
+  height: 100%;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg,
+      rgba(255,255,255,0.35),
+      rgba(170,190,210,0.55),
+      rgba(2,167,202,0.45));
+  box-shadow: 0 0 14px rgba(2,167,202,0.12);
+}
+
+body.deck-present {
+  cursor: none;
+}
+
+body.deck-present * {
+  cursor: none !important;
+}
+
+body.deck-print {
+  background: #f5f7fa;
+  color: #0b0f14;
+}
+
+body.deck-print .hi-shader-bg {
+  display: none;
+}
+
+body.deck-print .rts-root {
+  box-shadow: none;
+}

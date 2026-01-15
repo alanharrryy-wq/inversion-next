@@ -1,0 +1,333 @@
+@layer base, components, utilities;
+
+@layer base {
+    :root {
+        color-scheme: dark;
+
+        /* Core palette (rgb components) */
+        --hi-bg-0: 7 9 12;
+        /* base void */
+        --hi-bg-1: 10 13 18;
+        /* deep field */
+        --hi-bg-2: 16 20 28;
+        /* lift */
+        --hi-panel-core: 16 20 26;
+        /* glass core */
+        --hi-panel-deep: 8 10 14;
+        /* panel depth */
+        --hi-steel: 190 200 210;
+        /* cold metal */
+        --hi-offwhite: 236 240 244;
+        /* soft white */
+        --hi-fg: 226 232 240;
+        --hi-fg-dim: 152 164 178;
+        --hi-cyan: 74 224 255;
+        /* data accent only */
+        --hi-cyan-dim: 40 185 210;
+
+        /* Opacity rails (keep it classy) */
+        --hi-a-2: 0.02;
+        --hi-a-4: 0.04;
+        --hi-a-6: 0.06;
+        --hi-a-8: 0.08;
+        --hi-a-10: 0.10;
+        --hi-a-12: 0.12;
+        --hi-a-16: 0.16;
+
+        /* Blur cap (rule: 10–16px) */
+        --hi-blur: 14px;
+
+        /* Noise (SVG turbulence + PNG fallback) */
+        --hi-noise-svg: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27120%27%20height%3D%27120%27%20viewBox%3D%270%200%20120%20120%27%3E%0A%3Cfilter%20id%3D%27n%27%3E%0A%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%27.75%27%20numOctaves%3D%273%27%20stitchTiles%3D%27stitch%27%2F%3E%0A%3CfeColorMatrix%20type%3D%27matrix%27%20values%3D%271%200%200%200%200%20%200%201%200%200%200%20%200%200%201%200%200%20%200%200%200%20.35%200%27%2F%3E%0A%3C%2Ffilter%3E%0A%3Crect%20width%3D%27120%27%20height%3D%27120%27%20filter%3D%27url(%23n)%27%20opacity%3D%27.35%27%2F%3E%0A%3C%2Fsvg%3E");
+        --hi-noise-png: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAbN0lEQVR42m1bQWjk5tl+vn8o1kDLyIcyOjRIh4B0KNEEQjUhJfLSsJPQMNq0YcelZe3S4jWUSh87EoZMyQ8NJVpZivQLXQXq2wMX8B6V0dQv7XxHkqYBqWNeY9mVfXQ8gD4YbqD1dZcOZq2wq7q2uZqQ1mYy2l0t+4w2q0p5V2m9O3mZsK7y0yH4R3h4J8QG9c8eHkz8kqH4r5e0Yg3yN9b5m1y9xg3C8i8cN3h2f+fJ8k9xH8mXx8oO9l9y1g0zqvJf4m2xX2mKkJ0wqg2JYlX1d1kF5m9mZ5mF2f2kqWm9f7v0bqjvYh7m5g7f7qK7S5n1xYcJp2m0dHnY9l4mKpJqgqgWlqkq1mY2mF5kqg0cLk3vZ8GQyGJrPZbBqNRqvV6mGkU3xSyNpR6fNmZvWTm5JnTyocy8mmUk7QnzSEgHdpIh+L/sPu8lfl/X3Y9ntF8qgYdXWw+0r7YJ1f2KzF4wV2G0b8cZ1l8y9l7s3rj8fP7s9f1f8v6r3x0x0s8v+X0GxqvZr+qf8wK4lVQmKXgB6H6ZpQ2p2g1bJ4w2m2m6m1kzGdVgkqkqYqfVqjV6f3c0mY7y7lQqFQqFQqFQqFQqFQqFQqFQqFQqFQqFQqFTqf7wqf9cBq0m5m1b8w9bJfQ7iDoH5yJJoUl+6N7UN4psjZ8nYeJTqePxWDxCNkzpFu/v76uyLC8ZKQRtOjz1az99+hSmaaLb7WJzcxOLxUI2nlXrfwHFIFGSM2mzAwAAAABJRU5ErkJggg==");
+
+        /* Prefer SVG noise; it’s crisp and tiny */
+        --hi-noise: var(--hi-noise-svg);
+
+        /* Shared radii */
+        --hi-r-lg: 18px;
+        --hi-r-xl: 22px;
+    }
+
+    /* Optional: make all text a bit “premium thin” */
+    html,
+    body {
+        background: rgb(var(--hi-bg-0));
+    }
+}
+
+@layer components {
+
+    /* === Background: “campo de luz” (no plano) === */
+    .hi-bg-premium {
+        position: relative;
+        isolation: isolate;
+        min-height: 100%;
+        background:
+            radial-gradient(1200px 800px at 12% 10%, rgb(var(--hi-bg-2) / 0.75), transparent 60%),
+            radial-gradient(900px 700px at 88% 20%, rgb(var(--hi-cyan) / 0.10), transparent 55%),
+            radial-gradient(1100px 900px at 65% 85%, rgb(var(--hi-bg-2) / 0.55), transparent 62%),
+            radial-gradient(800px 700px at 20% 90%, rgb(var(--hi-cyan-dim) / 0.07), transparent 60%),
+            linear-gradient(180deg, rgb(var(--hi-bg-1) / 1), rgb(var(--hi-bg-0) / 1));
+        overflow: hidden;
+    }
+
+    .hi-bg-premium::before {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        background:
+            radial-gradient(900px 500px at 50% -10%, rgb(var(--hi-offwhite) / 0.05), transparent 60%),
+            radial-gradient(700px 500px at 85% 110%, rgb(var(--hi-offwhite) / 0.04), transparent 65%),
+            radial-gradient(600px 380px at 10% 120%, rgb(var(--hi-cyan) / 0.05), transparent 65%);
+        filter: blur(0px);
+        opacity: 1;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .hi-bg-premium::after {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        background-image: var(--hi-noise);
+        background-size: 260px 260px;
+        opacity: 0.06;
+        mix-blend-mode: overlay;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    /* === Panel: 7–9 capas (glass + metal + dust + glow controlado) === */
+    .hi-panel {
+        position: relative;
+        border-radius: var(--hi-r-lg);
+        overflow: hidden;
+        background:
+            /* 1) base metal tint */
+            linear-gradient(145deg,
+                rgb(var(--hi-steel) / 0.07) 0%,
+                rgb(var(--hi-panel-core) / 0.10) 22%,
+                rgb(var(--hi-panel-deep) / 0.35) 100%),
+            /* 2) volume gradient */
+            linear-gradient(180deg,
+                rgb(var(--hi-panel-core) / 0.70),
+                rgb(var(--hi-panel-deep) / 0.74));
+        border: 1px solid rgb(var(--hi-offwhite) / 0.08);
+        box-shadow:
+            /* inner depth */
+            inset 0 1px 0 rgb(var(--hi-offwhite) / 0.08),
+            inset 0 -18px 30px rgb(0 0 0 / 0.45),
+            inset 0 0 0 1px rgb(var(--hi-offwhite) / 0.03),
+            /* lift */
+            0 18px 46px rgb(0 0 0 / 0.55);
+        backdrop-filter: blur(var(--hi-blur)) saturate(1.15);
+        -webkit-backdrop-filter: blur(var(--hi-blur)) saturate(1.15);
+        transform: translateZ(0);
+    }
+
+    /* 3) specular highlight + 4) directional highlights + 5) rim (non-uniform) */
+    .hi-panel::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+            /* specular sweep */
+            linear-gradient(180deg,
+                rgb(var(--hi-offwhite) / 0.10) 0%,
+                transparent 36%),
+            /* corner hits */
+            radial-gradient(900px 380px at 18% -10%,
+                rgb(var(--hi-offwhite) / 0.10),
+                transparent 60%),
+            radial-gradient(700px 420px at 92% 110%,
+                rgb(var(--hi-cyan) / 0.06),
+                transparent 62%),
+            /* micro directionality */
+            linear-gradient(90deg,
+                rgb(var(--hi-offwhite) / 0.03),
+                transparent 28%,
+                transparent 72%,
+                rgb(var(--hi-offwhite) / 0.02));
+        opacity: 1;
+        mix-blend-mode: screen;
+    }
+
+    /* 6) grain/dust + 7) inner glow hint */
+    .hi-panel::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+            /* dust gradient */
+            radial-gradient(900px 600px at 40% 20%,
+                rgb(var(--hi-offwhite) / 0.05),
+                transparent 55%),
+            radial-gradient(800px 520px at 70% 85%,
+                rgb(var(--hi-cyan) / 0.035),
+                transparent 60%),
+            /* grain layer */
+            var(--hi-noise);
+        background-size: auto, auto, 260px 260px;
+        opacity: 0.11;
+        mix-blend-mode: overlay;
+    }
+
+    /* 8) rim-light border (non uniform) using masked border region */
+    .hi-rim {
+        position: relative;
+    }
+
+
+    .hi-rim::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 1px;
+        border-radius: inherit;
+        background:
+            radial-gradient(90% 120% at 12% 0%,
+                rgb(var(--hi-offwhite) / 0.16),
+                transparent 55%),
+            radial-gradient(110% 120% at 92% 100%,
+                rgb(var(--hi-cyan) / 0.10),
+                transparent 60%),
+            conic-gradient(from 220deg at 50% 50%,
+                transparent 0deg,
+                rgb(var(--hi-offwhite) / 0.08) 40deg,
+                transparent 110deg,
+                rgb(var(--hi-offwhite) / 0.06) 190deg,
+                transparent 270deg,
+                rgb(var(--hi-cyan) / 0.06) 330deg,
+                transparent 360deg);
+
+        /* ✅ “Solid masks” en sintaxis que no rompe linters */
+        -webkit-mask:
+            linear-gradient(#000, #000) content-box,
+            linear-gradient(#000, #000);
+        -webkit-mask-composite: xor;
+
+        mask:
+            linear-gradient(#000, #000) content-box,
+            linear-gradient(#000, #000);
+        mask-composite: exclude;
+
+        pointer-events: none;
+        opacity: 0.85;
+    }
+
+    /* Outer glow (controlled, not neon gamer) */
+    .hi-glow {
+        box-shadow:
+            0 18px 46px rgb(0 0 0 / 0.55),
+            0 0 0 1px rgb(var(--hi-offwhite) / 0.04),
+            0 0 38px rgb(var(--hi-cyan) / 0.07);
+    }
+
+    /* Extra inner shadow helper */
+    .hi-inset {
+        box-shadow:
+            inset 0 1px 0 rgb(var(--hi-offwhite) / 0.08),
+            inset 0 -20px 34px rgb(0 0 0 / 0.55),
+            inset 0 0 0 1px rgb(var(--hi-offwhite) / 0.03);
+    }
+
+    /* Grain utility for charts / small elements */
+    .hi-grain {
+        position: relative;
+    }
+
+    .hi-grain::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: var(--hi-noise);
+        background-size: 220px 220px;
+        opacity: 0.10;
+        mix-blend-mode: overlay;
+        pointer-events: none;
+        border-radius: inherit;
+    }
+
+    /* Specular utility for chart overlays */
+    .hi-specular {
+        position: relative;
+    }
+
+    .hi-specular::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background:
+            linear-gradient(180deg, rgb(var(--hi-offwhite) / 0.10), transparent 42%),
+            radial-gradient(700px 260px at 25% 0%, rgb(var(--hi-offwhite) / 0.08), transparent 60%);
+        mix-blend-mode: screen;
+        opacity: 0.9;
+        pointer-events: none;
+    }
+
+    /* Critical (anchor) panel */
+    .hi-panel-critical {
+        border-color: rgb(var(--hi-offwhite) / 0.10);
+        background:
+            linear-gradient(145deg,
+                rgb(var(--hi-steel) / 0.09) 0%,
+                rgb(var(--hi-panel-core) / 0.12) 24%,
+                rgb(var(--hi-panel-deep) / 0.40) 100%),
+            linear-gradient(180deg,
+                rgb(var(--hi-panel-core) / 0.76),
+                rgb(var(--hi-panel-deep) / 0.78));
+        box-shadow:
+            inset 0 1px 0 rgb(var(--hi-offwhite) / 0.09),
+            inset 0 -22px 40px rgb(0 0 0 / 0.55),
+            inset 0 0 0 1px rgb(var(--hi-offwhite) / 0.035),
+            0 22px 58px rgb(0 0 0 / 0.62),
+            0 0 54px rgb(var(--hi-cyan) / 0.09);
+    }
+
+    /* Focus mode helpers */
+    .hi-dim {
+        opacity: 0.40;
+        filter: saturate(0.92);
+    }
+
+    .hi-active {
+        transform: translateY(-1px);
+        box-shadow:
+            inset 0 1px 0 rgb(var(--hi-offwhite) / 0.10),
+            inset 0 -24px 44px rgb(0 0 0 / 0.58),
+            0 26px 70px rgb(0 0 0 / 0.66),
+            0 0 0 1px rgb(var(--hi-offwhite) / 0.05),
+            0 0 64px rgb(var(--hi-cyan) / 0.11);
+    }
+
+    /* Tiny label chip */
+    .hi-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgb(var(--hi-offwhite) / 0.06);
+        border: 1px solid rgb(var(--hi-offwhite) / 0.08);
+        color: rgb(var(--hi-fg-dim) / 1);
+    }
+
+    /* Data accent text */
+    .hi-cyan {
+        color: rgb(var(--hi-cyan) / 1);
+    }
+}
+
+@layer utilities {
+    .hi-text {
+        color: rgb(var(--hi-fg) / 1);
+    }
+
+    .hi-text-dim {
+        color: rgb(var(--hi-fg-dim) / 1);
+    }
+}

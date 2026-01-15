@@ -1,21 +1,24 @@
 import { SlideShell } from "@/shared/ui/slide/SlideShell"
 import { DataBox, Pill, TextList } from "@/shared/ui/slide/SlideBlocks"
-import type { SlideProps } from "@/entities/slide/model/slide.types"
 import { BRAND } from "@/shared/config/constants"
 
-export default function Slide00(_props: SlideProps) {
+export default function Slide00() {
   return (
     <SlideShell
       kicker="Inversion Next"
       title="Deck Engine prearmado"
       right={
         <div className="flex items-center gap-2">
-          <Pill>React</Pill>
-          <Pill>Vite</Pill>
-          <Pill>Tailwind</Pill>
+          <Pill label="React" />
+          <Pill label="Vite" />
+          <Pill label="Tailwind" />
         </div>
       }
-      footerRight={<span className="font-mono" style={{ color: BRAND.teal }}>v0.1.0</span>}
+      footerRight={
+        <span className="font-mono" style={{ color: BRAND.colors.teal600 }}>
+          v0.1.0
+        </span>
+      }
     >
       <div className="grid h-full grid-cols-12 gap-6">
         <div className="col-span-7">
@@ -56,8 +59,9 @@ export default function Slide00(_props: SlideProps) {
           <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-6">
             <div className="text-sm font-semibold">Tip para Codex</div>
             <div className="mt-2 text-sm opacity-90">
-              Pídele que genere la slide completa dentro de <span className="font-mono">src/slides/slide-XX</span>
-              y que registre en <span className="font-mono">slideRegistry.ts</span>.
+              Pídele que genere la slide completa dentro de{" "}
+              <span className="font-mono">src/slides/slide-XX</span> y que registre en{" "}
+              <span className="font-mono">slideRegistry.ts</span>.
             </div>
           </div>
         </div>
