@@ -4,10 +4,11 @@ import { cn } from "@/shared/lib/cn"
 import { useHiGrain } from "@/shared/hooks/useHiGrain"
 import type { Slide02DashboardData } from "@/slides/slide-02/data/slide02.contract"
 import { getSlide02Mock } from "@/slides/slide-02/data/slide02.mock"
+import { useSlide02Seed } from "../data/slide02.seed"
 
 export default function Slide02() {
-  const data = getSlide02Mock("slide02-v4")
-  // grain procedural (sin assets)
+  const seed = useSlide02Seed("slide02-v4")
+const data = getSlide02Mock(seed)// grain procedural (sin assets)
   useHiGrain({ size: 256, alpha: 0.18, seed: "slide02-v4" })
 
   return (
@@ -354,3 +355,4 @@ function formatValue(metric: DisplayValue) {
   if (metric.unit) return `${metric.value}${metric.unit}`
   return `${metric.value}`
 }
+

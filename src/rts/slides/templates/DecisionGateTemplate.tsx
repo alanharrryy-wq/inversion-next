@@ -1,8 +1,6 @@
 // src/slides/templates/DecisionGateTemplate.tsx
 import { SlideFrame, SlideGrid } from "../../ui/SlideFrame";
 import { ExecutiveHeader } from "../../ui/ExecutiveHeader";
-import { Panel } from "../../ui/Panel";
-import { Stack } from "../../ui/Stack";
 import { Text } from "../../ui/Text";
 import { DecisionCard } from "../../ui/DecisionCard";
 import type { DecisionRecord } from "../../foundation/smartservices_types";

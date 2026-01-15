@@ -31,14 +31,14 @@ export function logConsistency(
   if (opts?.quiet || !res.length) return res
 
   // Group output for fast debugging without polluting production
-  // eslint-disable-next-line no-console
+   
   console.groupCollapsed("[VS] Consistency warnings for " + spec.id + " (" + spec.archetype + ")")
   for (const r of res) {
     const tag = r.severity.toUpperCase()
-    // eslint-disable-next-line no-console
+     
     console.log(tag + " " + r.ruleId + ": " + r.message)
   }
-  // eslint-disable-next-line no-console
+   
   console.groupEnd()
 
   return res

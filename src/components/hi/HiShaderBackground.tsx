@@ -69,7 +69,8 @@ export default function HiShaderBackground(props: { fixed?: boolean }) {
   const ref = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    if (!ref.current) return
+    const host = ref.current
+    if (!host) return
 
     const renderer = new Renderer({
       dpr: Math.min(window.devicePixelRatio, 1.75),
@@ -77,7 +78,7 @@ export default function HiShaderBackground(props: { fixed?: boolean }) {
     })
 
     const gl = renderer.gl
-    ref.current.appendChild(gl.canvas)
+    host.appendChild(gl.canvas)
     gl.clearColor(0, 0, 0, 1)
 
     const geometry = new Triangle(gl)
@@ -93,8 +94,6 @@ export default function HiShaderBackground(props: { fixed?: boolean }) {
 
     let raf = 0
     const resize = () => {
-      const host = ref.current
-      if (!host) return
       const w = host.clientWidth || window.innerWidth
       const h = host.clientHeight || window.innerHeight
       renderer.setSize(w, h)
@@ -115,8 +114,10 @@ export default function HiShaderBackground(props: { fixed?: boolean }) {
       cancelAnimationFrame(raf)
       window.removeEventListener("resize", resize)
       try {
-        ref.current?.removeChild(gl.canvas)
-      } catch {}
+        host.removeChild(gl.canvas)
+      } catch {
+        void 0
+      }
       gl.getExtension("WEBGL_lose_context")?.loseContext()
     }
   }, [])

@@ -1,8 +1,6 @@
 import { SlideShell } from "@/shared/ui/slide/SlideShell"
 import { DataBox, TextList } from "@/shared/ui/slide/SlideBlocks"
-import type { SlideProps } from "@/entities/slide/model/slide.types"
-
-export default function Slide01(_props: SlideProps) {
+export default function Slide01() {
   return (
     <SlideShell kicker="Deck" title="Agenda (ejemplo)">
       <div className="grid h-full grid-cols-12 gap-6">
