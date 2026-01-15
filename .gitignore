@@ -56,3 +56,6 @@ git-push.ps1
 # local scripts
 git-push.ps1
 
+# --- Local junk (never commit) ---
+tools/codex/B64/
+tools/git/run-all*.log
