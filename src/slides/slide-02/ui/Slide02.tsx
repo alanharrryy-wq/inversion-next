@@ -14,35 +14,44 @@ export default function Slide02() {
     <SlideShell
       title="Portfolio Overview"
       kicker="AI · Risk · Performance"
+      // OJO: aquí dejamos hi-screen, pero idealmente SlideShell por dentro debería tener hi-stage
       className="hi-screen"
       footerLeft={<span className="tracking-wide">HITECH</span>}
       footerRight={<span className="font-mono">1600x900</span>}
     >
       <div className="relative grid h-full grid-cols-12 grid-rows-6 gap-6">
         <div className="hi-base-glass" aria-hidden="true" />
-        <GlassPanel className="col-span-5 row-span-2" title="Risk Summary">
+
+        <GlassPanel material="glassCold" className="col-span-5 row-span-2" title="Risk Summary">
           <RiskMock data={data.riskSummary} />
         </GlassPanel>
 
-        <GlassPanel critical className="col-span-4 row-span-2" title="KPI Tracker">
+        <GlassPanel
+          critical
+          material="glassCritical"
+          glint="silver"
+          className="col-span-4 row-span-2"
+          title="KPI Tracker"
+        >
           <KpiDonut data={data.kpiTracker} />
         </GlassPanel>
 
-        <GlassPanel className="col-span-3 row-span-2" title="AI Better">
+        <GlassPanel material="glassCold" className="col-span-3 row-span-2" title="AI Better">
           <BarsAndSignal data={data.aiBetter} />
         </GlassPanel>
 
-        <GlassPanel className="col-span-5 row-span-4" title="Recent Activity">
+        <GlassPanel material="glassCold" className="col-span-5 row-span-4" title="Recent Activity">
           <ActivityMock data={data.recentActivity} />
         </GlassPanel>
 
-        <GlassPanel className="col-span-4 row-span-4" title="Portfolio Performance">
-          <section data-material="glassCold" data-chart-highlight="on" className="h-full">
-          <PerfChart />
-          </section>
+        <GlassPanel material="glassCold" className="col-span-4 row-span-4" title="Portfolio Performance">
+          {/* Mejor: highlight directo sobre el hi-chart para que se vea sí o sí */}
+          <div data-chart-highlight="on" className="h-full">
+            <PerfChart />
+          </div>
         </GlassPanel>
 
-        <GlassPanel className="col-span-3 row-span-4" title="AI Insights">
+        <GlassPanel material="glassCold" className="col-span-3 row-span-4" title="AI Insights">
           <InsightsMock data={data.aiInsights} />
         </GlassPanel>
 
@@ -57,17 +66,25 @@ export default function Slide02() {
 function GlassPanel(props: {
   title: string
   critical?: boolean
+  material?: "glassCold" | "glassCritical"
+  glint?: "silver" | "gold" | "emerald" | "cyan" | "red"
   className?: string
   children: React.ReactNode
 }) {
+  const isCritical = props.critical === true
+  const material = isCritical ? "glassCritical" : "glassCold"
+  const glint = isCritical ? props.glint ?? "silver" : undefined
+
   return (
     <motion.div
       whileHover={{ y: -2, scale: 1.01 }}
       transition={{ duration: 0.22, ease: "easeOut" }}
+      data-material={material}
+      data-glint={glint}
       className={cn(
         "hi-panel relative overflow-hidden",
         props.critical && "hi-panel-critical",
-        props.className
+        props.className,
       )}
     >
       <div className="hi-inset" />
@@ -79,9 +96,7 @@ function GlassPanel(props: {
       <div className="hi-glow" />
 
       <div className="relative z-10 h-full p-6">
-        <div className="mb-4 text-sm font-medium tracking-wide opacity-80">
-          {props.title}
-        </div>
+        <div className="mb-4 text-sm font-medium tracking-wide opacity-80">{props.title}</div>
         {props.children}
       </div>
     </motion.div>
@@ -130,8 +145,7 @@ function BarRow({ label, value }: { label: string; value: number }) {
           className="h-2 rounded-full"
           style={{
             width: `${value}%`,
-            background:
-              "linear-gradient(90deg, rgba(181,181,181,0.12), rgba(181,181,181,0.55))"
+            background: "linear-gradient(90deg, rgba(181,181,181,0.12), rgba(181,181,181,0.55))",
           }}
         />
       </div>
@@ -175,14 +189,7 @@ function KpiDonut({ data }: { data: Slide02DashboardData["kpiTracker"] }) {
               </filter>
             </defs>
 
-            <circle
-              cx="60"
-              cy="60"
-              r="44"
-              fill="none"
-              stroke="rgba(255,255,255,0.10)"
-              strokeWidth="10"
-            />
+            <circle cx="60" cy="60" r="44" fill="none" stroke="rgba(255,255,255,0.10)" strokeWidth="10" />
             <circle
               cx="60"
               cy="60"
@@ -237,12 +244,7 @@ function BarsAndSignal({ data }: { data: Slide02DashboardData["aiBetter"] }) {
     <div className="grid h-full grid-rows-[auto_auto_1fr] gap-3">
       <div className="space-y-2 text-xs opacity-80">
         {data.kpiBars.map((bar) => (
-          <MiniBar
-            key={bar.label}
-            label={bar.label}
-            value={bar.percent}
-            right={formatValue(bar)}
-          />
+          <MiniBar key={bar.label} label={bar.label} value={bar.percent} right={formatValue(bar)} />
         ))}
       </div>
 
@@ -278,8 +280,7 @@ function MiniBar({ label, value, right }: { label: string; value: number; right:
           className="h-2 rounded-full"
           style={{
             width: `${value}%`,
-            background:
-              "linear-gradient(90deg, rgba(181,181,181,0.10), rgba(181,181,181,0.55))"
+            background: "linear-gradient(90deg, rgba(181,181,181,0.10), rgba(181,181,181,0.55))",
           }}
         />
       </div>
@@ -291,11 +292,7 @@ function ActivityMock({ data }: { data: Slide02DashboardData["recentActivity"] }
   return (
     <div className="space-y-3">
       {data.items.map((item) => (
-        <ActivityRow
-          key={item.timestamp}
-          title={item.title}
-          meta={`${item.timeAgo} · ${item.detail}`}
-        />
+        <ActivityRow key={item.timestamp} title={item.title} meta={`${item.timeAgo} · ${item.detail}`} />
       ))}
     </div>
   )
@@ -333,9 +330,7 @@ function InsightsMock({ data }: { data: Slide02DashboardData["aiInsights"] }) {
   return (
     <div className="grid h-full grid-rows-[auto_1fr] gap-3">
       <div className="rounded-[14px] bg-white/5 p-4 text-xs opacity-80 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
-        {data.summaryPrefix}{" "}
-        <span className="text-white/85">{data.highlightPercent}%</span>{" "}
-        {data.summarySuffix}
+        {data.summaryPrefix} <span className="text-white/85">{data.highlightPercent}%</span> {data.summarySuffix}
         <div className="hi-dim mt-2">
           Confidence: {data.confidence.toFixed(2)} · Source: {data.source}
         </div>
@@ -351,20 +346,11 @@ type DisplayValue =
 
 function formatValue(metric: DisplayValue) {
   if ("rightValue" in metric) {
-    if (metric.rightDisplay) {
-      return metric.rightDisplay
-    }
-    if (metric.rightUnit) {
-      return `${metric.rightValue}${metric.rightUnit}`
-    }
+    if (metric.rightDisplay) return metric.rightDisplay
+    if (metric.rightUnit) return `${metric.rightValue}${metric.rightUnit}`
     return `${metric.rightValue}`
   }
-  if (metric.display) {
-    return metric.display
-  }
-  if (metric.unit) {
-    return `${metric.value}${metric.unit}`
-  }
+  if (metric.display) return metric.display
+  if (metric.unit) return `${metric.value}${metric.unit}`
   return `${metric.value}`
 }
-
