@@ -210,7 +210,7 @@ export function DeckPage() {
           ].join(" ")}
         >
           {/* SlideStage YA maneja su layout internamente */}
-          <SlideStage width={DECK.slideWidth} height={DECK.slideHeight} grade={grade}>
+          <SlideStage width={DECK.width} height={DECK.height} grade={grade}>
             <Slide index={index} total={total} />
           </SlideStage>
         </div>

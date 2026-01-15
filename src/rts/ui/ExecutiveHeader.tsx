@@ -5,10 +5,12 @@ import { Rule } from "./Rule";
 export function ExecutiveHeader(props: {
   title: string;
   breadcrumb?: string;
-  slideNum?: number;
+  slideNum?: number | string;
   rightBadge?: string;
 }) {
   const { title, breadcrumb = "HITECH", slideNum, rightBadge } = props;
+  const slideLabel =
+    typeof slideNum === "number" ? String(slideNum).padStart(2, "0") : slideNum;
 
   return (
     <div className="w-full">
@@ -16,9 +18,9 @@ export function ExecutiveHeader(props: {
         <div className="min-w-0">
           <Text variant="kicker">
             {breadcrumb}
-            {typeof slideNum === "number" ? (
+            {slideLabel ? (
               <span style={{ marginLeft: 12, opacity: 0.75 }}>
-                / SLIDE {String(slideNum).padStart(2, "0")}
+                / SLIDE {slideLabel}
               </span>
             ) : null}
           </Text>

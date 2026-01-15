@@ -10,12 +10,12 @@ export default function Slide00(_props: SlideProps) {
       title="Deck Engine prearmado"
       right={
         <div className="flex items-center gap-2">
-          <Pill>React</Pill>
-          <Pill>Vite</Pill>
-          <Pill>Tailwind</Pill>
+          <Pill label="React" />
+          <Pill label="Vite" />
+          <Pill label="Tailwind" />
         </div>
       }
-      footerRight={<span className="font-mono" style={{ color: BRAND.teal }}>v0.1.0</span>}
+      footerRight={<span className="font-mono" style={{ color: BRAND.colors.teal600 }}>v0.1.0</span>}
     >
       <div className="grid h-full grid-cols-12 gap-6">
         <div className="col-span-7">

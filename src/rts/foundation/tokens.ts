@@ -38,7 +38,9 @@ export type VSCssVar =
   | "--vs-body"
   | "--vs-micro";
 
-export const cssVar = (name: VSCssVar) => ("var(" + name + ")") as const;
+export type VSCssVarValue = `var(${VSCssVar})`;
+
+export const cssVar = (name: VSCssVar): VSCssVarValue => `var(${name})`;
 
 export const VS = {
   brand: {

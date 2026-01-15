@@ -19,6 +19,8 @@ export const HealthBandLabel: Record<HealthBand, string> = {
   critical: "Critical",
 };
 
+export type CanonState = "Stable" | "Watch" | "Alert" | "Critical" | "Pending" | "Blocked";
+
 export type RiskCategory =
   | "continuity"
   | "operations"
@@ -41,6 +43,35 @@ export type DecisionOutput = {
   nextAction: string;
 };
 
+export type DecisionOption = {
+  id: string;
+  label: string;
+  tradeoffs?: string;
+  evidenceRef?: string;
+};
+
+export type DecisionRecord = {
+  id: string;
+  question: string;
+  state: CanonState;
+  owner: string;
+  sourceRef?: string;
+  verificationRef?: string;
+  options: DecisionOption[];
+  recommendation?: string;
+  nextAction?: string;
+};
+
+export type EvidenceArtifact = {
+  id: string;
+  label: string;
+  state: CanonState;
+  owner: string;
+  summary?: string;
+  sourceRef?: string;
+  verificationRef?: string;
+};
+
 export type EvidenceRecord = {
   id: string;
   title: string;
@@ -51,6 +82,17 @@ export type EvidenceRecord = {
   decision: DecisionOutput;
 };
 
+export type RiskItem = {
+  id: string;
+  label: string;
+  state: CanonState;
+  owner: string;
+  probability?: string;
+  impact?: string;
+  mitigation?: string;
+  evidenceRef?: string;
+};
+
 export type RiskRecord = {
   id: string;
   category: RiskCategory;
@@ -59,4 +101,18 @@ export type RiskRecord = {
   posture: string;
   requiredEvidence: Array<Pick<EvidenceRecord, "id" | "title" | "state" | "anchor">>;
   decision: DecisionOutput;
+};
+
+export type KaizenA3 = {
+  id: string;
+  title: string;
+  state: CanonState;
+  owner: string;
+  sourceRef?: string;
+  verificationRef?: string;
+  problemStatement: string;
+  containment?: string;
+  rootCause?: string;
+  countermeasure?: string;
+  nextAction?: string;
 };

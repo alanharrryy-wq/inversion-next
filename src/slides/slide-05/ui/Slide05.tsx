@@ -2,7 +2,12 @@ import { KpiGridTemplate } from "@/rts/slides/templates"
 import { Stack } from "@/rts/ui/Stack"
 import { Text } from "@/rts/ui/Text"
 
-const kpis = [
+const kpis: Array<{
+  label: string
+  value: string
+  hint: string
+  state: "muted" | "critical" | "stable" | "watch" | "alert"
+}> = [
   { label: "Decision readiness", value: "Baseline", hint: "Evidence mapped", state: "watch" },
   { label: "Review cycle", value: "In progress", hint: "Ops to exec", state: "stable" },
   { label: "Risk coverage", value: "Target set", hint: "Core domains", state: "muted" },

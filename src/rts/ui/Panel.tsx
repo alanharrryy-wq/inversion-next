@@ -6,6 +6,8 @@ export function Panel(
     variant?: "solid" | "soft";
     className?: string;
     style?: React.CSSProperties;
+    title?: string;
+    rightBadge?: string;
   }>
 ) {
   const { variant = "solid", className = "", style, children } = props;

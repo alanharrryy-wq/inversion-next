@@ -1,6 +1,7 @@
 import { RiskRegisterTemplate } from "@/rts/slides/templates"
+import type { RiskItem } from "@/rts/foundation/smartservices_types"
 
-const risks = [
+const risks: RiskItem[] = [
   {
     id: "RISK-101",
     label: "Evidence ownership unclear for priority decisions",
