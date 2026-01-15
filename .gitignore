@@ -44,3 +44,7 @@ scans/
 legacy/
 *_incoming/
 
+
+# local scripts
+git-push.ps1
+
