@@ -17,36 +17,24 @@
 /* Host */
 .hi-stage {
   background:
-    radial-gradient(
-      1400px 900px at 20% -10%,
+    radial-gradient(1400px 900px at 20% -10%,
       rgba(160, 170, 190, var(--hi-stage-core-a)),
-      transparent 62%
-    ),
-    radial-gradient(
-      1200px 800px at 85% 10%,
+      transparent 62%),
+    radial-gradient(1200px 800px at 85% 10%,
       rgba(130, 140, 160, var(--hi-stage-edge-a)),
-      transparent 62%
-    ),
-    radial-gradient(
-      2400px 700px at 50% 120%,
+      transparent 62%),
+    radial-gradient(2400px 700px at 50% 120%,
       rgba(200, 210, 225, var(--hi-stage-plane-a)),
-      transparent 60%
-    ),
-    radial-gradient(
-      1800px 420px at 50% 105%,
+      transparent 60%),
+    radial-gradient(1800px 420px at 50% 105%,
       rgba(255, 255, 255, var(--hi-stage-plane-b)),
-      transparent 55%
-    ),
-    radial-gradient(
-      1600px 900px at 50% 50%,
+      transparent 55%),
+    radial-gradient(1600px 900px at 50% 50%,
       rgba(120, 130, 150, var(--hi-stage-haze-a)),
-      transparent 65%
-    ),
-    radial-gradient(
-      2000px 1400px at 50% 50%,
+      transparent 65%),
+    radial-gradient(2000px 1400px at 50% 50%,
       rgba(0, 0, 0, 0),
-      rgba(0, 0, 0, var(--hi-stage-vignette-a))
-    );
+      rgba(0, 0, 0, var(--hi-stage-vignette-a)));
 }
 
 /* Grades (only intensities) */
@@ -59,11 +47,26 @@
   --hi-stage-vignette-a: 0.45;
 }
 
-.hi-stage[data-hi-grade="soft"] {
-  --hi-stage-core-a: 0.08;
-  --hi-stage-edge-a: 0.06;
-  --hi-stage-haze-a: 0.05;
-  --hi-stage-plane-a: 0.05;
-  --hi-stage-plane-b: 0.025;
-  --hi-stage-vignette-a: 0.38;
+.hi-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  background:
+    radial-gradient(1400px 900px at 20% -10%, rgba(160, 170, 190, var(--hi-stage-core-a)), transparent 62%),
+    radial-gradient(1200px 800px at 85% 10%, rgba(130, 140, 160, var(--hi-stage-edge-a)), transparent 62%),
+    radial-gradient(2400px 700px at 50% 120%, rgba(200, 210, 225, var(--hi-stage-plane-a)), transparent 60%),
+    radial-gradient(1800px 420px at 50% 105%, rgba(255, 255, 255, var(--hi-stage-plane-b)), transparent 55%),
+    radial-gradient(1600px 900px at 50% 50%, rgba(120, 130, 150, var(--hi-stage-haze-a)), transparent 65%),
+    radial-gradient(2000px 1400px at 50% 50%, rgba(0, 0, 0, 0), rgba(0, 0, 0, var(--hi-stage-vignette-a)));
+}
+
+
+.hi-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  isolation: isolate;
 }

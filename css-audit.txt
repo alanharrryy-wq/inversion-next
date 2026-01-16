@@ -1,0 +1,12 @@
+
+Path                                                                                                LineNumber Line
+----                                                                                                ---------- ----
+F:\repos\inversion-next\hitech-templates\templates\rts-block2-v2\src\index.css                               4 @import "./app/styles/globals.css";
+F:\repos\inversion-next\hitech-templates\templates\rts-block2-v2\src\slides\slide-02\ui\Slide02.tsx         11         "Tokens VS cargados vía src/index.css (sin romper tus --c-*)",
+F:\repos\inversion-next\src\index.css                                                                        3 @import "./shared/render/tokens/render.tokens.css";
+F:\repos\inversion-next\src\index.css                                                                        4 @import "./shared/render/stage/stage.css";
+F:\repos\inversion-next\src\index.css                                                                        5 @import "./shared/render/materials/materials.css";
+F:\repos\inversion-next\src\index.css                                                                       12 @import "./app/styles/globals.css";
+F:\repos\inversion-next\src\index.css                                                                       13 @import "./app/styles/hi-materials.css";
+F:\repos\inversion-next\src\main.tsx                                                                         3 import "@/index.css"
+

@@ -2,7 +2,7 @@ import { motion } from "framer-motion"
 import { SlideShell } from "@/shared/ui/slide/SlideShell"
 import { cn } from "@/shared/lib/cn"
 
-export default function Slide02() {
+export default function Slide06() {
   return (
     <SlideShell
       title="Portfolio Overview"

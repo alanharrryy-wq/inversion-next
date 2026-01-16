@@ -1,0 +1,1372 @@
+
+
+// ==================================================
+// FILE: src/slides/slide-02/ui/Slide02.tsx
+// ==================================================
+
+import { motion } from "framer-motion"
+import { SlideShell } from "@/shared/ui/slide/SlideShell"
+import { cn } from "@/shared/lib/cn"
+import { useHiGrain } from "@/shared/hooks/useHiGrain"
+import type { Slide02DashboardData } from "@/slides/slide-02/data/slide02.contract"
+import { getSlide02Mock } from "@/slides/slide-02/data/slide02.mock"
+import { useSlide02Seed } from "../data/slide02.seed"
+
+export default function Slide02() {
+  const seed = useSlide02Seed("slide02-v4")
+const data = getSlide02Mock(seed)// grain procedural (sin assets)
+  useHiGrain({ size: 256, alpha: 0.18, seed: "slide02-v4" })
+
+  return (
+    <SlideShell
+      title="Portfolio Overview"
+      kicker="AI · Risk · Performance"
+      // OJO: aquí dejamos hi-screen, pero idealmente SlideShell por dentro debería tener hi-stage
+      className="hi-screen"
+      footerLeft={<span className="tracking-wide">HITECH</span>}
+      footerRight={<span className="font-mono">1600x900</span>}
+    >
+      <div className="relative grid h-full grid-cols-12 grid-rows-6 gap-6">
+        <div className="hi-base-glass" aria-hidden="true" />
+
+        <GlassPanel material="glassCold" className="col-span-5 row-span-2" title="Risk Summary">
+          <RiskMock data={data.riskSummary} />
+        </GlassPanel>
+
+        <GlassPanel
+          critical
+          material="glassCritical"
+          glint="silver"
+          className="col-span-4 row-span-2"
+          title="KPI Tracker"
+        >
+          <KpiDonut data={data.kpiTracker} />
+        </GlassPanel>
+
+        <GlassPanel material="glassCold" className="col-span-3 row-span-2" title="AI Better">
+          <BarsAndSignal data={data.aiBetter} />
+        </GlassPanel>
+
+        <GlassPanel material="glassCold" className="col-span-5 row-span-4" title="Recent Activity">
+          <ActivityMock data={data.recentActivity} />
+        </GlassPanel>
+
+        <GlassPanel material="glassCold" className="col-span-4 row-span-4" title="Portfolio Performance">
+          {/* Mejor: highlight directo sobre el hi-chart para que se vea sí o sí */}
+          <div data-chart-highlight="on" className="h-full">
+            <PerfChart />
+          </div>
+        </GlassPanel>
+
+        <GlassPanel material="glassCold" className="col-span-3 row-span-4" title="AI Insights">
+          <InsightsMock data={data.aiInsights} />
+        </GlassPanel>
+
+        <div className="hi-mirror-wrap">
+          <div className="hi-mirror" />
+        </div>
+      </div>
+    </SlideShell>
+  )
+}
+
+function GlassPanel(props: {
+  title: string
+  critical?: boolean
+  material?: "glassCold" | "glassCritical"
+  glint?: "silver" | "gold" | "emerald" | "cyan" | "red"
+  className?: string
+  children: React.ReactNode
+}) {
+  const isCritical = props.critical === true
+  const material = isCritical ? "glassCritical" : "glassCold"
+  const glint = isCritical ? props.glint ?? "silver" : undefined
+
+  return (
+    <motion.div
+      whileHover={{ y: -2, scale: 1.01 }}
+      transition={{ duration: 0.22, ease: "easeOut" }}
+      data-material={material}
+      data-glint={glint}
+      className={cn(
+        "hi-panel relative overflow-hidden",
+        props.critical && "hi-panel-critical",
+        props.className,
+      )}
+    >
+      <div className="hi-inset" />
+      <div className="hi-specular" />
+      <div className="hi-rim" />
+      <div className="hi-glassfx" />
+      <div className="hi-grain" />
+      <div className="hi-glints" />
+      <div className="hi-glow" />
+
+      <div className="relative z-10 h-full p-6">
+        <div className="mb-4 text-sm font-medium tracking-wide opacity-80">{props.title}</div>
+        {props.children}
+      </div>
+    </motion.div>
+  )
+}
+
+function RiskMock({ data }: { data: Slide02DashboardData["riskSummary"] }) {
+  const low = data.riskMix.find((entry) => entry.level === "Low")?.percent ?? 0
+  const medium = data.riskMix.find((entry) => entry.level === "Medium")?.percent ?? 0
+  const high = data.riskMix.find((entry) => entry.level === "High")?.percent ?? 0
+  const deltaLabel = `${data.deltaThisMonth >= 0 ? "+" : ""}${data.deltaThisMonth} this month`
+
+  return (
+    <div className="grid h-full grid-cols-2 gap-4">
+      <div className="rounded-[14px] bg-white/5 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+        <div className="hi-dim text-xs">Active Risks</div>
+        <div className="mt-2 text-4xl font-semibold">{data.activeRisks}</div>
+        <div className="mt-2 inline-flex items-center gap-2 rounded-full bg-black/30 px-3 py-1 text-xs opacity-80">
+          <span className="h-2 w-2 rounded-full bg-white/40" />
+          {data.severity}
+          <span className="hi-dim">{deltaLabel}</span>
+        </div>
+      </div>
+
+      <div className="rounded-[14px] bg-white/5 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+        <div className="hi-dim text-xs">Risk Mix</div>
+        <div className="mt-3 space-y-3 text-xs">
+          <BarRow label="Low" value={low} />
+          <BarRow label="Medium" value={medium} />
+          <BarRow label="High" value={high} />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function BarRow({ label, value }: { label: string; value: number }) {
+  return (
+    <div>
+      <div className="flex items-center justify-between opacity-80">
+        <span>{label}</span>
+        <span className="hi-dim">{value}%</span>
+      </div>
+      <div className="mt-1 h-2 rounded-full bg-black/35">
+        <div
+          className="h-2 rounded-full"
+          style={{
+            width: `${value}%`,
+            background: "linear-gradient(90deg, rgba(181,181,181,0.12), rgba(181,181,181,0.55))",
+          }}
+        />
+      </div>
+    </div>
+  )
+}
+
+function KpiDonut({ data }: { data: Slide02DashboardData["kpiTracker"] }) {
+  const ring = 2 * Math.PI * 44
+  const compositeLabel = `${(data.composite * 100).toFixed(1)}%`
+  const dashOffset = ring * (1 - data.donutProgress)
+
+  return (
+    <div className="grid h-full grid-cols-[1fr_170px] gap-4">
+      <div className="flex items-center justify-center">
+        <div className="relative h-44 w-44">
+          <div className="absolute inset-0 rounded-full bg-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),_0_18px_60px_rgba(0,0,0,0.55)]" />
+          <svg className="absolute inset-0" viewBox="0 0 120 120">
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stopColor="rgba(255,255,255,0.70)" />
+                <stop offset="0.35" stopColor="rgba(255,255,255,0.18)" />
+                <stop offset="1" stopColor="rgba(181,181,181,0.55)" />
+              </linearGradient>
+              <filter id="softGlow">
+                <feGaussianBlur stdDeviation="1.8" result="b" />
+                <feColorMatrix
+                  in="b"
+                  type="matrix"
+                  values="
+                    1 0 0 0 0
+                    0 1 0 0 0
+                    0 0 1 0 0
+                    0 0 0 0.55 0"
+                  result="g"
+                />
+                <feMerge>
+                  <feMergeNode in="g" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+
+            <circle cx="60" cy="60" r="44" fill="none" stroke="rgba(255,255,255,0.10)" strokeWidth="10" />
+            <circle
+              cx="60"
+              cy="60"
+              r="44"
+              fill="none"
+              stroke="url(#g1)"
+              strokeWidth="10"
+              strokeLinecap="round"
+              strokeDasharray={`${ring}`}
+              strokeDashoffset={`${dashOffset}`}
+              transform="rotate(-90 60 60)"
+              filter="url(#softGlow)"
+            />
+          </svg>
+
+          <div className="absolute inset-[18px] rounded-full bg-black/45 backdrop-blur-[10px] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center">
+              <div className="text-3xl font-semibold">{compositeLabel}</div>
+              <div className="hi-dim mt-1 text-xs">KPI composite</div>
+            </div>
+          </div>
+
+          <div className="absolute inset-0 rounded-full opacity-70 [background:radial-gradient(closest-side_at_50%_0%,rgba(255,255,255,0.18),transparent_58%)]" />
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <Pill label={data.forecast.label} value={formatValue(data.forecast)} />
+        <Pill label={data.target.label} value={formatValue(data.target)} />
+        <Pill label={data.actual.label} value={formatValue(data.actual)} />
+        <div className="mt-3 rounded-[14px] bg-white/5 p-3 text-xs opacity-80">
+          Confidence: <span className="text-white/80">{data.confidence}</span> · Drift:{" "}
+          <span className="text-white/80">{data.drift}</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function Pill({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex items-center justify-between rounded-[14px] bg-white/5 px-3 py-2 text-xs shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+      <span className="hi-dim">{label}</span>
+      <span className="font-mono text-white/80">{value}</span>
+    </div>
+  )
+}
+
+function BarsAndSignal({ data }: { data: Slide02DashboardData["aiBetter"] }) {
+  return (
+    <div className="grid h-full grid-rows-[auto_auto_1fr] gap-3">
+      <div className="space-y-2 text-xs opacity-80">
+        {data.kpiBars.map((bar) => (
+          <MiniBar key={bar.label} label={bar.label} value={bar.percent} right={formatValue(bar)} />
+        ))}
+      </div>
+
+      <div className="hi-dim text-xs">Signal</div>
+
+      <div className="hi-chart h-full w-full">
+        <svg className="h-full w-full" viewBox="0 0 100 40" preserveAspectRatio="none">
+          <path
+            d="M0,32 C10,30 20,28 30,29 C40,30 50,22 60,20 C70,18 80,19 90,16 C95,15 98,14 100,13 L100,40 L0,40 Z"
+            fill="rgba(181,181,181,0.14)"
+          />
+          <path
+            d="M0,32 C10,30 20,28 30,29 C40,30 50,22 60,20 C70,18 80,19 90,16 C95,15 98,14 100,13"
+            fill="none"
+            stroke="rgba(181,181,181,0.55)"
+            strokeWidth="1.4"
+          />
+        </svg>
+      </div>
+    </div>
+  )
+}
+
+function MiniBar({ label, value, right }: { label: string; value: number; right: string }) {
+  return (
+    <div>
+      <div className="flex items-center justify-between">
+        <span>{label}</span>
+        <span className="hi-dim font-mono">{right}</span>
+      </div>
+      <div className="mt-1 h-2 rounded-full bg-black/35">
+        <div
+          className="h-2 rounded-full"
+          style={{
+            width: `${value}%`,
+            background: "linear-gradient(90deg, rgba(181,181,181,0.10), rgba(181,181,181,0.55))",
+          }}
+        />
+      </div>
+    </div>
+  )
+}
+
+function ActivityMock({ data }: { data: Slide02DashboardData["recentActivity"] }) {
+  return (
+    <div className="space-y-3">
+      {data.items.map((item) => (
+        <ActivityRow key={item.timestamp} title={item.title} meta={`${item.timeAgo} · ${item.detail}`} />
+      ))}
+    </div>
+  )
+}
+
+function ActivityRow({ title, meta }: { title: string; meta: string }) {
+  return (
+    <div className="rounded-[14px] bg-white/5 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+      <div className="text-sm opacity-85">{title}</div>
+      <div className="hi-dim mt-1 text-xs">{meta}</div>
+    </div>
+  )
+}
+
+function PerfChart() {
+  return (
+    <div className="hi-chart h-full w-full">
+      <svg className="h-full w-full" viewBox="0 0 100 60" preserveAspectRatio="none">
+        <path
+          d="M0,50 C10,48 20,47 30,44 C40,40 50,38 60,34 C70,30 80,28 90,24 C95,22 98,21 100,20 L100,60 L0,60 Z"
+          fill="rgba(181,181,181,0.10)"
+        />
+        <path
+          d="M0,50 C10,48 20,47 30,44 C40,40 50,38 60,34 C70,30 80,28 90,24 C95,22 98,21 100,20"
+          fill="none"
+          stroke="rgba(255,255,255,0.45)"
+          strokeWidth="1.2"
+        />
+      </svg>
+    </div>
+  )
+}
+
+function InsightsMock({ data }: { data: Slide02DashboardData["aiInsights"] }) {
+  return (
+    <div className="grid h-full grid-rows-[auto_1fr] gap-3">
+      <div className="rounded-[14px] bg-white/5 p-4 text-xs opacity-80 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+        {data.summaryPrefix} <span className="text-white/85">{data.highlightPercent}%</span> {data.summarySuffix}
+        <div className="hi-dim mt-2">
+          Confidence: {data.confidence.toFixed(2)} · Source: {data.source}
+        </div>
+      </div>
+      <div className="hi-chart" />
+    </div>
+  )
+}
+
+type DisplayValue =
+  | Slide02DashboardData["kpiTracker"]["forecast"]
+  | Slide02DashboardData["aiBetter"]["kpiBars"][number]
+
+function formatValue(metric: DisplayValue) {
+  if ("rightValue" in metric) {
+    if (metric.rightDisplay) return metric.rightDisplay
+    if (metric.rightUnit) return `${metric.rightValue}${metric.rightUnit}`
+    return `${metric.rightValue}`
+  }
+  if (metric.display) return metric.display
+  if (metric.unit) return `${metric.value}${metric.unit}`
+  return `${metric.value}`
+}
+
+
+
+// ==================================================
+// FILE: src/slides/slide-02/data/slide02.contract.ts
+// ==================================================
+
+export type RiskLevel = "Low" | "Medium" | "High"
+
+export interface RiskMixEntry {
+  level: RiskLevel
+  percent: number
+}
+
+export interface RiskSummaryData {
+  activeRisks: number
+  severity: RiskLevel
+  deltaThisMonth: number
+  riskMix: RiskMixEntry[]
+}
+
+export interface KpiMetric {
+  label: "Forecast" | "Target" | "Actual"
+  value: number
+  unit?: string
+  display?: string
+}
+
+export interface KpiTrackerData {
+  composite: number
+  donutProgress: number
+  forecast: KpiMetric
+  target: KpiMetric
+  actual: KpiMetric
+  confidence: RiskLevel
+  drift: RiskLevel
+}
+
+export interface MiniBarData {
+  label: "Forecast" | "Target" | "Actual"
+  percent: number
+  rightValue: number
+  rightUnit?: string
+  rightDisplay?: string
+}
+
+export interface SignalSeriesData {
+  points: number[]
+  min: number
+  max: number
+}
+
+export interface AIBetterData {
+  kpiBars: MiniBarData[]
+  signal: SignalSeriesData
+}
+
+export interface RecentActivityItem {
+  title: string
+  timeAgo: string
+  detail: string
+  timestamp: string
+}
+
+export interface RecentActivityData {
+  items: RecentActivityItem[]
+}
+
+export interface PortfolioPerformanceData {
+  series: number[]
+  min: number
+  max: number
+}
+
+export interface AIInsightsData {
+  summaryPrefix: string
+  highlightPercent: number
+  summarySuffix: string
+  confidence: number
+  source: string
+}
+
+export interface Slide02DashboardData {
+  riskSummary: RiskSummaryData
+  kpiTracker: KpiTrackerData
+  aiBetter: AIBetterData
+  recentActivity: RecentActivityData
+  portfolioPerformance: PortfolioPerformanceData
+  aiInsights: AIInsightsData
+}
+
+
+// ==================================================
+// FILE: src/slides/slide-02/data/slide02.mock.ts
+// ==================================================
+
+import type {
+  AIBetterData,
+  AIInsightsData,
+  KpiMetric,
+  KpiTrackerData,
+  MiniBarData,
+  PortfolioPerformanceData,
+  RecentActivityData,
+  RiskLevel,
+  RiskMixEntry,
+  RiskSummaryData,
+  SignalSeriesData,
+  Slide02DashboardData
+} from "./slide02.contract"
+
+type Rng = () => number
+
+function xmur3(str: string) {
+  let h = 1779033703 ^ str.length
+  for (let i = 0; i < str.length; i += 1) {
+    h = Math.imul(h ^ str.charCodeAt(i), 3432918353)
+    h = (h << 13) | (h >>> 19)
+  }
+  return () => {
+    h = Math.imul(h ^ (h >>> 16), 2246822507)
+    h = Math.imul(h ^ (h >>> 13), 3266489909)
+    return (h ^= h >>> 16) >>> 0
+  }
+}
+
+function mulberry32(seed: number): Rng {
+  return () => {
+    let t = (seed += 0x6d2b79f5)
+    t = Math.imul(t ^ (t >>> 15), t | 1)
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61)
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+  }
+}
+
+function clamp(value: number, min: number, max: number) {
+  return Math.min(max, Math.max(min, value))
+}
+
+function randRange(rng: Rng, min: number, max: number) {
+  return min + (max - min) * rng()
+}
+
+function randInt(rng: Rng, min: number, max: number) {
+  return Math.floor(randRange(rng, min, max + 1))
+}
+
+function roundTo(value: number, decimals: number) {
+  const factor = 10 ** decimals
+  return Math.round(value * factor) / factor
+}
+
+function formatValue(value: number, unit?: string, decimals = 1) {
+  if (!unit) {
+    return value.toFixed(2)
+  }
+  if (unit === "m") {
+    return `${value.toFixed(decimals)}m`
+  }
+  return `${value}${unit}`
+}
+
+function getMinMax(points: number[]) {
+  let min = Number.POSITIVE_INFINITY
+  let max = Number.NEGATIVE_INFINITY
+  for (const value of points) {
+    min = Math.min(min, value)
+    max = Math.max(max, value)
+  }
+  return { min, max }
+}
+
+function shuffle<T>(items: T[], rng: Rng) {
+  const next = items.slice()
+  for (let i = next.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(rng() * (i + 1))
+    const temp = next[i]
+    next[i] = next[j]
+    next[j] = temp
+  }
+  return next
+}
+
+function buildRiskMix(rng: Rng): RiskMixEntry[] {
+  const weights = [
+    0.55 + rng() * 0.3,
+    0.25 + rng() * 0.25,
+    0.1 + rng() * 0.15
+  ]
+  const sum = weights.reduce((acc, value) => acc + value, 0)
+  const percents = weights.map((value) => Math.round((value / sum) * 100))
+  const total = percents.reduce((acc, value) => acc + value, 0)
+  const diff = 100 - total
+  percents[0] = clamp(percents[0] + diff, 0, 100)
+  return [
+    { level: "Low", percent: percents[0] },
+    { level: "Medium", percent: percents[1] },
+    { level: "High", percent: percents[2] }
+  ]
+}
+
+function buildSignalSeries(rng: Rng, count: number): SignalSeriesData {
+  const points: number[] = []
+  let value = randRange(rng, 0.46, 0.64)
+  for (let i = 0; i < count; i += 1) {
+    const drift = randRange(rng, -0.035, 0.035)
+    value = clamp(value + drift, 0.25, 0.9)
+    points.push(roundTo(value, 3))
+  }
+  const { min, max } = getMinMax(points)
+  return { points, min, max }
+}
+
+function buildPerformanceSeries(rng: Rng, count: number): PortfolioPerformanceData {
+  const series: number[] = []
+  let value = randRange(rng, 0.3, 0.38)
+  for (let i = 0; i < count; i += 1) {
+    const drawdown = rng() < 0.18
+    const delta = drawdown
+      ? -randRange(rng, 0.004, 0.016)
+      : randRange(rng, 0.008, 0.024)
+    value = clamp(value + delta, 0.2, 0.98)
+    series.push(roundTo(value, 3))
+  }
+  const { min, max } = getMinMax(series)
+  return { series, min, max }
+}
+
+export function getSlide02Mock(seed: string): Slide02DashboardData {
+  const seedFn = xmur3(seed)
+  const rng = mulberry32(seedFn())
+
+  const riskMix = buildRiskMix(rng)
+  const highPercent = riskMix.find((entry) => entry.level === "High")?.percent ?? 0
+  const mediumPercent = riskMix.find((entry) => entry.level === "Medium")?.percent ?? 0
+  const severity: RiskLevel =
+    highPercent >= 15 ? "High" : mediumPercent >= 28 ? "Medium" : "Low"
+
+  const riskSummary: RiskSummaryData = {
+    activeRisks: randInt(rng, 9, 16),
+    severity,
+    deltaThisMonth: randInt(rng, 12, 32),
+    riskMix
+  }
+
+  const targetValue = roundTo(randRange(rng, 2.2, 2.9), 1)
+  const forecastValue = roundTo(targetValue * randRange(rng, 0.42, 0.58), 1)
+  const actualValue = roundTo(targetValue * randRange(rng, 0.68, 0.82), 1)
+  const composite = roundTo(randRange(rng, 0.68, 0.83), 3)
+
+  const forecast: KpiMetric = {
+    label: "Forecast",
+    value: forecastValue,
+    unit: "m",
+    display: formatValue(forecastValue, "m")
+  }
+  const target: KpiMetric = {
+    label: "Target",
+    value: targetValue,
+    unit: "m",
+    display: formatValue(targetValue, "m")
+  }
+  const actual: KpiMetric = {
+    label: "Actual",
+    value: actualValue,
+    unit: "m",
+    display: formatValue(actualValue, "m")
+  }
+
+  const driftRoll = rng()
+  const drift: RiskLevel = driftRoll > 0.66 ? "Low" : driftRoll > 0.33 ? "Medium" : "High"
+  const confidence: RiskLevel =
+    composite >= 0.78 ? "High" : composite >= 0.7 ? "Medium" : "Low"
+
+  const kpiTracker: KpiTrackerData = {
+    composite,
+    donutProgress: composite,
+    forecast,
+    target,
+    actual,
+    confidence,
+    drift
+  }
+
+  const scaleTop = targetValue * randRange(rng, 1.3, 1.6)
+  const kpiBars: MiniBarData[] = [
+    {
+      label: "Forecast",
+      percent: clamp(Math.round((forecastValue / scaleTop) * 100), 35, 80),
+      rightValue: forecastValue,
+      rightDisplay: forecastValue.toFixed(2)
+    },
+    {
+      label: "Target",
+      percent: clamp(Math.round((targetValue / scaleTop) * 100), 45, 85),
+      rightValue: targetValue,
+      rightUnit: "m",
+      rightDisplay: formatValue(targetValue, "m")
+    },
+    {
+      label: "Actual",
+      percent: clamp(Math.round((actualValue / scaleTop) * 100), 40, 90),
+      rightValue: actualValue,
+      rightUnit: "m",
+      rightDisplay: formatValue(actualValue, "m")
+    }
+  ]
+
+  const aiBetter: AIBetterData = {
+    kpiBars,
+    signal: buildSignalSeries(rng, 22)
+  }
+
+  const baseTime = new Date("2026-01-10T12:00:00Z")
+  const timeOffsets = [15, 60, 120]
+  const activityPool = [
+    { title: "Mitigation plan initiated", detail: "Risk #42" },
+    { title: "New trade executed", detail: "Strategy: Core" },
+    { title: "KPI report generated", detail: "PDF export" },
+    { title: "Hedge rebalanced", detail: "Exposure: Tech" },
+    { title: "Alert dismissed", detail: "Risk #17" }
+  ]
+  const recentActivityItems = shuffle(activityPool, rng)
+    .slice(0, 3)
+    .map((item, index) => {
+      const minutesAgo = timeOffsets[index]
+      const timeAgo = minutesAgo < 60 ? `${minutesAgo}m ago` : `${minutesAgo / 60}h ago`
+      const timestamp = new Date(baseTime.getTime() - minutesAgo * 60000).toISOString()
+      return {
+        title: item.title,
+        timeAgo,
+        detail: item.detail,
+        timestamp
+      }
+    })
+
+  const recentActivity: RecentActivityData = {
+    items: recentActivityItems
+  }
+
+  const portfolioPerformance = buildPerformanceSeries(rng, 24)
+
+  const aiInsights: AIInsightsData = {
+    summaryPrefix: "Operational efficiencies highlight opportunities for a",
+    highlightPercent: 17,
+    summarySuffix: "streamlined workflow improvement in the upcoming quarter.",
+    confidence: roundTo(randRange(rng, 0.76, 0.88), 2),
+    source: "MSW mock"
+  }
+
+  return {
+    riskSummary,
+    kpiTracker,
+    aiBetter,
+    recentActivity,
+    portfolioPerformance,
+    aiInsights
+  }
+}
+
+
+// ==================================================
+// FILE: src/slides/slide-02/data/slide02.seed.ts
+// ==================================================
+
+import { useMemo } from "react"
+import { useLocation } from "react-router-dom"
+
+function cleanSeed(v: string | null | undefined) {
+    const s = (v ?? "").trim()
+    if (!s) return null
+    // evita seeds gigantes o caracteres raros
+    const safe = s.slice(0, 64).replace(/[^\w\-.:]/g, "")
+    return safe || null
+}
+
+export function useSlide02Seed(fallback = "slide02-v4") {
+    const loc = useLocation()
+
+    return useMemo(() => {
+        const qs = new URLSearchParams(loc.search)
+        return cleanSeed(qs.get("seed")) ?? fallback
+    }, [loc.search, fallback])
+}
+
+
+// ==================================================
+// FILE: src/shared/ui/slide/SlideShell.tsx
+// ==================================================
+
+import type { ReactNode } from "react"
+
+import { cn } from "@/shared/lib/cn"
+
+export function SlideShell(props: {
+  title?: string
+  kicker?: string
+  right?: ReactNode
+  children: ReactNode
+  footerLeft?: ReactNode
+  footerRight?: ReactNode
+
+  /** NEW: si false, no renderiza header/footer/card. Ideal para slides “cinematic”. */
+  chrome?: boolean
+
+  /** opcional */
+  className?: string
+}) {
+  const chrome = props.chrome !== false
+
+  if (!chrome) {
+    return (
+      <div className="hi-stage h-full w-full">
+        <div className={cn("hi-screen h-full w-full", props.className)}>{props.children}</div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="hi-stage h-full w-full">
+      <div className={cn("hi-screen h-full w-full p-10", props.className)}>
+        <div
+          data-material="glassCold"
+          className="h-full w-full rounded-[var(--radius-xl)] border border-white/10 bg-white/5 shadow-[var(--shadow-soft)]"
+        >
+          <div className="grid h-full grid-rows-[auto_1fr_auto]">
+            <header className="flex items-start justify-between gap-6 px-10 pt-8">
+              <div className="min-w-0">
+                {props.kicker ? (
+                  <div className="text-xs font-medium tracking-wide opacity-75">
+                    {props.kicker}
+                  </div>
+                ) : null}
+                {props.title ? (
+                  <div className="mt-2 text-3xl font-semibold leading-tight">
+                    {props.title}
+                  </div>
+                ) : null}
+              </div>
+
+              {props.right ? <div className="shrink-0">{props.right}</div> : null}
+            </header>
+
+            <main className="min-h-0 px-10 py-8">{props.children}</main>
+
+            <footer className="flex items-center justify-between gap-4 border-t border-white/10 px-10 py-5 text-xs opacity-75">
+              <div>{props.footerLeft ?? <span className="tracking-wide">HITECH</span>}</div>
+              <div>
+                {props.footerRight ?? <span className="font-mono">1600x900</span>}
+              </div>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+
+// ==================================================
+// FILE: src/shared/hooks/useHiGrain.ts
+// ==================================================
+
+import { useEffect } from "react"
+import { createNoise2D } from "simplex-noise"
+
+/**
+ * Grain realista sin assets:
+ * - Genera noise fino en canvas
+ * - Inyecta a :root como --hi-grain-url (data-uri)
+ *
+ * Acepta seed number o string (string se hashea).
+ */
+export function useHiGrain(opts?: {
+    size?: number
+    alpha?: number
+    seed?: number | string
+}) {
+    useEffect(() => {
+        const size = opts?.size ?? 256
+        const alpha = opts?.alpha ?? 0.18
+        const seedIn = opts?.seed ?? 1337
+
+        // Hash determinista para strings (FNV-1a-ish)
+        const seed =
+            typeof seedIn === "number"
+                ? seedIn >>> 0
+                : hashToUint32(seedIn)
+
+        try {
+            const canvas = document.createElement("canvas")
+            canvas.width = size
+            canvas.height = size
+
+            const ctx = canvas.getContext("2d", { willReadFrequently: true })
+            if (!ctx) return
+
+            const img = ctx.createImageData(size, size)
+
+            // createNoise2D acepta función random; hacemos pseudo-random determinista
+            let s = seed >>> 0
+            const rand = () => {
+                // xorshift32
+                s ^= s << 13
+                s ^= s >>> 17
+                s ^= s << 5
+                return ((s >>> 0) % 1000000) / 1000000
+            }
+
+            const noise2D = createNoise2D(rand)
+
+            for (let y = 0; y < size; y++) {
+                for (let x = 0; x < size; x++) {
+                    const i = (y * size + x) * 4
+
+                    const nx = x / size
+                    const ny = y / size
+
+                    const n1 = noise2D(nx * 6, ny * 6)        // -1..1
+                    const n2 = noise2D(nx * 22, ny * 22) * 0.35
+                    const n = (n1 + n2) * 0.5
+
+                    const v = Math.max(0, Math.min(255, Math.floor((n * 0.5 + 0.5) * 255)))
+
+                    // “salt & pepper” MUY sutil
+                    const pepper = (x * 13 + y * 7) % 97 === 0 ? 255 : 0
+                    const val = Math.min(255, v + pepper * 0.12)
+
+                    img.data[i + 0] = val
+                    img.data[i + 1] = val
+                    img.data[i + 2] = val
+                    img.data[i + 3] = Math.floor(255 * alpha)
+                }
+            }
+
+            ctx.putImageData(img, 0, 0)
+
+            const url = canvas.toDataURL("image/png")
+            document.documentElement.style.setProperty("--hi-grain-url", `url("${url}")`)
+        } catch (e) {
+            console.warn("[useHiGrain] failed to generate grain:", e)
+        }
+    }, [opts?.size, opts?.alpha, opts?.seed])
+}
+
+function hashToUint32(str: string) {
+    let h = 2166136261 >>> 0
+    for (let i = 0; i < str.length; i++) {
+        h ^= str.charCodeAt(i)
+        h = Math.imul(h, 16777619)
+    }
+    return h >>> 0
+}
+
+
+// ==================================================
+// FILE: src/shared/lib/cn.ts
+// ==================================================
+
+import { clsx } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: Array<string | undefined | null | false>) {
+  return twMerge(clsx(inputs))
+}
+
+
+// ==================================================
+// FILE: src/index.css
+// ==================================================
+
+@import "tailwindcss";
+@import "./shared/theme/tokens.css";
+@import "./shared/render/tokens/render.tokens.css";
+@import "./shared/render/stage/stage.css";
+@import "./shared/render/materials/materials.css";
+@import "./shared/render/effects/glintSlow.css";
+@import "./shared/render/effects/rimDynamic.css";
+@import "./shared/render/effects/mirrorCine.css";
+@import "./shared/render/effects/chartSurfaceHighlight.css";
+@import "./shared/render/effects/contactOcclusion.css";
+@import "./shared/render/effects/dustField.css";
+@import "./app/styles/globals.css";
+@import "./app/styles/hi-materials.css";
+
+
+// ==================================================
+// FILE: src/app/styles/globals.css
+// ==================================================
+
+:root {
+  color: var(--c-fg);
+  background: var(--c-bg);
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--c-accent) 35%, transparent);
+}
+
+a {
+  color: inherit;
+}
+
+/* =========================
+   HITECH | Premium Glass + Metal
+   Fecha: 2026-01-08
+========================= */
+
+:root{
+  --bg0: #0b0f14;
+  --bg1: #0f1622;
+  --panel: rgba(255,255,255,0.06);
+  --panel2: rgba(255,255,255,0.04);
+  --stroke: rgba(255,255,255,0.10);
+  --stroke2: rgba(255,255,255,0.06);
+  --text: rgba(245,247,250,0.95);
+  --muted: rgba(245,247,250,0.65);
+
+  /* accents (plateado/cyan) */
+  --steel: rgba(170, 190, 210, 0.75);
+  --cyan: rgba(2,167,202,0.85);
+  --cyanGlow: rgba(2,167,202,0.18);
+  --whiteGlow: rgba(255,255,255,0.10);
+}
+
+/* Fondo premium con viñeta + nebula suave */
+.hi-bg-premium{
+  background:
+    radial-gradient(1200px 700px at 70% 20%, rgba(2,167,202,0.10), transparent 55%),
+    radial-gradient(900px 600px at 25% 25%, rgba(255,255,255,0.06), transparent 60%),
+    radial-gradient(1200px 700px at 50% 120%, rgba(255,255,255,0.06), transparent 60%),
+    linear-gradient(180deg, var(--bg1), var(--bg0));
+}
+
+/* Grain (sin imagen) */
+.hi-grain{
+  position: relative;
+  isolation: isolate;
+}
+.hi-grain::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index: 1;
+  opacity: 0.20;
+  mix-blend-mode: overlay;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.06) 0 1px, transparent 2px),
+    radial-gradient(circle at 70% 60%, rgba(255,255,255,0.05) 0 1px, transparent 2px),
+    radial-gradient(circle at 40% 80%, rgba(255,255,255,0.04) 0 1px, transparent 2px);
+  background-size: 18px 18px, 22px 22px, 26px 26px;
+}
+
+/* Panel glass + metal */
+.hi-panel{
+  position: relative;
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.03));
+  border: 1px solid var(--stroke2);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.03) inset,
+    0 14px 50px rgba(0,0,0,0.50),
+    0 0 22px var(--cyanGlow);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  overflow: hidden;
+}
+
+/* Highlight superior “metal cepillado” */
+.hi-panel::after{
+  content:"";
+  position:absolute;
+  left:-40%;
+  top:-55%;
+  width: 180%;
+  height: 110%;
+  background:
+    linear-gradient(135deg,
+      rgba(255,255,255,0.10),
+      rgba(255,255,255,0.04) 35%,
+      rgba(255,255,255,0.02) 55%,
+      rgba(255,255,255,0.00) 70%);
+  transform: rotate(2deg);
+  pointer-events:none;
+  opacity: 0.8;
+}
+
+/* Borde exterior tipo “chasis” */
+.hi-frame{
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.05) inset,
+    0 30px 110px rgba(0,0,0,0.65);
+  overflow: hidden;
+}
+
+/* Text helpers */
+.hi-title{
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.hi-muted{ color: var(--muted); }
+
+/* Bars delgadas elegantes */
+.hi-bar{
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.10);
+  overflow: hidden;
+}
+.hi-bar > span{
+  display:block;
+  height: 100%;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg,
+      rgba(255,255,255,0.35),
+      rgba(170,190,210,0.55),
+      rgba(2,167,202,0.45));
+  box-shadow: 0 0 14px rgba(2,167,202,0.12);
+}
+
+body.deck-present {
+  cursor: none;
+}
+
+body.deck-present * {
+  cursor: none !important;
+}
+
+body.deck-print {
+  background: #f5f7fa;
+  color: #0b0f14;
+}
+
+body.deck-print .hi-shader-bg {
+  display: none;
+}
+
+body.deck-print .rts-root {
+  box-shadow: none;
+}
+
+
+// ==================================================
+// FILE: src/shared/theme/tokens.css
+// ==================================================
+
+:root{
+  /* Hitech Brand */
+  --hitech-gold: #AB7B26;
+  --hitech-teal-900: #026F86;
+  --hitech-teal-600: #02A7CA;
+  --hitech-brown: #553E13;
+
+  /* Base palette */
+  --bg: #070A0F;
+  --panel: rgba(255,255,255,0.06);
+  --panel-2: rgba(255,255,255,0.10);
+  --border: rgba(255,255,255,0.14);
+  --text: rgba(255,255,255,0.92);
+  --muted: rgba(255,255,255,0.70);
+  --faint: rgba(255,255,255,0.55);
+
+  /* Accents */
+  --accent: var(--hitech-teal-600);
+  --accent-2: var(--hitech-teal-900);
+  --gold: var(--hitech-gold);
+
+  /* Radii / spacing */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 22px;
+
+  --space-1: 8px;
+  --space-2: 12px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 40px;
+
+  /* Typography */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New";
+
+  --h1: 56px;
+  --h2: 34px;
+  --h3: 22px;
+  --p: 18px;
+  --small: 14px;
+
+  /* Motion */
+  --ease: cubic-bezier(.2,.8,.2,1);
+  --dur-1: 160ms;
+  --dur-2: 280ms;
+  --dur-3: 420ms;
+
+  /* Deck geometry */
+  --deck-w: 1600px;
+  --deck-h: 900px;
+}
+
+/* Utility-ish */
+.h-panel{
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  backdrop-filter: blur(10px);
+}
+
+.h-glow{
+  box-shadow:
+    0 0 0 1px rgba(2,167,202,.25),
+    0 10px 40px rgba(2,167,202,.18);
+}
+
+
+// ==================================================
+// FILE: src/shared/render/materials/materials.css
+// ==================================================
+
+/* =========================================================
+   Render Materials v1
+   - No layout
+   - No effects
+   - Solo seteo de tokens
+   ========================================================= */
+
+/* ---------- GLASS: COLD (default panel) ---------- */
+[data-material="glassCold"] {
+  --hi-glass-opacity: 0.10;
+  --hi-glass-frost: 0.12;
+
+  --hi-rim-strength: 0.10;
+  --hi-spec-strength: 0.12;
+  --hi-grain-amount: 0.08;
+
+  --hi-glow-strength: 0.00;
+  --hi-glint-opacity: 0.00;
+}
+
+/* ---------- GLASS: CRITICAL (KPI / panel dominante) ---------- */
+[data-material="glassCritical"] {
+  --hi-glass-opacity: 0.12;
+  --hi-glass-frost: 0.10;
+
+  --hi-rim-strength: 0.14;
+  --hi-spec-strength: 0.16;
+
+  --hi-glow-strength: 0.06;
+  --hi-glint-opacity: 0.09;
+}
+
+/* ---------- METAL FRAME ---------- */
+[data-material="metalFrame"] {
+  --hi-rim-strength: 0.08;
+  --hi-spec-strength: 0.10;
+
+  --hi-glass-opacity: 0.00;
+  --hi-glass-frost: 0.00;
+  --hi-grain-amount: 0.00;
+}
+
+/* ---------- CHART INK ---------- */
+[data-material="chartInk"] {
+  --hi-ink-contrast: 0.80;
+  --hi-glow-strength: 0.00;
+  --hi-grain-amount: 0.00;
+}
+
+
+// ==================================================
+// FILE: src/shared/render/tokens/render.tokens.css
+// ==================================================
+
+:root {
+  /* === STAGE === */
+  --hi-stage-key: 0.16;
+  --hi-stage-fill: 0.10;
+  --hi-stage-bounce: 0.07;
+  --hi-stage-vignette: 0.18;
+  --hi-stage-haze: 0.06;
+
+  /* === MATERIAL === */
+  --hi-glass-opacity: 0.10;
+  --hi-glass-frost: 0.12;
+  --hi-metal-strength: 0.18;
+  --hi-ink-contrast: 0.78;
+  --hi-edge-outer: rgba(255, 255, 255, 0.14);
+  --hi-edge-inner: rgba(255, 255, 255, 0.07);
+
+  /* === EFFECTS === */
+  --hi-rim-strength: 0.12;
+  --hi-spec-strength: 0.14;
+  --hi-glint-opacity: 0.06;
+  --hi-glow-strength: 0.08;
+  --hi-grain-amount: 0.08;
+  --hi-mirror-strength: 0.12;
+  --hi-dust-density: 0.04;
+
+  /* === MOTION === */
+  --hi-glint-period: 14s;
+  --hi-rim-shimmer-period: 24s;
+  --hi-chart-highlight-period: 12s;
+  --hi-dust-drift-period: 30s;
+}
+
+
+
+
+
+                            cd F:\repos\inversion-next
+PS F:\repos\inversion-next> 
+PS F:\repos\inversion-next> Get-ChildItem src -Recurse -Include *.ts,*.tsx |
+>>   Select-String -Pattern "Slide02|slide-02" |
+>>   Select-Object Path,LineNumber,Line |
+>>   Sort-Object Path
+
+Path                                                                     LineNumber Line
+----                                                                     ---------- ----
+F:\repos\inversion-next\src\app\deck\slideRegistry.ts                            13     meta: { id: "slide-02", title: "RTS: Executive Narrative", tags: ["rts", "executive"] },
+F:\repos\inversion-next\src\app\deck\slideRegistry.ts                            14     Component: lazy(() => import("@/slides/slide-02").then(m => ({ default: m.default }))),
+F:\repos\inversion-next\src\shared\ui\command-palette\CommandPalette.tsx         54       { id: "slide_02", title: "Abrir slide-02", subtitle: "Dashboard", icon: <ArrowRight size={18} />, keywords: ["slide", "02", "dashboard"], onRun:… 
+F:\repos\inversion-next\src\slides\slide-02\data\slide02.adapter.ts               1 import type { Slide02DashboardData } from "./slide02.contract"
+F:\repos\inversion-next\src\slides\slide-02\data\slide02.adapter.ts               2 import { getSlide02Mock } from "./slide02.mock"
+F:\repos\inversion-next\src\slides\slide-02\data\slide02.adapter.ts              78 export function fromApi(dto: Partial<Slide02DashboardData> | null | undefined): Slide02DashboardData {
+F:\repos\inversion-next\src\slides\slide-02\data\slide02.adapter.ts              80     const base = getSlide02Mock("slide02-api-fallback")
+F:\repos\inversion-next\src\slides\slide-02\data\slide02.adapter.ts              93     return out as Slide02DashboardData
+F:\repos\inversion-next\src\slides\slide-02\data\slide02.contract.ts             76 export interface Slide02DashboardData {
+F:\repos\inversion-next\src\slides\slide-02\data\slide02.mock.ts                133 export function getSlide02Mock(seed: string): Slide02DashboardData {
+F:\repos\inversion-next\src\slides\slide-02\data\slide02.mock.ts                 14 } from "./slide02.contract"
+F:\repos\inversion-next\src\slides\slide-02\data\slide02.mock.ts                 13   Slide02DashboardData
+F:\repos\inversion-next\src\slides\slide-02\data\slide02.seed.ts                 12 export function useSlide02Seed(fallback = "slide02-v4") {
+F:\repos\inversion-next\src\slides\slide-02\index.ts                              4   id: "slide-02",
+F:\repos\inversion-next\src\slides\slide-02\index.ts                              1 import Slide02 from "./ui/Slide02"
+F:\repos\inversion-next\src\slides\slide-02\index.ts                              9 export default Slide02
+F:\repos\inversion-next\src\slides\slide-02\ui\Slide02.tsx                      346   | Slide02DashboardData["aiBetter"]["kpiBars"][number]
+F:\repos\inversion-next\src\slides\slide-02\ui\Slide02.tsx                      345   | Slide02DashboardData["kpiTracker"]["forecast"]
+F:\repos\inversion-next\src\slides\slide-02\ui\Slide02.tsx                      330 function InsightsMock({ data }: { data: Slide02DashboardData["aiInsights"] }) {
+F:\repos\inversion-next\src\slides\slide-02\ui\Slide02.tsx                      292 function ActivityMock({ data }: { data: Slide02DashboardData["recentActivity"] }) {
+F:\repos\inversion-next\src\slides\slide-02\ui\Slide02.tsx                      243 function BarsAndSignal({ data }: { data: Slide02DashboardData["aiBetter"] }) {
+F:\repos\inversion-next\src\slides\slide-02\ui\Slide02.tsx                        7 import { useSlide02Seed } from "../data/slide02.seed"
+F:\repos\inversion-next\src\slides\slide-02\ui\Slide02.tsx                      107 function RiskMock({ data }: { data: Slide02DashboardData["riskSummary"] }) {
+F:\repos\inversion-next\src\slides\slide-02\ui\Slide02.tsx                       12   useHiGrain({ size: 256, alpha: 0.18, seed: "slide02-v4" })
+F:\repos\inversion-next\src\slides\slide-02\ui\Slide02.tsx                       11 const data = getSlide02Mock(seed)// grain procedural (sin assets)
+F:\repos\inversion-next\src\slides\slide-02\ui\Slide02.tsx                       10   const seed = useSlide02Seed("slide02-v4")
+F:\repos\inversion-next\src\slides\slide-02\ui\Slide02.tsx                        9 export default function Slide02() {
+F:\repos\inversion-next\src\slides\slide-02\ui\Slide02.tsx                        6 import { getSlide02Mock } from "@/slides/slide-02/data/slide02.mock"
+F:\repos\inversion-next\src\slides\slide-02\ui\Slide02.tsx                        5 import type { Slide02DashboardData } from "@/slides/slide-02/data/slide02.contract"
+F:\repos\inversion-next\src\slides\slide-02\ui\Slide02.tsx                      157 function KpiDonut({ data }: { data: Slide02DashboardData["kpiTracker"] }) {
+F:\repos\inversion-next\src\slides\slide-06\ui\Slide06.tsx                        5 export default function Slide02() {
+
+PS F:\repos\inversion-next> 
+
+import { lazy } from "react"
+import type { SlideEntry } from "@/app/deck/deck.types"
+
+export const slideRegistry: SlideEntry[] = [
+  {
+    meta: { id: "slide-00", title: "Portada", tags: ["intro"] },
+    Component: lazy(() => import("@/slides/slide-00").then(m => ({ default: m.default }))),
+  },
+  {
+    meta: { id: "slide-01", title: "Agenda", tags: ["overview"] },
+    Component: lazy(() => import("@/slides/slide-01").then(m => ({ default: m.default }))),
+  },  {
+    meta: { id: "slide-02", title: "RTS: Executive Narrative", tags: ["rts", "executive"] },
+    Component: lazy(() => import("@/slides/slide-02").then(m => ({ default: m.default }))),
+  },
+
+  {
+    meta: { id: "slide-03", title: "RTS: Problem / Context", tags: ["rts", "context"] },
+    Component: lazy(() => import("@/slides/slide-03").then(m => ({ default: m.default }))),
+  },
+  {
+    meta: { id: "slide-04", title: "RTS: Solution / System Overview", tags: ["rts", "solution"] },
+    Component: lazy(() => import("@/slides/slide-04").then(m => ({ default: m.default }))),
+  },
+  {
+    meta: { id: "slide-05", title: "RTS: KPI Dashboard", tags: ["rts", "kpi"] },
+    Component: lazy(() => import("@/slides/slide-05").then(m => ({ default: m.default }))),
+  },
+  {
+    meta: { id: "slide-06", title: "RTS: Timeline / Roadmap", tags: ["rts", "roadmap"] },
+    Component: lazy(() => import("@/slides/slide-06").then(m => ({ default: m.default }))),
+  },
+  {
+    meta: { id: "slide-07", title: "RTS: Risks and Next Steps", tags: ["rts", "risks"] },
+    Component: lazy(() => import("@/slides/slide-07").then(m => ({ default: m.default }))),
+  },
+]
+

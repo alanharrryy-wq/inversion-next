@@ -1,4 +1,5 @@
 import type { ReactNode } from "react"
+
 import { cn } from "@/shared/lib/cn"
 
 export function SlideShell(props: {
@@ -9,36 +10,24 @@ export function SlideShell(props: {
   footerLeft?: ReactNode
   footerRight?: ReactNode
 
-  /** si false, no renderiza header/footer/card. Ideal para slides “cinematic”. */
+  /** NEW: si false, no renderiza header/footer/card. Ideal para slides “cinematic”. */
   chrome?: boolean
 
   /** opcional */
   className?: string
-
-  /** opcional: rig/grade para el stage */
-  rig?: "night-studio"
-  grade?: "contrast" | "soft"
 }) {
   const chrome = props.chrome !== false
 
   if (!chrome) {
     return (
-      <div
-        className="hi-stage h-full w-full"
-        data-hi-rig={props.rig ?? "night-studio"}
-        data-hi-grade={props.grade ?? "contrast"}
-      >
+      <div className="hi-stage h-full w-full">
         <div className={cn("hi-screen h-full w-full", props.className)}>{props.children}</div>
       </div>
     )
   }
 
   return (
-    <div
-      className="hi-stage h-full w-full"
-      data-hi-rig={props.rig ?? "night-studio"}
-      data-hi-grade={props.grade ?? "contrast"}
-    >
+    <div className="hi-stage h-full w-full">
       <div className={cn("hi-screen h-full w-full p-10", props.className)}>
         <div
           data-material="glassCold"
@@ -48,11 +37,14 @@ export function SlideShell(props: {
             <header className="flex items-start justify-between gap-6 px-10 pt-8">
               <div className="min-w-0">
                 {props.kicker ? (
-                  <div className="text-xs font-medium tracking-wide opacity-75">{props.kicker}</div>
+                  <div className="text-xs font-medium tracking-wide opacity-75">
+                    {props.kicker}
+                  </div>
                 ) : null}
-
                 {props.title ? (
-                  <div className="mt-2 text-3xl font-semibold leading-tight">{props.title}</div>
+                  <div className="mt-2 text-3xl font-semibold leading-tight">
+                    {props.title}
+                  </div>
                 ) : null}
               </div>
 
@@ -63,7 +55,9 @@ export function SlideShell(props: {
 
             <footer className="flex items-center justify-between gap-4 border-t border-white/10 px-10 py-5 text-xs opacity-75">
               <div>{props.footerLeft ?? <span className="tracking-wide">HITECH</span>}</div>
-              <div>{props.footerRight ?? <span className="font-mono">1600x900</span>}</div>
+              <div>
+                {props.footerRight ?? <span className="font-mono">1600x900</span>}
+              </div>
             </footer>
           </div>
         </div>

@@ -1,0 +1,20 @@
+{
+  "../../../shared/hooks/useHiGrain.ts": [],
+  "../../../shared/lib/cn.ts": [],
+  "../../../shared/ui/slide/SlideShell.tsx": [
+    "../../../shared/lib/cn.ts"
+  ],
+  "../data/slide02.contract.ts": [],
+  "../data/slide02.mock.ts": [
+    "../data/slide02.contract.ts"
+  ],
+  "../data/slide02.seed.ts": [],
+  "Slide02.tsx": [
+    "../../../shared/hooks/useHiGrain.ts",
+    "../../../shared/lib/cn.ts",
+    "../../../shared/ui/slide/SlideShell.tsx",
+    "../data/slide02.contract.ts",
+    "../data/slide02.mock.ts",
+    "../data/slide02.seed.ts"
+  ]
+}

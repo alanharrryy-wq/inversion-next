@@ -1,10 +1,13 @@
 import { useEffect, useMemo, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { DECK } from "@/shared/config/constants"
-import { SlideStage } from "@/shared/ui/slide/SlideStage"
 import { slideRegistry } from "@/app/deck/slideRegistry"
 import { SlideNav } from "@/widgets/slide-nav/ui/SlideNav"
 import { RtsDebugOverlay } from "@/rts/devtools/RtsDebugOverlay"
+
+import { CosmicStage } from "@/shared/ui/stage/CosmicStage"
+import { ScaleFrame } from "@/shared/ui/stage/ScaleFrame"
+import { BoardFrame } from "@/shared/ui/stage/BoardFrame"
 
 function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, n))
@@ -18,6 +21,7 @@ function useQueryParam(name: string) {
 export function DeckPage() {
   const navigate = useNavigate()
   const loc = useLocation()
+
   const sParam = useQueryParam("s")
   const gradeParam = useQueryParam("grade")
   const grade = gradeParam === "soft" ? "soft" : "contrast"
@@ -32,9 +36,15 @@ export function DeckPage() {
   const idxFromUrl = sParam ? Number(sParam) : 0
   const index = Number.isFinite(idxFromUrl) ? clamp(idxFromUrl, 0, total - 1) : 0
 
+  // zoom safety (default 0.92 para que no se vea gigante)
+  const zoomParam = useQueryParam("zoom")
+  const zoomRaw = zoomParam ? Number(zoomParam) : 0.92
+  const zoom = Number.isFinite(zoomRaw) ? clamp(zoomRaw, 0.75, 1) : 0.92
+
   const entry = slideRegistry[index]
   const Slide = entry.Component
   const notesKey = useMemo(() => `deck:notes:${entry.meta.id}`, [entry.meta.id])
+
   const hudVisible = hudOpen && !presentation && !printMode
   const notesVisible = notesOpen && !presentation && !printMode
 
@@ -48,26 +58,20 @@ export function DeckPage() {
   function next() {
     go(index + 1)
   }
-
   function prev() {
     go(index - 1)
   }
-
   function first() {
     go(0)
   }
-
   function last() {
     go(total - 1)
   }
 
   function toggleParam(name: string) {
     const qs = new URLSearchParams(loc.search)
-    if (qs.get(name) === "1") {
-      qs.delete(name)
-    } else {
-      qs.set(name, "1")
-    }
+    if (qs.get(name) === "1") qs.delete(name)
+    else qs.set(name, "1")
     navigate({ pathname: loc.pathname, search: qs.toString() }, { replace: true })
   }
 
@@ -183,54 +187,69 @@ export function DeckPage() {
   }, [notesKey, notes])
 
   return (
-    <div className="min-h-svh w-full">
-      <div className={`mx-auto w-full max-w-[1920px] ${presentation || printMode ? "px-0 py-0" : "px-4 py-4"}`}>
-        {hudVisible ? (
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex flex-col">
-              <div className="text-sm opacity-80">Deck</div>
-              <div className="text-lg font-semibold">
-                {entry.meta.title}
-                <span className="ml-2 text-sm opacity-70">
-                  ({index + 1}/{total})
-                </span>
-              </div>
-            </div>
+    <div className="fixed inset-0 overflow-hidden">
+      {/* 1) UNIVERSO (NO escala, NO se recorta) */}
+      <CosmicStage grade={grade}>
+        {/* 2) SCALER (solo escala el board 1600x900) */}
+        <ScaleFrame
+          width={DECK.width}
+          height={DECK.height}
+          mode="fit"
+          safety={zoom}
+        >
+          {/* 3) BOARD FRAME (shadow + glass plane + reflection) */}
+          <BoardFrame>
+            <Slide index={index} total={total} />
+          </BoardFrame>
+        </ScaleFrame>
+      </CosmicStage>
 
-            <SlideNav index={index} total={total} onPrev={prev} onNext={next} />
-          </div>
-        ) : null}
-
+      {/* HUD (encima del universo) */}
+      <div className="pointer-events-none absolute inset-0 z-20">
         <div
           className={[
-            hudVisible ? "mt-4" : "mt-0",
-            presentation || printMode
-              ? ""
-              : "rounded-2xl border border-white/10 bg-white/5 p-3 shadow-[0_12px_50px_rgba(0,0,0,0.35)]",
+            "mx-auto w-full max-w-[1920px]",
+            presentation || printMode ? "px-0 py-0" : "px-4 py-4",
           ].join(" ")}
         >
-          {/* SlideStage YA maneja su layout internamente */}
-          <SlideStage width={DECK.width} height={DECK.height} grade={grade}>
-            <Slide index={index} total={total} />
-          </SlideStage>
-        </div>
+          {hudVisible ? (
+            <div className="pointer-events-auto flex items-center justify-between gap-3">
+              <div className="flex flex-col">
+                <div className="text-sm opacity-80">Deck</div>
+                <div className="text-lg font-semibold">
+                  {entry.meta.title}
+                  <span className="ml-2 text-sm opacity-70">
+                    ({index + 1}/{total})
+                  </span>
+                </div>
+              </div>
 
-        {hudVisible ? (
-          <div className="mt-3 flex items-center justify-between text-xs opacity-75">
-            <div>Shortcuts: Left/Right, PageUp/PageDown, Space, Home/End, H, N, P, V, T, Ctrl+K</div>
-            <div>
-              Deep link: <span className="font-mono">?s={index}</span>
+              <SlideNav index={index} total={total} onPrev={prev} onNext={next} />
             </div>
-          </div>
-        ) : null}
+          ) : null}
+
+          {hudVisible ? (
+            <div className="pointer-events-auto mt-3 flex items-center justify-between text-xs opacity-75">
+              <div>Shortcuts: Left/Right, PageUp/PageDown, Space, Home/End, H, N, P, V, T, Ctrl+K</div>
+              <div>
+                Deep link: <span className="font-mono">?s={index}</span>
+              </div>
+            </div>
+          ) : null}
+        </div>
       </div>
 
+      {/* NOTES (encima) */}
       {notesVisible ? (
         <aside className="fixed right-6 top-24 z-50 w-[320px]">
           <div className="rounded-2xl border border-white/10 bg-black/70 p-4 shadow-[0_18px_70px_rgba(0,0,0,0.55)] backdrop-blur">
             <div className="flex items-center justify-between">
               <div className="text-xs uppercase tracking-[0.2em] opacity-70">Notes</div>
-              <button type="button" className="text-xs opacity-70 hover:opacity-100" onClick={() => setNotesOpen(false)}>
+              <button
+                type="button"
+                className="text-xs opacity-70 hover:opacity-100"
+                onClick={() => setNotesOpen(false)}
+              >
                 Close
               </button>
             </div>

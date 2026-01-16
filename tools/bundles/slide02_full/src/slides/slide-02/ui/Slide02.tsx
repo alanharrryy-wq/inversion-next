@@ -8,7 +8,7 @@ import { useSlide02Seed } from "../data/slide02.seed"
 
 export default function Slide02() {
   const seed = useSlide02Seed("slide02-v4")
-  const data = getSlide02Mock(seed)// grain procedural (sin assets)
+const data = getSlide02Mock(seed)// grain procedural (sin assets)
   useHiGrain({ size: 256, alpha: 0.18, seed: "slide02-v4" })
 
   return (

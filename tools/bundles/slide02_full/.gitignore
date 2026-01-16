@@ -1,0 +1,61 @@
+node_modules/
+dist/
+.env
+.DS_Store
+.vscode/
+.hitech-backups/
+scripts/hitech-templates/
+hitech-templates/
+QA_GreenCast_*.txt
+*.bak.*
+*.bak_*
+*.incoming.*
+scripts/tmp_*
+scripts/hitech-templates__backup_*/
+
+# Build outputs
+build/
+out/
+coverage/
+.cache/
+.next/
+dist/
+*.log
+
+# Temp / junk
+tmp/
+temp/
+scans/
+legacy/
+*_incoming/
+# Build outputs
+build/
+out/
+coverage/
+.cache/
+.next/
+dist/
+*.log
+
+# Temp / junk
+tmp/
+temp/
+scans/
+legacy/
+*_incoming/
+
+
+# local scripts
+git-push.ps1
+
+
+# local scripts
+git-push.ps1
+
+
+# local scripts
+git-push.ps1
+
+# --- Local junk (never commit) ---
+tools/codex/B64/
+tools/git/run-all*.log
