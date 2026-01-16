@@ -1,0 +1,9 @@
+import React from "react";
+import { RenderInspectorPanel } from "./RenderInspectorPanel";
+
+export function RenderInspectorHost() {
+  // Solo DEV
+  // @ts-ignore
+  if (!(import.meta as any).env?.DEV) return null;
+  return <RenderInspectorPanel />;
+}

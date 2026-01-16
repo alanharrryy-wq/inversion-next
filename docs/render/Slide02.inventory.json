@@ -1,0 +1,1488 @@
+{
+  "meta": {
+    "generatedAt": "2026-01-16T06:46:31.040Z",
+    "slideId": "slide-02",
+    "entry": "src/slides/slide-02/ui/Slide02.tsx"
+  },
+  "graph": {
+    "nodes": [
+      "src/app/App.tsx",
+      "src/app/deck/deck.constants.ts",
+      "src/app/deck/deck.types.ts",
+      "src/app/deck/slideRegistry.ts",
+      "src/app/providers/Providers.tsx",
+      "src/app/styles/globals.css",
+      "src/app/styles/hi-materials.css",
+      "src/App.tsx",
+      "src/components/hi/HiFilters.tsx",
+      "src/components/hi/HiGlints.tsx",
+      "src/components/hi/HiShaderBackground.tsx",
+      "src/components/ui/button.tsx",
+      "src/components/ui/dialog.tsx",
+      "src/entities/slide/index.ts",
+      "src/entities/slide/lib/slide.utils.ts",
+      "src/entities/slide/model/slide.types.ts",
+      "src/index.css",
+      "src/main.tsx",
+      "src/pages/deck/DeckPage.tsx",
+      "src/pages/not-found/NotFoundPage.tsx",
+      "src/render/inspector/inspector.css",
+      "src/render/inspector/RenderInspectorHost.tsx",
+      "src/render/inspector/RenderInspectorPanel.tsx",
+      "src/rts/devtools/RtsDebugOverlay.tsx",
+      "src/rts/foundation/slots.ts",
+      "src/rts/foundation/smartservices_types.ts",
+      "src/rts/foundation/tokens.ts",
+      "src/rts/index.ts",
+      "src/rts/slides/flagships/FlagshipEvidenceTractionEngine.tsx",
+      "src/rts/slides/flagships/FlagshipRiskDecisionEngine.tsx",
+      "src/rts/slides/flagships/FlagshipsPreview.tsx",
+      "src/rts/slides/flagships/index.ts",
+      "src/rts/slides/templates/ComparisonTemplate.tsx",
+      "src/rts/slides/templates/DecisionGateTemplate.tsx",
+      "src/rts/slides/templates/EvidenceSummaryTemplate.tsx",
+      "src/rts/slides/templates/ExecutiveNarrativeTemplate.tsx",
+      "src/rts/slides/templates/index.ts",
+      "src/rts/slides/templates/KaizenA3Template.tsx",
+      "src/rts/slides/templates/KpiGridTemplate.tsx",
+      "src/rts/slides/templates/ProblemSolutionTemplate.tsx",
+      "src/rts/slides/templates/RiskRegisterTemplate.tsx",
+      "src/rts/slides/templates/SystemOverviewStaticTemplate.tsx",
+      "src/rts/slides/templates/TimelineTemplate.tsx",
+      "src/rts/styles/a11y.css",
+      "src/rts/styles/bridge_tokens.css",
+      "src/rts/styles/hi-materials.css",
+      "src/rts/styles/print.css",
+      "src/rts/styles/rts.css",
+      "src/rts/styles/visual_base.css",
+      "src/rts/styles/visual_tokens.css",
+      "src/rts/styles/visual_tokens.light.css",
+      "src/rts/styles/visual_utilities.css",
+      "src/rts/system/consistency_enforcer.ts",
+      "src/rts/system/consistency_rules.ts",
+      "src/rts/system/motion.ts",
+      "src/rts/ui/Callout.tsx",
+      "src/rts/ui/DecisionCard.tsx",
+      "src/rts/ui/EvidenceCard.tsx",
+      "src/rts/ui/ExecutiveHeader.tsx",
+      "src/rts/ui/ExecutiveNav.tsx",
+      "src/rts/ui/KeyValue.tsx",
+      "src/rts/ui/KpiCard.tsx",
+      "src/rts/ui/Panel.tsx",
+      "src/rts/ui/RiskCard.tsx",
+      "src/rts/ui/Rule.tsx",
+      "src/rts/ui/SlideFrame.tsx",
+      "src/rts/ui/Stack.tsx",
+      "src/rts/ui/StatusPill.tsx",
+      "src/rts/ui/Text.tsx",
+      "src/rts/utils/cn.ts",
+      "src/rts/utils/hashQuery.ts",
+      "src/shared/config/constants.ts",
+      "src/shared/config/env.ts",
+      "src/shared/hooks/useHiGrain.ts",
+      "src/shared/lib/cn.ts",
+      "src/shared/lib/format.ts",
+      "src/shared/lib/hotkeys.ts",
+      "src/shared/mocks/browser.ts",
+      "src/shared/mocks/data.ts",
+      "src/shared/mocks/handlers.ts",
+      "src/shared/mocks/index.ts",
+      "src/shared/render/composition/index.ts",
+      "src/shared/render/effects/chartSurfaceHighlight.css",
+      "src/shared/render/effects/contactOcclusion.css",
+      "src/shared/render/effects/dustField.css",
+      "src/shared/render/effects/glintSlow.css",
+      "src/shared/render/effects/index.ts",
+      "src/shared/render/effects/mirrorCine.css",
+      "src/shared/render/effects/rimDynamic.css",
+      "src/shared/render/index.ts",
+      "src/shared/render/materials/index.ts",
+      "src/shared/render/materials/materials.css",
+      "src/shared/render/qa/qa.stage.debug.css",
+      "src/shared/render/stage/index.ts",
+      "src/shared/render/stage/stage.css",
+      "src/shared/render/tokens/index.ts",
+      "src/shared/render/tokens/render.tokens.css",
+      "src/shared/theme/tokens.css",
+      "src/shared/ui/command-palette/CommandPalette.tsx",
+      "src/shared/ui/slide/index.ts",
+      "src/shared/ui/slide/SlideBlocks.tsx",
+      "src/shared/ui/slide/SlideShell.tsx",
+      "src/shared/ui/slide/SlideStage.tsx",
+      "src/shared/ui/stage/board.frame.css",
+      "src/shared/ui/stage/BoardFrame.tsx",
+      "src/shared/ui/stage/cosmic.stage.css",
+      "src/shared/ui/stage/CosmicStage.tsx",
+      "src/shared/ui/stage/ScaleFrame.tsx",
+      "src/slides/index.ts",
+      "src/slides/slide-00/index.ts",
+      "src/slides/slide-00/ui/Slide00.tsx",
+      "src/slides/slide-01/index.ts",
+      "src/slides/slide-01/ui/Slide01.tsx",
+      "src/slides/slide-02/data/slide02.adapter.ts",
+      "src/slides/slide-02/data/slide02.contract.ts",
+      "src/slides/slide-02/data/slide02.mock.ts",
+      "src/slides/slide-02/data/slide02.seed.ts",
+      "src/slides/slide-02/index.ts",
+      "src/slides/slide-02/ui/Slide02.tsx",
+      "src/slides/slide-03/index.ts",
+      "src/slides/slide-03/ui/Slide03.tsx",
+      "src/slides/slide-04/index.ts",
+      "src/slides/slide-04/ui/Slide04.tsx",
+      "src/slides/slide-05/index.ts",
+      "src/slides/slide-05/ui/Slide05.tsx",
+      "src/slides/slide-06/index.ts",
+      "src/slides/slide-06/ui/Slide06.tsx",
+      "src/slides/slide-07/index.ts",
+      "src/slides/slide-07/ui/Slide07.tsx",
+      "src/tests/setup.ts",
+      "src/vite-env.d.ts",
+      "src/widgets/slide-nav/index.ts",
+      "src/widgets/slide-nav/ui/SlideNav.tsx"
+    ],
+    "edges": [
+      {
+        "from": "src/slides/slide-02/ui/Slide02.tsx",
+        "to": "src/shared/ui/slide/SlideShell.tsx",
+        "spec": "@/shared/ui/slide/SlideShell"
+      },
+      {
+        "from": "src/slides/slide-02/ui/Slide02.tsx",
+        "to": "src/shared/lib/cn.ts",
+        "spec": "@/shared/lib/cn"
+      },
+      {
+        "from": "src/slides/slide-02/ui/Slide02.tsx",
+        "to": "src/shared/hooks/useHiGrain.ts",
+        "spec": "@/shared/hooks/useHiGrain"
+      },
+      {
+        "from": "src/slides/slide-02/index.ts",
+        "to": "src/slides/slide-02/ui/Slide02.tsx",
+        "spec": "./ui/Slide02"
+      },
+      {
+        "from": "src/shared/ui/slide/SlideShell.tsx",
+        "to": "src/shared/lib/cn.ts",
+        "spec": "@/shared/lib/cn"
+      }
+    ]
+  },
+  "signals": {
+    "dataAttrs": {
+      "data-uri": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/shared/hooks/useHiGrain.ts"
+        ]
+      },
+      "data-chart-highlight": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/shared/render/effects/chartSurfaceHighlight.css",
+          "src/shared/render/qa/qa.stage.debug.css",
+          "src/slides/slide-02/ui/Slide02.tsx"
+        ]
+      },
+      "data-attrs": {
+        "files": [
+          "src/render/inspector/RenderInspectorPanel.tsx"
+        ]
+      },
+      "data-material": {
+        "files": [
+          "src/shared/render/effects/contactOcclusion.css",
+          "src/shared/render/effects/glintSlow.css",
+          "src/shared/render/effects/rimDynamic.css",
+          "src/shared/render/materials/materials.css",
+          "src/shared/render/qa/qa.stage.debug.css",
+          "src/shared/ui/slide/SlideShell.tsx",
+          "src/slides/slide-01/ui/Slide01.tsx",
+          "src/slides/slide-02/ui/Slide02.tsx"
+        ]
+      },
+      "data-glint": {
+        "files": [
+          "src/shared/render/effects/glintSlow.css",
+          "src/slides/slide-01/ui/Slide01.tsx",
+          "src/slides/slide-02/ui/Slide02.tsx"
+        ]
+      },
+      "data-glint-blend": {
+        "files": [
+          "src/shared/render/effects/glintSlow.css"
+        ]
+      },
+      "data-mirror": {
+        "files": [
+          "src/shared/render/effects/mirrorCine.css",
+          "src/shared/render/qa/qa.stage.debug.css"
+        ]
+      },
+      "data-qa": {
+        "files": [
+          "src/shared/render/qa/qa.stage.debug.css"
+        ]
+      },
+      "data-hi-grade": {
+        "files": [
+          "src/shared/render/stage/stage.css",
+          "src/shared/ui/slide/SlideShell.tsx",
+          "src/shared/ui/slide/SlideStage.tsx",
+          "src/shared/ui/stage/CosmicStage.tsx"
+        ]
+      },
+      "data-hi-rig": {
+        "files": [
+          "src/shared/ui/slide/SlideShell.tsx",
+          "src/shared/ui/slide/SlideStage.tsx"
+        ]
+      },
+      "data-deck-prev": {
+        "files": [
+          "src/widgets/slide-nav/ui/SlideNav.tsx"
+        ]
+      },
+      "data-deck-next": {
+        "files": [
+          "src/widgets/slide-nav/ui/SlideNav.tsx"
+        ]
+      }
+    },
+    "hiClasses": {
+      "hi-bg-premium": {
+        "files": [
+          "src/app/styles/globals.css",
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-grain": {
+        "files": [
+          "src/app/styles/globals.css",
+          "src/app/styles/hi-materials.css",
+          "src/rts/styles/hi-materials.css",
+          "src/shared/render/materials/materials.css",
+          "src/shared/render/qa/qa.stage.debug.css",
+          "src/slides/slide-02/ui/Slide02.tsx",
+          "src/slides/slide-06/ui/Slide06.tsx"
+        ]
+      },
+      "hi-panel": {
+        "files": [
+          "src/app/styles/globals.css",
+          "src/app/styles/hi-materials.css",
+          "src/rts/styles/hi-materials.css",
+          "src/shared/render/qa/qa.stage.debug.css",
+          "src/slides/slide-02/ui/Slide02.tsx",
+          "src/slides/slide-06/ui/Slide06.tsx"
+        ]
+      },
+      "hi-frame": {
+        "files": [
+          "src/app/styles/globals.css"
+        ]
+      },
+      "hi-title": {
+        "files": [
+          "src/app/styles/globals.css"
+        ]
+      },
+      "hi-muted": {
+        "files": [
+          "src/app/styles/globals.css"
+        ]
+      },
+      "hi-bar": {
+        "files": [
+          "src/app/styles/globals.css"
+        ]
+      },
+      "hi-shader-bg": {
+        "files": [
+          "src/app/styles/globals.css",
+          "src/components/hi/HiShaderBackground.tsx"
+        ]
+      },
+      "hi-bg-0": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-bg-1": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-bg-2": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-panel-core": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-panel-deep": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-steel-a": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "hi-steel-b": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "hi-steel-c": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "hi-text": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-text-dim": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-cyan": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-cyan-soft": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "hi-blur": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-blur-soft": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "hi-shadow-out": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "hi-shadow-mid": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "hi-shadow-in": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "hi-radius-xl": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "hi-radius-lg": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "hi-grain-url": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/shared/hooks/useHiGrain.ts",
+          "src/shared/render/qa/qa.stage.debug.css"
+        ]
+      },
+      "hi-screen": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/shared/render/qa/qa.stage.debug.css",
+          "src/shared/render/stage/stage.css",
+          "src/shared/ui/slide/SlideShell.tsx",
+          "src/slides/slide-02/ui/Slide02.tsx",
+          "src/slides/slide-06/ui/Slide06.tsx"
+        ]
+      },
+      "hi-base-glass": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/slides/slide-02/ui/Slide02.tsx"
+        ]
+      },
+      "hi-edge-outer": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "hi-edge-inner": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "hi-spec-top-a": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "hi-spec-top-b": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "hi-spec-stop": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "hi-spec-fade": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "hi-panel-critical": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/rts/styles/hi-materials.css",
+          "src/slides/slide-02/ui/Slide02.tsx",
+          "src/slides/slide-06/ui/Slide06.tsx"
+        ]
+      },
+      "hi-inset": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/rts/styles/hi-materials.css",
+          "src/shared/render/qa/qa.stage.debug.css",
+          "src/slides/slide-02/ui/Slide02.tsx"
+        ]
+      },
+      "hi-specular": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/rts/styles/hi-materials.css",
+          "src/shared/render/qa/qa.stage.debug.css",
+          "src/slides/slide-02/ui/Slide02.tsx",
+          "src/slides/slide-06/ui/Slide06.tsx"
+        ]
+      },
+      "hi-rim": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/rts/styles/hi-materials.css",
+          "src/shared/render/qa/qa.stage.debug.css",
+          "src/slides/slide-02/ui/Slide02.tsx",
+          "src/slides/slide-06/ui/Slide06.tsx"
+        ]
+      },
+      "hi-glow": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/rts/styles/hi-materials.css",
+          "src/shared/render/qa/qa.stage.debug.css",
+          "src/slides/slide-02/ui/Slide02.tsx",
+          "src/slides/slide-06/ui/Slide06.tsx"
+        ]
+      },
+      "hi-glassfx": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/shared/render/qa/qa.stage.debug.css",
+          "src/slides/slide-02/ui/Slide02.tsx",
+          "src/slides/slide-06/ui/Slide06.tsx"
+        ]
+      },
+      "hi-glints": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/components/hi/HiGlints.tsx",
+          "src/shared/render/qa/qa.stage.debug.css",
+          "src/slides/slide-02/ui/Slide02.tsx"
+        ]
+      },
+      "hi-glint-a": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "hi-glint-b": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "hi-glints-driftA": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "hi-glints-driftB": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "hi-chart": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/shared/render/qa/qa.stage.debug.css",
+          "src/slides/slide-02/ui/Slide02.tsx",
+          "src/slides/slide-06/ui/Slide06.tsx"
+        ]
+      },
+      "hi-chart-highlight-opacity": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/shared/render/effects/chartSurfaceHighlight.css"
+        ]
+      },
+      "hi-chart-highlight-period": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/shared/render/effects/chartSurfaceHighlight.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "hi-chart-sparkle": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "hi-mirror-wrap": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/shared/render/qa/qa.stage.debug.css",
+          "src/slides/slide-02/ui/Slide02.tsx"
+        ]
+      },
+      "hi-mirror": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/shared/render/qa/qa.stage.debug.css",
+          "src/slides/slide-02/ui/Slide02.tsx"
+        ]
+      },
+      "hi-dim": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/rts/styles/hi-materials.css",
+          "src/slides/slide-02/ui/Slide02.tsx"
+        ]
+      },
+      "hi-glass-warp": {
+        "files": [
+          "src/components/hi/HiFilters.tsx"
+        ]
+      },
+      "hi-soft-bloom": {
+        "files": [
+          "src/components/hi/HiFilters.tsx"
+        ]
+      },
+      "hi-glint": {
+        "files": [
+          "src/components/hi/HiGlints.tsx"
+        ]
+      },
+      "hi-materials": {
+        "files": [
+          "src/index.css"
+        ]
+      },
+      "hi-inspector": {
+        "files": [
+          "src/render/inspector/inspector.css",
+          "src/render/inspector/RenderInspectorPanel.tsx"
+        ]
+      },
+      "hi-classes": {
+        "files": [
+          "src/render/inspector/RenderInspectorPanel.tsx"
+        ]
+      },
+      "hi-steel": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-offwhite": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-fg": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-fg-dim": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-cyan-dim": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-a-2": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-a-4": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-a-6": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-a-8": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-a-10": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-a-12": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-a-16": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-noise-svg": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-noise-png": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-noise": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-r-lg": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-r-xl": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-active": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-chip": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "hi-chartHighlight": {
+        "files": [
+          "src/shared/render/effects/chartSurfaceHighlight.css"
+        ]
+      },
+      "hi-contact-occlusion": {
+        "files": [
+          "src/shared/render/effects/contactOcclusion.css"
+        ]
+      },
+      "hi-dust-opacity-a": {
+        "files": [
+          "src/shared/render/effects/dustField.css",
+          "src/shared/render/qa/qa.stage.debug.css"
+        ]
+      },
+      "hi-dust-opacity-b": {
+        "files": [
+          "src/shared/render/effects/dustField.css",
+          "src/shared/render/qa/qa.stage.debug.css"
+        ]
+      },
+      "hi-dust-period-a": {
+        "files": [
+          "src/shared/render/effects/dustField.css"
+        ]
+      },
+      "hi-dust-period-b": {
+        "files": [
+          "src/shared/render/effects/dustField.css"
+        ]
+      },
+      "hi-stage": {
+        "files": [
+          "src/shared/render/effects/dustField.css",
+          "src/shared/render/qa/qa.stage.debug.css",
+          "src/shared/render/stage/stage.css",
+          "src/shared/ui/slide/SlideShell.tsx",
+          "src/shared/ui/slide/SlideStage.tsx",
+          "src/slides/slide-02/ui/Slide02.tsx"
+        ]
+      },
+      "hi-dustA": {
+        "files": [
+          "src/shared/render/effects/dustField.css"
+        ]
+      },
+      "hi-dustB": {
+        "files": [
+          "src/shared/render/effects/dustField.css"
+        ]
+      },
+      "hi-glint-opacity": {
+        "files": [
+          "src/shared/render/effects/glintSlow.css",
+          "src/shared/render/materials/materials.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "hi-glint-period": {
+        "files": [
+          "src/shared/render/effects/glintSlow.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "hi-glint-rgb": {
+        "files": [
+          "src/shared/render/effects/glintSlow.css"
+        ]
+      },
+      "hi-glint-blend": {
+        "files": [
+          "src/shared/render/effects/glintSlow.css"
+        ]
+      },
+      "hi-glintSlow": {
+        "files": [
+          "src/shared/render/effects/glintSlow.css"
+        ]
+      },
+      "hi-mirror-strength": {
+        "files": [
+          "src/shared/render/effects/mirrorCine.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "hi-mirror-blur": {
+        "files": [
+          "src/shared/render/effects/mirrorCine.css"
+        ]
+      },
+      "hi-mirror-fade": {
+        "files": [
+          "src/shared/render/effects/mirrorCine.css"
+        ]
+      },
+      "hi-rim-strength": {
+        "files": [
+          "src/shared/render/effects/rimDynamic.css",
+          "src/shared/render/materials/materials.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "hi-rim-jitter-a": {
+        "files": [
+          "src/shared/render/effects/rimDynamic.css"
+        ]
+      },
+      "hi-rim-jitter-b": {
+        "files": [
+          "src/shared/render/effects/rimDynamic.css"
+        ]
+      },
+      "hi-rim-period-a": {
+        "files": [
+          "src/shared/render/effects/rimDynamic.css"
+        ]
+      },
+      "hi-rim-period-b": {
+        "files": [
+          "src/shared/render/effects/rimDynamic.css"
+        ]
+      },
+      "hi-rimJitterA": {
+        "files": [
+          "src/shared/render/effects/rimDynamic.css"
+        ]
+      },
+      "hi-rimJitterB": {
+        "files": [
+          "src/shared/render/effects/rimDynamic.css"
+        ]
+      },
+      "hi-glass-opacity": {
+        "files": [
+          "src/shared/render/materials/materials.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "hi-glass-frost": {
+        "files": [
+          "src/shared/render/materials/materials.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "hi-spec-strength": {
+        "files": [
+          "src/shared/render/materials/materials.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "hi-grain-amount": {
+        "files": [
+          "src/shared/render/materials/materials.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "hi-glow-strength": {
+        "files": [
+          "src/shared/render/materials/materials.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "hi-accent-cyan": {
+        "files": [
+          "src/shared/render/materials/materials.css"
+        ]
+      },
+      "hi-accent-pink": {
+        "files": [
+          "src/shared/render/materials/materials.css"
+        ]
+      },
+      "hi-ink-contrast": {
+        "files": [
+          "src/shared/render/materials/materials.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "hi-stage-core-a": {
+        "files": [
+          "src/shared/render/stage/stage.css"
+        ]
+      },
+      "hi-stage-edge-a": {
+        "files": [
+          "src/shared/render/stage/stage.css"
+        ]
+      },
+      "hi-stage-haze-a": {
+        "files": [
+          "src/shared/render/stage/stage.css"
+        ]
+      },
+      "hi-stage-plane-a": {
+        "files": [
+          "src/shared/render/stage/stage.css"
+        ]
+      },
+      "hi-stage-plane-b": {
+        "files": [
+          "src/shared/render/stage/stage.css"
+        ]
+      },
+      "hi-stage-vignette-a": {
+        "files": [
+          "src/shared/render/stage/stage.css"
+        ]
+      },
+      "hi-grade": {
+        "files": [
+          "src/shared/render/stage/stage.css",
+          "src/shared/ui/slide/SlideShell.tsx",
+          "src/shared/ui/slide/SlideStage.tsx",
+          "src/shared/ui/stage/CosmicStage.tsx"
+        ]
+      },
+      "hi-stage-key": {
+        "files": [
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "hi-stage-fill": {
+        "files": [
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "hi-stage-bounce": {
+        "files": [
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "hi-stage-vignette": {
+        "files": [
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "hi-stage-haze": {
+        "files": [
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "hi-metal-strength": {
+        "files": [
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "hi-dust-density": {
+        "files": [
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "hi-rim-shimmer-period": {
+        "files": [
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "hi-dust-drift-period": {
+        "files": [
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "hi-rig": {
+        "files": [
+          "src/shared/ui/slide/SlideShell.tsx",
+          "src/shared/ui/slide/SlideStage.tsx"
+        ]
+      }
+    },
+    "tokens": {
+      "--hi-bg-0": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "--hi-bg-1": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "--hi-bg-2": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "--hi-panel-core": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "--hi-panel-deep": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "--hi-steel-a": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "--hi-steel-b": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "--hi-steel-c": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "--hi-text": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "--hi-text-dim": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "--hi-cyan": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "--hi-cyan-soft": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "--hi-blur": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "--hi-blur-soft": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "--hi-shadow-out": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "--hi-shadow-mid": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "--hi-shadow-in": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "--hi-radius-xl": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "--hi-radius-lg": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "--hi-grain-url": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/shared/hooks/useHiGrain.ts",
+          "src/shared/render/qa/qa.stage.debug.css"
+        ]
+      },
+      "--hi-edge-outer": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "--hi-edge-inner": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "--hi-spec-top-a": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "--hi-spec-top-b": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "--hi-spec-stop": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "--hi-spec-fade": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "--hi-glint-a": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "--hi-glint-b": {
+        "files": [
+          "src/app/styles/hi-materials.css"
+        ]
+      },
+      "--hi-chart-highlight-opacity": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/shared/render/effects/chartSurfaceHighlight.css"
+        ]
+      },
+      "--hi-chart-highlight-period": {
+        "files": [
+          "src/app/styles/hi-materials.css",
+          "src/shared/render/effects/chartSurfaceHighlight.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "--hi-steel": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "--hi-offwhite": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "--hi-fg": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "--hi-fg-dim": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "--hi-cyan-dim": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "--hi-a-2": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "--hi-a-4": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "--hi-a-6": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "--hi-a-8": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "--hi-a-10": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "--hi-a-12": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "--hi-a-16": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "--hi-noise-svg": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "--hi-noise-png": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "--hi-noise": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "--hi-r-lg": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "--hi-r-xl": {
+        "files": [
+          "src/rts/styles/hi-materials.css"
+        ]
+      },
+      "--hi-contact-occlusion": {
+        "files": [
+          "src/shared/render/effects/contactOcclusion.css"
+        ]
+      },
+      "--hi-dust-opacity-a": {
+        "files": [
+          "src/shared/render/effects/dustField.css",
+          "src/shared/render/qa/qa.stage.debug.css"
+        ]
+      },
+      "--hi-dust-opacity-b": {
+        "files": [
+          "src/shared/render/effects/dustField.css",
+          "src/shared/render/qa/qa.stage.debug.css"
+        ]
+      },
+      "--hi-dust-period-a": {
+        "files": [
+          "src/shared/render/effects/dustField.css"
+        ]
+      },
+      "--hi-dust-period-b": {
+        "files": [
+          "src/shared/render/effects/dustField.css"
+        ]
+      },
+      "--hi-glint-opacity": {
+        "files": [
+          "src/shared/render/effects/glintSlow.css",
+          "src/shared/render/materials/materials.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "--hi-glint-period": {
+        "files": [
+          "src/shared/render/effects/glintSlow.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "--hi-glint-rgb": {
+        "files": [
+          "src/shared/render/effects/glintSlow.css"
+        ]
+      },
+      "--hi-glint-blend": {
+        "files": [
+          "src/shared/render/effects/glintSlow.css"
+        ]
+      },
+      "--hi-mirror-strength": {
+        "files": [
+          "src/shared/render/effects/mirrorCine.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "--hi-mirror-blur": {
+        "files": [
+          "src/shared/render/effects/mirrorCine.css"
+        ]
+      },
+      "--hi-mirror-fade": {
+        "files": [
+          "src/shared/render/effects/mirrorCine.css"
+        ]
+      },
+      "--hi-rim-strength": {
+        "files": [
+          "src/shared/render/effects/rimDynamic.css",
+          "src/shared/render/materials/materials.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "--hi-rim-jitter-a": {
+        "files": [
+          "src/shared/render/effects/rimDynamic.css"
+        ]
+      },
+      "--hi-rim-jitter-b": {
+        "files": [
+          "src/shared/render/effects/rimDynamic.css"
+        ]
+      },
+      "--hi-rim-period-a": {
+        "files": [
+          "src/shared/render/effects/rimDynamic.css"
+        ]
+      },
+      "--hi-rim-period-b": {
+        "files": [
+          "src/shared/render/effects/rimDynamic.css"
+        ]
+      },
+      "--hi-glass-opacity": {
+        "files": [
+          "src/shared/render/materials/materials.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "--hi-glass-frost": {
+        "files": [
+          "src/shared/render/materials/materials.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "--hi-spec-strength": {
+        "files": [
+          "src/shared/render/materials/materials.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "--hi-grain-amount": {
+        "files": [
+          "src/shared/render/materials/materials.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "--hi-glow-strength": {
+        "files": [
+          "src/shared/render/materials/materials.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "--hi-accent-cyan": {
+        "files": [
+          "src/shared/render/materials/materials.css"
+        ]
+      },
+      "--hi-accent-pink": {
+        "files": [
+          "src/shared/render/materials/materials.css"
+        ]
+      },
+      "--hi-ink-contrast": {
+        "files": [
+          "src/shared/render/materials/materials.css",
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "--hi-stage-core-a": {
+        "files": [
+          "src/shared/render/stage/stage.css"
+        ]
+      },
+      "--hi-stage-edge-a": {
+        "files": [
+          "src/shared/render/stage/stage.css"
+        ]
+      },
+      "--hi-stage-haze-a": {
+        "files": [
+          "src/shared/render/stage/stage.css"
+        ]
+      },
+      "--hi-stage-plane-a": {
+        "files": [
+          "src/shared/render/stage/stage.css"
+        ]
+      },
+      "--hi-stage-plane-b": {
+        "files": [
+          "src/shared/render/stage/stage.css"
+        ]
+      },
+      "--hi-stage-vignette-a": {
+        "files": [
+          "src/shared/render/stage/stage.css"
+        ]
+      },
+      "--hi-stage-key": {
+        "files": [
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "--hi-stage-fill": {
+        "files": [
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "--hi-stage-bounce": {
+        "files": [
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "--hi-stage-vignette": {
+        "files": [
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "--hi-stage-haze": {
+        "files": [
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "--hi-metal-strength": {
+        "files": [
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "--hi-dust-density": {
+        "files": [
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "--hi-rim-shimmer-period": {
+        "files": [
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      },
+      "--hi-dust-drift-period": {
+        "files": [
+          "src/shared/render/tokens/render.tokens.css"
+        ]
+      }
+    }
+  },
+  "slide02": {
+    "files": [
+      "src/slides/slide-02/ui/Slide02.tsx",
+      "src/slides/slide-02/index.ts",
+      "src/shared/ui/slide/SlideShell.tsx",
+      "src/shared/lib/cn.ts",
+      "src/shared/hooks/useHiGrain.ts"
+    ],
+    "domSignals": {
+      "dataAttrsUsed": [
+        "data-chart-highlight",
+        "data-material",
+        "data-glint"
+      ],
+      "hiClassesUsed": [
+        "hi-screen",
+        "hi-stage",
+        "hi-base-glass",
+        "hi-chart",
+        "hi-mirror-wrap",
+        "hi-mirror",
+        "hi-panel",
+        "hi-panel-critical",
+        "hi-inset",
+        "hi-specular",
+        "hi-rim",
+        "hi-glassfx",
+        "hi-grain",
+        "hi-glints",
+        "hi-glow",
+        "hi-dim"
+      ],
+      "tokensMentioned": []
+    }
+  },
+  "problems": []
+}

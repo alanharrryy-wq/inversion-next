@@ -71,8 +71,6 @@ export interface AIInsightsData {
   summarySuffix: string
   confidence: number
   source: string
-  /** Mini serie 0..1 para sparkline (determinista por seed). */
-  sparkline: number[]
 }
 
 export interface Slide02DashboardData {

@@ -4,6 +4,7 @@ import { DECK } from "@/shared/config/constants"
 import { slideRegistry } from "@/app/deck/slideRegistry"
 import { SlideNav } from "@/widgets/slide-nav/ui/SlideNav"
 import { RtsDebugOverlay } from "@/rts/devtools/RtsDebugOverlay"
+import { RenderInspectorHost } from "@/render/inspector/RenderInspectorHost"
 
 import { CosmicStage } from "@/shared/ui/stage/CosmicStage"
 import { ScaleFrame } from "@/shared/ui/stage/ScaleFrame"
@@ -265,7 +266,9 @@ export function DeckPage() {
         </aside>
       ) : null}
 
+      <RenderInspectorHost />
       <RtsDebugOverlay />
     </div>
   )
 }
+

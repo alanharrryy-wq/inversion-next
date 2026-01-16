@@ -249,8 +249,7 @@ export function getSlide02Mock(seed: string): Slide02DashboardData {
     highlightPercent: 17,
     summarySuffix: "streamlined workflow improvement in the upcoming quarter.",
     confidence: roundTo(randRange(rng, 0.76, 0.88), 2),
-    source: "MSW mock",
-    sparkline: buildSignalSeries(rng, 24).points
+    source: "MSW mock"
   }
 
   return {
