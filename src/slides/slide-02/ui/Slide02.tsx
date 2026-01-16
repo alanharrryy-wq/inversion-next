@@ -8,8 +8,8 @@ import { useSlide02Seed } from "../data/slide02.seed"
 
 export default function Slide02() {
   const seed = useSlide02Seed("slide02-v4")
-  const data = getSlide02Mock(seed)// grain procedural (sin assets)
-  useHiGrain({ size: 256, alpha: 0.18, seed: "slide02-v4" })
+  const data = getSlide02Mock(seed) // data determinista por seed
+  useHiGrain({ size: 256, alpha: 0.18, seed })
 
   return (
     <SlideShell
@@ -168,7 +168,7 @@ function KpiDonut({ data }: { data: Slide02DashboardData["kpiTracker"] }) {
             <defs>
               <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
                 <stop offset="0" stopColor="rgba(255,255,255,0.70)" />
-                <stop offset="0.35" stopColor="rgba(255,255,255,0.18)" />
+                <stop offset="0.35" stopColor={`rgba(255,255,255,${fillA.toFixed(2)})`} />
                 <stop offset="1" stopColor="rgba(181,181,181,0.55)" />
               </linearGradient>
               <filter id="softGlow">
@@ -332,8 +332,37 @@ function InsightsMock({ data }: { data: Slide02DashboardData["aiInsights"] }) {
     <div className="grid h-full grid-rows-[auto_1fr] gap-3">
       <div className="rounded-[14px] bg-white/5 p-4 text-xs opacity-80 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
         {data.summaryPrefix} <span className="text-white/85">{data.highlightPercent}%</span> {data.summarySuffix}
-        <div className="hi-dim mt-2">
-          Confidence: {data.confidence.toFixed(2)} · Source: {data.source}
+        <div className="hi-dim mt-2 flex flex-wrap items-center gap-2">
+          <span>Confidence: {data.confidence.toFixed(2)}</span>
+          <span>· Source: {data.source}</span>
+
+          {(() => {
+            const conf = typeof data.confidence === "number" && Number.isFinite(data.confidence) ? data.confidence : 0.82
+            const status = conf >= 0.86 ? "OK" : conf >= 0.80 ? "WARN" : "CRIT"
+            // Drift inferido de estabilidad de sparkline (simple y determinista)
+            const pts = Array.isArray(data.sparkline) ? data.sparkline : []
+            let drift: "Low" | "Medium" | "High" = "Medium"
+            if (pts.length >= 6) {
+              let sum = 0
+              for (let i = 1; i < pts.length; i += 1) sum += Math.abs(pts[i] - pts[i - 1])
+              const avg = sum / (pts.length - 1)
+              drift = avg < 0.012 ? "Low" : avg < 0.022 ? "Medium" : "High"
+            }
+
+            const pillBase = "rounded-full px-2 py-0.5 text-[10px] font-mono tracking-wide bg-black/35 border border-white/10"
+            const sClass = status === "OK"
+              ? "text-white/80"
+              : status === "WARN"
+                ? "text-white/70"
+                : "text-white/65"
+
+            return (
+              <>
+                <span className={pillBase + " " + sClass}>STATUS: {status}</span>
+                <span className={pillBase + " text-white/70"}>DRIFT: {drift}</span>
+              </>
+            )
+          })()}
         </div>
       </div>
       <div className="hi-chart">
@@ -356,6 +385,9 @@ function InsightsMock({ data }: { data: Slide02DashboardData["aiInsights"] }) {
               max = 1
             }
 
+            const conf = typeof data.confidence === "number" && Number.isFinite(data.confidence) ? data.confidence : 0.82
+            const strokeA = conf >= 0.86 ? 0.82 : conf >= 0.80 ? 0.72 : 0.62
+            const fillA = conf >= 0.86 ? 0.22 : conf >= 0.80 ? 0.18 : 0.14
             const n = pts.length
             const W = 200
             const H = 44
@@ -381,7 +413,7 @@ function InsightsMock({ data }: { data: Slide02DashboardData["aiInsights"] }) {
               <>
                 <defs>
                   <linearGradient id="hiSparkFill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="rgba(255,255,255,0.18)" />
+                    <stop offset="0%" stopColor={`rgba(255,255,255,${fillA.toFixed(2)})`} />
                     <stop offset="100%" stopColor="rgba(255,255,255,0.02)" />
                   </linearGradient>
                   <filter id="hiSparkGlow" x="-20%" y="-40%" width="140%" height="180%">
@@ -394,7 +426,7 @@ function InsightsMock({ data }: { data: Slide02DashboardData["aiInsights"] }) {
                 </defs>
 
                 <path d={dArea} fill="url(#hiSparkFill)" opacity="0.9" />
-                <path d={d} fill="none" stroke="rgba(255,255,255,0.72)" strokeWidth="1.6" filter="url(#hiSparkGlow)" />
+                <path d={d} fill="none" stroke={`rgba(255,255,255,${strokeA.toFixed(2)})`} strokeWidth="1.6" filter="url(#hiSparkGlow)" />
               </>
             )
           })()}
@@ -418,4 +450,5 @@ function formatValue(metric: DisplayValue) {
   if (metric.unit) return `${metric.value}${metric.unit}`
   return `${metric.value}`
 }
+
 
