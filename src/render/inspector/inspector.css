@@ -1,35 +1,76 @@
+/* src/render/inspector/inspector.css
+   Objetivo:
+   - Root = HUD overlay que NO bloquea el deck (pointer-events: none)
+   - Panel = interactivo, fijo en esquina, siempre visible
+   - Safe-mode = reduce cosas caras (blur/sombras) para evitar flicker
+*/
+
 :where(.hi-inspector) {
   position: fixed;
-  top: 12px;
-  right: 12px;
+  inset: 0;
   z-index: 2147483647;
   pointer-events: none;
-  contain: layout paint style;
-  isolation: isolate;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+
+  /* Debug visual opcional (si quieres ver el overlay): */
+  /* outline: 1px dashed rgba(255, 0, 0, 0.2); */
 }
 
 :where(.hi-inspector .hi-inspector__panel) {
-  pointer-events: auto;
+  position: fixed;
+  top: 12px;
+  right: 12px;
+
   width: 360px;
+  max-width: calc(100vw - 24px);
   max-height: calc(100vh - 24px);
-  overflow: hidden;
+  overflow: auto;
+
+  pointer-events: auto;
+
+  /* Estética base */
   border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(10, 12, 16, 0.92);
-  color: rgba(255,255,255,0.92);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.45);
-  contain: layout paint;
+  padding: 12px;
+  background: rgba(10, 12, 16, 0.78);
+  color: rgba(255, 255, 255, 0.92);
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 12px 38px rgba(0, 0, 0, 0.45),
+    0 2px 10px rgba(0, 0, 0, 0.28);
+
+  /* Evita que el panel “se mezcle” raro con el deck */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  /* Asegura que sea “normal” y no le apliquen transforms raros */
+  transform: none;
+
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  font-size: 12px;
+  line-height: 1.35;
 }
 
+/* Safe Mode: reduce cosas caras */
 :where(.hi-inspector--safe .hi-inspector__panel) {
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+  background: rgba(10, 12, 16, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.10);
 }
 
 :where(.hi-inspector .hi-inspector__header) {
-  padding: 10px 12px;
-  border-bottom: 1px solid rgba(255,255,255,0.10);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+:where(.hi-inspector .hi-inspector__row) {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
 }
 
 :where(.hi-inspector .hi-inspector__title) {
@@ -39,41 +80,47 @@
 }
 
 :where(.hi-inspector .hi-inspector__meta) {
-  margin-top: 6px;
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
+  opacity: 0.85;
+  font-size: 11px;
 }
 
 :where(.hi-inspector .hi-inspector__body) {
-  padding: 10px 12px 12px;
-  overflow: auto;
-  max-height: calc(100vh - 90px);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-:where(.hi-inspector .hi-inspector__row) {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
+:where(.hi-inspector code) {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  color: rgba(255, 255, 255, 0.92);
+  user-select: text;
 }
 
 :where(.hi-inspector .hi-inspector__actions) {
-  display: inline-flex;
-  align-items: center;
+  display: flex;
   gap: 6px;
 }
 
 :where(.hi-inspector .hi-inspector__btn) {
-  appearance: none;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(255,255,255,0.06);
-  color: rgba(255,255,255,0.92);
+  pointer-events: auto;
+  cursor: pointer;
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.92);
+
   border-radius: 10px;
   padding: 6px 10px;
   font-size: 12px;
-  cursor: pointer;
+  line-height: 1;
 }
+
 :where(.hi-inspector .hi-inspector__btn:hover) {
-  background: rgba(255,255,255,0.10);
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.22);
 }
