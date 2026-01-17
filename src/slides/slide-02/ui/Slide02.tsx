@@ -168,7 +168,7 @@ function KpiDonut({ data }: { data: Slide02DashboardData["kpiTracker"] }) {
             <defs>
               <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
                 <stop offset="0" stopColor="rgba(255,255,255,0.70)" />
-                <stop offset="0.35" stopColor={`rgba(255,255,255,${fillA.toFixed(2)})`} />
+                <stop offset="0.35" stopColor="rgba(255,255,255,0.18)" />
                 <stop offset="1" stopColor="rgba(181,181,181,0.55)" />
               </linearGradient>
               <filter id="softGlow">
@@ -450,6 +450,9 @@ function formatValue(metric: DisplayValue) {
   if (metric.unit) return `${metric.value}${metric.unit}`
   return `${metric.value}`
 }
+
+
+
 
 
 
