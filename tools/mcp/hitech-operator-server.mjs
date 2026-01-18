@@ -433,15 +433,40 @@ function resolveUrlContains(input) {
   return URL_CONTAINS_DEFAULT || "";
 }
 
-function pickPage(pages, { urlExact, urlContains }) {
-  const exact = resolveUrlExact(urlExact);
-  const contains = resolveUrlContains(urlContains);
+function resolveTargetHints(args = {}) {
+  return {
+    urlExact: resolveUrlExact(args.urlExact),
+    urlContains: resolveUrlContains(args.urlContains)
+  };
+}
 
+function isDevtoolsJsonPage(url) {
+  return typeof url === "string" && url.includes(":9222/json");
+}
+
+function findTargetMatch(pages, { urlExact, urlContains }) {
   let match = null;
-  if (exact) match = pages.find((page) => page.url === exact);
-  if (!match && contains) {
-    match = pages.find((page) => (page.url || "").includes(contains));
+  if (urlExact) match = pages.find((page) => page.url === urlExact);
+  if (!match && urlContains) {
+    match = pages.find((page) => (page.url || "").includes(urlContains));
   }
+  return match || null;
+}
+
+function warnOnlyDevtools(pages, { urlExact, urlContains }) {
+  if (!pages.length) return;
+  const onlyDevtools = pages.every((page) => isDevtoolsJsonPage(page.url));
+  if (!onlyDevtools) return;
+  const target = urlExact || urlContains || "(no target)";
+  console.error(
+    "Warning: only DevTools JSON pages are available. Open the target app page " +
+      `(${target}) in Chrome, or set HI_URL_EXACT/HI_URL_CONTAINS.`
+  );
+}
+
+function pickPage(pages, hints) {
+  const { urlExact, urlContains } = resolveTargetHints(hints);
+  let match = findTargetMatch(pages, { urlExact, urlContains });
   if (!match) match = pages.find((page) => page.selected);
   if (!match) match = pages[0];
   return match || null;
@@ -455,9 +480,14 @@ async function selectPageByUrl(args = {}) {
     );
   }
 
-  const match = pickPage(pages, args);
+  const hints = resolveTargetHints(args);
+  const match = pickPage(pages, hints);
   if (!match) {
     throw new Error("No matching page found via list_pages.");
+  }
+
+  if (isDevtoolsJsonPage(match.url)) {
+    warnOnlyDevtools(pages, hints);
   }
 
   await callChromeTool("select_page", { pageId: match.pageId });
@@ -472,8 +502,20 @@ async function ensureSelectedPage() {
     );
   }
   const selected = pages.find((page) => page.selected);
+  const hints = resolveTargetHints({});
+  const targetMatch = findTargetMatch(pages, hints);
+
+  if (selected && isDevtoolsJsonPage(selected.url)) {
+    if (targetMatch) {
+      await callChromeTool("select_page", { pageId: targetMatch.pageId });
+      return { ...targetMatch, selected: true };
+    }
+    warnOnlyDevtools(pages, hints);
+    return selected;
+  }
+
   if (selected) return selected;
-  return selectPageByUrl({});
+  return selectPageByUrl(hints);
 }
 
 async function runEvalScript(functionSource) {

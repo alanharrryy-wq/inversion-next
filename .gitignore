@@ -52,6 +52,9 @@ git-push.ps1
 # local scripts
 git-push.ps1
 
+# MCP flicker outputs (generated artifacts)
+tools/mcp/_flicker_out/
+
 
 # local scripts
 git-push.ps1
