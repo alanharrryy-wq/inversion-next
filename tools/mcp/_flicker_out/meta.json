@@ -1,0 +1,63 @@
+{
+  "startedAt": "2026-01-17T00:39:32.585Z",
+  "outDir": "F:\\repos\\inversion-next\\tools\\mcp\\_flicker_out",
+  "urlContains": "localhost:5177/#/deck?s=2",
+  "browserUrl": "http://127.0.0.1:9222",
+  "pageSelected": {
+    "pageId": 2,
+    "url": "http://localhost:5177/#/deck?s=2&hiInspector=1&hiStub=1",
+    "selected": false
+  },
+  "shots": 12,
+  "delayMs": 180,
+  "files": [
+    {
+      "i": 0,
+      "fname": "shot_00.png"
+    },
+    {
+      "i": 1,
+      "fname": "shot_01.png"
+    },
+    {
+      "i": 2,
+      "fname": "shot_02.png"
+    },
+    {
+      "i": 3,
+      "fname": "shot_03.png"
+    },
+    {
+      "i": 4,
+      "fname": "shot_04.png"
+    },
+    {
+      "i": 5,
+      "fname": "shot_05.png"
+    },
+    {
+      "i": 6,
+      "fname": "shot_06.png"
+    },
+    {
+      "i": 7,
+      "fname": "shot_07.png"
+    },
+    {
+      "i": 8,
+      "fname": "shot_08.png"
+    },
+    {
+      "i": 9,
+      "fname": "shot_09.png"
+    },
+    {
+      "i": 10,
+      "fname": "shot_10.png"
+    },
+    {
+      "i": 11,
+      "fname": "shot_11.png"
+    }
+  ]
+}

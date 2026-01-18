@@ -1,0 +1,103 @@
+{
+  "time": "2026-01-17T04:46:17.524222Z",
+  "out_dir": "F:\\repos\\inversion-next\\tools\\mcp\\_flicker_out",
+  "frames": 12,
+  "pairs": 11,
+  "summary": {
+    "avg_mean_abs_diff": 0.0,
+    "max_mean_abs_diff": 0.0,
+    "avg_pct_pixels_changed_over_thresh": 0.0,
+    "max_pct_pixels_changed_over_thresh": 0.0,
+    "verdict": "stable"
+  },
+  "details": [
+    {
+      "pair": [
+        "shot_00.png",
+        "shot_01.png"
+      ],
+      "mean_abs_diff": 0.0,
+      "pct_pixels_changed_over_thresh": 0.0
+    },
+    {
+      "pair": [
+        "shot_01.png",
+        "shot_02.png"
+      ],
+      "mean_abs_diff": 0.0,
+      "pct_pixels_changed_over_thresh": 0.0
+    },
+    {
+      "pair": [
+        "shot_02.png",
+        "shot_03.png"
+      ],
+      "mean_abs_diff": 0.0,
+      "pct_pixels_changed_over_thresh": 0.0
+    },
+    {
+      "pair": [
+        "shot_03.png",
+        "shot_04.png"
+      ],
+      "mean_abs_diff": 0.0,
+      "pct_pixels_changed_over_thresh": 0.0
+    },
+    {
+      "pair": [
+        "shot_04.png",
+        "shot_05.png"
+      ],
+      "mean_abs_diff": 0.0,
+      "pct_pixels_changed_over_thresh": 0.0
+    },
+    {
+      "pair": [
+        "shot_05.png",
+        "shot_06.png"
+      ],
+      "mean_abs_diff": 0.0,
+      "pct_pixels_changed_over_thresh": 0.0
+    },
+    {
+      "pair": [
+        "shot_06.png",
+        "shot_07.png"
+      ],
+      "mean_abs_diff": 0.0,
+      "pct_pixels_changed_over_thresh": 0.0
+    },
+    {
+      "pair": [
+        "shot_07.png",
+        "shot_08.png"
+      ],
+      "mean_abs_diff": 0.0,
+      "pct_pixels_changed_over_thresh": 0.0
+    },
+    {
+      "pair": [
+        "shot_08.png",
+        "shot_09.png"
+      ],
+      "mean_abs_diff": 0.0,
+      "pct_pixels_changed_over_thresh": 0.0
+    },
+    {
+      "pair": [
+        "shot_09.png",
+        "shot_10.png"
+      ],
+      "mean_abs_diff": 0.0,
+      "pct_pixels_changed_over_thresh": 0.0
+    },
+    {
+      "pair": [
+        "shot_10.png",
+        "shot_11.png"
+      ],
+      "mean_abs_diff": 0.0,
+      "pct_pixels_changed_over_thresh": 0.0
+    }
+  ]
+}

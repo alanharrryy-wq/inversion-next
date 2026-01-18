@@ -20,7 +20,11 @@ export function RenderInspectorHost() {
 
   useEffect(() => {
     if (!isDev || typeof window === "undefined") return;
-    const onHash = () => setFlags(getInspectorFlags());
+    const onHash = () =>
+      setFlags((prev) => {
+        const next = getInspectorFlags();
+        return prev.enabled === next.enabled && prev.safe === next.safe ? prev : next;
+      });
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
   }, [isDev]);

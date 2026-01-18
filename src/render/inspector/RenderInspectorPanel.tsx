@@ -1,16 +1,6 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { getHashSearchParams } from "@/rts/utils/hashQuery";
+import React, { memo, useCallback, useLayoutEffect, useRef, useState } from "react";
 
 type Inventory = any;
-
-function isEnabled(): boolean {
-  try {
-    const qs = getHashSearchParams();
-    return qs.get("hiInspector") === "1";
-  } catch {
-    return false;
-  }
-}
 
 async function fetchInventory(): Promise<Inventory | null> {
   try {
@@ -26,22 +16,26 @@ type RenderInspectorPanelProps = {
   safe: boolean;
 };
 
-export function RenderInspectorPanel({ safe }: RenderInspectorPanelProps) {
-  const [inv, setInv] = useState<Inventory | null>(null);
-  const [ts, setTs] = useState<string>("");
+type InspectorState = {
+  inv: Inventory | null;
+  ts: string;
+};
+
+const emptyList: any[] = [];
+
+export const RenderInspectorPanel = memo(function RenderInspectorPanel({ safe }: RenderInspectorPanelProps) {
+  const [state, setState] = useState<InspectorState>({ inv: null, ts: "" });
   const [open, setOpen] = useState(true);
   const lastSigRef = useRef<string>("");
   const inFlightRef = useRef(false);
   const aliveRef = useRef(true);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     aliveRef.current = true;
     return () => {
       aliveRef.current = false;
     };
   }, []);
-
-  const enabled = isEnabled();
 
   const load = useCallback(async (force: boolean) => {
     if (inFlightRef.current) return;
@@ -52,26 +46,30 @@ export function RenderInspectorPanel({ safe }: RenderInspectorPanelProps) {
       const sig = JSON.stringify(data);
       if (force || sig !== lastSigRef.current) {
         lastSigRef.current = sig;
-        setInv(data);
-        setTs(new Date().toLocaleString());
+        setState({ inv: data, ts: new Date().toLocaleString() });
       }
     } finally {
       inFlightRef.current = false;
     }
   }, []);
 
-  useEffect(() => {
-    if (!enabled) return;
+  useLayoutEffect(() => {
     void load(true);
-  }, [enabled, load]);
+  }, [load]);
 
-  if (!enabled) return null;
+  const onRefresh = useCallback(() => {
+    void load(true);
+  }, [load]);
 
-  const slideFiles = inv?.slide02?.files ?? [];
-  const problems = inv?.problems ?? [];
-  const dataAttrs = inv?.slide02?.domSignals?.dataAttrsUsed ?? [];
-  const hiClasses = inv?.slide02?.domSignals?.hiClassesUsed ?? [];
-  const tokens = inv?.slide02?.domSignals?.tokensMentioned ?? [];
+  const onToggleOpen = useCallback(() => {
+    setOpen((v) => !v);
+  }, []);
+
+  const slideFiles = state.inv?.slide02?.files ?? emptyList;
+  const problems = state.inv?.problems ?? emptyList;
+  const dataAttrs = state.inv?.slide02?.domSignals?.dataAttrsUsed ?? emptyList;
+  const hiClasses = state.inv?.slide02?.domSignals?.hiClassesUsed ?? emptyList;
+  const tokens = state.inv?.slide02?.domSignals?.tokensMentioned ?? emptyList;
 
   return (
     <div
@@ -87,14 +85,14 @@ export function RenderInspectorPanel({ safe }: RenderInspectorPanelProps) {
               <button
                 type="button"
                 className="hi-inspector__btn"
-                onClick={() => void load(true)}
+                onClick={onRefresh}
               >
                 Refresh
               </button>
               <button
                 type="button"
                 className="hi-inspector__btn"
-                onClick={() => setOpen((v) => !v)}
+                onClick={onToggleOpen}
               >
                 {open ? "Hide" : "Show"}
               </button>
@@ -112,7 +110,7 @@ export function RenderInspectorPanel({ safe }: RenderInspectorPanelProps) {
           </div>
           <div className="hi-inspector__row">
             <span>refreshed:</span>
-            <code>{ts || "-"}</code>
+            <code>{state.ts || "-"}</code>
           </div>
 
           {open && (
@@ -153,4 +151,4 @@ export function RenderInspectorPanel({ safe }: RenderInspectorPanelProps) {
       </div>
     </div>
   );
-}
+});

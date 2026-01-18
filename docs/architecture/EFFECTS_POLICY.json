@@ -1,0 +1,201 @@
+{
+  "id": "render-effects-policy",
+  "version": "1.0",
+  "levelOrder": ["L0", "L1", "L2", "L3", "L4"],
+  "levelDefinitions": {
+    "L0": {
+      "name": "Static paint",
+      "description": "Pure paint operations with no composition or dynamic recomposition cost.",
+      "examples": [
+        "background-color",
+        "gradients",
+        "borders",
+        "static SVG",
+        "pre-blurred images (assets)"
+      ]
+    },
+    "L1": {
+      "name": "Light composition",
+      "description": "Low-cost compositing with no animation.",
+      "examples": [
+        "box-shadow (small/medium)",
+        "opacity (non-animated)",
+        "outlines"
+      ]
+    },
+    "L2": {
+      "name": "Composited layers",
+      "description": "Layering or masking that can increase memory and composition cost.",
+      "examples": [
+        "transform (non-continuous)",
+        "masks",
+        "pseudo-elements with gradients",
+        "will-change (limited)"
+      ]
+    },
+    "L3": {
+      "name": "Framebuffer dependent (EXPENSIVE)",
+      "description": "Effects that require framebuffer reads or heavy blur and blending.",
+      "examples": [
+        "backdrop-filter",
+        "-webkit-backdrop-filter",
+        "filter",
+        "mix-blend-mode",
+        "large blurred shadows"
+      ]
+    },
+    "L4": {
+      "name": "Continuous recomposition (VERY EXPENSIVE)",
+      "description": "Per-frame work driven by animation or continuous reflow/paint.",
+      "examples": [
+        "animation",
+        "requestAnimationFrame loops",
+        "transitions on transform / opacity / filter"
+      ]
+    }
+  },
+  "surfaceInference": {
+    "rules": [
+      {
+        "pattern": "*/stage/*",
+        "surface": "stage"
+      },
+      {
+        "pattern": "*/render/inspector/*",
+        "surface": "inspector"
+      },
+      {
+        "pattern": "*/overlay/*",
+        "surface": "overlay"
+      },
+      {
+        "pattern": "*/modal/*",
+        "surface": "overlay"
+      },
+      {
+        "pattern": "src/*",
+        "surface": "ui"
+      }
+    ],
+    "defaultSurface": "ui"
+  },
+  "budgets": {
+    "stage": {
+      "maxLevel": "L2",
+      "maxL3": 0,
+      "maxL4": 0,
+      "scoreBudget": 10
+    },
+    "overlay": {
+      "maxLevel": "L2",
+      "maxL3": 1,
+      "maxL4": 0,
+      "scoreBudget": 14,
+      "requiresAllowMarkerForL3": true
+    },
+    "ui": {
+      "maxLevel": "L3",
+      "maxL3": 2,
+      "maxL4": 0,
+      "scoreBudget": 22
+    },
+    "inspector": {
+      "safeDefault": true,
+      "safe": {
+        "maxL3": 0,
+        "scoreBudget": 10
+      },
+      "unsafe": {
+        "maxL3": 1,
+        "scoreBudget": 14
+      },
+      "maxLevel": "L3",
+      "maxL4": 0,
+      "requiresAllowMarkerForL3": true
+    }
+  },
+  "scores": {
+    "backdrop-filter": {
+      "score": 10,
+      "level": "L3"
+    },
+    "filter": {
+      "score": 8,
+      "level": "L3"
+    },
+    "mix-blend-mode": {
+      "score": 6,
+      "level": "L3"
+    },
+    "large-blurred-shadow": {
+      "score": 6,
+      "level": "L3"
+    },
+    "animation": {
+      "score": 12,
+      "level": "L4"
+    },
+    "transition-transform-opacity-filter": {
+      "score": 6,
+      "level": "L4"
+    },
+    "will-change": {
+      "score": 3,
+      "level": "L2"
+    },
+    "will-change-including-blur-or-filter": {
+      "score": 8,
+      "level": "L3"
+    }
+  },
+  "optimizationRules": [
+    {
+      "id": "centralized-blur",
+      "name": "Centralized Blur Rule",
+      "description": "Only ONE backdrop-filter per surface is allowed.",
+      "enforcement": "hard",
+      "maxPerSurface": 1,
+      "targets": ["backdrop-filter", "-webkit-backdrop-filter"]
+    },
+    {
+      "id": "fake-glass",
+      "name": "Fake Glass Rule",
+      "description": "Panels using gradients + borders + highlights WITHOUT blur are treated as L1/L2 and cost ZERO L3 points.",
+      "enforcement": "soft",
+      "notes": "No L3 score is charged when blur is not present."
+    },
+    {
+      "id": "pre-blurred-asset",
+      "name": "Pre-blurred Asset Rule",
+      "description": "Static blurred images are L0 and cost ZERO.",
+      "enforcement": "soft"
+    },
+    {
+      "id": "isolation-discount",
+      "name": "Isolation Discount",
+      "description": "If an L3 element uses contain: paint/layout AND isolation: isolate, reduce its score by 2 (minimum 6).",
+      "enforcement": "soft",
+      "requires": ["contain: paint or layout", "isolation: isolate"],
+      "minScore": 6,
+      "scoreDelta": -2
+    },
+    {
+      "id": "no-per-panel-blur",
+      "name": "No Per-Panel Blur",
+      "description": "backdrop-filter per panel is forbidden.",
+      "enforcement": "hard",
+      "targets": ["backdrop-filter", "-webkit-backdrop-filter"]
+    }
+  ],
+  "allowMarker": {
+    "comment": "hi-allow:L3",
+    "requiredForSurfaces": ["overlay", "inspector"],
+    "doesNotAllow": ["L4"],
+    "notes": "Allow marker does not bypass per-surface limits."
+  },
+  "blockedClassnames": {
+    "stage": ["hi-panel", "board-glass"],
+    "overlay": ["hi-panel", "board-glass"],
+    "inspector": ["hi-panel", "board-glass"]
+  }
+}

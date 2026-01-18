@@ -6,7 +6,7 @@ export function BoardFrame(props: { children: ReactNode }) {
         <div className="board-frame">
             <div className="board-shadow" />
 
-            <div className="board-glass">
+            <div className="stage-glass-fake">
                 {/* Universo dentro del vidrio */}
                 <div className="board-stars" />
                 <div className="board-sparkles" />

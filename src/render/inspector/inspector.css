@@ -3,6 +3,10 @@
    - Root = HUD overlay que NO bloquea el deck (pointer-events: none)
    - Panel = interactivo, fijo en esquina, siempre visible
    - Safe-mode = reduce cosas caras (blur/sombras) para evitar flicker
+
+   Glass fix:
+   - El blur NO va directo en el panel (eso puede forzar recomposite del stage)
+   - El blur vive en ::before (capa propia), panel aislado con isolation/contain
 */
 
 :where(.hi-inspector) {
@@ -30,7 +34,6 @@
   /* Estética base */
   border-radius: 12px;
   padding: 12px;
-  background: rgba(10, 12, 16, 0.78);
   color: rgba(255, 255, 255, 0.92);
 
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -38,9 +41,8 @@
     0 12px 38px rgba(0, 0, 0, 0.45),
     0 2px 10px rgba(0, 0, 0, 0.28);
 
-  /* Evita que el panel “se mezcle” raro con el deck */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  /* ✅ Panel “limpio”: el glass real vive en ::before */
+  background: transparent;
 
   /* Asegura que sea “normal” y no le apliquen transforms raros */
   transform: none;
@@ -48,17 +50,51 @@
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
   font-size: 12px;
   line-height: 1.35;
+
+  /* 🔒 Aislamiento anti-flicker: evita que el blur se mezcle con el stage */
+  isolation: isolate;
+  contain: paint;
 }
 
-/* Safe Mode: reduce cosas caras */
+/* 👑 GLASS LAYER (blur + tint) */
+:where(.hi-inspector .hi-inspector__panel)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  pointer-events: none;
+  z-index: 0;
+
+  /* Tint base del panel */
+  background:
+    radial-gradient(900px 420px at 30% 0%, rgba(255, 255, 255, 0.08), transparent 60%),
+    linear-gradient(180deg, rgba(10, 12, 16, 0.70), rgba(10, 12, 16, 0.82));
+
+  /* ✅ Glass: blur confinado a esta capa */
+  backdrop-filter: blur(10px) saturate(1.10);
+  -webkit-backdrop-filter: blur(10px) saturate(1.10);
+}
+
+/* Asegura que el contenido quede ARRIBA del glass layer */
+:where(.hi-inspector .hi-inspector__panel > *) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Safe Mode: reduce cosas caras (sin blur) */
 :where(.hi-inspector--safe .hi-inspector__panel) {
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
-  background: rgba(10, 12, 16, 0.92);
   border: 1px solid rgba(255, 255, 255, 0.10);
 }
 
+/* Safe Mode: apaga blur y deja panel sólido */
+:where(.hi-inspector--safe .hi-inspector__panel)::before {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background: rgba(10, 12, 16, 0.92);
+}
+
+/* UI bits */
 :where(.hi-inspector .hi-inspector__header) {
   display: flex;
   flex-direction: column;
