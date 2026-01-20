@@ -20,7 +20,11 @@
     "mcp:open-target": "node tools/mcp/mcp-open-target.mjs",
     "mcp:doctor": "node tools/mcp/mcp-doctor.mjs",
     "mcp:start": "node tools/mcp/start-mcp-operator.mjs",
-    "docs:index": "node tools/docs/generate_index.mjs"
+    "docs:index": "node tools/docs/generate_index.mjs",
+    "docs:effects": "node tools/docs/generate_effects_catalog.mjs",
+    "docs:effects:check": "node tools/docs/generate_effects_catalog.mjs --check",
+    "docs:effects:auto": "node tools/docs/generate_effects_catalog.mjs --auto",
+    "docs:effects:auto:check": "node tools/docs/generate_effects_catalog.mjs --auto --check"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.25.2",

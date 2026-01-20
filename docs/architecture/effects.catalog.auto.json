@@ -1,0 +1,325 @@
+{
+  "version": "1.0",
+  "sources": {
+    "effects": "src/shared/render/effects/*.css",
+    "materials": "src/shared/render/materials/materials.css",
+    "appStyles": "src/app/styles/hi-materials.css",
+    "slides": "src/slides/**/ui/*.tsx"
+  },
+  "files": [
+    {
+      "path": "src/app/styles/hi-materials.css",
+      "kind": "css",
+      "selectors": [
+        ".hi-base-glass",
+        ".hi-chart svg circle",
+        ".hi-chart svg line",
+        ".hi-chart svg path",
+        ".hi-chart svg polyline",
+        ".hi-chart::after",
+        ".hi-chart::before",
+        ".hi-dim",
+        ".hi-glassfx",
+        ".hi-glints",
+        ".hi-glints::before",
+        ".hi-glow",
+        ".hi-grain",
+        ".hi-inset",
+        ".hi-mirror",
+        ".hi-panel",
+        ".hi-panel-critical",
+        ".hi-panel-critical .hi-glints",
+        ".hi-panel-critical::before",
+        ".hi-panel::after",
+        ".hi-panel::before",
+        ".hi-rim",
+        ".hi-screen",
+        ".hi-screen::after",
+        ".hi-screen::before",
+        ".hi-specular",
+        "[data-chart-highlight=\"on\"]",
+        "[data-chart-highlight=\"on\"] .hi-chart::after"
+      ],
+      "dataAttributes": [
+        "data-chart-highlight=\"on\""
+      ],
+      "tokens": [
+        "--hi-bg-0",
+        "--hi-bg-1",
+        "--hi-bg-2",
+        "--hi-blur",
+        "--hi-blur-soft",
+        "--hi-chart-highlight-opacity",
+        "--hi-chart-highlight-period",
+        "--hi-cyan",
+        "--hi-cyan-soft",
+        "--hi-edge-inner",
+        "--hi-edge-outer",
+        "--hi-glint-a",
+        "--hi-glint-b",
+        "--hi-grain-url",
+        "--hi-panel-core",
+        "--hi-panel-deep",
+        "--hi-radius-lg",
+        "--hi-radius-xl",
+        "--hi-shadow-in",
+        "--hi-shadow-mid",
+        "--hi-shadow-out",
+        "--hi-spec-fade",
+        "--hi-spec-stop",
+        "--hi-spec-top-a",
+        "--hi-spec-top-b",
+        "--hi-steel-a",
+        "--hi-steel-b",
+        "--hi-steel-c",
+        "--hi-text",
+        "--hi-text-dim"
+      ],
+      "costSignals": [
+        "animation",
+        "backdrop-filter",
+        "filter",
+        "mix-blend-mode"
+      ]
+    },
+    {
+      "path": "src/shared/render/effects/chartSurfaceHighlight.css",
+      "kind": "css",
+      "selectors": [
+        "[data-chart-highlight=\"on\"]",
+        "[data-chart-highlight=\"on\"]::after"
+      ],
+      "dataAttributes": [
+        "data-chart-highlight=\"on\""
+      ],
+      "tokens": [
+        "--hi-chart-highlight-opacity",
+        "--hi-chart-highlight-period"
+      ],
+      "costSignals": [
+        "animation",
+        "mix-blend-mode"
+      ]
+    },
+    {
+      "path": "src/shared/render/effects/contactOcclusion.css",
+      "kind": "css",
+      "selectors": [
+        "[data-material^=\"glass\"]",
+        "[data-material^=\"glass\"]::after"
+      ],
+      "dataAttributes": [
+        "data-material^=\"glass\""
+      ],
+      "tokens": [
+        "--hi-contact-occlusion"
+      ],
+      "costSignals": []
+    },
+    {
+      "path": "src/shared/render/effects/dustField.css",
+      "kind": "css",
+      "selectors": [
+        ".hi-stage::after",
+        ".hi-stage::before"
+      ],
+      "dataAttributes": [],
+      "tokens": [
+        "--hi-dust-opacity-a",
+        "--hi-dust-opacity-b",
+        "--hi-dust-period-a",
+        "--hi-dust-period-b"
+      ],
+      "costSignals": [
+        "animation"
+      ]
+    },
+    {
+      "path": "src/shared/render/effects/glintSlow.css",
+      "kind": "css",
+      "selectors": [
+        "[data-material=\"glassCritical\"]",
+        "[data-material=\"glassCritical\"]::after",
+        "[data-material=\"glassCritical\"][data-glint-blend=\"screen\"]",
+        "[data-material=\"glassCritical\"][data-glint=\"cyan\"]",
+        "[data-material=\"glassCritical\"][data-glint=\"emerald\"]",
+        "[data-material=\"glassCritical\"][data-glint=\"gold\"]",
+        "[data-material=\"glassCritical\"][data-glint=\"red\"]",
+        "[data-material=\"glassCritical\"][data-glint=\"silver\"]"
+      ],
+      "dataAttributes": [
+        "data-glint-blend=\"screen\"",
+        "data-glint=\"cyan\"",
+        "data-glint=\"emerald\"",
+        "data-glint=\"gold\"",
+        "data-glint=\"red\"",
+        "data-glint=\"silver\"",
+        "data-material=\"glassCritical\""
+      ],
+      "tokens": [
+        "--hi-glint-blend",
+        "--hi-glint-opacity",
+        "--hi-glint-period",
+        "--hi-glint-rgb"
+      ],
+      "costSignals": [
+        "animation",
+        "filter",
+        "mix-blend-mode"
+      ]
+    },
+    {
+      "path": "src/shared/render/effects/mirrorCine.css",
+      "kind": "css",
+      "selectors": [
+        "[data-mirror=\"on\"]",
+        "[data-mirror=\"on\"]::after"
+      ],
+      "dataAttributes": [
+        "data-mirror=\"on\""
+      ],
+      "tokens": [
+        "--hi-mirror-blur",
+        "--hi-mirror-fade",
+        "--hi-mirror-strength"
+      ],
+      "costSignals": [
+        "filter"
+      ]
+    },
+    {
+      "path": "src/shared/render/effects/rimDynamic.css",
+      "kind": "css",
+      "selectors": [
+        "[data-material^=\"glass\"]",
+        "[data-material^=\"glass\"]::before"
+      ],
+      "dataAttributes": [
+        "data-material^=\"glass\""
+      ],
+      "tokens": [
+        "--hi-rim-jitter-a",
+        "--hi-rim-jitter-b",
+        "--hi-rim-period-a",
+        "--hi-rim-period-b",
+        "--hi-rim-strength"
+      ],
+      "costSignals": [
+        "animation"
+      ]
+    },
+    {
+      "path": "src/shared/render/materials/materials.css",
+      "kind": "css",
+      "selectors": [
+        "[data-material=\"chartInk\"]",
+        "[data-material=\"glassCold\"]",
+        "[data-material=\"glassCold\"] .hi-grain",
+        "[data-material=\"glassCold\"]::after",
+        "[data-material=\"glassCold\"]::before",
+        "[data-material=\"glassCold\"]>*",
+        "[data-material=\"glassCritical\"]",
+        "[data-material=\"glassCritical\"] .hi-grain",
+        "[data-material=\"glassCritical\"]::after",
+        "[data-material=\"glassCritical\"]::before",
+        "[data-material=\"glassCritical\"]>*",
+        "[data-material=\"metalFrame\"]",
+        "[data-material]"
+      ],
+      "dataAttributes": [
+        "data-material",
+        "data-material=\"chartInk\"",
+        "data-material=\"glassCold\"",
+        "data-material=\"glassCritical\"",
+        "data-material=\"metalFrame\""
+      ],
+      "tokens": [
+        "--hi-accent-cyan",
+        "--hi-accent-pink",
+        "--hi-glass-frost",
+        "--hi-glass-opacity",
+        "--hi-glint-opacity",
+        "--hi-glow-strength",
+        "--hi-grain-amount",
+        "--hi-ink-contrast",
+        "--hi-rim-strength",
+        "--hi-spec-strength"
+      ],
+      "costSignals": [
+        "filter",
+        "mix-blend-mode"
+      ]
+    },
+    {
+      "path": "src/slides/slide-00/ui/Slide00.tsx",
+      "kind": "tsx",
+      "selectors": [],
+      "dataAttributes": [],
+      "tokens": [],
+      "costSignals": []
+    },
+    {
+      "path": "src/slides/slide-01/ui/Slide01.tsx",
+      "kind": "tsx",
+      "selectors": [],
+      "dataAttributes": [
+        "data-glint=\"red\"",
+        "data-material=\"glassCritical\""
+      ],
+      "tokens": [],
+      "costSignals": []
+    },
+    {
+      "path": "src/slides/slide-02/ui/Slide02.tsx",
+      "kind": "tsx",
+      "selectors": [],
+      "dataAttributes": [
+        "data-chart-highlight=\"on\"",
+        "data-glint={glint}",
+        "data-material={material}"
+      ],
+      "tokens": [],
+      "costSignals": []
+    },
+    {
+      "path": "src/slides/slide-03/ui/Slide03.tsx",
+      "kind": "tsx",
+      "selectors": [],
+      "dataAttributes": [],
+      "tokens": [],
+      "costSignals": []
+    },
+    {
+      "path": "src/slides/slide-04/ui/Slide04.tsx",
+      "kind": "tsx",
+      "selectors": [],
+      "dataAttributes": [],
+      "tokens": [],
+      "costSignals": []
+    },
+    {
+      "path": "src/slides/slide-05/ui/Slide05.tsx",
+      "kind": "tsx",
+      "selectors": [],
+      "dataAttributes": [],
+      "tokens": [],
+      "costSignals": []
+    },
+    {
+      "path": "src/slides/slide-06/ui/Slide06.tsx",
+      "kind": "tsx",
+      "selectors": [],
+      "dataAttributes": [],
+      "tokens": [],
+      "costSignals": []
+    },
+    {
+      "path": "src/slides/slide-07/ui/Slide07.tsx",
+      "kind": "tsx",
+      "selectors": [],
+      "dataAttributes": [],
+      "tokens": [],
+      "costSignals": []
+    }
+  ]
+}

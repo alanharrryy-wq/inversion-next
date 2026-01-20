@@ -1,0 +1,375 @@
+{
+  "version": "1.0",
+  "entries": [
+    {
+      "id": "chartInk",
+      "status": "active",
+      "description": "Chart ink material tokens.",
+      "category": "material",
+      "tags": ["chart", "ink"],
+      "paths": ["src/shared/render/materials/materials.css"],
+      "activation": {
+        "selectors": ["[data-material=\"chartInk\"]"],
+        "attributes": ["data-material=\"chartInk\""]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L0",
+      "scoreNotes": "Token-only material with no overlays.",
+      "allowedSurfaces": ["stage", "ui", "overlay", "inspector"],
+      "allowMarkerRequired": false,
+      "notes": ["Chart-specific token set."],
+      "tokens": ["--hi-ink-contrast", "--hi-glow-strength", "--hi-grain-amount"],
+      "risks": ["No inherent rendering risks; token-only."],
+      "examples": [
+        {
+          "path": "src/shared/render/materials/materials.css",
+          "line": 164,
+          "note": "Material tokens"
+        }
+      ]
+    },
+    {
+      "id": "chartSurfaceHighlight",
+      "status": "active",
+      "description": "Slow chart highlight sweep with blend.",
+      "category": "effect",
+      "tags": ["animation", "blend", "chart"],
+      "paths": ["src/shared/render/effects/chartSurfaceHighlight.css"],
+      "activation": {
+        "selectors": [
+          "[data-chart-highlight=\"on\"]",
+          "[data-chart-highlight=\"on\"]::after"
+        ],
+        "attributes": ["data-chart-highlight=\"on\""]
+      },
+      "costSignals": ["animation", "mix-blend-mode"],
+      "estimatedLevel": "L4",
+      "scoreNotes": "Animation drives L4; mix-blend-mode is an L3 signal.",
+      "allowedSurfaces": [],
+      "allowMarkerRequired": false,
+      "notes": ["Wrapper opt-in via data-chart-highlight=\"on\"."],
+      "tokens": ["--hi-chart-highlight-opacity", "--hi-chart-highlight-period"],
+      "risks": ["L4 animation is forbidden on all surfaces."],
+      "examples": [
+        {
+          "path": "src/shared/render/effects/chartSurfaceHighlight.css",
+          "line": 17,
+          "note": "Highlight pseudo-element"
+        },
+        {
+          "path": "src/slides/slide-02/ui/Slide02.tsx",
+          "line": 50,
+          "note": "Wrapper activation"
+        }
+      ]
+    },
+    {
+      "id": "contactOcclusion",
+      "status": "active",
+      "description": "Contact occlusion gradients for glass materials.",
+      "category": "effect",
+      "tags": ["glass", "occlusion"],
+      "paths": ["src/shared/render/effects/contactOcclusion.css"],
+      "activation": {
+        "selectors": [
+          "[data-material^=\"glass\"]",
+          "[data-material^=\"glass\"]::after"
+        ],
+        "attributes": ["data-material^=\"glass\""]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L2",
+      "scoreNotes": "Static gradient layers on pseudo-elements.",
+      "allowedSurfaces": ["stage", "ui", "overlay", "inspector"],
+      "allowMarkerRequired": false,
+      "notes": ["Applies automatically to any glass material prefix."],
+      "tokens": ["--hi-contact-occlusion"],
+      "risks": ["Stacks with other glass overlays; watch layer count."],
+      "examples": [
+        {
+          "path": "src/shared/render/effects/contactOcclusion.css",
+          "line": 16,
+          "note": "Glass material selector"
+        }
+      ]
+    },
+    {
+      "id": "dustField",
+      "status": "active",
+      "description": "Micro dust field layered over the stage.",
+      "category": "effect",
+      "tags": ["animation", "stage"],
+      "paths": ["src/shared/render/effects/dustField.css"],
+      "activation": {
+        "selectors": [".hi-stage::before", ".hi-stage::after"],
+        "attributes": []
+      },
+      "costSignals": ["animation"],
+      "estimatedLevel": "L4",
+      "scoreNotes": "Keyframe animation on pseudo-elements triggers L4.",
+      "allowedSurfaces": [],
+      "allowMarkerRequired": false,
+      "notes": ["Applied globally to .hi-stage when the stylesheet is loaded."],
+      "tokens": [
+        "--hi-dust-opacity-a",
+        "--hi-dust-opacity-b",
+        "--hi-dust-period-a",
+        "--hi-dust-period-b"
+      ],
+      "risks": ["Continuous animation is L4 and forbidden on all surfaces."],
+      "examples": [
+        {
+          "path": "src/shared/render/effects/dustField.css",
+          "line": 15,
+          "note": ".hi-stage::before animation layer"
+        }
+      ]
+    },
+    {
+      "id": "glassCold",
+      "status": "active",
+      "description": "Default glass material for panels.",
+      "category": "material",
+      "tags": ["glass", "panel"],
+      "paths": ["src/shared/render/materials/materials.css"],
+      "activation": {
+        "selectors": [
+          "[data-material=\"glassCold\"]",
+          "[data-material=\"glassCold\"]::before",
+          "[data-material=\"glassCold\"]::after"
+        ],
+        "attributes": ["data-material=\"glassCold\""]
+      },
+      "costSignals": ["filter", "mix-blend-mode"],
+      "estimatedLevel": "L3",
+      "scoreNotes": "Glass overlays use filter and mix-blend-mode.",
+      "allowedSurfaces": ["ui", "overlay", "inspector"],
+      "allowMarkerRequired": true,
+      "notes": ["Default glass material; overlays render inside the panel."],
+      "tokens": [
+        "--hi-glass-opacity",
+        "--hi-glass-frost",
+        "--hi-rim-strength",
+        "--hi-spec-strength",
+        "--hi-grain-amount",
+        "--hi-glow-strength",
+        "--hi-glint-opacity",
+        "--hi-accent-cyan",
+        "--hi-accent-pink"
+      ],
+      "risks": [
+        "L3 blend and filter effects consume budget; overlay/inspector require hi-allow:L3."
+      ],
+      "examples": [
+        {
+          "path": "src/shared/render/materials/materials.css",
+          "line": 115,
+          "note": "Material tokens"
+        },
+        {
+          "path": "src/shared/ui/slide/SlideShell.tsx",
+          "line": 44,
+          "note": "Default material usage"
+        }
+      ]
+    },
+    {
+      "id": "glassCritical",
+      "status": "active",
+      "description": "Premium glass material for KPI panels.",
+      "category": "material",
+      "tags": ["glass", "kpi"],
+      "paths": ["src/shared/render/materials/materials.css"],
+      "activation": {
+        "selectors": [
+          "[data-material=\"glassCritical\"]",
+          "[data-material=\"glassCritical\"]::before",
+          "[data-material=\"glassCritical\"]::after"
+        ],
+        "attributes": ["data-material=\"glassCritical\""]
+      },
+      "costSignals": ["filter", "mix-blend-mode"],
+      "estimatedLevel": "L3",
+      "scoreNotes": "Glass overlays use filter and mix-blend-mode.",
+      "allowedSurfaces": ["ui", "overlay", "inspector"],
+      "allowMarkerRequired": true,
+      "notes": ["Premium glass for KPI panels; pairs with glintSlow."],
+      "tokens": [
+        "--hi-glass-opacity",
+        "--hi-glass-frost",
+        "--hi-rim-strength",
+        "--hi-spec-strength",
+        "--hi-grain-amount",
+        "--hi-glow-strength",
+        "--hi-glint-opacity",
+        "--hi-accent-cyan",
+        "--hi-accent-pink"
+      ],
+      "risks": [
+        "L3 blend and filter effects consume budget; overlay/inspector require hi-allow:L3."
+      ],
+      "examples": [
+        {
+          "path": "src/shared/render/materials/materials.css",
+          "line": 133,
+          "note": "Material tokens"
+        },
+        {
+          "path": "src/slides/slide-01/ui/Slide01.tsx",
+          "line": 8,
+          "note": "Material usage"
+        }
+      ]
+    },
+    {
+      "id": "glintSlow",
+      "status": "active",
+      "description": "Slow animated glint for glassCritical.",
+      "category": "effect",
+      "tags": ["animation", "glass", "glint"],
+      "paths": ["src/shared/render/effects/glintSlow.css"],
+      "activation": {
+        "selectors": [
+          "[data-material=\"glassCritical\"]",
+          "[data-material=\"glassCritical\"]::after",
+          "[data-material=\"glassCritical\"][data-glint=\"silver\"]",
+          "[data-material=\"glassCritical\"][data-glint=\"gold\"]",
+          "[data-material=\"glassCritical\"][data-glint=\"emerald\"]",
+          "[data-material=\"glassCritical\"][data-glint=\"cyan\"]",
+          "[data-material=\"glassCritical\"][data-glint=\"red\"]",
+          "[data-material=\"glassCritical\"][data-glint-blend=\"screen\"]"
+        ],
+        "attributes": [
+          "data-material=\"glassCritical\"",
+          "data-glint=\"silver|gold|emerald|cyan|red\"",
+          "data-glint-blend=\"screen\""
+        ]
+      },
+      "costSignals": ["animation", "filter", "mix-blend-mode"],
+      "estimatedLevel": "L4",
+      "scoreNotes": "Animation drives L4; filter and mix-blend-mode add L3 cost.",
+      "allowedSurfaces": [],
+      "allowMarkerRequired": false,
+      "notes": ["Intended only for glassCritical with optional color variants."],
+      "tokens": [
+        "--hi-glint-opacity",
+        "--hi-glint-period",
+        "--hi-glint-rgb",
+        "--hi-glint-blend"
+      ],
+      "risks": ["L4 animation is forbidden on all surfaces."],
+      "examples": [
+        {
+          "path": "src/shared/render/effects/glintSlow.css",
+          "line": 37,
+          "note": "Glint layer"
+        },
+        {
+          "path": "src/slides/slide-01/ui/Slide01.tsx",
+          "line": 8,
+          "note": "Activation with data-glint"
+        }
+      ]
+    },
+    {
+      "id": "metalFrame",
+      "status": "active",
+      "description": "Metal frame material tokens.",
+      "category": "material",
+      "tags": ["frame", "metal"],
+      "paths": ["src/shared/render/materials/materials.css"],
+      "activation": {
+        "selectors": ["[data-material=\"metalFrame\"]"],
+        "attributes": ["data-material=\"metalFrame\""]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L0",
+      "scoreNotes": "Token-only material with no overlays.",
+      "allowedSurfaces": ["stage", "ui", "overlay", "inspector"],
+      "allowMarkerRequired": false,
+      "notes": ["Metal trim material; relies on consumer styles."],
+      "tokens": [
+        "--hi-rim-strength",
+        "--hi-spec-strength",
+        "--hi-glass-opacity",
+        "--hi-glass-frost",
+        "--hi-grain-amount",
+        "--hi-glow-strength",
+        "--hi-glint-opacity"
+      ],
+      "risks": ["No inherent rendering risks; token-only."],
+      "examples": [
+        {
+          "path": "src/shared/render/materials/materials.css",
+          "line": 149,
+          "note": "Material tokens"
+        }
+      ]
+    },
+    {
+      "id": "mirrorCine",
+      "status": "active",
+      "description": "Cinematic mirror reflection under a wrapper.",
+      "category": "effect",
+      "tags": ["blur", "reflection"],
+      "paths": ["src/shared/render/effects/mirrorCine.css"],
+      "activation": {
+        "selectors": ["[data-mirror=\"on\"]", "[data-mirror=\"on\"]::after"],
+        "attributes": ["data-mirror=\"on\""]
+      },
+      "costSignals": ["filter"],
+      "estimatedLevel": "L3",
+      "scoreNotes": "Filter blur requires framebuffer read (L3).",
+      "allowedSurfaces": ["ui", "overlay", "inspector"],
+      "allowMarkerRequired": true,
+      "notes": ["Wrapper-level reflection using background: inherit."],
+      "tokens": ["--hi-mirror-strength", "--hi-mirror-blur", "--hi-mirror-fade"],
+      "risks": [
+        "Filter blur consumes L3 budget; overlay/inspector require hi-allow:L3."
+      ],
+      "examples": [
+        {
+          "path": "src/shared/render/effects/mirrorCine.css",
+          "line": 19,
+          "note": "Mirror pseudo-element"
+        }
+      ]
+    },
+    {
+      "id": "rimDynamic",
+      "status": "active",
+      "description": "Animated rim shimmer for glass materials.",
+      "category": "effect",
+      "tags": ["animation", "glass", "rim"],
+      "paths": ["src/shared/render/effects/rimDynamic.css"],
+      "activation": {
+        "selectors": [
+          "[data-material^=\"glass\"]",
+          "[data-material^=\"glass\"]::before"
+        ],
+        "attributes": ["data-material^=\"glass\""]
+      },
+      "costSignals": ["animation"],
+      "estimatedLevel": "L4",
+      "scoreNotes": "Dual keyframe animations trigger L4.",
+      "allowedSurfaces": [],
+      "allowMarkerRequired": false,
+      "notes": ["Applied to glass materials via prefix selector."],
+      "tokens": [
+        "--hi-rim-strength",
+        "--hi-rim-jitter-a",
+        "--hi-rim-jitter-b",
+        "--hi-rim-period-a",
+        "--hi-rim-period-b"
+      ],
+      "risks": ["L4 animation is forbidden on all surfaces."],
+      "examples": [
+        {
+          "path": "src/shared/render/effects/rimDynamic.css",
+          "line": 21,
+          "note": "Rim pseudo-element"
+        }
+      ]
+    }
+  ]
+}

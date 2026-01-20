@@ -21,3 +21,4 @@
 ## Notas
 - Si un doc no trae frontmatter, cae en **Otros** y status **draft**.
 - Para que aparezca bonito: agrega title, area, status, tags, owner, updated en el frontmatter.
+- [EFFECTS_CATALOG](docs/architecture/EFFECTS_CATALOG.md) is the canonical options list for render effects/materials; inclusion is not a promise to use.
