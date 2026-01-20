@@ -1,0 +1,506 @@
+======================================
+ REPO FOLDER TREE
+ Repo: F:/repos/inversion-next
+ Generated: 2026-01-19 01:38:54
+ IncludeHeavyDirs: False
+ MaxDepth: 99
+======================================
+
+.
+├── _tree.repo.20260119_013854.txt
+├── .editorconfig
+├── .env.example
+├── .gitattributes
+├── .gitignore
+├── components.json
+├── css-audit.txt
+├── eslint.config.js
+├── EXPERIMENTAL.md
+├── git-push.ps1
+├── index.html
+├── LICENSE
+├── mcp-panel-geo.mjs
+├── mcp-runner.mjs
+├── package-lock.json
+├── package.json
+├── README.md
+├── SLIDE_02_FULL_DUMP.txt
+├── slide02.deps.json
+├── System.Management.Automation.Internal.Host.InternalHost
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+├── vite.config.ts
+├── .patcher_backups
+│   ├── src__slides__slide-02__data__slide02.contract.ts.20260116_053349.bak
+│   ├── src__slides__slide-02__data__slide02.mock.ts.20260116_053349.bak
+│   └── src__slides__slide-02__ui__Slide02.tsx.20260116_053648.bak
+├── .vscode
+│   ├── extensions.json
+│   └── mcp.json
+├── docs
+│   ├── architecture
+│   │   ├── ARCHITECTURE_CONTRACT.md
+│   │   ├── EFFECTS_POLICY.json
+│   │   └── RENDER_POLICY.md
+│   └── render
+│       └── Slide02.inventory.json
+├── hitech-templates
+│   ├── patcher.mjs
+│   ├── patches.json
+│   └── templates
+│       └── rts-block2-v2
+│           ├── docs
+│           │   └── rts
+│           │       ├── compatibility_check.md
+│           │       ├── handoff_notes.md
+│           │       ├── INTEGRATION.md
+│           │       ├── motion_choreography.md
+│           │       ├── slide_archetypes.md
+│           │       ├── visual_regression_guardrails.md
+│           │       ├── visual_system.md
+│           │       └── context
+│           │           ├── constraints.lock
+│           │           └── context_state.json
+│           ├── scripts
+│           │   └── rts
+│           │       ├── check.mjs
+│           │       └── gen-slide.mjs
+│           ├── snippets
+│           │   └── slideRegistry_slide02.txt
+│           └── src
+│               ├── index.css
+│               ├── app
+│               │   ├── deck
+│               │   │   └── slideRegistry.ts
+│               │   └── providers
+│               │       └── Providers.tsx
+│               ├── rts
+│               │   ├── index.ts
+│               │   ├── devtools
+│               │   │   └── RtsDebugOverlay.tsx
+│               │   ├── foundation
+│               │   │   ├── slots.ts
+│               │   │   ├── smartservices_types.ts
+│               │   │   └── tokens.ts
+│               │   ├── slides
+│               │   │   └── templates
+│               │   │       ├── ComparisonTemplate.tsx
+│               │   │       ├── DecisionGateTemplate.tsx
+│               │   │       ├── EvidenceSummaryTemplate.tsx
+│               │   │       ├── ExecutiveNarrativeTemplate.tsx
+│               │   │       ├── index.ts
+│               │   │       ├── KaizenA3Template.tsx
+│               │   │       ├── KpiGridTemplate.tsx
+│               │   │       ├── ProblemSolutionTemplate.tsx
+│               │   │       ├── RiskRegisterTemplate.tsx
+│               │   │       ├── SystemOverviewStaticTemplate.tsx
+│               │   │       └── TimelineTemplate.tsx
+│               │   ├── styles
+│               │   │   ├── a11y.css
+│               │   │   ├── bridge_tokens.css
+│               │   │   ├── print.css
+│               │   │   ├── rts.css
+│               │   │   ├── visual_base.css
+│               │   │   ├── visual_tokens.css
+│               │   │   ├── visual_tokens.light.css
+│               │   │   └── visual_utilities.css
+│               │   ├── system
+│               │   │   ├── consistency_enforcer.ts
+│               │   │   ├── consistency_rules.ts
+│               │   │   └── motion.ts
+│               │   ├── ui
+│               │   │   ├── Callout.tsx
+│               │   │   ├── DecisionCard.tsx
+│               │   │   ├── EvidenceCard.tsx
+│               │   │   ├── ExecutiveHeader.tsx
+│               │   │   ├── ExecutiveNav.tsx
+│               │   │   ├── KeyValue.tsx
+│               │   │   ├── KpiCard.tsx
+│               │   │   ├── Panel.tsx
+│               │   │   ├── RiskCard.tsx
+│               │   │   ├── Rule.tsx
+│               │   │   ├── SlideFrame.tsx
+│               │   │   ├── Stack.tsx
+│               │   │   ├── StatusPill.tsx
+│               │   │   └── Text.tsx
+│               │   └── utils
+│               │       ├── cn.ts
+│               │       └── hashQuery.ts
+│               └── slides
+│                   └── slide-02
+│                       ├── index.ts
+│                       └── ui
+│                           └── Slide02.tsx
+├── public
+│   ├── mockServiceWorker.js
+│   ├── assets
+│   │   └── .gitkeep
+│   └── hi
+│       └── Slide02.inventory.json
+├── qa
+│   ├── eslint.cache
+│   ├── QA_Dashboard_FileList.txt
+│   └── logs
+│       ├── git-push.lock
+│       ├── run_20260114_173614
+│       ├── run_20260115_010105
+│       ├── run_20260115_010510
+│       ├── run_20260115_013759
+│       ├── run_20260115_015023
+│       ├── run_20260115_015650
+│       ├── run_20260115_020315
+│       ├── run_20260115_021522
+│       └── run_20260115_021536
+├── scripts
+│   ├── clean-tools.ps1
+│   ├── hi-inventory
+│   │   └── build.mjs
+│   ├── hitech-templates
+│   │   ├── patcher.mjs
+│   │   ├── patches.entry.json
+│   │   ├── patches.json
+│   │   └── templates
+│   │       ├── inspector.css
+│   │       ├── RenderInspectorHost.tsx
+│   │       ├── RenderInspectorPanel.tsx
+│   │       └── src
+│   │           └── shared
+│   │               └── ui
+│   │                   └── slide
+│   │                       └── SlideStage.tsx
+│   └── rts
+│       ├── check.mjs
+│       └── gen-slide.mjs
+├── src
+│   ├── App.tsx
+│   ├── index.css
+│   ├── main.tsx
+│   ├── vite-env.d.ts
+│   ├── app
+│   │   ├── App.tsx
+│   │   ├── deck
+│   │   │   ├── deck.constants.ts
+│   │   │   ├── deck.types.ts
+│   │   │   └── slideRegistry.ts
+│   │   ├── providers
+│   │   │   └── Providers.tsx
+│   │   └── styles
+│   │       ├── globals.css
+│   │       ├── globals.css.bak_20260114_034649
+│   │       ├── hi-materials.css
+│   │       └── hi-materials.css.bak_20260114_034649
+│   ├── components
+│   │   ├── hi
+│   │   │   ├── HiFilters.tsx
+│   │   │   ├── HiGlints.tsx
+│   │   │   └── HiShaderBackground.tsx
+│   │   └── ui
+│   │       ├── button.tsx
+│   │       └── dialog.tsx
+│   ├── entities
+│   │   └── slide
+│   │       ├── index.ts
+│   │       ├── lib
+│   │       │   └── slide.utils.ts
+│   │       └── model
+│   │           └── slide.types.ts
+│   ├── pages
+│   │   ├── deck
+│   │   │   ├── DeckPage.tsx
+│   │   │   ├── DeckPage.tsx.bak_force_inspector
+│   │   │   └── DeckPage.tsx.bak_renderinspector
+│   │   └── not-found
+│   │       └── NotFoundPage.tsx
+│   ├── render
+│   │   └── inspector
+│   │       ├── inspector.css
+│   │       ├── inspector.css.bak_20260116_061424
+│   │       ├── inspector.css.bak_antiflicker
+│   │       ├── inspector.css.bak_hashfix
+│   │       ├── RenderInspectorHost.tsx
+│   │       ├── RenderInspectorHost.tsx.bak_20260116_061424
+│   │       ├── RenderInspectorHost.tsx.bak_hashfix
+│   │       ├── RenderInspectorPanel.tsx
+│   │       ├── RenderInspectorPanel.tsx.bak_20260116_061424
+│   │       ├── RenderInspectorPanel.tsx.bak_antiflicker
+│   │       ├── RenderInspectorPanel.tsx.bak_hashfix
+│   │       └── utils.ts
+│   ├── rts
+│   │   ├── index.ts
+│   │   ├── devtools
+│   │   │   └── RtsDebugOverlay.tsx
+│   │   ├── foundation
+│   │   │   ├── slots.ts
+│   │   │   ├── smartservices_types.ts
+│   │   │   └── tokens.ts
+│   │   ├── slides
+│   │   │   ├── flagships
+│   │   │   │   ├── FlagshipEvidenceTractionEngine.tsx
+│   │   │   │   ├── FlagshipRiskDecisionEngine.tsx
+│   │   │   │   ├── FlagshipsPreview.tsx
+│   │   │   │   └── index.ts
+│   │   │   └── templates
+│   │   │       ├── ComparisonTemplate.tsx
+│   │   │       ├── DecisionGateTemplate.tsx
+│   │   │       ├── EvidenceSummaryTemplate.tsx
+│   │   │       ├── ExecutiveNarrativeTemplate.tsx
+│   │   │       ├── index.ts
+│   │   │       ├── KaizenA3Template.tsx
+│   │   │       ├── KpiGridTemplate.tsx
+│   │   │       ├── ProblemSolutionTemplate.tsx
+│   │   │       ├── RiskRegisterTemplate.tsx
+│   │   │       ├── SystemOverviewStaticTemplate.tsx
+│   │   │       └── TimelineTemplate.tsx
+│   │   ├── styles
+│   │   │   ├── a11y.css
+│   │   │   ├── bridge_tokens.css
+│   │   │   ├── hi-materials.css
+│   │   │   ├── print.css
+│   │   │   ├── rts.css
+│   │   │   ├── visual_base.css
+│   │   │   ├── visual_tokens.css
+│   │   │   ├── visual_tokens.light.css
+│   │   │   └── visual_utilities.css
+│   │   ├── system
+│   │   │   ├── consistency_enforcer.ts
+│   │   │   ├── consistency_rules.ts
+│   │   │   └── motion.ts
+│   │   ├── ui
+│   │   │   ├── Callout.tsx
+│   │   │   ├── DecisionCard.tsx
+│   │   │   ├── EvidenceCard.tsx
+│   │   │   ├── ExecutiveHeader.tsx
+│   │   │   ├── ExecutiveNav.tsx
+│   │   │   ├── KeyValue.tsx
+│   │   │   ├── KpiCard.tsx
+│   │   │   ├── Panel.tsx
+│   │   │   ├── RiskCard.tsx
+│   │   │   ├── Rule.tsx
+│   │   │   ├── SlideFrame.tsx
+│   │   │   ├── Stack.tsx
+│   │   │   ├── StatusPill.tsx
+│   │   │   └── Text.tsx
+│   │   └── utils
+│   │       ├── cn.ts
+│   │       └── hashQuery.ts
+│   ├── shared
+│   │   ├── config
+│   │   │   ├── constants.ts
+│   │   │   └── env.ts
+│   │   ├── hooks
+│   │   │   └── useHiGrain.ts
+│   │   ├── lib
+│   │   │   ├── cn.ts
+│   │   │   ├── format.ts
+│   │   │   └── hotkeys.ts
+│   │   ├── mocks
+│   │   │   ├── browser.ts
+│   │   │   ├── data.ts
+│   │   │   ├── handlers.ts
+│   │   │   └── index.ts
+│   │   ├── render
+│   │   │   ├── index.ts
+│   │   │   ├── composition
+│   │   │   │   └── index.ts
+│   │   │   ├── effects
+│   │   │   │   ├── chartSurfaceHighlight.css
+│   │   │   │   ├── contactOcclusion.css
+│   │   │   │   ├── dustField.css
+│   │   │   │   ├── glintSlow.css
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── mirrorCine.css
+│   │   │   │   └── rimDynamic.css
+│   │   │   ├── materials
+│   │   │   │   ├── index.ts
+│   │   │   │   └── materials.css
+│   │   │   ├── policy
+│   │   │   │   └── runtimePolicyGuard.ts
+│   │   │   ├── qa
+│   │   │   │   └── qa.stage.debug.css
+│   │   │   ├── stage
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── stage.css
+│   │   │   │   ├── stage.css.bak_20260114_034352
+│   │   │   │   └── stage.css.bak_20260114_034649
+│   │   │   └── tokens
+│   │   │       ├── index.ts
+│   │   │       └── render.tokens.css
+│   │   ├── theme
+│   │   │   └── tokens.css
+│   │   └── ui
+│   │       ├── command-palette
+│   │       │   └── CommandPalette.tsx
+│   │       ├── slide
+│   │       │   ├── index.ts
+│   │       │   ├── SlideBlocks.tsx
+│   │       │   ├── SlideShell.tsx
+│   │       │   ├── SlideStage.tsx
+│   │       │   └── SlideStage.tsx.bak_renderinspector
+│   │       └── stage
+│   │           ├── board.frame.css
+│   │           ├── BoardFrame.tsx
+│   │           ├── cosmic.stage.css
+│   │           ├── CosmicStage.tsx
+│   │           └── ScaleFrame.tsx
+│   ├── slides
+│   │   ├── index.ts
+│   │   ├── slide-00
+│   │   │   ├── index.ts
+│   │   │   └── ui
+│   │   │       └── Slide00.tsx
+│   │   ├── slide-01
+│   │   │   ├── index.ts
+│   │   │   └── ui
+│   │   │       └── Slide01.tsx
+│   │   ├── slide-02
+│   │   │   ├── index.ts
+│   │   │   ├── data
+│   │   │   │   ├── slide02.adapter.ts
+│   │   │   │   ├── slide02.contract.ts
+│   │   │   │   ├── slide02.mock.ts
+│   │   │   │   └── slide02.seed.ts
+│   │   │   └── ui
+│   │   │       ├── Slide02.tsx
+│   │   │       ├── Slide02.tsx.bak_20260114_035813
+│   │   │       ├── Slide02.tsx.bak_ABCD
+│   │   │       ├── Slide02.tsx.bak_add_svg
+│   │   │       ├── Slide02.tsx.bak_fix_fillA_leak
+│   │   │       ├── Slide02.tsx.bak_fix_ts7006
+│   │   │       ├── Slide02.tsx.bak_harden_sparkline_only
+│   │   │       └── Slide02.tsx.bak_pl003
+│   │   ├── slide-03
+│   │   │   ├── index.ts
+│   │   │   └── ui
+│   │   │       └── Slide03.tsx
+│   │   ├── slide-04
+│   │   │   ├── index.ts
+│   │   │   └── ui
+│   │   │       └── Slide04.tsx
+│   │   ├── slide-05
+│   │   │   ├── index.ts
+│   │   │   └── ui
+│   │   │       └── Slide05.tsx
+│   │   ├── slide-06
+│   │   │   ├── index.ts
+│   │   │   └── ui
+│   │   │       └── Slide06.tsx
+│   │   └── slide-07
+│   │       ├── index.ts
+│   │       └── ui
+│   │           └── Slide07.tsx
+│   ├── tests
+│   │   └── setup.ts
+│   └── widgets
+│       └── slide-nav
+│           ├── index.ts
+│           └── ui
+│               └── SlideNav.tsx
+└── tools
+    ├── bundles
+    │   ├── lo demas.txt
+    │   ├── slide02_full.zip
+    │   ├── Too 15125.txt
+    │   ├── slide02
+    │   │   ├── .gitattributes
+    │   │   ├── .gitignore
+    │   │   ├── package-lock.json
+    │   │   ├── package.json
+    │   │   ├── tsconfig.app.json
+    │   │   ├── tsconfig.json
+    │   │   ├── tsconfig.node.json
+    │   │   └── vite.config.ts
+    │   └── slide02_full
+    │       ├── .gitattributes
+    │       ├── .gitignore
+    │       ├── package-lock.json
+    │       ├── package.json
+    │       ├── tsconfig.app.json
+    │       ├── tsconfig.json
+    │       ├── tsconfig.node.json
+    │       ├── vite.config.ts
+    │       └── src
+    │           ├── shared
+    │           │   ├── hooks
+    │           │   │   └── useHiGrain.ts
+    │           │   ├── lib
+    │           │   │   └── cn.ts
+    │           │   └── ui
+    │           │       └── slide
+    │           │           └── SlideShell.tsx
+    │           └── slides
+    │               └── slide-02
+    │                   ├── data
+    │                   │   ├── slide02.contract.ts
+    │                   │   ├── slide02.mock.ts
+    │                   │   └── slide02.seed.ts
+    │                   └── ui
+    │                       └── Slide02.tsx
+    ├── codex
+    │   └── B64
+    │       └── Textos
+    ├── git
+    │   ├── Cleanup-B64.ps1
+    │   └── Git-Utils.ps1
+    ├── lint
+    │   ├── render_policy_baseline.json
+    │   ├── render_policy_check.mjs
+    │   ├── render_policy_report.json
+    │   └── render_policy_report.md
+    └── mcp
+        ├── _tree.mcp.txt
+        ├── flicker_analyze.py
+        ├── flicker_capture.mjs
+        ├── hitech-operator-server.mjs
+        ├── mcp-doctor.mjs
+        ├── mcp-open-target.mjs
+        ├── README_MCP_OPERATOR.md
+        ├── README.md
+        ├── SetupAndRun-FlickerTest.ps1
+        ├── Start-HitechOperator.ps1
+        ├── start-mcp-operator.mjs
+        ├── test-mcp-client.mjs
+        └── _flicker_out
+            ├── flicker_report.json
+            ├── meta.json
+            ├── shot_00.png
+            ├── shot_01.png
+            ├── shot_02.png
+            ├── shot_03.png
+            ├── shot_04.png
+            ├── shot_05.png
+            ├── shot_06.png
+            ├── shot_07.png
+            ├── shot_08.png
+            ├── shot_09.png
+            ├── shot_10.png
+            ├── shot_11.png
+            ├── run_20260116_201152
+            │   ├── meta.json
+            │   ├── shot_00.png
+            │   ├── shot_01.png
+            │   ├── shot_02.png
+            │   ├── shot_03.png
+            │   ├── shot_04.png
+            │   ├── shot_05.png
+            │   ├── shot_06.png
+            │   ├── shot_07.png
+            │   ├── shot_08.png
+            │   ├── shot_09.png
+            │   ├── shot_10.png
+            │   └── shot_11.png
+            ├── safe_20260116_201327
+            └── unsafe_20260116_203555
+                ├── meta.json
+                ├── shot_00.png
+                ├── shot_01.png
+                ├── shot_02.png
+                ├── shot_03.png
+                ├── shot_04.png
+                ├── shot_05.png
+                ├── shot_06.png
+                ├── shot_07.png
+                ├── shot_08.png
+                ├── shot_09.png
+                ├── shot_10.png
+                └── shot_11.png

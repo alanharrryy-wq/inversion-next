@@ -59,10 +59,8 @@ async function main() {
     console.error(
       `Unable to open target via DevTools (${err?.message || err}).`
     );
-    console.log(`Open this URL in Chrome: ${targetUrl}`);
-    console.log(
-      "If Chrome remote debugging is not running, launch with --remote-debugging-port=9222."
-    );
+    console.log(`Target URL: ${targetUrl}`);
+    console.log("Continuing without manual intervention.");
   }
 }
 

@@ -1,0 +1,24 @@
+[
+  {
+    "term": "L0–L4",
+    "def": "Niveles de costo de efectos de render. L0 es gratis (assets/pre-blur), L3/L4 son carísimos (blur real, loops, filters).",
+    "links": [
+      "docs/architecture/RENDER_POLICY.md",
+      "docs/architecture/EFFECTS_POLICY.json"
+    ]
+  },
+  {
+    "term": "Surface",
+    "def": "Zona de render con budget propio: stage, ui, overlay, inspector.",
+    "links": [
+      "docs/architecture/EFFECTS_POLICY.json"
+    ]
+  },
+  {
+    "term": "Baseline-aware lint",
+    "def": "El lint no rompe por violaciones históricas; solo falla si aparecen NUEVAS violaciones o empeora el score.",
+    "links": [
+      "tools/lint/render_policy_check.mjs"
+    ]
+  }
+]

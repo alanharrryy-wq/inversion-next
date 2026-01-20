@@ -11,6 +11,9 @@ import {
 } from "@modelcontextprotocol/sdk/types.js";
 
 const PROTOCOL_VERSION = "2024-11-05";
+const IS_WIN = process.platform === "win32";
+const NPX_CMD = IS_WIN ? "cmd.exe" : "npx";
+const NPX_ARGS_PREFIX = IS_WIN ? ["/d", "/s", "/c", "npx"] : [];
 
 const DEFAULT_BROWSER_URL = "http://127.0.0.1:9222";
 const DEFAULT_URL_CONTAINS = "localhost:5177/#/deck?s=2";
@@ -225,9 +228,14 @@ class ChromeDevtoolsMcpClient {
   start() {
     if (this.proc) return;
     this.proc = spawn(
-      "npx.cmd",
-      ["-y", "chrome-devtools-mcp@latest", `--browser-url=${this.browserUrl}`],
-      { stdio: ["pipe", "pipe", "inherit"], shell: true }
+      NPX_CMD,
+      [
+        ...NPX_ARGS_PREFIX,
+        "-y",
+        "chrome-devtools-mcp@latest",
+        `--browser-url=${this.browserUrl}`
+      ],
+      { stdio: ["pipe", "pipe", "inherit"] }
     );
 
     this.proc.stdout.on("data", (buf) => this.handleData(buf));
@@ -389,7 +397,7 @@ async function callChromeToolWithValidationRetry(
       return { result, ok: true, attempts: 1 };
     }
     firstResult = result;
-  } catch (err) {
+  } catch {
     // retry once on error
   }
 
@@ -584,6 +592,24 @@ async function handleHiScreenshot(args) {
   return formatToolResult(payload);
 }
 
+async function handleHiResizePage(args) {
+  const width = Number(args?.width);
+  const height = Number(args?.height);
+  if (!Number.isFinite(width) || !Number.isFinite(height)) {
+    throw new Error("hi_resize_page requires { width:number, height:number }.");
+  }
+  await ensureSelectedPage();
+  await callChromeTool("resize_page", {
+    width: Math.max(1, Math.floor(width)),
+    height: Math.max(1, Math.floor(height))
+  });
+  return formatToolResult({
+    ok: true,
+    width: Math.max(1, Math.floor(width)),
+    height: Math.max(1, Math.floor(height))
+  });
+}
+
 async function handleHiPanelGeo() {
   const evalResult = await runEvalScript(PANEL_GEO_SCRIPT);
   const payload =
@@ -709,6 +735,19 @@ const toolDefinitions = [
     }
   },
   {
+    name: "hi_resize_page",
+    description: "Resize the browser viewport to a specific width/height.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        width: { type: "number", description: "Viewport width in CSS pixels." },
+        height: { type: "number", description: "Viewport height in CSS pixels." }
+      },
+      required: ["width", "height"],
+      additionalProperties: false
+    }
+  },
+  {
     name: "hi_panel_geo",
     description: "Return geometry and computed styles for .hi-inspector__panel.",
     inputSchema: {
@@ -788,6 +827,8 @@ async function main() {
           return await handleHiEval(args);
         case "hi_screenshot":
           return await handleHiScreenshot(args);
+        case "hi_resize_page":
+          return await handleHiResizePage(args);
         case "hi_panel_geo":
           return await handleHiPanelGeo();
         case "hi_flicker_capture":

@@ -1,13 +1,19 @@
 import { spawn } from "node:child_process";
 
 const TARGET_URL_CONTAINS = "localhost:5177/#/deck?s=2";
-const TARGET_URL_EXACT = "http://localhost:5177/#/deck?s=2&hiInspector=1&hiStub=1";
+const IS_WIN = process.platform === "win32";
+const NPX_CMD = IS_WIN ? "cmd.exe" : "npx";
+const NPX_ARGS_PREFIX = IS_WIN ? ["/d", "/s", "/c", "npx"] : [];
 
-// Windows: npx suele ser npx.cmd, y Node a veces no lo resuelve sin shell:true.
 const server = spawn(
-  "npx.cmd",
-  ["-y", "chrome-devtools-mcp@latest", "--browser-url=http://127.0.0.1:9222"],
-  { stdio: ["pipe", "pipe", "inherit"], shell: true }
+  NPX_CMD,
+  [
+    ...NPX_ARGS_PREFIX,
+    "-y",
+    "chrome-devtools-mcp@latest",
+    "--browser-url=http://127.0.0.1:9222"
+  ],
+  { stdio: ["pipe", "pipe", "inherit"] }
 );
 
 let nextId = 1;

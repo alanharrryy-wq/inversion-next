@@ -187,7 +187,7 @@ function detectPanelBlurInCss(lines) {
   return hits;
 }
 
-function detectEffectsInLine(line, lineNumber, context) {
+function detectEffectsInLine(line, lineNumber) {
   const effects = [];
   const trimmed = line.trim();
   if (!trimmed || trimmed.startsWith("//") || trimmed.startsWith("/*") || trimmed.startsWith("*")) {
@@ -365,7 +365,7 @@ for (const filePath of files) {
       blockedClasses.push({ name: "board-glass", line: lineNumber });
     }
 
-    const lineEffects = detectEffectsInLine(line, lineNumber, { filePath, surface });
+    const lineEffects = detectEffectsInLine(line, lineNumber);
     for (const effect of lineEffects) {
       effects.push(effect);
     }

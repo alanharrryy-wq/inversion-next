@@ -1,0 +1,63 @@
+======================================
+ MCP FOLDER TREE
+ Repo: F:/repos/inversion-next
+ Path: tools/mcp
+ Generated: 2026-01-19 01:29:49
+======================================
+
+├── F:\repos\inversion-next\tools\mcp\_tree.mcp.txt
+├── F:\repos\inversion-next\tools\mcp\flicker_analyze.py
+├── F:\repos\inversion-next\tools\mcp\flicker_capture.mjs
+├── F:\repos\inversion-next\tools\mcp\hitech-operator-server.mjs
+├── F:\repos\inversion-next\tools\mcp\mcp-doctor.mjs
+├── F:\repos\inversion-next\tools\mcp\mcp-open-target.mjs
+├── F:\repos\inversion-next\tools\mcp\README_MCP_OPERATOR.md
+├── F:\repos\inversion-next\tools\mcp\README.md
+├── F:\repos\inversion-next\tools\mcp\SetupAndRun-FlickerTest.ps1
+├── F:\repos\inversion-next\tools\mcp\Start-HitechOperator.ps1
+├── F:\repos\inversion-next\tools\mcp\start-mcp-operator.mjs
+├── F:\repos\inversion-next\tools\mcp\test-mcp-client.mjs
+└── F:\repos\inversion-next\tools\mcp\_flicker_out
+    ├── F:\repos\inversion-next\tools\mcp\_flicker_out\flicker_report.json
+    ├── F:\repos\inversion-next\tools\mcp\_flicker_out\meta.json
+    ├── F:\repos\inversion-next\tools\mcp\_flicker_out\shot_00.png
+    ├── F:\repos\inversion-next\tools\mcp\_flicker_out\shot_01.png
+    ├── F:\repos\inversion-next\tools\mcp\_flicker_out\shot_02.png
+    ├── F:\repos\inversion-next\tools\mcp\_flicker_out\shot_03.png
+    ├── F:\repos\inversion-next\tools\mcp\_flicker_out\shot_04.png
+    ├── F:\repos\inversion-next\tools\mcp\_flicker_out\shot_05.png
+    ├── F:\repos\inversion-next\tools\mcp\_flicker_out\shot_06.png
+    ├── F:\repos\inversion-next\tools\mcp\_flicker_out\shot_07.png
+    ├── F:\repos\inversion-next\tools\mcp\_flicker_out\shot_08.png
+    ├── F:\repos\inversion-next\tools\mcp\_flicker_out\shot_09.png
+    ├── F:\repos\inversion-next\tools\mcp\_flicker_out\shot_10.png
+    ├── F:\repos\inversion-next\tools\mcp\_flicker_out\shot_11.png
+    ├── F:\repos\inversion-next\tools\mcp\_flicker_out\run_20260116_201152
+    │   ├── F:\repos\inversion-next\tools\mcp\_flicker_out\run_20260116_201152\meta.json
+    │   ├── F:\repos\inversion-next\tools\mcp\_flicker_out\run_20260116_201152\shot_00.png
+    │   ├── F:\repos\inversion-next\tools\mcp\_flicker_out\run_20260116_201152\shot_01.png
+    │   ├── F:\repos\inversion-next\tools\mcp\_flicker_out\run_20260116_201152\shot_02.png
+    │   ├── F:\repos\inversion-next\tools\mcp\_flicker_out\run_20260116_201152\shot_03.png
+    │   ├── F:\repos\inversion-next\tools\mcp\_flicker_out\run_20260116_201152\shot_04.png
+    │   ├── F:\repos\inversion-next\tools\mcp\_flicker_out\run_20260116_201152\shot_05.png
+    │   ├── F:\repos\inversion-next\tools\mcp\_flicker_out\run_20260116_201152\shot_06.png
+    │   ├── F:\repos\inversion-next\tools\mcp\_flicker_out\run_20260116_201152\shot_07.png
+    │   ├── F:\repos\inversion-next\tools\mcp\_flicker_out\run_20260116_201152\shot_08.png
+    │   ├── F:\repos\inversion-next\tools\mcp\_flicker_out\run_20260116_201152\shot_09.png
+    │   ├── F:\repos\inversion-next\tools\mcp\_flicker_out\run_20260116_201152\shot_10.png
+    │   └── F:\repos\inversion-next\tools\mcp\_flicker_out\run_20260116_201152\shot_11.png
+    ├── F:\repos\inversion-next\tools\mcp\_flicker_out\safe_20260116_201327
+    └── F:\repos\inversion-next\tools\mcp\_flicker_out\unsafe_20260116_203555
+        ├── F:\repos\inversion-next\tools\mcp\_flicker_out\unsafe_20260116_203555\meta.json
+        ├── F:\repos\inversion-next\tools\mcp\_flicker_out\unsafe_20260116_203555\shot_00.png
+        ├── F:\repos\inversion-next\tools\mcp\_flicker_out\unsafe_20260116_203555\shot_01.png
+        ├── F:\repos\inversion-next\tools\mcp\_flicker_out\unsafe_20260116_203555\shot_02.png
+        ├── F:\repos\inversion-next\tools\mcp\_flicker_out\unsafe_20260116_203555\shot_03.png
+        ├── F:\repos\inversion-next\tools\mcp\_flicker_out\unsafe_20260116_203555\shot_04.png
+        ├── F:\repos\inversion-next\tools\mcp\_flicker_out\unsafe_20260116_203555\shot_05.png
+        ├── F:\repos\inversion-next\tools\mcp\_flicker_out\unsafe_20260116_203555\shot_06.png
+        ├── F:\repos\inversion-next\tools\mcp\_flicker_out\unsafe_20260116_203555\shot_07.png
+        ├── F:\repos\inversion-next\tools\mcp\_flicker_out\unsafe_20260116_203555\shot_08.png
+        ├── F:\repos\inversion-next\tools\mcp\_flicker_out\unsafe_20260116_203555\shot_09.png
+        ├── F:\repos\inversion-next\tools\mcp\_flicker_out\unsafe_20260116_203555\shot_10.png
+        └── F:\repos\inversion-next\tools\mcp\_flicker_out\unsafe_20260116_203555\shot_11.png

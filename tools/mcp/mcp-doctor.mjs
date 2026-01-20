@@ -56,9 +56,9 @@ async function waitForDevtoolsJson({ attempts = 6, delayMs = 600 } = {}) {
 function runTestClient(timeoutMs = 30000) {
   return new Promise((resolve, reject) => {
     const proc = spawn(
-      "node",
+      process.execPath,
       ["tools/mcp/test-mcp-client.mjs", "--json"],
-      { stdio: ["ignore", "pipe", "pipe"], shell: true }
+      { stdio: ["ignore", "pipe", "pipe"] }
     );
 
     let stdout = "";

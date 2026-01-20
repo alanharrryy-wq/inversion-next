@@ -1,0 +1,97 @@
+{
+  "version": "1.1.0",
+  "description": "MCP Tool Catalog - Reusable, slide-agnostic tools",
+  "tools": [
+    {
+      "id": "reference-diff",
+      "entry": "tools/mcp/catalog/reference-diff.mjs",
+      "status": "active",
+      "description": "Capture screenshot and compute pixel diff vs reference PNG.",
+      "outputs": ["current.png", "reference.png", "diff.png", "diff.score.json", "report.html"]
+    },
+    {
+      "id": "capture-reference",
+      "entry": "tools/mcp/catalog/capture-reference.mjs",
+      "status": "active",
+      "description": "Capture a normalized baseline reference PNG.",
+      "outputs": ["reference.captured.png", "status.json"]
+    },
+    {
+      "id": "auto-measure",
+      "entry": "tools/mcp/catalog/auto-measure.mjs",
+      "status": "active",
+      "description": "Measure DOM layout and computed styles from selectors.",
+      "outputs": ["measurements.json", "measurements.pretty.txt"]
+    },
+    {
+      "id": "style-inject",
+      "entry": "tools/mcp/catalog/style-inject.mjs",
+      "status": "active",
+      "description": "Inject debug CSS overlays and capture a screenshot.",
+      "outputs": ["debug.overlay.png", "injected.css.txt"]
+    },
+    {
+      "id": "element-map",
+      "entry": "tools/mcp/catalog/element-map.mjs",
+      "status": "active",
+      "description": "Render annotated element map and emit coordinates.",
+      "outputs": ["annotated.png", "elements.map.json"]
+    },
+    {
+      "id": "state-cycler",
+      "entry": "tools/mcp/catalog/state-cycler.mjs",
+      "status": "active",
+      "description": "Apply configured states and capture screenshots.",
+      "outputs": ["state_*.png", "states.runlog.json"]
+    },
+    {
+      "id": "attention-heat",
+      "entry": "tools/mcp/catalog/planned/attention-heat.mjs",
+      "status": "planned",
+      "description": "Estimate visual attention hotspots and output heat hints.",
+      "outputs": ["attention.report.json", "attention.overlay.png"]
+    },
+    {
+      "id": "layout-drift",
+      "entry": "tools/mcp/catalog/planned/layout-drift.mjs",
+      "status": "planned",
+      "description": "Detect layout drift across states or breakpoints.",
+      "outputs": ["layout.drift.json", "layout.drift.png"]
+    },
+    {
+      "id": "motion-inspector",
+      "entry": "tools/mcp/catalog/planned/motion-inspector.mjs",
+      "status": "planned",
+      "description": "Inspect animation motion metrics and timing.",
+      "outputs": ["motion.report.json", "motion.timeline.json"]
+    },
+    {
+      "id": "screenshot-timeline",
+      "entry": "tools/mcp/catalog/planned/screenshot-timeline.mjs",
+      "status": "planned",
+      "description": "Capture a timeline of screenshots for review.",
+      "outputs": ["timeline.json", "timeline.png"]
+    },
+    {
+      "id": "semantic-structure",
+      "entry": "tools/mcp/catalog/planned/semantic-structure.mjs",
+      "status": "planned",
+      "description": "Report semantic structure and accessibility markers.",
+      "outputs": ["semantic.report.json", "semantic.overlay.png"]
+    },
+    {
+      "id": "visual-budget",
+      "entry": "tools/mcp/catalog/planned/visual-budget.mjs",
+      "status": "planned",
+      "description": "Compute visual density and budget targets.",
+      "outputs": ["visual.budget.json", "visual.budget.png"]
+    },
+    {
+      "id": "visual-gate-ci",
+      "entry": "tools/mcp/catalog/planned/visual-gate-ci.mjs",
+      "status": "planned",
+      "description": "CI visual gate checks for slide regressions.",
+      "outputs": ["visual.gate.json"]
+    }
+  ]
+}

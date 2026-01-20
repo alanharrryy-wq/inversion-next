@@ -4,6 +4,11 @@ import process from "node:process";
 const PROTOCOL_VERSION = "2024-11-05";
 const DEFAULT_TIMEOUT_MS = 15000;
 const JSON_MODE = process.argv.includes("--json");
+const IS_WIN = process.platform === "win32";
+const NPM_CMD = IS_WIN ? "cmd.exe" : "npm";
+const NPM_ARGS = IS_WIN
+  ? ["/d", "/s", "/c", "npm", "run", "mcp:operator"]
+  : ["run", "mcp:operator"];
 
 function logInfo(...args) {
   if (!JSON_MODE) {
@@ -20,6 +25,21 @@ function safeJsonParse(text) {
     return JSON.parse(text);
   } catch {
     return null;
+  }
+}
+
+function killProcessTree(proc) {
+  if (!proc || !proc.pid) return;
+  if (process.platform === "win32") {
+    spawn("taskkill", ["/PID", String(proc.pid), "/T", "/F"], {
+      stdio: "ignore"
+    });
+    return;
+  }
+  try {
+    proc.kill("SIGTERM");
+  } catch {
+    // ignore
   }
 }
 
@@ -113,31 +133,34 @@ class McpStdioClient {
   close() {
     if (this.proc && !this.proc.killed) {
       this.rejectAll(new Error("Client closed"));
-      this.proc.kill();
+      killProcessTree(this.proc);
     }
   }
 }
 
 async function main() {
   const client = new McpStdioClient(
-    "npm",
-    ["run", "mcp:operator"],
+    NPM_CMD,
+    NPM_ARGS,
     {
-      stdio: ["pipe", "pipe", "inherit"],
-      shell: true
+      stdio: ["pipe", "pipe", "inherit"]
     }
   );
 
-  const shutdown = (reason) => {
+  let shuttingDown = false;
+  const shutdown = async (reason, code = 0) => {
+    if (shuttingDown) return;
+    shuttingDown = true;
     if (reason) {
       console.error(`Shutting down: ${reason}`);
     }
     client.close();
+    await sleep(200);
+    process.exit(code);
   };
 
-  process.on("SIGINT", () => shutdown("SIGINT"));
-  process.on("SIGTERM", () => shutdown("SIGTERM"));
-  process.on("exit", () => shutdown("exit"));
+  process.on("SIGINT", () => shutdown("SIGINT", 1));
+  process.on("SIGTERM", () => shutdown("SIGTERM", 1));
 
   try {
     client.start();
@@ -153,6 +176,23 @@ async function main() {
     const toolNames = (toolsList?.tools || []).map((t) => t.name);
     logInfo("TOOLS:", toolNames);
 
+    const urlExact = (process.env.HI_URL_EXACT || "").trim();
+    const urlContains = (process.env.HI_URL_CONTAINS || "").trim();
+
+    if (urlExact || urlContains) {
+      try {
+        await client.rpc("tools/call", {
+          name: "hi_select_page_by_url",
+          arguments: {
+            urlExact: urlExact || undefined,
+            urlContains: urlContains || undefined
+          }
+        });
+      } catch (error) {
+        logInfo("Select page warning:", error?.message || error);
+      }
+    }
+
     const listPages = await client.rpc("tools/call", {
       name: "hi_list_pages",
       arguments: {}
@@ -166,10 +206,9 @@ async function main() {
     }
 
     await sleep(200);
-    shutdown("done");
+    await shutdown("done", 0);
   } catch (err) {
-    shutdown(err?.message || err);
-    process.exitCode = 1;
+    await shutdown(err?.message || err, 1);
   }
 }
 

@@ -1,0 +1,120 @@
+{
+  "slide": {
+    "id": "slide-02",
+    "hash": "#/deck?s=2",
+    "urlContains": "localhost:5177/#/deck?s=2"
+  },
+  "reference": {
+    "png": "ref/reference.png"
+  },
+  "diff": {
+    "thresholdPct": 3.0,
+    "ignoreRegions": [
+      {
+        "x": 0,
+        "y": 0,
+        "width": 707,
+        "height": 48,
+        "note": "mask: suggested top strip (triage)"
+      }
+    ]
+  },
+  "selectors": {
+    "root": "[data-slide='slide-02']",
+    "header": "[data-s2='header']",
+    "kpiRow": "[data-s2='kpi-row']",
+    "leftColumn": "[data-s2='left']",
+    "rightColumn": "[data-s2='right']",
+    "mainChart": "[data-s2='main-chart']",
+    "donut": "[data-s2='donut']",
+    "activity": "[data-s2='activity']",
+    "insights": "[data-s2='insights']"
+  },
+  "labels": {
+    "header": "Header",
+    "kpiRow": "KPI Row",
+    "leftColumn": "Left Column",
+    "rightColumn": "Right Column",
+    "mainChart": "Main Chart",
+    "donut": "Donut KPI",
+    "activity": "Recent Activity",
+    "insights": "AI Insights"
+  },
+  "styleInject": {
+    "grid": {
+      "enabled": true,
+      "stepPx": 8,
+      "opacity": 0.22
+    },
+    "outlines": {
+      "enabled": true,
+      "color": "rgba(0,255,255,0.55)",
+      "widthPx": 1
+    },
+    "paddingHeat": {
+      "enabled": false
+    },
+    "labelOverlay": {
+      "enabled": true
+    }
+  },
+  "measure": {
+    "elements": [
+      "header",
+      "kpiRow",
+      "mainChart",
+      "donut",
+      "activity",
+      "insights"
+    ],
+    "computedStyles": [
+      "display",
+      "position",
+      "gap",
+      "padding",
+      "margin",
+      "fontSize",
+      "lineHeight",
+      "letterSpacing",
+      "borderRadius",
+      "boxShadow",
+      "backdropFilter",
+      "opacity"
+    ]
+  },
+  "states": [
+    {
+      "id": "baseline",
+      "description": "Normal demo data",
+      "payload": {
+        "kpis": [
+          "1.2m",
+          "42%",
+          "9.8",
+          "128"
+        ],
+        "insightText": "Baseline insight text."
+      }
+    },
+    {
+      "id": "long-text",
+      "description": "Stress long insight text and labels",
+      "payload": {
+        "kpis": [
+          "12,345,678.90",
+          "100.00%",
+          "0.0001",
+          "9,999"
+        ],
+        "insightText": "This is a very long insight text intended to stress wrapping, truncation, and overflow behavior across multiple lines. It should not break the layout or cause clipping."
+      }
+    },
+    {
+      "id": "many-items",
+      "description": "Stress activity list length",
+      "payload": {
+        "activityCount": 12
+      }
+    }
+  ]
+}

@@ -10,14 +10,17 @@
     "lint": "eslint .",
     "lint:render": "node tools/lint/render_policy_check.mjs",
     "lint:render:baseline": "node tools/lint/render_policy_check.mjs --baseline",
-    "test": "vitest run",
+    "test": "vitest run --passWithNoTests",
     "test:watch": "vitest",
+    "typecheck": "tsc -b --pretty false",
     "rts:gen": "node scripts/rts/gen-slide.mjs",
     "rts:check": "node scripts/rts/check.mjs",
     "mcp:operator": "node tools/mcp/hitech-operator-server.mjs",
     "mcp:test-client": "node tools/mcp/test-mcp-client.mjs",
     "mcp:open-target": "node tools/mcp/mcp-open-target.mjs",
-    "mcp:doctor": "node tools/mcp/mcp-doctor.mjs"
+    "mcp:doctor": "node tools/mcp/mcp-doctor.mjs",
+    "mcp:start": "node tools/mcp/start-mcp-operator.mjs",
+    "docs:index": "node tools/docs/generate_index.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.25.2",

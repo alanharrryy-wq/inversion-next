@@ -33,6 +33,17 @@ const nodeGlobals = {
   require: "readonly",
   exports: "readonly",
   console: "readonly",
+  setTimeout: "readonly",
+  clearTimeout: "readonly",
+  setInterval: "readonly",
+  clearInterval: "readonly",
+  URL: "readonly",
+  URLSearchParams: "readonly",
+  AbortController: "readonly",
+  fetch: "readonly",
+  Request: "readonly",
+  Response: "readonly",
+  Headers: "readonly",
 }
 
 export default tseslint.config(

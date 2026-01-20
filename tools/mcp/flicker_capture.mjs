@@ -2,7 +2,11 @@ import { spawn } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 
-const OUT_DIR = process.env.HI_FLICKER_OUT || path.resolve("tools/mcp/_flicker_out");
+const IS_WIN = process.platform === "win32";
+const NPX_CMD = IS_WIN ? "cmd.exe" : "npx";
+const NPX_ARGS_PREFIX = IS_WIN ? ["/d", "/s", "/c", "npx"] : [];
+const OUT_DIR =
+  process.env.HI_FLICKER_OUT || path.resolve("tools/mcp/_flicker_out");
 const URL_CONTAINS = process.env.HI_URL_CONTAINS || "localhost:5177/#/deck?s=2";
 const BROWSER_URL = process.env.HI_BROWSER_URL || "http://127.0.0.1:9222";
 const SHOTS = Number(process.env.HI_SHOTS || "12");
@@ -12,9 +16,9 @@ function ensureDir(p) { fs.mkdirSync(p, { recursive: true }); }
 ensureDir(OUT_DIR);
 
 const server = spawn(
-  "npx.cmd",
-  ["-y", "chrome-devtools-mcp@latest", `--browser-url=${BROWSER_URL}`],
-  { stdio: ["pipe", "pipe", "inherit"], shell: true }
+  NPX_CMD,
+  [...NPX_ARGS_PREFIX, "-y", "chrome-devtools-mcp@latest", `--browser-url=${BROWSER_URL}`],
+  { stdio: ["pipe", "pipe", "inherit"] }
 );
 
 let nextId = 1;

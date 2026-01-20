@@ -2,8 +2,12 @@ const isDev = (() => {
   if (typeof import.meta !== "undefined" && import.meta.env) {
     return Boolean(import.meta.env.DEV);
   }
-  if (typeof process !== "undefined") {
-    return process.env.NODE_ENV !== "production";
+  const maybeProcess =
+    typeof globalThis !== "undefined"
+      ? (globalThis as { process?: { env?: { NODE_ENV?: string } } }).process
+      : undefined;
+  if (maybeProcess?.env?.NODE_ENV) {
+    return maybeProcess.env.NODE_ENV !== "production";
   }
   return true;
 })();
