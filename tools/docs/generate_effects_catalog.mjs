@@ -663,7 +663,8 @@ function parseArgs(argv) {
     auto: false,
     check: false,
     mergePlanned: false,
-    plannedPath: "",
+    
+    requirePlanned: false,plannedPath: "",
     writeMerged: false,
     mergedOutPath: "",
     help: false
@@ -677,7 +678,8 @@ function parseArgs(argv) {
     else if (a === "--auto") out.auto = true;
     else if (a === "--check") out.check = true;
     else if (a === "--merge-planned") out.mergePlanned = true;
-    else if (a === "--planned") out.plannedPath = String(args[i + 1] || "").trim(), i++;
+    
+    else if (a === "--require-planned") out.requirePlanned = true;else if (a === "--planned") out.plannedPath = String(args[i + 1] || "").trim(), i++;
     else if (a === "--write-merged") out.writeMerged = true;
     else if (a === "--merged-out") out.mergedOutPath = String(args[i + 1] || "").trim(), i++;
     else fail(`[docs:effects] unknown arg: ${a}`);
@@ -809,10 +811,13 @@ function main() {
   // Merge planned if requested
   if (opts.mergePlanned) {
     const plannedPath = opts.plannedPath ? path.resolve(ROOT, opts.plannedPath) : PLANNED_PATH_DEFAULT;
-    const planned = loadPlanned(plannedPath);
-
-    if (!planned) {
-      console.warn(`[docs:effects] --merge-planned requested, but planned file not found: ${toRepoRelative(plannedPath)}`);
+    const planned = loadPlanned(plannedPath);    if (!planned) {
+      const msg = `[docs:effects] --merge-planned requested, but planned file not found: ${toRepoRelative(plannedPath)}`;
+      if (opts.requirePlanned) {
+        console.error(msg);
+        process.exit(2);
+      }
+      console.warn(msg);
     } else {
       const res = mergeCatalog(catalogObj, planned);
       catalog = res.merged;
@@ -875,3 +880,4 @@ function main() {
 }
 
 main();
+
