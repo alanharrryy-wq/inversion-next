@@ -4,6 +4,7 @@ Canonical list of render effects and materials.
 Inclusion here is not a promise to use an effect; it is the approved options list.
 
 Generated from `docs/architecture/effects.catalog.json`.
+Merged planned entries from `docs/architecture/effects.catalog.planned.json` (added 1, skipped 0).
 Auto signals from `docs/architecture/effects.catalog.auto.json`.
 
 ## Levels and Budgets (Brief)
@@ -22,7 +23,7 @@ Surface budgets (see render policy):
 
 ## Policy validation
 
-Status: PASS (64 entries, 0 errors, 0 warnings).
+Status: PASS (65 entries, 0 errors, 0 warnings).
 
 ## Summary
 
@@ -57,6 +58,7 @@ Status: PASS (64 entries, 0 errors, 0 warnings).
 | edgeGlowStatic | effect | planned | L2 | stage, ui, overlay, inspector | `data-edge-glow="on"` |
 | edgeLift | effect | planned | L1 | stage, ui, overlay, inspector | `data-edge-lift="on"` |
 | edgeNoiseStatic | effect | planned | L2 | stage, ui, overlay, inspector | `data-edge-noise="on"` |
+| examplePlannedEffect | effect | planned | L0 | none | none |
 | filmGrainStatic | effect | planned | L1 | stage, ui, overlay, inspector | `data-film-grain="on"` |
 | focusEmphasis | effect | planned | L1 | stage, ui, overlay, inspector | `data-focus-emphasis="on"` |
 | frostedSurfaceFake | material | planned | L2 | stage, ui, overlay, inspector | `data-frosted-surface="on"` |
@@ -565,7 +567,7 @@ Status: PASS (64 entries, 0 errors, 0 warnings).
 - Allowed surfaces: none
 - Allow marker required: no
 - Tokens: `--hi-dust-opacity-a`, `--hi-dust-opacity-b`, `--hi-dust-period-a`, `--hi-dust-period-b`
-- Observed signals: cost `animation`; tokens `--hi-dust-opacity-a`, `--hi-dust-opacity-b`, `--hi-dust-period-a`, `--hi-dust-period-b`; selectors `.hi-stage::after`, `.hi-stage::before`
+- Observed signals: cost `animation`; tokens `--hi-dust-opacity-a`, `--hi-dust-opacity-b`, `--hi-dust-period-a`, `--hi-dust-period-b`
 - Risks: Continuous animation is L4 and forbidden on all surfaces.
 - Examples: `src/shared/render/effects/dustField.css:15` (.hi-stage::before animation layer)
 - Notes: Applied globally to .hi-stage when the stylesheet is loaded.
@@ -645,6 +647,25 @@ Status: PASS (64 entries, 0 errors, 0 warnings).
 - Risks: Avoid visible banding.
 - Examples: none
 - Notes: Static noise for edges; keep subtle.
+
+### examplePlannedEffect
+
+- Description: Example planned effect placeholder (safe to delete).
+- Category: effect
+- Tags: `planned`
+- Status: planned
+- Paths: none
+- Activation: none
+- Estimated level: L0
+- Cost signals: none
+- Score notes: Planned entry template.
+- Allowed surfaces: none
+- Allow marker required: no
+- Tokens: none
+- Observed signals: none
+- Risks: none
+- Examples: none
+- Notes: This is a template planned entry.
 
 ### filmGrainStatic
 

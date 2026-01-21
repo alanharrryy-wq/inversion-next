@@ -1,0 +1,2571 @@
+{
+  "version": "1.0",
+  "entries": [
+    {
+      "id": "activeRegionTint",
+      "status": "planned",
+      "description": "Subtle active-region tint for focusable areas.",
+      "category": "effect",
+      "tags": [
+        "ux",
+        "tint"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-active-region=\"on\"]"
+        ],
+        "attributes": [
+          "data-active-region=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L1",
+      "scoreNotes": "Static tint overlay.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Use for gentle active region emphasis without motion."
+      ],
+      "tokens": [],
+      "risks": [
+        "Ensure contrast remains readable."
+      ],
+      "examples": []
+    },
+    {
+      "id": "ambientGradientField",
+      "status": "planned",
+      "description": "Static ambient gradient field behind content.",
+      "category": "effect",
+      "tags": [
+        "atmosphere",
+        "gradient"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-ambient-gradient=\"on\"]"
+        ],
+        "attributes": [
+          "data-ambient-gradient=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L1",
+      "scoreNotes": "Static paint gradients.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Static background field; avoid over-saturation."
+      ],
+      "tokens": [],
+      "risks": [
+        "Keep contrast stable across content."
+      ],
+      "examples": []
+    },
+    {
+      "id": "ambientHighlightWash",
+      "status": "planned",
+      "description": "Soft ambient highlight wash in corners.",
+      "category": "effect",
+      "tags": [
+        "lighting",
+        "wash"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-ambient-highlight=\"on\"]"
+        ],
+        "attributes": [
+          "data-ambient-highlight=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L1",
+      "scoreNotes": "Static overlay wash.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Static overlay for gentle illumination."
+      ],
+      "tokens": [],
+      "risks": [
+        "Avoid flattening dark areas."
+      ],
+      "examples": []
+    },
+    {
+      "id": "ambientOcclusionFake",
+      "status": "planned",
+      "description": "Fake ambient occlusion using gradients.",
+      "category": "effect",
+      "tags": [
+        "depth",
+        "occlusion"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-ambient-occlusion=\"on\"]"
+        ],
+        "attributes": [
+          "data-ambient-occlusion=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L2",
+      "scoreNotes": "Composited gradient layers.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Composited gradient layers for depth."
+      ],
+      "tokens": [],
+      "risks": [
+        "Avoid stacking too many depth layers."
+      ],
+      "examples": []
+    },
+    {
+      "id": "backdropGlassLayer",
+      "status": "planned",
+      "description": "Centralized backdrop blur glass layer.",
+      "category": "effect",
+      "tags": [
+        "blur",
+        "glass",
+        "l3"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-backdrop-glass=\"on\"]"
+        ],
+        "attributes": [
+          "data-backdrop-glass=\"on\""
+        ]
+      },
+      "costSignals": [
+        "backdrop-filter"
+      ],
+      "estimatedLevel": "L3",
+      "scoreNotes": "Backdrop filter is L3.",
+      "allowedSurfaces": [
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": true,
+      "notes": [
+        "L3 option; requires hi-allow:L3 on overlay/inspector."
+      ],
+      "tokens": [],
+      "risks": [
+        "Centralized Blur rule: only one backdrop-filter per surface; no per-panel blur."
+      ],
+      "examples": []
+    },
+    {
+      "id": "backgroundSuppression",
+      "status": "planned",
+      "description": "Background suppression tint for focus.",
+      "category": "effect",
+      "tags": [
+        "ux",
+        "focus"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-background-suppression=\"on\"]"
+        ],
+        "attributes": [
+          "data-background-suppression=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L1",
+      "scoreNotes": "Static overlay tint.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Use to reduce background noise."
+      ],
+      "tokens": [],
+      "risks": [
+        "Watch readability for de-emphasized content."
+      ],
+      "examples": []
+    },
+    {
+      "id": "blendScreenOverlay",
+      "status": "planned",
+      "description": "Screen blend overlay for highlights.",
+      "category": "effect",
+      "tags": [
+        "blend",
+        "overlay",
+        "l3"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-blend-screen=\"on\"]"
+        ],
+        "attributes": [
+          "data-blend-screen=\"on\""
+        ]
+      },
+      "costSignals": [
+        "mix-blend-mode"
+      ],
+      "estimatedLevel": "L3",
+      "scoreNotes": "Blend modes are L3.",
+      "allowedSurfaces": [
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": true,
+      "notes": [
+        "L3 option; requires hi-allow:L3 on overlay/inspector."
+      ],
+      "tokens": [],
+      "risks": [
+        "L3 budget impact; avoid stacking blend layers."
+      ],
+      "examples": []
+    },
+    {
+      "id": "bloomFilterSoft",
+      "status": "planned",
+      "description": "Soft bloom via filter on a centralized layer.",
+      "category": "effect",
+      "tags": [
+        "filter",
+        "bloom",
+        "l3"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-bloom-filter=\"soft\"]",
+          "[data-bloom-filter=\"medium\"]"
+        ],
+        "attributes": [
+          "data-bloom-filter=\"soft|medium\""
+        ]
+      },
+      "costSignals": [
+        "filter"
+      ],
+      "estimatedLevel": "L3",
+      "scoreNotes": "Filter-based bloom is L3.",
+      "allowedSurfaces": [
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": true,
+      "notes": [
+        "L3 option; requires hi-allow:L3 on overlay/inspector."
+      ],
+      "tokens": [],
+      "risks": [
+        "L3 budget impact; avoid stacking filters."
+      ],
+      "examples": []
+    },
+    {
+      "id": "chartGridGlow",
+      "status": "planned",
+      "description": "Chart grid glow overlay.",
+      "category": "effect",
+      "tags": [
+        "chart",
+        "grid",
+        "glow"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-chart-grid=\"glow\"]"
+        ],
+        "attributes": [
+          "data-chart-grid=\"glow\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L2",
+      "scoreNotes": "Composited overlay for grid accent.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Static overlay for chart grids."
+      ],
+      "tokens": [],
+      "risks": [
+        "Keep grid legible."
+      ],
+      "examples": []
+    },
+    {
+      "id": "chartInk",
+      "status": "active",
+      "description": "Chart ink material tokens.",
+      "category": "material",
+      "tags": [
+        "chart",
+        "ink"
+      ],
+      "paths": [
+        "src/shared/render/materials/materials.css"
+      ],
+      "activation": {
+        "selectors": [
+          "[data-material=\"chartInk\"]"
+        ],
+        "attributes": [
+          "data-material=\"chartInk\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L0",
+      "scoreNotes": "Token-only material with no overlays.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Chart-specific token set."
+      ],
+      "tokens": [
+        "--hi-ink-contrast",
+        "--hi-glow-strength",
+        "--hi-grain-amount"
+      ],
+      "risks": [
+        "No inherent rendering risks; token-only."
+      ],
+      "examples": [
+        {
+          "path": "src/shared/render/materials/materials.css",
+          "line": 164,
+          "note": "Material tokens"
+        }
+      ]
+    },
+    {
+      "id": "chartInkBoost",
+      "status": "planned",
+      "description": "Boost chart ink contrast.",
+      "category": "effect",
+      "tags": [
+        "chart",
+        "contrast"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-chart-ink=\"boost\"]"
+        ],
+        "attributes": [
+          "data-chart-ink=\"boost\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L1",
+      "scoreNotes": "Static paint adjustment.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Use sparingly for dense charts."
+      ],
+      "tokens": [],
+      "risks": [
+        "Avoid clipping thin strokes."
+      ],
+      "examples": []
+    },
+    {
+      "id": "chartPeakEmphasis",
+      "status": "planned",
+      "description": "Emphasize chart peaks with static accent.",
+      "category": "effect",
+      "tags": [
+        "chart",
+        "emphasis"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-chart-peak=\"emphasis\"]"
+        ],
+        "attributes": [
+          "data-chart-peak=\"emphasis\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L1",
+      "scoreNotes": "Static accent for peaks.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Static accent for peak markers."
+      ],
+      "tokens": [],
+      "risks": [
+        "Avoid over-highlighting."
+      ],
+      "examples": []
+    },
+    {
+      "id": "chartSurfaceHighlight",
+      "status": "active",
+      "description": "Slow chart highlight sweep with blend.",
+      "category": "effect",
+      "tags": [
+        "animation",
+        "blend",
+        "chart"
+      ],
+      "paths": [
+        "src/shared/render/effects/chartSurfaceHighlight.css"
+      ],
+      "activation": {
+        "selectors": [
+          "[data-chart-highlight=\"on\"]",
+          "[data-chart-highlight=\"on\"]::after"
+        ],
+        "attributes": [
+          "data-chart-highlight=\"on\""
+        ]
+      },
+      "costSignals": [
+        "animation",
+        "mix-blend-mode"
+      ],
+      "estimatedLevel": "L4",
+      "scoreNotes": "Animation drives L4; mix-blend-mode is an L3 signal.",
+      "allowedSurfaces": [],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Wrapper opt-in via data-chart-highlight=\"on\"."
+      ],
+      "tokens": [
+        "--hi-chart-highlight-opacity",
+        "--hi-chart-highlight-period"
+      ],
+      "risks": [
+        "L4 animation is forbidden on all surfaces."
+      ],
+      "examples": [
+        {
+          "path": "src/shared/render/effects/chartSurfaceHighlight.css",
+          "line": 17,
+          "note": "Highlight pseudo-element"
+        },
+        {
+          "path": "src/slides/slide-02/ui/Slide02.tsx",
+          "line": 50,
+          "note": "Wrapper activation"
+        }
+      ]
+    },
+    {
+      "id": "cinematicDesatFilter",
+      "status": "planned",
+      "description": "Cinematic desaturation filter layer.",
+      "category": "effect",
+      "tags": [
+        "filter",
+        "cinematic",
+        "l3"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-cinematic-desat=\"on\"]"
+        ],
+        "attributes": [
+          "data-cinematic-desat=\"on\""
+        ]
+      },
+      "costSignals": [
+        "filter"
+      ],
+      "estimatedLevel": "L3",
+      "scoreNotes": "Filter is L3.",
+      "allowedSurfaces": [
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": true,
+      "notes": [
+        "L3 option; requires hi-allow:L3 on overlay/inspector."
+      ],
+      "tokens": [],
+      "risks": [
+        "L3 budget impact; avoid stacking filters."
+      ],
+      "examples": []
+    },
+    {
+      "id": "colorCastAtmosphere",
+      "status": "planned",
+      "description": "Atmospheric color cast overlay.",
+      "category": "effect",
+      "tags": [
+        "atmosphere",
+        "color"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-color-cast=\"cool\"]",
+          "[data-color-cast=\"warm\"]",
+          "[data-color-cast=\"neutral\"]"
+        ],
+        "attributes": [
+          "data-color-cast=\"cool|warm|neutral\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L1",
+      "scoreNotes": "Static color wash.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Static color wash for mood."
+      ],
+      "tokens": [],
+      "risks": [
+        "Keep UI colors consistent."
+      ],
+      "examples": []
+    },
+    {
+      "id": "contactOcclusion",
+      "status": "active",
+      "description": "Contact occlusion gradients for glass materials.",
+      "category": "effect",
+      "tags": [
+        "glass",
+        "occlusion"
+      ],
+      "paths": [
+        "src/shared/render/effects/contactOcclusion.css"
+      ],
+      "activation": {
+        "selectors": [
+          "[data-material^=\"glass\"]",
+          "[data-material^=\"glass\"]::after"
+        ],
+        "attributes": [
+          "data-material^=\"glass\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L2",
+      "scoreNotes": "Static gradient layers on pseudo-elements.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Applies automatically to any glass material prefix."
+      ],
+      "tokens": [
+        "--hi-contact-occlusion"
+      ],
+      "risks": [
+        "Stacks with other glass overlays; watch layer count."
+      ],
+      "examples": [
+        {
+          "path": "src/shared/render/effects/contactOcclusion.css",
+          "line": 16,
+          "note": "Glass material selector"
+        }
+      ]
+    },
+    {
+      "id": "contactShadowSoft",
+      "status": "planned",
+      "description": "Soft contact shadow under elements.",
+      "category": "effect",
+      "tags": [
+        "depth",
+        "shadow"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-contact-shadow=\"soft\"]"
+        ],
+        "attributes": [
+          "data-contact-shadow=\"soft\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L1",
+      "scoreNotes": "Small shadow only.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Small shadow only; keep radius modest."
+      ],
+      "tokens": [],
+      "risks": [
+        "Large blur upgrades to L3."
+      ],
+      "examples": []
+    },
+    {
+      "id": "contourOutlineStatic",
+      "status": "planned",
+      "description": "Static contour outline for separation.",
+      "category": "effect",
+      "tags": [
+        "outline",
+        "ux"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-contour-outline=\"on\"]"
+        ],
+        "attributes": [
+          "data-contour-outline=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L1",
+      "scoreNotes": "Static outline.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Use for subtle separation lines."
+      ],
+      "tokens": [],
+      "risks": [
+        "Avoid heavy stroke width."
+      ],
+      "examples": []
+    },
+    {
+      "id": "contrastLift",
+      "status": "planned",
+      "description": "Lift overall contrast slightly.",
+      "category": "material",
+      "tags": [
+        "contrast",
+        "material"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-contrast-lift=\"on\"]"
+        ],
+        "attributes": [
+          "data-contrast-lift=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L1",
+      "scoreNotes": "Static contrast tweak.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Static contrast tweak; no motion."
+      ],
+      "tokens": [],
+      "risks": [
+        "Check accessibility contrast."
+      ],
+      "examples": []
+    },
+    {
+      "id": "cornerBloomFake",
+      "status": "planned",
+      "description": "Corner bloom using gradients (no blur).",
+      "category": "effect",
+      "tags": [
+        "lighting",
+        "corner"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-corner-bloom=\"on\"]"
+        ],
+        "attributes": [
+          "data-corner-bloom=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L2",
+      "scoreNotes": "Gradient-only bloom.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Avoid real blur; use gradients only."
+      ],
+      "tokens": [],
+      "risks": [
+        "Do not use filter blur; keep L2."
+      ],
+      "examples": []
+    },
+    {
+      "id": "depthTintGradient",
+      "status": "planned",
+      "description": "Depth tint gradient for stack separation.",
+      "category": "effect",
+      "tags": [
+        "depth",
+        "gradient"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-depth-tint=\"on\"]"
+        ],
+        "attributes": [
+          "data-depth-tint=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L1",
+      "scoreNotes": "Static depth gradient.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Static gradient for depth cue."
+      ],
+      "tokens": [],
+      "risks": [
+        "Ensure content legibility."
+      ],
+      "examples": []
+    },
+    {
+      "id": "directionalGrain",
+      "status": "planned",
+      "description": "Directional grain texture overlay.",
+      "category": "material",
+      "tags": [
+        "material",
+        "grain"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-directional-grain=\"on\"]"
+        ],
+        "attributes": [
+          "data-directional-grain=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L2",
+      "scoreNotes": "Composited grain texture.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Static grain; align with material."
+      ],
+      "tokens": [],
+      "risks": [
+        "Keep texture subtle."
+      ],
+      "examples": []
+    },
+    {
+      "id": "directionalHighlight",
+      "status": "planned",
+      "description": "Directional highlight band.",
+      "category": "effect",
+      "tags": [
+        "lighting",
+        "highlight"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-directional-highlight=\"on\"]"
+        ],
+        "attributes": [
+          "data-directional-highlight=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L2",
+      "scoreNotes": "Composited highlight layer.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Static highlight; avoid animation."
+      ],
+      "tokens": [],
+      "risks": [
+        "Overuse can reduce contrast."
+      ],
+      "examples": []
+    },
+    {
+      "id": "dustDriftAnimated",
+      "status": "planned",
+      "description": "Animated dust drift overlay.",
+      "category": "effect",
+      "tags": [
+        "animation",
+        "atmosphere"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-dust-drift=\"on\"]"
+        ],
+        "attributes": [
+          "data-dust-drift=\"on\""
+        ]
+      },
+      "costSignals": [
+        "animation"
+      ],
+      "estimatedLevel": "L4",
+      "scoreNotes": "Animation is L4.",
+      "allowedSurfaces": [],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Animated drift; policy forbids L4."
+      ],
+      "tokens": [],
+      "risks": [
+        "Forbidden by policy (L4)."
+      ],
+      "examples": []
+    },
+    {
+      "id": "dustField",
+      "status": "active",
+      "description": "Micro dust field layered over the stage.",
+      "category": "effect",
+      "tags": [
+        "animation",
+        "stage"
+      ],
+      "paths": [
+        "src/shared/render/effects/dustField.css"
+      ],
+      "activation": {
+        "selectors": [
+          ".hi-stage::before",
+          ".hi-stage::after"
+        ],
+        "attributes": []
+      },
+      "costSignals": [
+        "animation"
+      ],
+      "estimatedLevel": "L4",
+      "scoreNotes": "Keyframe animation on pseudo-elements triggers L4.",
+      "allowedSurfaces": [],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Applied globally to .hi-stage when the stylesheet is loaded."
+      ],
+      "tokens": [
+        "--hi-dust-opacity-a",
+        "--hi-dust-opacity-b",
+        "--hi-dust-period-a",
+        "--hi-dust-period-b"
+      ],
+      "risks": [
+        "Continuous animation is L4 and forbidden on all surfaces."
+      ],
+      "examples": [
+        {
+          "path": "src/shared/render/effects/dustField.css",
+          "line": 15,
+          "note": ".hi-stage::before animation layer"
+        }
+      ]
+    },
+    {
+      "id": "dustOverlayStatic",
+      "status": "planned",
+      "description": "Static dust overlay (no motion).",
+      "category": "effect",
+      "tags": [
+        "atmosphere",
+        "dust"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-dust-overlay=\"on\"]"
+        ],
+        "attributes": [
+          "data-dust-overlay=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L1",
+      "scoreNotes": "Static texture overlay.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Static dust texture; no animation."
+      ],
+      "tokens": [],
+      "risks": [
+        "Keep opacity low."
+      ],
+      "examples": []
+    },
+    {
+      "id": "edgeGlowStatic",
+      "status": "planned",
+      "description": "Static edge glow without blur.",
+      "category": "effect",
+      "tags": [
+        "lighting",
+        "edge"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-edge-glow=\"on\"]"
+        ],
+        "attributes": [
+          "data-edge-glow=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L2",
+      "scoreNotes": "Composited glow layer.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Use gradients; avoid filter blur."
+      ],
+      "tokens": [],
+      "risks": [
+        "Avoid heavy glow."
+      ],
+      "examples": []
+    },
+    {
+      "id": "edgeLift",
+      "status": "planned",
+      "description": "Edge lift using subtle light band.",
+      "category": "effect",
+      "tags": [
+        "depth",
+        "edge"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-edge-lift=\"on\"]"
+        ],
+        "attributes": [
+          "data-edge-lift=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L1",
+      "scoreNotes": "Light composition band.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Small highlight to lift edges."
+      ],
+      "tokens": [],
+      "risks": [
+        "Do not over-brighten edges."
+      ],
+      "examples": []
+    },
+    {
+      "id": "edgeNoiseStatic",
+      "status": "planned",
+      "description": "Static edge noise texture.",
+      "category": "effect",
+      "tags": [
+        "texture",
+        "edge"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-edge-noise=\"on\"]"
+        ],
+        "attributes": [
+          "data-edge-noise=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L2",
+      "scoreNotes": "Composited edge texture.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Static noise for edges; keep subtle."
+      ],
+      "tokens": [],
+      "risks": [
+        "Avoid visible banding."
+      ],
+      "examples": []
+    },
+    {
+      "id": "examplePlannedEffect",
+      "status": "planned",
+      "description": "Example planned effect placeholder (safe to delete).",
+      "category": "effect",
+      "tags": [
+        "planned"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [],
+        "attributes": []
+      },
+      "costSignals": [],
+      "estimatedLevel": "L0",
+      "scoreNotes": "Planned entry template.",
+      "allowedSurfaces": [],
+      "allowMarkerRequired": false,
+      "notes": [
+        "This is a template planned entry."
+      ],
+      "tokens": [],
+      "risks": [],
+      "examples": []
+    },
+    {
+      "id": "filmGrainStatic",
+      "status": "planned",
+      "description": "Static film grain texture overlay.",
+      "category": "effect",
+      "tags": [
+        "atmosphere",
+        "grain"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-film-grain=\"on\"]"
+        ],
+        "attributes": [
+          "data-film-grain=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L1",
+      "scoreNotes": "Static texture overlay.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Static grain; avoid animation."
+      ],
+      "tokens": [],
+      "risks": [
+        "Keep grain subtle to avoid visual noise."
+      ],
+      "examples": []
+    },
+    {
+      "id": "focusEmphasis",
+      "status": "planned",
+      "description": "Focus emphasis ring or halo.",
+      "category": "effect",
+      "tags": [
+        "ux",
+        "focus"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-focus-emphasis=\"on\"]"
+        ],
+        "attributes": [
+          "data-focus-emphasis=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L1",
+      "scoreNotes": "Static focus emphasis.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Use for focus emphasis without motion."
+      ],
+      "tokens": [],
+      "risks": [
+        "Avoid overpowering primary content."
+      ],
+      "examples": []
+    },
+    {
+      "id": "frostedSurfaceFake",
+      "status": "planned",
+      "description": "Faux frosted surface using gradients.",
+      "category": "material",
+      "tags": [
+        "material",
+        "frost"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-frosted-surface=\"on\"]"
+        ],
+        "attributes": [
+          "data-frosted-surface=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L2",
+      "scoreNotes": "Gradient-based frost without blur.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Use gradients/noise; avoid filter or backdrop-filter."
+      ],
+      "tokens": [],
+      "risks": [
+        "Real blur would move this to L3."
+      ],
+      "examples": []
+    },
+    {
+      "id": "glassBlurLayerCentral",
+      "status": "planned",
+      "description": "Centralized glass blur layer.",
+      "category": "effect",
+      "tags": [
+        "blur",
+        "glass",
+        "l3"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-glass-blur=\"central\"]"
+        ],
+        "attributes": [
+          "data-glass-blur=\"central\""
+        ]
+      },
+      "costSignals": [
+        "backdrop-filter"
+      ],
+      "estimatedLevel": "L3",
+      "scoreNotes": "Backdrop blur is L3.",
+      "allowedSurfaces": [
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": true,
+      "notes": [
+        "L3 option; requires hi-allow:L3 on overlay/inspector."
+      ],
+      "tokens": [],
+      "risks": [
+        "Centralized Blur rule: only one backdrop-filter per surface; no per-panel blur."
+      ],
+      "examples": []
+    },
+    {
+      "id": "glassCold",
+      "status": "active",
+      "description": "Default glass material for panels.",
+      "category": "material",
+      "tags": [
+        "glass",
+        "panel"
+      ],
+      "paths": [
+        "src/shared/render/materials/materials.css"
+      ],
+      "activation": {
+        "selectors": [
+          "[data-material=\"glassCold\"]",
+          "[data-material=\"glassCold\"]::before",
+          "[data-material=\"glassCold\"]::after"
+        ],
+        "attributes": [
+          "data-material=\"glassCold\""
+        ]
+      },
+      "costSignals": [
+        "filter",
+        "mix-blend-mode"
+      ],
+      "estimatedLevel": "L3",
+      "scoreNotes": "Glass overlays use filter and mix-blend-mode.",
+      "allowedSurfaces": [
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": true,
+      "notes": [
+        "Default glass material; overlays render inside the panel."
+      ],
+      "tokens": [
+        "--hi-glass-opacity",
+        "--hi-glass-frost",
+        "--hi-rim-strength",
+        "--hi-spec-strength",
+        "--hi-grain-amount",
+        "--hi-glow-strength",
+        "--hi-glint-opacity",
+        "--hi-accent-cyan",
+        "--hi-accent-pink"
+      ],
+      "risks": [
+        "L3 blend and filter effects consume budget; overlay/inspector require hi-allow:L3."
+      ],
+      "examples": [
+        {
+          "path": "src/shared/render/materials/materials.css",
+          "line": 115,
+          "note": "Material tokens"
+        },
+        {
+          "path": "src/shared/ui/slide/SlideShell.tsx",
+          "line": 44,
+          "note": "Default material usage"
+        }
+      ]
+    },
+    {
+      "id": "glassCritical",
+      "status": "active",
+      "description": "Premium glass material for KPI panels.",
+      "category": "material",
+      "tags": [
+        "glass",
+        "kpi"
+      ],
+      "paths": [
+        "src/shared/render/materials/materials.css"
+      ],
+      "activation": {
+        "selectors": [
+          "[data-material=\"glassCritical\"]",
+          "[data-material=\"glassCritical\"]::before",
+          "[data-material=\"glassCritical\"]::after"
+        ],
+        "attributes": [
+          "data-material=\"glassCritical\""
+        ]
+      },
+      "costSignals": [
+        "filter",
+        "mix-blend-mode"
+      ],
+      "estimatedLevel": "L3",
+      "scoreNotes": "Glass overlays use filter and mix-blend-mode.",
+      "allowedSurfaces": [
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": true,
+      "notes": [
+        "Premium glass for KPI panels; pairs with glintSlow."
+      ],
+      "tokens": [
+        "--hi-glass-opacity",
+        "--hi-glass-frost",
+        "--hi-rim-strength",
+        "--hi-spec-strength",
+        "--hi-grain-amount",
+        "--hi-glow-strength",
+        "--hi-glint-opacity",
+        "--hi-accent-cyan",
+        "--hi-accent-pink"
+      ],
+      "risks": [
+        "L3 blend and filter effects consume budget; overlay/inspector require hi-allow:L3."
+      ],
+      "examples": [
+        {
+          "path": "src/shared/render/materials/materials.css",
+          "line": 133,
+          "note": "Material tokens"
+        },
+        {
+          "path": "src/slides/slide-01/ui/Slide01.tsx",
+          "line": 8,
+          "note": "Material usage"
+        }
+      ]
+    },
+    {
+      "id": "glassEdgeFrostFake",
+      "status": "planned",
+      "description": "Edge-only frost using gradients.",
+      "category": "material",
+      "tags": [
+        "glass",
+        "material"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-glass-edge-frost=\"on\"]"
+        ],
+        "attributes": [
+          "data-glass-edge-frost=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L2",
+      "scoreNotes": "Gradient-based edge frost.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Edge-only frost via gradients; avoid filter blur."
+      ],
+      "tokens": [],
+      "risks": [
+        "Backdrop-filter would raise to L3."
+      ],
+      "examples": []
+    },
+    {
+      "id": "glintSlow",
+      "status": "active",
+      "description": "Slow animated glint for glassCritical.",
+      "category": "effect",
+      "tags": [
+        "animation",
+        "glass",
+        "glint"
+      ],
+      "paths": [
+        "src/shared/render/effects/glintSlow.css"
+      ],
+      "activation": {
+        "selectors": [
+          "[data-material=\"glassCritical\"]",
+          "[data-material=\"glassCritical\"]::after",
+          "[data-material=\"glassCritical\"][data-glint=\"silver\"]",
+          "[data-material=\"glassCritical\"][data-glint=\"gold\"]",
+          "[data-material=\"glassCritical\"][data-glint=\"emerald\"]",
+          "[data-material=\"glassCritical\"][data-glint=\"cyan\"]",
+          "[data-material=\"glassCritical\"][data-glint=\"red\"]",
+          "[data-material=\"glassCritical\"][data-glint-blend=\"screen\"]"
+        ],
+        "attributes": [
+          "data-material=\"glassCritical\"",
+          "data-glint=\"silver|gold|emerald|cyan|red\"",
+          "data-glint-blend=\"screen\""
+        ]
+      },
+      "costSignals": [
+        "animation",
+        "filter",
+        "mix-blend-mode"
+      ],
+      "estimatedLevel": "L4",
+      "scoreNotes": "Animation drives L4; filter and mix-blend-mode add L3 cost.",
+      "allowedSurfaces": [],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Intended only for glassCritical with optional color variants."
+      ],
+      "tokens": [
+        "--hi-glint-opacity",
+        "--hi-glint-period",
+        "--hi-glint-rgb",
+        "--hi-glint-blend"
+      ],
+      "risks": [
+        "L4 animation is forbidden on all surfaces."
+      ],
+      "examples": [
+        {
+          "path": "src/shared/render/effects/glintSlow.css",
+          "line": 37,
+          "note": "Glint layer"
+        },
+        {
+          "path": "src/slides/slide-01/ui/Slide01.tsx",
+          "line": 8,
+          "note": "Activation with data-glint"
+        }
+      ]
+    },
+    {
+      "id": "glowHalo",
+      "status": "planned",
+      "description": "Static halo glow around elements.",
+      "category": "effect",
+      "tags": [
+        "optical",
+        "glow"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-glow-halo=\"on\"]"
+        ],
+        "attributes": [
+          "data-glow-halo=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L2",
+      "scoreNotes": "Gradient-only halo.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Use gradients; avoid filter blur."
+      ],
+      "tokens": [],
+      "risks": [
+        "Filter blur would move to L3."
+      ],
+      "examples": []
+    },
+    {
+      "id": "gridMaskSoft",
+      "status": "planned",
+      "description": "Soft grid mask to reduce clutter.",
+      "category": "effect",
+      "tags": [
+        "readability",
+        "mask"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-grid-mask=\"soft\"]"
+        ],
+        "attributes": [
+          "data-grid-mask=\"soft\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L1",
+      "scoreNotes": "Static mask layer.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Use for readability on dense grids."
+      ],
+      "tokens": [],
+      "risks": [
+        "Avoid hiding key data."
+      ],
+      "examples": []
+    },
+    {
+      "id": "hierarchyAccent",
+      "status": "planned",
+      "description": "Hierarchy accent for structured layouts.",
+      "category": "effect",
+      "tags": [
+        "ux",
+        "hierarchy"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-hierarchy-accent=\"on\"]"
+        ],
+        "attributes": [
+          "data-hierarchy-accent=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L1",
+      "scoreNotes": "Static hierarchy accent.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Use for hierarchy cues without motion."
+      ],
+      "tokens": [],
+      "risks": [
+        "Avoid competing accents."
+      ],
+      "examples": []
+    },
+    {
+      "id": "insetDepthCue",
+      "status": "planned",
+      "description": "Inset depth cue using gradients.",
+      "category": "effect",
+      "tags": [
+        "depth",
+        "inset"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-inset-depth=\"on\"]"
+        ],
+        "attributes": [
+          "data-inset-depth=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L2",
+      "scoreNotes": "Inset gradients for depth.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Inset depth via gradients; avoid blur."
+      ],
+      "tokens": [],
+      "risks": [
+        "Heavy blur would move to L3."
+      ],
+      "examples": []
+    },
+    {
+      "id": "layerElevationCue",
+      "status": "planned",
+      "description": "Layer elevation cue for stacked content.",
+      "category": "effect",
+      "tags": [
+        "depth",
+        "elevation"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-layer-elevation=\"low\"]",
+          "[data-layer-elevation=\"mid\"]",
+          "[data-layer-elevation=\"high\"]"
+        ],
+        "attributes": [
+          "data-layer-elevation=\"low|mid|high\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L2",
+      "scoreNotes": "Static elevation cues.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Use static cues for layer separation."
+      ],
+      "tokens": [],
+      "risks": [
+        "Large blur shadows would move to L3."
+      ],
+      "examples": []
+    },
+    {
+      "id": "lightLeak",
+      "status": "planned",
+      "description": "Static light leak overlay.",
+      "category": "effect",
+      "tags": [
+        "lighting",
+        "atmosphere"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-light-leak=\"on\"]"
+        ],
+        "attributes": [
+          "data-light-leak=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L2",
+      "scoreNotes": "Static light leak overlay.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Static light leak; avoid animation."
+      ],
+      "tokens": [],
+      "risks": [
+        "Avoid filter blur to keep L2."
+      ],
+      "examples": []
+    },
+    {
+      "id": "markerEmphasis",
+      "status": "planned",
+      "description": "Marker emphasis for key points.",
+      "category": "effect",
+      "tags": [
+        "ux",
+        "marker"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-marker-emphasis=\"on\"]"
+        ],
+        "attributes": [
+          "data-marker-emphasis=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L1",
+      "scoreNotes": "Static marker emphasis.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Use to highlight key markers."
+      ],
+      "tokens": [],
+      "risks": [
+        "Avoid over-saturation."
+      ],
+      "examples": []
+    },
+    {
+      "id": "materialTintGradient",
+      "status": "planned",
+      "description": "Material tint gradient options.",
+      "category": "material",
+      "tags": [
+        "material",
+        "tint"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-material-tint=\"cool\"]",
+          "[data-material-tint=\"warm\"]",
+          "[data-material-tint=\"neutral\"]"
+        ],
+        "attributes": [
+          "data-material-tint=\"cool|warm|neutral\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L1",
+      "scoreNotes": "Static tint gradient.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Static tint gradient for materials."
+      ],
+      "tokens": [],
+      "risks": [
+        "Keep contrast stable."
+      ],
+      "examples": []
+    },
+    {
+      "id": "metalFrame",
+      "status": "active",
+      "description": "Metal frame material tokens.",
+      "category": "material",
+      "tags": [
+        "frame",
+        "metal"
+      ],
+      "paths": [
+        "src/shared/render/materials/materials.css"
+      ],
+      "activation": {
+        "selectors": [
+          "[data-material=\"metalFrame\"]"
+        ],
+        "attributes": [
+          "data-material=\"metalFrame\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L0",
+      "scoreNotes": "Token-only material with no overlays.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Metal trim material; relies on consumer styles."
+      ],
+      "tokens": [
+        "--hi-rim-strength",
+        "--hi-spec-strength",
+        "--hi-glass-opacity",
+        "--hi-glass-frost",
+        "--hi-grain-amount",
+        "--hi-glow-strength",
+        "--hi-glint-opacity"
+      ],
+      "risks": [
+        "No inherent rendering risks; token-only."
+      ],
+      "examples": [
+        {
+          "path": "src/shared/render/materials/materials.css",
+          "line": 149,
+          "note": "Material tokens"
+        }
+      ]
+    },
+    {
+      "id": "microGrainStatic",
+      "status": "planned",
+      "description": "Micro grain texture for materials.",
+      "category": "material",
+      "tags": [
+        "material",
+        "grain"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-micro-grain=\"on\"]"
+        ],
+        "attributes": [
+          "data-micro-grain=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L1",
+      "scoreNotes": "Fine grain texture.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Fine grain for material finish."
+      ],
+      "tokens": [],
+      "risks": [
+        "Keep texture subtle to avoid aliasing."
+      ],
+      "examples": []
+    },
+    {
+      "id": "microScratches",
+      "status": "planned",
+      "description": "Micro scratch texture overlay.",
+      "category": "material",
+      "tags": [
+        "material",
+        "texture"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-micro-scratches=\"on\"]"
+        ],
+        "attributes": [
+          "data-micro-scratches=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L2",
+      "scoreNotes": "Static scratch texture.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Static scratch texture; avoid motion."
+      ],
+      "tokens": [],
+      "risks": [
+        "Avoid high-frequency aliasing."
+      ],
+      "examples": []
+    },
+    {
+      "id": "mirrorCine",
+      "status": "active",
+      "description": "Cinematic mirror reflection under a wrapper.",
+      "category": "effect",
+      "tags": [
+        "blur",
+        "reflection"
+      ],
+      "paths": [
+        "src/shared/render/effects/mirrorCine.css"
+      ],
+      "activation": {
+        "selectors": [
+          "[data-mirror=\"on\"]",
+          "[data-mirror=\"on\"]::after"
+        ],
+        "attributes": [
+          "data-mirror=\"on\""
+        ]
+      },
+      "costSignals": [
+        "filter"
+      ],
+      "estimatedLevel": "L3",
+      "scoreNotes": "Filter blur requires framebuffer read (L3).",
+      "allowedSurfaces": [
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": true,
+      "notes": [
+        "Wrapper-level reflection using background: inherit."
+      ],
+      "tokens": [
+        "--hi-mirror-strength",
+        "--hi-mirror-blur",
+        "--hi-mirror-fade"
+      ],
+      "risks": [
+        "Filter blur consumes L3 budget; overlay/inspector require hi-allow:L3."
+      ],
+      "examples": [
+        {
+          "path": "src/shared/render/effects/mirrorCine.css",
+          "line": 19,
+          "note": "Mirror pseudo-element"
+        }
+      ]
+    },
+    {
+      "id": "mutedContextLayer",
+      "status": "planned",
+      "description": "Muted context layer for de-emphasis.",
+      "category": "effect",
+      "tags": [
+        "ux",
+        "context"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-muted-context=\"on\"]"
+        ],
+        "attributes": [
+          "data-muted-context=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L1",
+      "scoreNotes": "Static context suppression.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Use to de-emphasize surrounding context."
+      ],
+      "tokens": [],
+      "risks": [
+        "Ensure key content remains readable."
+      ],
+      "examples": []
+    },
+    {
+      "id": "noiseCloudStatic",
+      "status": "planned",
+      "description": "Static noise cloud overlay.",
+      "category": "effect",
+      "tags": [
+        "atmosphere",
+        "noise"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-noise-cloud=\"on\"]"
+        ],
+        "attributes": [
+          "data-noise-cloud=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L2",
+      "scoreNotes": "Static noise texture.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Static noise cloud; no animation."
+      ],
+      "tokens": [],
+      "risks": [
+        "Keep opacity low."
+      ],
+      "examples": []
+    },
+    {
+      "id": "parallaxShiftTracked",
+      "status": "planned",
+      "description": "Tracked parallax shift for depth.",
+      "category": "effect",
+      "tags": [
+        "animation",
+        "parallax"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-parallax-shift=\"on\"]"
+        ],
+        "attributes": [
+          "data-parallax-shift=\"on\""
+        ]
+      },
+      "costSignals": [
+        "animation"
+      ],
+      "estimatedLevel": "L4",
+      "scoreNotes": "Tracked motion is L4.",
+      "allowedSurfaces": [],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Tracked parallax; policy forbids L4."
+      ],
+      "tokens": [],
+      "risks": [
+        "Forbidden by policy (L4)."
+      ],
+      "examples": []
+    },
+    {
+      "id": "pulseGlow",
+      "status": "planned",
+      "description": "Animated pulse glow effect.",
+      "category": "effect",
+      "tags": [
+        "animation",
+        "glow"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-pulse-glow=\"on\"]"
+        ],
+        "attributes": [
+          "data-pulse-glow=\"on\""
+        ]
+      },
+      "costSignals": [
+        "animation"
+      ],
+      "estimatedLevel": "L4",
+      "scoreNotes": "Animation is L4.",
+      "allowedSurfaces": [],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Animated glow; policy forbids L4."
+      ],
+      "tokens": [],
+      "risks": [
+        "Forbidden by policy (L4)."
+      ],
+      "examples": []
+    },
+    {
+      "id": "rimDynamic",
+      "status": "active",
+      "description": "Animated rim shimmer for glass materials.",
+      "category": "effect",
+      "tags": [
+        "animation",
+        "glass",
+        "rim"
+      ],
+      "paths": [
+        "src/shared/render/effects/rimDynamic.css"
+      ],
+      "activation": {
+        "selectors": [
+          "[data-material^=\"glass\"]",
+          "[data-material^=\"glass\"]::before"
+        ],
+        "attributes": [
+          "data-material^=\"glass\""
+        ]
+      },
+      "costSignals": [
+        "animation"
+      ],
+      "estimatedLevel": "L4",
+      "scoreNotes": "Dual keyframe animations trigger L4.",
+      "allowedSurfaces": [],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Applied to glass materials via prefix selector."
+      ],
+      "tokens": [
+        "--hi-rim-strength",
+        "--hi-rim-jitter-a",
+        "--hi-rim-jitter-b",
+        "--hi-rim-period-a",
+        "--hi-rim-period-b"
+      ],
+      "risks": [
+        "L4 animation is forbidden on all surfaces."
+      ],
+      "examples": [
+        {
+          "path": "src/shared/render/effects/rimDynamic.css",
+          "line": 21,
+          "note": "Rim pseudo-element"
+        }
+      ]
+    },
+    {
+      "id": "rimStatic",
+      "status": "planned",
+      "description": "Static rim light accent.",
+      "category": "effect",
+      "tags": [
+        "lighting",
+        "rim"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-rim-static=\"on\"]"
+        ],
+        "attributes": [
+          "data-rim-static=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L2",
+      "scoreNotes": "Static rim accent via gradients.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Use gradients; avoid filter blur."
+      ],
+      "tokens": [],
+      "risks": [
+        "Filter blur would move to L3."
+      ],
+      "examples": []
+    },
+    {
+      "id": "selectionHalo",
+      "status": "planned",
+      "description": "Selection halo for active items.",
+      "category": "effect",
+      "tags": [
+        "ux",
+        "selection"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-selection-halo=\"on\"]"
+        ],
+        "attributes": [
+          "data-selection-halo=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L1",
+      "scoreNotes": "Static selection halo.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Selection halo for chosen items."
+      ],
+      "tokens": [],
+      "risks": [
+        "Avoid conflict with focus rings."
+      ],
+      "examples": []
+    },
+    {
+      "id": "shimmerSweep",
+      "status": "planned",
+      "description": "Animated shimmer sweep across surfaces.",
+      "category": "effect",
+      "tags": [
+        "animation",
+        "shimmer"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-shimmer-sweep=\"on\"]"
+        ],
+        "attributes": [
+          "data-shimmer-sweep=\"on\""
+        ]
+      },
+      "costSignals": [
+        "animation"
+      ],
+      "estimatedLevel": "L4",
+      "scoreNotes": "Animation is L4.",
+      "allowedSurfaces": [],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Animated sweep; policy forbids L4."
+      ],
+      "tokens": [],
+      "risks": [
+        "Forbidden by policy (L4)."
+      ],
+      "examples": []
+    },
+    {
+      "id": "specularAccent",
+      "status": "planned",
+      "description": "Static specular accent highlight.",
+      "category": "effect",
+      "tags": [
+        "lighting",
+        "specular"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-specular-accent=\"on\"]"
+        ],
+        "attributes": [
+          "data-specular-accent=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L2",
+      "scoreNotes": "Static specular accent.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Static specular highlight; no motion."
+      ],
+      "tokens": [],
+      "risks": [
+        "Avoid over-bright highlights."
+      ],
+      "examples": []
+    },
+    {
+      "id": "temperatureShift",
+      "status": "planned",
+      "description": "Material temperature shift options.",
+      "category": "material",
+      "tags": [
+        "material",
+        "temperature"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-temperature-shift=\"cool\"]",
+          "[data-temperature-shift=\"warm\"]"
+        ],
+        "attributes": [
+          "data-temperature-shift=\"cool|warm\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L1",
+      "scoreNotes": "Static temperature shift.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Static temperature shift for materials."
+      ],
+      "tokens": [],
+      "risks": [
+        "Keep color balance stable."
+      ],
+      "examples": []
+    },
+    {
+      "id": "trackedOpacityFade",
+      "status": "planned",
+      "description": "Tracked opacity fade transition.",
+      "category": "effect",
+      "tags": [
+        "animation",
+        "tracked"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-tracked-opacity=\"fade\"]"
+        ],
+        "attributes": [
+          "data-tracked-opacity=\"fade\""
+        ]
+      },
+      "costSignals": [
+        "animation"
+      ],
+      "estimatedLevel": "L4",
+      "scoreNotes": "Tracked transition is L4.",
+      "allowedSurfaces": [],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Tracked opacity fade; policy forbids L4."
+      ],
+      "tokens": [],
+      "risks": [
+        "Forbidden by policy (L4)."
+      ],
+      "examples": []
+    },
+    {
+      "id": "trackedTransformSlide",
+      "status": "planned",
+      "description": "Tracked transform slide transition.",
+      "category": "effect",
+      "tags": [
+        "animation",
+        "tracked"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-tracked-transform=\"slide\"]"
+        ],
+        "attributes": [
+          "data-tracked-transform=\"slide\""
+        ]
+      },
+      "costSignals": [
+        "animation"
+      ],
+      "estimatedLevel": "L4",
+      "scoreNotes": "Tracked transform is L4.",
+      "allowedSurfaces": [],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Tracked transform slide; policy forbids L4."
+      ],
+      "tokens": [],
+      "risks": [
+        "Forbidden by policy (L4)."
+      ],
+      "examples": []
+    },
+    {
+      "id": "vignetteSoft",
+      "status": "planned",
+      "description": "Soft vignette via gradients.",
+      "category": "effect",
+      "tags": [
+        "atmosphere",
+        "vignette"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-vignette=\"soft\"]"
+        ],
+        "attributes": [
+          "data-vignette=\"soft\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L1",
+      "scoreNotes": "Static vignette gradient.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Subtle vignette via gradients; no blur."
+      ],
+      "tokens": [],
+      "risks": [
+        "Avoid heavy darkening."
+      ],
+      "examples": []
+    },
+    {
+      "id": "wearPatina",
+      "status": "planned",
+      "description": "Wear patina texture overlay.",
+      "category": "material",
+      "tags": [
+        "material",
+        "patina"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-wear-patina=\"on\"]"
+        ],
+        "attributes": [
+          "data-wear-patina=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L2",
+      "scoreNotes": "Static patina texture.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Static patina texture for materials."
+      ],
+      "tokens": [],
+      "risks": [
+        "Keep texture subtle."
+      ],
+      "examples": []
+    },
+    {
+      "id": "zFogFake",
+      "status": "planned",
+      "description": "Fake depth fog using gradients.",
+      "category": "effect",
+      "tags": [
+        "depth",
+        "fog"
+      ],
+      "paths": [],
+      "activation": {
+        "selectors": [
+          "[data-z-fog=\"on\"]"
+        ],
+        "attributes": [
+          "data-z-fog=\"on\""
+        ]
+      },
+      "costSignals": [],
+      "estimatedLevel": "L2",
+      "scoreNotes": "Gradient-based fog cue.",
+      "allowedSurfaces": [
+        "stage",
+        "ui",
+        "overlay",
+        "inspector"
+      ],
+      "allowMarkerRequired": false,
+      "notes": [
+        "Fake fog using gradients; avoid filter blur."
+      ],
+      "tokens": [],
+      "risks": [
+        "Filter blur would raise to L3."
+      ],
+      "examples": []
+    }
+  ]
+}
