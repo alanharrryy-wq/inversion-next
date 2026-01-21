@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "entries": [
+    {
+      "id": "examplePlannedEffect",
+      "status": "planned",
+      "description": "Example planned effect placeholder (safe to delete).",
+      "category": "effect",
+      "tags": ["planned"],
+      "paths": [],
+      "activation": { "selectors": [], "attributes": [] },
+      "costSignals": [],
+      "estimatedLevel": "L0",
+      "scoreNotes": "Planned entry template.",
+      "allowedSurfaces": [],
+      "allowMarkerRequired": false,
+      "notes": ["This is a template planned entry."],
+      "tokens": [],
+      "risks": [],
+      "examples": []
+    }
+  ]
+}
