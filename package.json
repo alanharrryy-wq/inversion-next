@@ -24,6 +24,8 @@
     "docs:effects": "node tools/docs/generate_effects_catalog.mjs",
     "docs:effects:check": "node tools/docs/generate_effects_catalog.mjs --check",
     "docs:effects:auto": "node tools/docs/generate_effects_catalog.mjs --auto",
+    "docs:effects:merge": "node tools/docs/generate_effects_catalog.mjs --merge-planned --write-merged",
+    "docs:effects:merge:check": "node tools/docs/generate_effects_catalog.mjs --merge-planned --require-planned --write-merged --check",
     "docs:effects:auto:check": "node tools/docs/generate_effects_catalog.mjs --auto --check"
   },
   "dependencies": {
