@@ -70,3 +70,13 @@ tools/git/run-all*.log
 # --- Hitech: ignore MCP outputs + backups ---
 **/tools/mcp/out/**
 **/*.bak*
+
+# --- Hitech: ensure slides are versioned (override any older ignore rules) ---
+!src/slides/
+!src/slides/**
+!src/slides/slide-*/
+!src/slides/slide-*/**
+
+# --- Hitech: still ignore artifacts/backups ---
+**/tools/mcp/out/**
+**/*.bak*

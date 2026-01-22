@@ -1,0 +1,43 @@
+{
+  "slide": {
+    "id": "slide-08",
+    "hash": "#/deck?s=8",
+    "urlContains": "localhost:5177/#/deck?s=8"
+  },
+  "reference": {
+    "png": "ref/reference.png"
+  },
+  "diff": {
+    "thresholdPct": 3.0,
+    "ignoreRegions": []
+  },
+  "selectors": {
+    "root": "[data-slide='slide-08']"
+  },
+  "labels": {
+    "root": "Slide Root"
+  },
+  "styleInject": {
+    "grid": { "enabled": true, "stepPx": 8, "opacity": 0.18 },
+    "outlines": { "enabled": true, "color": "rgba(0,255,255,0.55)", "widthPx": 1 },
+    "labelOverlay": { "enabled": true }
+  },
+  "measure": {
+    "elements": ["root"],
+    "computedStyles": [
+      "display",
+      "position",
+      "gap",
+      "padding",
+      "margin",
+      "fontSize",
+      "lineHeight",
+      "letterSpacing",
+      "borderRadius",
+      "boxShadow",
+      "backdropFilter",
+      "opacity"
+    ]
+  },
+  "states": []
+}
