@@ -67,3 +67,6 @@ tools/git/run-all*.log
 .mcp/
 **/tools/mcp/out/
 
+# --- Hitech: ignore MCP outputs + backups ---
+**/tools/mcp/out/**
+**/*.bak*
