@@ -1,17 +1,30 @@
-name: docs-effects
+name: Docs Effects Checks
 
 on:
+  pull_request:
+    paths:
+      - "tools/docs/generate_effects_catalog.mjs"
+      - "docs/architecture/**"
+      - "src/shared/render/**"
+      - "src/slides/**"
   push:
     branches: ["master"]
-  pull_request:
-    branches: ["master"]
+    paths:
+      - "tools/docs/generate_effects_catalog.mjs"
+      - "docs/architecture/**"
+      - "src/shared/render/**"
+      - "src/slides/**"
+
+concurrency:
+  group: docs-effects-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  effects-catalog:
+  docs-effects:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Setup Node
@@ -20,14 +33,14 @@ jobs:
           node-version: "20"
           cache: "npm"
 
-      - name: Install
+      - name: Install deps
         run: npm ci
 
-      - name: Check auto catalog
+      - name: Check auto catalog drift
         run: node tools/docs/generate_effects_catalog.mjs --auto --check
 
-      - name: Check docs catalog
+      - name: Check canonical docs catalog
         run: node tools/docs/generate_effects_catalog.mjs --check
 
-      - name: Check merge-planned output
+      - name: Check merge-planned output (require planned)
         run: node tools/docs/generate_effects_catalog.mjs --merge-planned --require-planned --write-merged --check
