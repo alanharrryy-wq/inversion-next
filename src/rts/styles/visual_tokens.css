@@ -136,5 +136,4 @@
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce){
-  .vs-motion{ transition: none !important; animation: none !important; }
 }

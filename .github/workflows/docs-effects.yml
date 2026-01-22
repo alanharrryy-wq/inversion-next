@@ -8,7 +8,6 @@ on:
       - "docs/architecture/**"
       - "src/shared/render/**"
       - "src/slides/**"
-      - ".github/workflows/docs-effects.yml"
   push:
     branches: ["master"]
     paths:
@@ -16,7 +15,6 @@ on:
       - "docs/architecture/**"
       - "src/shared/render/**"
       - "src/slides/**"
-      - ".github/workflows/docs-effects.yml"
 
 concurrency:
   group: docs-effects-${{ github.ref }}
@@ -25,7 +23,6 @@ concurrency:
 jobs:
   docs-effects:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -39,8 +36,7 @@ jobs:
       - name: Install deps
         run: npm ci
 
-      # 🔥 FAIL FAST: policy primero
-      - name: Lint render policy (fail fast)
+      - name: Lint render policy (fast fail)
         run: npm run lint:render
 
       - name: Check auto catalog drift

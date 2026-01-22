@@ -1,0 +1,22 @@
+{
+  "_comment": [
+    "Render policy scope config.",
+    "defaultScope: runtime or artifact (runtime keeps legacy behavior).",
+    "runtimeInclude: globs forced into runtime budgets.",
+    "runtimeExclude: globs treated as artifacts (excluded from runtime budgets).",
+    "artifactInclude: globs treated as artifacts.",
+    "artifactExclude: globs removed from artifact classification.",
+    "catalogMarkers: substrings searched in first markerScanBytes bytes (e.g. /* @render-catalog */ or // @render-catalog).",
+    "artifactViolations.reportNewViolations: set true to include artifacts in baseline/new-violation gating."
+  ],
+  "defaultScope": "runtime",
+  "runtimeInclude": ["src/app/**", "src/rts/**", "src/shared/**"],
+  "runtimeExclude": ["src/slides/**"],
+  "artifactInclude": ["src/slides/**", "tools/bundles/**", "hitech-templates/**"],
+  "artifactExclude": [],
+  "catalogMarkers": ["@render-catalog"],
+  "markerScanBytes": 4096,
+  "artifactViolations": {
+    "reportNewViolations": false
+  }
+}

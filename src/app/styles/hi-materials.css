@@ -210,8 +210,6 @@
     ),
     radial-gradient(1200px 700px at 50% 120%, rgba(0, 0, 0, 0.75), transparent 60%),
     linear-gradient(180deg, var(--hi-panel-core), var(--hi-panel-deep));
-  backdrop-filter: blur(var(--hi-blur));
-  -webkit-backdrop-filter: blur(var(--hi-blur));
   opacity: 1;
 }
 
@@ -406,7 +404,6 @@
   mix-blend-mode: screen;
   filter: blur(0.2px);
   pointer-events: none;
-  animation: hi-glints-driftA 16s ease-in-out infinite;
 }
 
 .hi-glints::before {
@@ -435,7 +432,6 @@
   background-position: -10% 6%, 8% -4%;
   mix-blend-mode: screen;
   pointer-events: none;
-  animation: hi-glints-driftB 18s ease-in-out infinite;
   animation-delay: -6s;
 }
 
@@ -444,29 +440,9 @@
   --hi-glint-b: 0.055;
 }
 
-@keyframes hi-glints-driftA {
-  0% {
-    background-position: 0% 0%, 10% -8%;
-  }
-  50% {
-    background-position: 6% -4%, 16% -2%;
-  }
-  100% {
-    background-position: 0% 0%, 10% -8%;
-  }
-}
 
-@keyframes hi-glints-driftB {
-  0% {
-    background-position: -10% 6%, 8% -4%;
-  }
-  50% {
-    background-position: -2% 2%, 14% -1%;
-  }
-  100% {
-    background-position: -10% 6%, 8% -4%;
-  }
-}
+
+
 
 /* =========================
    CHART GLASS FEEL
@@ -544,20 +520,9 @@
   background-size: 180px 180px, 240px 240px, 200px 200px, 260px 260px;
   background-position: 0 0, 24px 12px, -12px 28px, 0 0;
   opacity: 0.08;
-  animation: hi-chart-sparkle 18s linear infinite;
 }
 
-@keyframes hi-chart-sparkle {
-  0% {
-    background-position: 0 0, 24px 12px, -12px 28px, 0 0;
-  }
-  50% {
-    background-position: 18px -12px, 44px 22px, -28px 10px, 0 0;
-  }
-  100% {
-    background-position: 0 0, 24px 12px, -12px 28px, 0 0;
-  }
-}
+
 
 /* =========================
    MIRROR REFLECTION (bottom)
@@ -588,3 +553,4 @@
 .hi-dim {
   color: var(--hi-text-dim);
 }
+

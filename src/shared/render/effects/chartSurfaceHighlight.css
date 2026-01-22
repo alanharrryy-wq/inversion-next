@@ -34,13 +34,6 @@
   transform: translateX(-20%);
   mix-blend-mode: screen;
 
-  animation: hi-chartHighlight var(--hi-chart-highlight-period) ease-in-out infinite;
 }
 
-@keyframes hi-chartHighlight {
-  0%   { opacity: 0; transform: translateX(-20%); }
-  30%  { opacity: 0; }
-  55%  { opacity: 1; transform: translateX(0%); }
-  75%  { opacity: 0; transform: translateX(20%); }
-  100% { opacity: 0; transform: translateX(20%); }
-}
+

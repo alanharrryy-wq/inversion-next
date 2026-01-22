@@ -36,7 +36,6 @@
       transparent 40%
     );
 
-  animation: hi-dustA var(--hi-dust-period-a) linear infinite;
 }
 
 /* Capa B (desfasada) */
@@ -64,15 +63,6 @@
       transparent 40%
     );
 
-  animation: hi-dustB var(--hi-dust-period-b) linear infinite;
 }
 
-@keyframes hi-dustA {
-  from { transform: translateY(0px); }
-  to   { transform: translateY(-18px); }
-}
 
-@keyframes hi-dustB {
-  from { transform: translateY(0px); }
-  to   { transform: translateY(-26px); }
-}

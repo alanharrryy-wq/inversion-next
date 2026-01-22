@@ -57,7 +57,7 @@
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: var(--r-md);
-  backdrop-filter: blur(10px);
+backdrop-filter: none;
 }
 
 .h-glow{

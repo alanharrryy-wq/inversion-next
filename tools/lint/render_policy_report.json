@@ -1,28 +1,58 @@
 {
   "policyVersion": "1.0",
-  "generatedAt": "2026-01-18T05:06:31.263Z",
+  "generatedAt": "2026-01-22T03:36:34.431Z",
   "repoRoot": "F:\\repos\\inversion-next",
   "summary": {
-    "fileCount": 197,
-    "effectCount": 136,
-    "violationCount": 13
+    "fileCount": 200,
+    "effectCount": 91,
+    "violationCount": 5,
+    "runtimeFileCount": 122,
+    "artifactFileCount": 78,
+    "runtimeEffectCount": 83,
+    "artifactEffectCount": 8,
+    "runtimeViolationCount": 5,
+    "artifactViolationCount": 0
   },
   "surfaces": {
     "ui": {
-      "files": 186,
+      "files": 189,
+      "runtimeFiles": 111,
+      "artifactFiles": 78,
       "allowMarkerPresent": false,
       "inspectorMode": null,
-      "maxLevelUsed": "L4",
+      "maxLevelUsed": "L3",
       "maxLevelAllowed": "L3",
-      "l3Count": 57,
-      "l4Count": 24,
-      "score": 745,
-      "maxL3": 2,
+      "l3Count": 46,
+      "l4Count": 0,
+      "score": 350,
+      "maxL3": 55,
       "maxL4": 0,
-      "scoreBudget": 22
+      "scoreBudget": 400,
+      "artifactMaxLevelUsed": "L3",
+      "artifactL3Count": 4,
+      "artifactL4Count": 0,
+      "artifactScore": 34,
+      "scopes": {
+        "runtime": {
+          "files": 111,
+          "maxLevelUsed": "L3",
+          "l3Count": 46,
+          "l4Count": 0,
+          "score": 350
+        },
+        "artifacts": {
+          "files": 78,
+          "maxLevelUsed": "L3",
+          "l3Count": 4,
+          "l4Count": 0,
+          "score": 34
+        }
+      }
     },
     "inspector": {
       "files": 4,
+      "runtimeFiles": 4,
+      "artifactFiles": 0,
       "allowMarkerPresent": false,
       "inspectorMode": "safe",
       "maxLevelUsed": "L3",
@@ -32,10 +62,32 @@
       "score": 32,
       "maxL3": 0,
       "maxL4": 0,
-      "scoreBudget": 10
+      "scoreBudget": 10,
+      "artifactMaxLevelUsed": "L0",
+      "artifactL3Count": 0,
+      "artifactL4Count": 0,
+      "artifactScore": 0,
+      "scopes": {
+        "runtime": {
+          "files": 4,
+          "maxLevelUsed": "L3",
+          "l3Count": 4,
+          "l4Count": 0,
+          "score": 32
+        },
+        "artifacts": {
+          "files": 0,
+          "maxLevelUsed": "L0",
+          "l3Count": 0,
+          "l4Count": 0,
+          "score": 0
+        }
+      }
     },
     "stage": {
       "files": 7,
+      "runtimeFiles": 7,
+      "artifactFiles": 0,
       "allowMarkerPresent": false,
       "inspectorMode": null,
       "maxLevelUsed": "L2",
@@ -45,7 +97,27 @@
       "score": 3,
       "maxL3": 0,
       "maxL4": 0,
-      "scoreBudget": 10
+      "scoreBudget": 10,
+      "artifactMaxLevelUsed": "L0",
+      "artifactL3Count": 0,
+      "artifactL4Count": 0,
+      "artifactScore": 0,
+      "scopes": {
+        "runtime": {
+          "files": 7,
+          "maxLevelUsed": "L2",
+          "l3Count": 0,
+          "l4Count": 0,
+          "score": 3
+        },
+        "artifacts": {
+          "files": 0,
+          "maxLevelUsed": "L0",
+          "l3Count": 0,
+          "l4Count": 0,
+          "score": 0
+        }
+      }
     }
   },
   "effects": {
@@ -193,6 +265,9 @@
         "src\\shared\\render\\index.ts",
         "src\\shared\\render\\materials\\index.ts",
         "src\\shared\\render\\materials\\materials.css",
+        "src\\shared\\render\\policy\\policyHud.css",
+        "src\\shared\\render\\policy\\PolicyHud.tsx",
+        "src\\shared\\render\\policy\\policyHudStore.ts",
         "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
         "src\\shared\\render\\qa\\qa.stage.debug.css",
         "src\\shared\\render\\tokens\\index.ts",
@@ -248,7 +323,8 @@
           "line": 52,
           "detail": "backdropFilter: \"blur(10px)\",",
           "file": "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\devtools\\RtsDebugOverlay.tsx",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "artifact"
         },
         {
           "kind": "transform",
@@ -257,25 +333,18 @@
           "line": 75,
           "detail": "text-transform: uppercase;",
           "file": "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\styles\\visual_tokens.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "animation",
-          "level": "L4",
-          "score": 12,
-          "line": 145,
-          "detail": ".vs-motion{ transition: none !important; animation: none !important; }",
-          "file": "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\styles\\visual_tokens.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "artifact"
         },
         {
           "kind": "transform",
           "level": "L2",
           "score": 0,
-          "line": 159,
+          "line": 158,
           "detail": "text-transform: uppercase;",
           "file": "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\styles\\visual_tokens.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "artifact"
         },
         {
           "kind": "transform",
@@ -284,7 +353,8 @@
           "line": 93,
           "detail": "style={{ width: props.width, height: props.height, transform: \"scale(var(--hi-scale, 1))\" }}",
           "file": "scripts\\hitech-templates\\templates\\src\\shared\\ui\\slide\\SlideStage.tsx",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mix-blend-mode",
@@ -293,34 +363,18 @@
           "line": 70,
           "detail": "mix-blend-mode: overlay;",
           "file": "src\\app\\styles\\globals.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "backdrop-filter",
-          "level": "L3",
-          "score": 10,
-          "line": 89,
-          "detail": "backdrop-filter: blur(6px);",
-          "file": "src\\app\\styles\\globals.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "backdrop-filter",
-          "level": "L3",
-          "score": 10,
-          "line": 90,
-          "detail": "-webkit-backdrop-filter: blur(6px);",
-          "file": "src\\app\\styles\\globals.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "transform",
           "level": "L2",
           "score": 0,
-          "line": 108,
+          "line": 106,
           "detail": "transform: rotate(2deg);",
           "file": "src\\app\\styles\\globals.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "filter",
@@ -329,7 +383,8 @@
           "line": 106,
           "detail": "filter: blur(0.4px);",
           "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mix-blend-mode",
@@ -338,241 +393,168 @@
           "line": 119,
           "detail": "mix-blend-mode: overlay;",
           "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "backdrop-filter",
-          "level": "L3",
-          "score": 10,
-          "line": 213,
-          "detail": "backdrop-filter: blur(var(--hi-blur));",
-          "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "backdrop-filter",
-          "level": "L3",
-          "score": 10,
-          "line": 214,
-          "detail": "-webkit-backdrop-filter: blur(var(--hi-blur));",
-          "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mix-blend-mode",
           "level": "L3",
           "score": 6,
-          "line": 228,
+          "line": 226,
           "detail": "mix-blend-mode: soft-light;",
           "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mix-blend-mode",
           "level": "L3",
           "score": 6,
-          "line": 294,
+          "line": 292,
           "detail": "mix-blend-mode: screen;",
           "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mask",
           "level": "L2",
           "score": 0,
-          "line": 313,
+          "line": 311,
           "detail": "-webkit-mask:",
           "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mask",
           "level": "L2",
           "score": 0,
-          "line": 317,
+          "line": 315,
           "detail": "mask:",
           "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "filter",
           "level": "L3",
           "score": 8,
-          "line": 347,
+          "line": 345,
           "detail": "filter: blur(18px);",
           "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mix-blend-mode",
           "level": "L3",
           "score": 6,
-          "line": 360,
+          "line": 358,
           "detail": "mix-blend-mode: overlay;",
           "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mix-blend-mode",
           "level": "L3",
           "score": 6,
-          "line": 375,
+          "line": 373,
           "detail": "mix-blend-mode: screen;",
           "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mix-blend-mode",
           "level": "L3",
           "score": 6,
-          "line": 406,
+          "line": 404,
           "detail": "mix-blend-mode: screen;",
           "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "filter",
           "level": "L3",
           "score": 8,
-          "line": 407,
+          "line": 405,
           "detail": "filter: blur(0.2px);",
           "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "animation",
-          "level": "L4",
-          "score": 12,
-          "line": 409,
-          "detail": "animation: hi-glints-driftA 16s ease-in-out infinite;",
-          "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mix-blend-mode",
           "level": "L3",
           "score": 6,
-          "line": 436,
+          "line": 433,
           "detail": "mix-blend-mode: screen;",
           "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "animation",
-          "level": "L4",
-          "score": 12,
-          "line": 438,
-          "detail": "animation: hi-glints-driftB 18s ease-in-out infinite;",
-          "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "animation",
-          "level": "L4",
-          "score": 12,
-          "line": 447,
-          "detail": "@keyframes hi-glints-driftA {",
-          "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "animation",
-          "level": "L4",
-          "score": 12,
-          "line": 459,
-          "detail": "@keyframes hi-glints-driftB {",
-          "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "filter",
           "level": "L3",
           "score": 8,
-          "line": 505,
+          "line": 481,
           "detail": "filter:",
           "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mix-blend-mode",
           "level": "L3",
           "score": 6,
-          "line": 523,
+          "line": 499,
           "detail": "mix-blend-mode: screen;",
           "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mix-blend-mode",
           "level": "L3",
           "score": 6,
-          "line": 534,
+          "line": 510,
           "detail": "mix-blend-mode: overlay;",
           "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "animation",
-          "level": "L4",
-          "score": 12,
-          "line": 547,
-          "detail": "animation: hi-chart-sparkle 18s linear infinite;",
-          "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "animation",
-          "level": "L4",
-          "score": 12,
-          "line": 550,
-          "detail": "@keyframes hi-chart-sparkle {",
-          "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "filter",
           "level": "L3",
           "score": 8,
-          "line": 572,
+          "line": 537,
           "detail": "filter: blur(14px);",
           "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "transform",
           "level": "L2",
           "score": 0,
-          "line": 578,
+          "line": 543,
           "detail": "transform: scaleY(-1);",
           "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mask",
           "level": "L2",
           "score": 0,
-          "line": 584,
+          "line": 549,
           "detail": "mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent 70%);",
           "file": "src\\app\\styles\\hi-materials.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "requestAnimationFrame",
-          "level": "L4",
-          "score": 12,
-          "line": 104,
-          "detail": "raf = requestAnimationFrame(update)",
-          "file": "src\\components\\hi\\HiShaderBackground.tsx",
-          "surface": "ui"
-        },
-        {
-          "kind": "requestAnimationFrame",
-          "level": "L4",
-          "score": 12,
-          "line": 111,
-          "detail": "raf = requestAnimationFrame(update)",
-          "file": "src\\components\\hi\\HiShaderBackground.tsx",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "backdrop-filter",
@@ -581,7 +563,8 @@
           "line": 52,
           "detail": "backdropFilter: \"blur(10px)\",",
           "file": "src\\rts\\devtools\\RtsDebugOverlay.tsx",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "filter",
@@ -590,7 +573,8 @@
           "line": 83,
           "detail": "filter: blur(0px);",
           "file": "src\\rts\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mix-blend-mode",
@@ -599,106 +583,98 @@
           "line": 96,
           "detail": "mix-blend-mode: overlay;",
           "file": "src\\rts\\styles\\hi-materials.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "backdrop-filter",
-          "level": "L3",
-          "score": 10,
-          "line": 124,
-          "detail": "backdrop-filter: blur(var(--hi-blur)) saturate(1.15);",
-          "file": "src\\rts\\styles\\hi-materials.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "backdrop-filter",
-          "level": "L3",
-          "score": 10,
-          "line": 125,
-          "detail": "-webkit-backdrop-filter: blur(var(--hi-blur)) saturate(1.15);",
-          "file": "src\\rts\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "transform",
           "level": "L2",
           "score": 0,
-          "line": 126,
+          "line": 124,
           "detail": "transform: translateZ(0);",
           "file": "src\\rts\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mix-blend-mode",
           "level": "L3",
           "score": 6,
-          "line": 154,
+          "line": 152,
           "detail": "mix-blend-mode: screen;",
           "file": "src\\rts\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mix-blend-mode",
           "level": "L3",
           "score": 6,
-          "line": 175,
+          "line": 173,
           "detail": "mix-blend-mode: overlay;",
           "file": "src\\rts\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mask",
           "level": "L2",
           "score": 0,
-          "line": 207,
+          "line": 205,
           "detail": "-webkit-mask:",
           "file": "src\\rts\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mask",
           "level": "L2",
           "score": 0,
-          "line": 212,
+          "line": 210,
           "detail": "mask:",
           "file": "src\\rts\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mix-blend-mode",
           "level": "L3",
           "score": 6,
-          "line": 249,
+          "line": 247,
           "detail": "mix-blend-mode: overlay;",
           "file": "src\\rts\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mix-blend-mode",
           "level": "L3",
           "score": 6,
-          "line": 267,
+          "line": 265,
           "detail": "mix-blend-mode: screen;",
           "file": "src\\rts\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "filter",
           "level": "L3",
           "score": 8,
-          "line": 294,
+          "line": 292,
           "detail": "filter: saturate(0.92);",
           "file": "src\\rts\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "transform",
           "level": "L2",
           "score": 0,
-          "line": 298,
+          "line": 296,
           "detail": "transform: translateY(-1px);",
           "file": "src\\rts\\styles\\hi-materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "transform",
@@ -707,16 +683,8 @@
           "line": 68,
           "detail": "text-transform: uppercase;",
           "file": "src\\rts\\styles\\visual_tokens.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "animation",
-          "level": "L4",
-          "score": 12,
-          "line": 139,
-          "detail": ".vs-motion{ transition: none !important; animation: none !important; }",
-          "file": "src\\rts\\styles\\visual_tokens.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "transform",
@@ -725,7 +693,8 @@
           "line": 34,
           "detail": "transform: translateX(-20%);",
           "file": "src\\shared\\render\\effects\\chartSurfaceHighlight.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mix-blend-mode",
@@ -734,133 +703,8 @@
           "line": 35,
           "detail": "mix-blend-mode: screen;",
           "file": "src\\shared\\render\\effects\\chartSurfaceHighlight.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "animation",
-          "level": "L4",
-          "score": 12,
-          "line": 37,
-          "detail": "animation: hi-chartHighlight var(--hi-chart-highlight-period) ease-in-out infinite;",
-          "file": "src\\shared\\render\\effects\\chartSurfaceHighlight.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "animation",
-          "level": "L4",
-          "score": 12,
-          "line": 40,
-          "detail": "@keyframes hi-chartHighlight {",
-          "file": "src\\shared\\render\\effects\\chartSurfaceHighlight.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "transform",
-          "level": "L2",
-          "score": 0,
-          "line": 41,
-          "detail": "0%   { opacity: 0; transform: translateX(-20%); }",
-          "file": "src\\shared\\render\\effects\\chartSurfaceHighlight.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "transform",
-          "level": "L2",
-          "score": 0,
-          "line": 43,
-          "detail": "55%  { opacity: 1; transform: translateX(0%); }",
-          "file": "src\\shared\\render\\effects\\chartSurfaceHighlight.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "transform",
-          "level": "L2",
-          "score": 0,
-          "line": 44,
-          "detail": "75%  { opacity: 0; transform: translateX(20%); }",
-          "file": "src\\shared\\render\\effects\\chartSurfaceHighlight.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "transform",
-          "level": "L2",
-          "score": 0,
-          "line": 45,
-          "detail": "100% { opacity: 0; transform: translateX(20%); }",
-          "file": "src\\shared\\render\\effects\\chartSurfaceHighlight.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "animation",
-          "level": "L4",
-          "score": 12,
-          "line": 39,
-          "detail": "animation: hi-dustA var(--hi-dust-period-a) linear infinite;",
-          "file": "src\\shared\\render\\effects\\dustField.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "animation",
-          "level": "L4",
-          "score": 12,
-          "line": 67,
-          "detail": "animation: hi-dustB var(--hi-dust-period-b) linear infinite;",
-          "file": "src\\shared\\render\\effects\\dustField.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "animation",
-          "level": "L4",
-          "score": 12,
-          "line": 70,
-          "detail": "@keyframes hi-dustA {",
-          "file": "src\\shared\\render\\effects\\dustField.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "transform",
-          "level": "L2",
-          "score": 0,
-          "line": 71,
-          "detail": "from { transform: translateY(0px); }",
-          "file": "src\\shared\\render\\effects\\dustField.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "transform",
-          "level": "L2",
-          "score": 0,
-          "line": 72,
-          "detail": "to   { transform: translateY(-18px); }",
-          "file": "src\\shared\\render\\effects\\dustField.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "animation",
-          "level": "L4",
-          "score": 12,
-          "line": 75,
-          "detail": "@keyframes hi-dustB {",
-          "file": "src\\shared\\render\\effects\\dustField.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "transform",
-          "level": "L2",
-          "score": 0,
-          "line": 76,
-          "detail": "from { transform: translateY(0px); }",
-          "file": "src\\shared\\render\\effects\\dustField.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "transform",
-          "level": "L2",
-          "score": 0,
-          "line": 77,
-          "detail": "to   { transform: translateY(-26px); }",
-          "file": "src\\shared\\render\\effects\\dustField.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "filter",
@@ -869,7 +713,8 @@
           "line": 57,
           "detail": "filter: blur(0.7px);",
           "file": "src\\shared\\render\\effects\\glintSlow.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "transform",
@@ -878,7 +723,8 @@
           "line": 60,
           "detail": "transform: translateX(-18%) translateY(8%);",
           "file": "src\\shared\\render\\effects\\glintSlow.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mix-blend-mode",
@@ -887,70 +733,8 @@
           "line": 63,
           "detail": "mix-blend-mode: var(--hi-glint-blend);",
           "file": "src\\shared\\render\\effects\\glintSlow.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "animation",
-          "level": "L4",
-          "score": 12,
-          "line": 65,
-          "detail": "animation: hi-glintSlow var(--hi-glint-period) ease-in-out infinite;",
-          "file": "src\\shared\\render\\effects\\glintSlow.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "animation",
-          "level": "L4",
-          "score": 12,
-          "line": 69,
-          "detail": "@keyframes hi-glintSlow {",
-          "file": "src\\shared\\render\\effects\\glintSlow.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "transform",
-          "level": "L2",
-          "score": 0,
-          "line": 72,
-          "detail": "transform: translateX(-22%) translateY(10%);",
-          "file": "src\\shared\\render\\effects\\glintSlow.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "transform",
-          "level": "L2",
-          "score": 0,
-          "line": 79,
-          "detail": "transform: translateX(-2%) translateY(2%);",
-          "file": "src\\shared\\render\\effects\\glintSlow.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "transform",
-          "level": "L2",
-          "score": 0,
-          "line": 83,
-          "detail": "transform: translateX(6%) translateY(-2%);",
-          "file": "src\\shared\\render\\effects\\glintSlow.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "transform",
-          "level": "L2",
-          "score": 0,
-          "line": 87,
-          "detail": "transform: translateX(18%) translateY(-8%);",
-          "file": "src\\shared\\render\\effects\\glintSlow.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "transform",
-          "level": "L2",
-          "score": 0,
-          "line": 91,
-          "detail": "transform: translateX(22%) translateY(-10%);",
-          "file": "src\\shared\\render\\effects\\glintSlow.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "transform",
@@ -959,7 +743,8 @@
           "line": 33,
           "detail": "transform: scaleY(-1);",
           "file": "src\\shared\\render\\effects\\mirrorCine.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "filter",
@@ -968,7 +753,8 @@
           "line": 36,
           "detail": "filter: blur(var(--hi-mirror-blur));",
           "file": "src\\shared\\render\\effects\\mirrorCine.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mask",
@@ -977,34 +763,8 @@
           "line": 39,
           "detail": "mask-image: linear-gradient(",
           "file": "src\\shared\\render\\effects\\mirrorCine.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "animation",
-          "level": "L4",
-          "score": 12,
-          "line": 44,
-          "detail": "animation:",
-          "file": "src\\shared\\render\\effects\\rimDynamic.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "animation",
-          "level": "L4",
-          "score": 12,
-          "line": 50,
-          "detail": "@keyframes hi-rimJitterA {",
-          "file": "src\\shared\\render\\effects\\rimDynamic.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "animation",
-          "level": "L4",
-          "score": 12,
-          "line": 56,
-          "detail": "@keyframes hi-rimJitterB {",
-          "file": "src\\shared\\render\\effects\\rimDynamic.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mix-blend-mode",
@@ -1013,7 +773,8 @@
           "line": 73,
           "detail": "mix-blend-mode: screen;",
           "file": "src\\shared\\render\\materials\\materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "filter",
@@ -1022,7 +783,8 @@
           "line": 74,
           "detail": "filter: blur(0.25px) saturate(1.10);",
           "file": "src\\shared\\render\\materials\\materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "transform",
@@ -1031,7 +793,8 @@
           "line": 76,
           "detail": "transform: translateZ(0);",
           "file": "src\\shared\\render\\materials\\materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mix-blend-mode",
@@ -1040,7 +803,8 @@
           "line": 98,
           "detail": "mix-blend-mode: screen;",
           "file": "src\\shared\\render\\materials\\materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "filter",
@@ -1049,7 +813,8 @@
           "line": 99,
           "detail": "filter: blur(0.8px);",
           "file": "src\\shared\\render\\materials\\materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "transform",
@@ -1058,187 +823,158 @@
           "line": 101,
           "detail": "transform: rotate(-6deg) translateZ(0);",
           "file": "src\\shared\\render\\materials\\materials.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "backdrop-filter",
           "level": "L3",
           "score": 10,
-          "line": 42,
+          "line": 65,
           "detail": "backdropFilter: 10,",
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "filter",
           "level": "L3",
           "score": 8,
-          "line": 43,
+          "line": 66,
           "detail": "filter: 8,",
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mix-blend-mode",
           "level": "L3",
           "score": 6,
-          "line": 44,
+          "line": 67,
           "detail": "mixBlendMode: 6,",
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "surface": "ui"
-        },
-        {
-          "kind": "animation",
-          "level": "L4",
-          "score": 12,
-          "line": 46,
-          "detail": "animation: 12,",
-          "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "surface": "ui"
-        },
-        {
-          "kind": "will-change",
-          "level": "L2",
-          "score": 3,
-          "line": 48,
-          "detail": "willChange: 3,",
-          "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "backdrop-filter",
           "level": "L3",
           "score": 10,
-          "line": 188,
-          "detail": "const backdrop = style.getPropertyValue(\"backdrop-filter\") || (style as CSSStyleDeclaration).backdropFilter;",
+          "line": 270,
+          "detail": "style.getPropertyValue(\"backdrop-filter\") || (style as CSSStyleDeclaration).backdropFilter;",
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "backdrop-filter",
           "level": "L3",
           "score": 10,
-          "line": 189,
+          "line": 271,
           "detail": "const webkitBackdrop = style.getPropertyValue(\"-webkit-backdrop-filter\");",
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "backdrop-filter",
           "level": "L3",
           "score": 10,
-          "line": 192,
+          "line": 277,
           "detail": "const baseScore = SCORES.backdropFilter;",
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "backdrop-filter",
           "level": "L3",
           "score": 10,
-          "line": 194,
+          "line": 279,
           "detail": "addEffect({ element, label, level: \"L3\", score: adjustedScore, kind: \"backdrop-filter\" });",
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "backdrop-filter",
           "level": "L3",
           "score": 10,
-          "line": 217,
-          "detail": "const isL3 = normalized.includes(\"filter\") || normalized.includes(\"backdrop-filter\") || normalized.includes(\"blur\");",
+          "line": 304,
+          "detail": "normalized.includes(\"backdrop-filter\") ||",
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "backdrop-filter",
           "level": "L3",
           "score": 10,
-          "line": 246,
-          "detail": "if (style.getPropertyValue(\"backdrop-filter\") && style.getPropertyValue(\"backdrop-filter\") !== \"none\") {",
+          "line": 339,
+          "detail": "style.getPropertyValue(\"backdrop-filter\") &&",
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "backdrop-filter",
           "level": "L3",
           "score": 10,
-          "line": 247,
+          "line": 340,
+          "detail": "style.getPropertyValue(\"backdrop-filter\") !== \"none\"",
+          "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+          "surface": "ui",
+          "scope": "runtime"
+        },
+        {
+          "kind": "backdrop-filter",
+          "level": "L3",
+          "score": 10,
+          "line": 342,
           "detail": "addEffect({ element, label, level: \"L3\", score: SCORES.backdropFilter, kind: \"panel-blur\" });",
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "backdrop-filter",
           "level": "L3",
           "score": 10,
-          "line": 265,
+          "line": 360,
           "detail": "errors.push(`Centralized Blur Rule violated: ${backdropCount} backdrop-filters on ${surface}.`);",
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "surface": "ui"
-        },
-        {
-          "kind": "requestAnimationFrame",
-          "level": "L4",
-          "score": 12,
-          "line": 303,
-          "detail": "window.requestAnimationFrame(() => {",
-          "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "surface": "ui"
-        },
-        {
-          "kind": "animation",
-          "level": "L4",
-          "score": 12,
-          "line": 13,
-          "detail": "animation: none !important;",
-          "file": "src\\shared\\render\\qa\\qa.stage.debug.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "mix-blend-mode",
           "level": "L3",
           "score": 6,
-          "line": 55,
+          "line": 54,
           "detail": "mix-blend-mode: normal !important;",
           "file": "src\\shared\\render\\qa\\qa.stage.debug.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "filter",
           "level": "L3",
           "score": 8,
-          "line": 81,
+          "line": 80,
           "detail": "filter: none !important;",
           "file": "src\\shared\\render\\qa\\qa.stage.debug.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "backdrop-filter",
-          "level": "L3",
-          "score": 10,
-          "line": 82,
-          "detail": "backdrop-filter: none !important;",
-          "file": "src\\shared\\render\\qa\\qa.stage.debug.css",
-          "surface": "ui"
-        },
-        {
-          "kind": "backdrop-filter",
-          "level": "L3",
-          "score": 10,
-          "line": 83,
-          "detail": "-webkit-backdrop-filter: none !important;",
-          "file": "src\\shared\\render\\qa\\qa.stage.debug.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "backdrop-filter",
           "level": "L3",
           "score": 10,
           "line": 60,
-          "detail": "backdrop-filter: blur(10px);",
+          "detail": "backdrop-filter: none;",
           "file": "src\\shared\\theme\\tokens.css",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "transform",
@@ -1247,7 +983,8 @@
           "line": 67,
           "detail": "transform: `scale(${scale})`,",
           "file": "src\\shared\\ui\\slide\\SlideStage.tsx",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "runtime"
         },
         {
           "kind": "transform",
@@ -1256,7 +993,8 @@
           "line": 204,
           "detail": "transform=\"rotate(-90 60 60)\"",
           "file": "src\\slides\\slide-02\\ui\\Slide02.tsx",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "artifact"
         },
         {
           "kind": "filter",
@@ -1265,7 +1003,8 @@
           "line": 205,
           "detail": "filter=\"url(#softGlow)\"",
           "file": "src\\slides\\slide-02\\ui\\Slide02.tsx",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "artifact"
         },
         {
           "kind": "filter",
@@ -1274,7 +1013,8 @@
           "line": 429,
           "detail": "<path d={d} fill=\"none\" stroke={`rgba(255,255,255,${strokeA.toFixed(2)})`} strokeWidth=\"1.6\" filter=\"url(#hiSparkGlow)\" />",
           "file": "src\\slides\\slide-02\\ui\\Slide02.tsx",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "artifact"
         },
         {
           "kind": "transform",
@@ -1283,7 +1023,8 @@
           "line": 204,
           "detail": "transform=\"rotate(-90 60 60)\"",
           "file": "tools\\bundles\\slide02_full\\src\\slides\\slide-02\\ui\\Slide02.tsx",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "artifact"
         },
         {
           "kind": "filter",
@@ -1292,95 +1033,1055 @@
           "line": 205,
           "detail": "filter=\"url(#softGlow)\"",
           "file": "tools\\bundles\\slide02_full\\src\\slides\\slide-02\\ui\\Slide02.tsx",
-          "surface": "ui"
+          "surface": "ui",
+          "scope": "artifact"
         }
       ],
-      "maxLevelUsed": "L4",
-      "l3Count": 57,
-      "l4Count": 24,
-      "score": 745,
+      "maxLevelUsed": "L3",
+      "l3Count": 50,
+      "l4Count": 0,
+      "score": 384,
       "backdropOccurrences": [
         {
           "file": "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\devtools\\RtsDebugOverlay.tsx",
           "line": 52
         },
         {
-          "file": "src\\app\\styles\\globals.css",
-          "line": 89
-        },
-        {
-          "file": "src\\app\\styles\\globals.css",
-          "line": 90
-        },
-        {
-          "file": "src\\app\\styles\\hi-materials.css",
-          "line": 213
-        },
-        {
-          "file": "src\\app\\styles\\hi-materials.css",
-          "line": 214
-        },
-        {
           "file": "src\\rts\\devtools\\RtsDebugOverlay.tsx",
           "line": 52
         },
         {
-          "file": "src\\rts\\styles\\hi-materials.css",
-          "line": 124
-        },
-        {
-          "file": "src\\rts\\styles\\hi-materials.css",
-          "line": 125
+          "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+          "line": 65
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 42
+          "line": 270
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 188
+          "line": 271
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 189
+          "line": 277
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 192
+          "line": 279
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 194
+          "line": 304
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 217
+          "line": 339
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 246
+          "line": 340
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 247
+          "line": 342
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 265
-        },
-        {
-          "file": "src\\shared\\render\\qa\\qa.stage.debug.css",
-          "line": 82
-        },
-        {
-          "file": "src\\shared\\render\\qa\\qa.stage.debug.css",
-          "line": 83
+          "line": 360
         },
         {
           "file": "src\\shared\\theme\\tokens.css",
           "line": 60
         }
-      ]
+      ],
+      "scopes": {
+        "runtime": {
+          "files": [
+            "scripts\\hitech-templates\\templates\\inspector.css",
+            "scripts\\hitech-templates\\templates\\RenderInspectorHost.tsx",
+            "scripts\\hitech-templates\\templates\\RenderInspectorPanel.tsx",
+            "scripts\\hitech-templates\\templates\\src\\shared\\ui\\slide\\SlideStage.tsx",
+            "src\\app\\App.tsx",
+            "src\\app\\deck\\deck.constants.ts",
+            "src\\app\\deck\\deck.types.ts",
+            "src\\app\\deck\\slideRegistry.ts",
+            "src\\app\\providers\\Providers.tsx",
+            "src\\app\\styles\\globals.css",
+            "src\\app\\styles\\hi-materials.css",
+            "src\\App.tsx",
+            "src\\components\\hi\\HiFilters.tsx",
+            "src\\components\\hi\\HiGlints.tsx",
+            "src\\components\\hi\\HiShaderBackground.tsx",
+            "src\\components\\ui\\button.tsx",
+            "src\\components\\ui\\dialog.tsx",
+            "src\\entities\\slide\\index.ts",
+            "src\\entities\\slide\\lib\\slide.utils.ts",
+            "src\\entities\\slide\\model\\slide.types.ts",
+            "src\\index.css",
+            "src\\main.tsx",
+            "src\\pages\\deck\\DeckPage.tsx",
+            "src\\pages\\not-found\\NotFoundPage.tsx",
+            "src\\rts\\devtools\\RtsDebugOverlay.tsx",
+            "src\\rts\\foundation\\slots.ts",
+            "src\\rts\\foundation\\smartservices_types.ts",
+            "src\\rts\\foundation\\tokens.ts",
+            "src\\rts\\index.ts",
+            "src\\rts\\slides\\flagships\\FlagshipEvidenceTractionEngine.tsx",
+            "src\\rts\\slides\\flagships\\FlagshipRiskDecisionEngine.tsx",
+            "src\\rts\\slides\\flagships\\FlagshipsPreview.tsx",
+            "src\\rts\\slides\\flagships\\index.ts",
+            "src\\rts\\slides\\templates\\ComparisonTemplate.tsx",
+            "src\\rts\\slides\\templates\\DecisionGateTemplate.tsx",
+            "src\\rts\\slides\\templates\\EvidenceSummaryTemplate.tsx",
+            "src\\rts\\slides\\templates\\ExecutiveNarrativeTemplate.tsx",
+            "src\\rts\\slides\\templates\\index.ts",
+            "src\\rts\\slides\\templates\\KaizenA3Template.tsx",
+            "src\\rts\\slides\\templates\\KpiGridTemplate.tsx",
+            "src\\rts\\slides\\templates\\ProblemSolutionTemplate.tsx",
+            "src\\rts\\slides\\templates\\RiskRegisterTemplate.tsx",
+            "src\\rts\\slides\\templates\\SystemOverviewStaticTemplate.tsx",
+            "src\\rts\\slides\\templates\\TimelineTemplate.tsx",
+            "src\\rts\\styles\\a11y.css",
+            "src\\rts\\styles\\bridge_tokens.css",
+            "src\\rts\\styles\\hi-materials.css",
+            "src\\rts\\styles\\print.css",
+            "src\\rts\\styles\\rts.css",
+            "src\\rts\\styles\\visual_base.css",
+            "src\\rts\\styles\\visual_tokens.css",
+            "src\\rts\\styles\\visual_tokens.light.css",
+            "src\\rts\\styles\\visual_utilities.css",
+            "src\\rts\\system\\consistency_enforcer.ts",
+            "src\\rts\\system\\consistency_rules.ts",
+            "src\\rts\\system\\motion.ts",
+            "src\\rts\\ui\\Callout.tsx",
+            "src\\rts\\ui\\DecisionCard.tsx",
+            "src\\rts\\ui\\EvidenceCard.tsx",
+            "src\\rts\\ui\\ExecutiveHeader.tsx",
+            "src\\rts\\ui\\ExecutiveNav.tsx",
+            "src\\rts\\ui\\KeyValue.tsx",
+            "src\\rts\\ui\\KpiCard.tsx",
+            "src\\rts\\ui\\Panel.tsx",
+            "src\\rts\\ui\\RiskCard.tsx",
+            "src\\rts\\ui\\Rule.tsx",
+            "src\\rts\\ui\\SlideFrame.tsx",
+            "src\\rts\\ui\\Stack.tsx",
+            "src\\rts\\ui\\StatusPill.tsx",
+            "src\\rts\\ui\\Text.tsx",
+            "src\\rts\\utils\\cn.ts",
+            "src\\rts\\utils\\hashQuery.ts",
+            "src\\shared\\config\\constants.ts",
+            "src\\shared\\config\\env.ts",
+            "src\\shared\\hooks\\useHiGrain.ts",
+            "src\\shared\\lib\\cn.ts",
+            "src\\shared\\lib\\format.ts",
+            "src\\shared\\lib\\hotkeys.ts",
+            "src\\shared\\mocks\\browser.ts",
+            "src\\shared\\mocks\\data.ts",
+            "src\\shared\\mocks\\handlers.ts",
+            "src\\shared\\mocks\\index.ts",
+            "src\\shared\\render\\composition\\index.ts",
+            "src\\shared\\render\\effects\\chartSurfaceHighlight.css",
+            "src\\shared\\render\\effects\\contactOcclusion.css",
+            "src\\shared\\render\\effects\\dustField.css",
+            "src\\shared\\render\\effects\\glintSlow.css",
+            "src\\shared\\render\\effects\\index.ts",
+            "src\\shared\\render\\effects\\mirrorCine.css",
+            "src\\shared\\render\\effects\\rimDynamic.css",
+            "src\\shared\\render\\index.ts",
+            "src\\shared\\render\\materials\\index.ts",
+            "src\\shared\\render\\materials\\materials.css",
+            "src\\shared\\render\\policy\\policyHud.css",
+            "src\\shared\\render\\policy\\PolicyHud.tsx",
+            "src\\shared\\render\\policy\\policyHudStore.ts",
+            "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+            "src\\shared\\render\\qa\\qa.stage.debug.css",
+            "src\\shared\\render\\tokens\\index.ts",
+            "src\\shared\\render\\tokens\\render.tokens.css",
+            "src\\shared\\theme\\tokens.css",
+            "src\\shared\\ui\\command-palette\\CommandPalette.tsx",
+            "src\\shared\\ui\\slide\\index.ts",
+            "src\\shared\\ui\\slide\\SlideBlocks.tsx",
+            "src\\shared\\ui\\slide\\SlideShell.tsx",
+            "src\\shared\\ui\\slide\\SlideStage.tsx",
+            "src\\tests\\setup.ts",
+            "src\\vite-env.d.ts",
+            "src\\widgets\\slide-nav\\index.ts",
+            "src\\widgets\\slide-nav\\ui\\SlideNav.tsx",
+            "vite.config.ts"
+          ],
+          "effects": [
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 93,
+              "detail": "style={{ width: props.width, height: props.height, transform: \"scale(var(--hi-scale, 1))\" }}",
+              "file": "scripts\\hitech-templates\\templates\\src\\shared\\ui\\slide\\SlideStage.tsx",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mix-blend-mode",
+              "level": "L3",
+              "score": 6,
+              "line": 70,
+              "detail": "mix-blend-mode: overlay;",
+              "file": "src\\app\\styles\\globals.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 106,
+              "detail": "transform: rotate(2deg);",
+              "file": "src\\app\\styles\\globals.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "filter",
+              "level": "L3",
+              "score": 8,
+              "line": 106,
+              "detail": "filter: blur(0.4px);",
+              "file": "src\\app\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mix-blend-mode",
+              "level": "L3",
+              "score": 6,
+              "line": 119,
+              "detail": "mix-blend-mode: overlay;",
+              "file": "src\\app\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mix-blend-mode",
+              "level": "L3",
+              "score": 6,
+              "line": 226,
+              "detail": "mix-blend-mode: soft-light;",
+              "file": "src\\app\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mix-blend-mode",
+              "level": "L3",
+              "score": 6,
+              "line": 292,
+              "detail": "mix-blend-mode: screen;",
+              "file": "src\\app\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mask",
+              "level": "L2",
+              "score": 0,
+              "line": 311,
+              "detail": "-webkit-mask:",
+              "file": "src\\app\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mask",
+              "level": "L2",
+              "score": 0,
+              "line": 315,
+              "detail": "mask:",
+              "file": "src\\app\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "filter",
+              "level": "L3",
+              "score": 8,
+              "line": 345,
+              "detail": "filter: blur(18px);",
+              "file": "src\\app\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mix-blend-mode",
+              "level": "L3",
+              "score": 6,
+              "line": 358,
+              "detail": "mix-blend-mode: overlay;",
+              "file": "src\\app\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mix-blend-mode",
+              "level": "L3",
+              "score": 6,
+              "line": 373,
+              "detail": "mix-blend-mode: screen;",
+              "file": "src\\app\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mix-blend-mode",
+              "level": "L3",
+              "score": 6,
+              "line": 404,
+              "detail": "mix-blend-mode: screen;",
+              "file": "src\\app\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "filter",
+              "level": "L3",
+              "score": 8,
+              "line": 405,
+              "detail": "filter: blur(0.2px);",
+              "file": "src\\app\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mix-blend-mode",
+              "level": "L3",
+              "score": 6,
+              "line": 433,
+              "detail": "mix-blend-mode: screen;",
+              "file": "src\\app\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "filter",
+              "level": "L3",
+              "score": 8,
+              "line": 481,
+              "detail": "filter:",
+              "file": "src\\app\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mix-blend-mode",
+              "level": "L3",
+              "score": 6,
+              "line": 499,
+              "detail": "mix-blend-mode: screen;",
+              "file": "src\\app\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mix-blend-mode",
+              "level": "L3",
+              "score": 6,
+              "line": 510,
+              "detail": "mix-blend-mode: overlay;",
+              "file": "src\\app\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "filter",
+              "level": "L3",
+              "score": 8,
+              "line": 537,
+              "detail": "filter: blur(14px);",
+              "file": "src\\app\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 543,
+              "detail": "transform: scaleY(-1);",
+              "file": "src\\app\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mask",
+              "level": "L2",
+              "score": 0,
+              "line": 549,
+              "detail": "mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent 70%);",
+              "file": "src\\app\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "backdrop-filter",
+              "level": "L3",
+              "score": 10,
+              "line": 52,
+              "detail": "backdropFilter: \"blur(10px)\",",
+              "file": "src\\rts\\devtools\\RtsDebugOverlay.tsx",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "filter",
+              "level": "L3",
+              "score": 8,
+              "line": 83,
+              "detail": "filter: blur(0px);",
+              "file": "src\\rts\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mix-blend-mode",
+              "level": "L3",
+              "score": 6,
+              "line": 96,
+              "detail": "mix-blend-mode: overlay;",
+              "file": "src\\rts\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 124,
+              "detail": "transform: translateZ(0);",
+              "file": "src\\rts\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mix-blend-mode",
+              "level": "L3",
+              "score": 6,
+              "line": 152,
+              "detail": "mix-blend-mode: screen;",
+              "file": "src\\rts\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mix-blend-mode",
+              "level": "L3",
+              "score": 6,
+              "line": 173,
+              "detail": "mix-blend-mode: overlay;",
+              "file": "src\\rts\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mask",
+              "level": "L2",
+              "score": 0,
+              "line": 205,
+              "detail": "-webkit-mask:",
+              "file": "src\\rts\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mask",
+              "level": "L2",
+              "score": 0,
+              "line": 210,
+              "detail": "mask:",
+              "file": "src\\rts\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mix-blend-mode",
+              "level": "L3",
+              "score": 6,
+              "line": 247,
+              "detail": "mix-blend-mode: overlay;",
+              "file": "src\\rts\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mix-blend-mode",
+              "level": "L3",
+              "score": 6,
+              "line": 265,
+              "detail": "mix-blend-mode: screen;",
+              "file": "src\\rts\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "filter",
+              "level": "L3",
+              "score": 8,
+              "line": 292,
+              "detail": "filter: saturate(0.92);",
+              "file": "src\\rts\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 296,
+              "detail": "transform: translateY(-1px);",
+              "file": "src\\rts\\styles\\hi-materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 68,
+              "detail": "text-transform: uppercase;",
+              "file": "src\\rts\\styles\\visual_tokens.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 34,
+              "detail": "transform: translateX(-20%);",
+              "file": "src\\shared\\render\\effects\\chartSurfaceHighlight.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mix-blend-mode",
+              "level": "L3",
+              "score": 6,
+              "line": 35,
+              "detail": "mix-blend-mode: screen;",
+              "file": "src\\shared\\render\\effects\\chartSurfaceHighlight.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "filter",
+              "level": "L3",
+              "score": 8,
+              "line": 57,
+              "detail": "filter: blur(0.7px);",
+              "file": "src\\shared\\render\\effects\\glintSlow.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 60,
+              "detail": "transform: translateX(-18%) translateY(8%);",
+              "file": "src\\shared\\render\\effects\\glintSlow.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mix-blend-mode",
+              "level": "L3",
+              "score": 6,
+              "line": 63,
+              "detail": "mix-blend-mode: var(--hi-glint-blend);",
+              "file": "src\\shared\\render\\effects\\glintSlow.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 33,
+              "detail": "transform: scaleY(-1);",
+              "file": "src\\shared\\render\\effects\\mirrorCine.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "filter",
+              "level": "L3",
+              "score": 8,
+              "line": 36,
+              "detail": "filter: blur(var(--hi-mirror-blur));",
+              "file": "src\\shared\\render\\effects\\mirrorCine.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mask",
+              "level": "L2",
+              "score": 0,
+              "line": 39,
+              "detail": "mask-image: linear-gradient(",
+              "file": "src\\shared\\render\\effects\\mirrorCine.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mix-blend-mode",
+              "level": "L3",
+              "score": 6,
+              "line": 73,
+              "detail": "mix-blend-mode: screen;",
+              "file": "src\\shared\\render\\materials\\materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "filter",
+              "level": "L3",
+              "score": 8,
+              "line": 74,
+              "detail": "filter: blur(0.25px) saturate(1.10);",
+              "file": "src\\shared\\render\\materials\\materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 76,
+              "detail": "transform: translateZ(0);",
+              "file": "src\\shared\\render\\materials\\materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mix-blend-mode",
+              "level": "L3",
+              "score": 6,
+              "line": 98,
+              "detail": "mix-blend-mode: screen;",
+              "file": "src\\shared\\render\\materials\\materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "filter",
+              "level": "L3",
+              "score": 8,
+              "line": 99,
+              "detail": "filter: blur(0.8px);",
+              "file": "src\\shared\\render\\materials\\materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 101,
+              "detail": "transform: rotate(-6deg) translateZ(0);",
+              "file": "src\\shared\\render\\materials\\materials.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "backdrop-filter",
+              "level": "L3",
+              "score": 10,
+              "line": 65,
+              "detail": "backdropFilter: 10,",
+              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "filter",
+              "level": "L3",
+              "score": 8,
+              "line": 66,
+              "detail": "filter: 8,",
+              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mix-blend-mode",
+              "level": "L3",
+              "score": 6,
+              "line": 67,
+              "detail": "mixBlendMode: 6,",
+              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "backdrop-filter",
+              "level": "L3",
+              "score": 10,
+              "line": 270,
+              "detail": "style.getPropertyValue(\"backdrop-filter\") || (style as CSSStyleDeclaration).backdropFilter;",
+              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "backdrop-filter",
+              "level": "L3",
+              "score": 10,
+              "line": 271,
+              "detail": "const webkitBackdrop = style.getPropertyValue(\"-webkit-backdrop-filter\");",
+              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "backdrop-filter",
+              "level": "L3",
+              "score": 10,
+              "line": 277,
+              "detail": "const baseScore = SCORES.backdropFilter;",
+              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "backdrop-filter",
+              "level": "L3",
+              "score": 10,
+              "line": 279,
+              "detail": "addEffect({ element, label, level: \"L3\", score: adjustedScore, kind: \"backdrop-filter\" });",
+              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "backdrop-filter",
+              "level": "L3",
+              "score": 10,
+              "line": 304,
+              "detail": "normalized.includes(\"backdrop-filter\") ||",
+              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "backdrop-filter",
+              "level": "L3",
+              "score": 10,
+              "line": 339,
+              "detail": "style.getPropertyValue(\"backdrop-filter\") &&",
+              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "backdrop-filter",
+              "level": "L3",
+              "score": 10,
+              "line": 340,
+              "detail": "style.getPropertyValue(\"backdrop-filter\") !== \"none\"",
+              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "backdrop-filter",
+              "level": "L3",
+              "score": 10,
+              "line": 342,
+              "detail": "addEffect({ element, label, level: \"L3\", score: SCORES.backdropFilter, kind: \"panel-blur\" });",
+              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "backdrop-filter",
+              "level": "L3",
+              "score": 10,
+              "line": 360,
+              "detail": "errors.push(`Centralized Blur Rule violated: ${backdropCount} backdrop-filters on ${surface}.`);",
+              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "mix-blend-mode",
+              "level": "L3",
+              "score": 6,
+              "line": 54,
+              "detail": "mix-blend-mode: normal !important;",
+              "file": "src\\shared\\render\\qa\\qa.stage.debug.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "filter",
+              "level": "L3",
+              "score": 8,
+              "line": 80,
+              "detail": "filter: none !important;",
+              "file": "src\\shared\\render\\qa\\qa.stage.debug.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "backdrop-filter",
+              "level": "L3",
+              "score": 10,
+              "line": 60,
+              "detail": "backdrop-filter: none;",
+              "file": "src\\shared\\theme\\tokens.css",
+              "surface": "ui",
+              "scope": "runtime"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 67,
+              "detail": "transform: `scale(${scale})`,",
+              "file": "src\\shared\\ui\\slide\\SlideStage.tsx",
+              "surface": "ui",
+              "scope": "runtime"
+            }
+          ],
+          "maxLevelUsed": "L3",
+          "l3Count": 46,
+          "l4Count": 0,
+          "score": 350,
+          "backdropOccurrences": [
+            {
+              "file": "src\\rts\\devtools\\RtsDebugOverlay.tsx",
+              "line": 52
+            },
+            {
+              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+              "line": 65
+            },
+            {
+              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+              "line": 270
+            },
+            {
+              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+              "line": 271
+            },
+            {
+              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+              "line": 277
+            },
+            {
+              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+              "line": 279
+            },
+            {
+              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+              "line": 304
+            },
+            {
+              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+              "line": 339
+            },
+            {
+              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+              "line": 340
+            },
+            {
+              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+              "line": 342
+            },
+            {
+              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+              "line": 360
+            },
+            {
+              "file": "src\\shared\\theme\\tokens.css",
+              "line": 60
+            }
+          ]
+        },
+        "artifacts": {
+          "files": [
+            "hitech-templates\\templates\\rts-block2-v2\\src\\app\\deck\\slideRegistry.ts",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\app\\providers\\Providers.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\index.css",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\devtools\\RtsDebugOverlay.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\foundation\\slots.ts",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\foundation\\smartservices_types.ts",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\foundation\\tokens.ts",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\index.ts",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\slides\\templates\\ComparisonTemplate.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\slides\\templates\\DecisionGateTemplate.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\slides\\templates\\EvidenceSummaryTemplate.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\slides\\templates\\ExecutiveNarrativeTemplate.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\slides\\templates\\index.ts",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\slides\\templates\\KaizenA3Template.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\slides\\templates\\KpiGridTemplate.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\slides\\templates\\ProblemSolutionTemplate.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\slides\\templates\\RiskRegisterTemplate.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\slides\\templates\\SystemOverviewStaticTemplate.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\slides\\templates\\TimelineTemplate.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\styles\\a11y.css",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\styles\\bridge_tokens.css",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\styles\\print.css",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\styles\\rts.css",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\styles\\visual_base.css",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\styles\\visual_tokens.css",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\styles\\visual_tokens.light.css",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\styles\\visual_utilities.css",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\system\\consistency_enforcer.ts",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\system\\consistency_rules.ts",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\system\\motion.ts",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\ui\\Callout.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\ui\\DecisionCard.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\ui\\EvidenceCard.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\ui\\ExecutiveHeader.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\ui\\ExecutiveNav.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\ui\\KeyValue.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\ui\\KpiCard.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\ui\\Panel.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\ui\\RiskCard.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\ui\\Rule.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\ui\\SlideFrame.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\ui\\Stack.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\ui\\StatusPill.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\ui\\Text.tsx",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\utils\\cn.ts",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\utils\\hashQuery.ts",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\slides\\slide-02\\index.ts",
+            "hitech-templates\\templates\\rts-block2-v2\\src\\slides\\slide-02\\ui\\Slide02.tsx",
+            "src\\slides\\index.ts",
+            "src\\slides\\slide-00\\index.ts",
+            "src\\slides\\slide-00\\ui\\Slide00.tsx",
+            "src\\slides\\slide-01\\index.ts",
+            "src\\slides\\slide-01\\ui\\Slide01.tsx",
+            "src\\slides\\slide-02\\data\\slide02.adapter.ts",
+            "src\\slides\\slide-02\\data\\slide02.contract.ts",
+            "src\\slides\\slide-02\\data\\slide02.mock.ts",
+            "src\\slides\\slide-02\\data\\slide02.seed.ts",
+            "src\\slides\\slide-02\\index.ts",
+            "src\\slides\\slide-02\\ui\\Slide02.tsx",
+            "src\\slides\\slide-03\\index.ts",
+            "src\\slides\\slide-03\\ui\\Slide03.tsx",
+            "src\\slides\\slide-04\\index.ts",
+            "src\\slides\\slide-04\\ui\\Slide04.tsx",
+            "src\\slides\\slide-05\\index.ts",
+            "src\\slides\\slide-05\\ui\\Slide05.tsx",
+            "src\\slides\\slide-06\\index.ts",
+            "src\\slides\\slide-06\\ui\\Slide06.tsx",
+            "src\\slides\\slide-07\\index.ts",
+            "src\\slides\\slide-07\\ui\\Slide07.tsx",
+            "tools\\bundles\\slide02\\vite.config.ts",
+            "tools\\bundles\\slide02_full\\src\\shared\\hooks\\useHiGrain.ts",
+            "tools\\bundles\\slide02_full\\src\\shared\\lib\\cn.ts",
+            "tools\\bundles\\slide02_full\\src\\shared\\ui\\slide\\SlideShell.tsx",
+            "tools\\bundles\\slide02_full\\src\\slides\\slide-02\\data\\slide02.contract.ts",
+            "tools\\bundles\\slide02_full\\src\\slides\\slide-02\\data\\slide02.mock.ts",
+            "tools\\bundles\\slide02_full\\src\\slides\\slide-02\\data\\slide02.seed.ts",
+            "tools\\bundles\\slide02_full\\src\\slides\\slide-02\\ui\\Slide02.tsx",
+            "tools\\bundles\\slide02_full\\vite.config.ts"
+          ],
+          "effects": [
+            {
+              "kind": "backdrop-filter",
+              "level": "L3",
+              "score": 10,
+              "line": 52,
+              "detail": "backdropFilter: \"blur(10px)\",",
+              "file": "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\devtools\\RtsDebugOverlay.tsx",
+              "surface": "ui",
+              "scope": "artifact"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 75,
+              "detail": "text-transform: uppercase;",
+              "file": "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\styles\\visual_tokens.css",
+              "surface": "ui",
+              "scope": "artifact"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 158,
+              "detail": "text-transform: uppercase;",
+              "file": "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\styles\\visual_tokens.css",
+              "surface": "ui",
+              "scope": "artifact"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 204,
+              "detail": "transform=\"rotate(-90 60 60)\"",
+              "file": "src\\slides\\slide-02\\ui\\Slide02.tsx",
+              "surface": "ui",
+              "scope": "artifact"
+            },
+            {
+              "kind": "filter",
+              "level": "L3",
+              "score": 8,
+              "line": 205,
+              "detail": "filter=\"url(#softGlow)\"",
+              "file": "src\\slides\\slide-02\\ui\\Slide02.tsx",
+              "surface": "ui",
+              "scope": "artifact"
+            },
+            {
+              "kind": "filter",
+              "level": "L3",
+              "score": 8,
+              "line": 429,
+              "detail": "<path d={d} fill=\"none\" stroke={`rgba(255,255,255,${strokeA.toFixed(2)})`} strokeWidth=\"1.6\" filter=\"url(#hiSparkGlow)\" />",
+              "file": "src\\slides\\slide-02\\ui\\Slide02.tsx",
+              "surface": "ui",
+              "scope": "artifact"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 204,
+              "detail": "transform=\"rotate(-90 60 60)\"",
+              "file": "tools\\bundles\\slide02_full\\src\\slides\\slide-02\\ui\\Slide02.tsx",
+              "surface": "ui",
+              "scope": "artifact"
+            },
+            {
+              "kind": "filter",
+              "level": "L3",
+              "score": 8,
+              "line": 205,
+              "detail": "filter=\"url(#softGlow)\"",
+              "file": "tools\\bundles\\slide02_full\\src\\slides\\slide-02\\ui\\Slide02.tsx",
+              "surface": "ui",
+              "scope": "artifact"
+            }
+          ],
+          "maxLevelUsed": "L3",
+          "l3Count": 4,
+          "l4Count": 0,
+          "score": 34,
+          "backdropOccurrences": [
+            {
+              "file": "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\devtools\\RtsDebugOverlay.tsx",
+              "line": 52
+            }
+          ]
+        }
+      }
     },
     "inspector": {
       "surface": "inspector",
@@ -1399,7 +2100,8 @@
           "line": 48,
           "detail": "transform: none;",
           "file": "src\\render\\inspector\\inspector.css",
-          "surface": "inspector"
+          "surface": "inspector",
+          "scope": "runtime"
         },
         {
           "kind": "backdrop-filter",
@@ -1408,7 +2110,8 @@
           "line": 74,
           "detail": "backdrop-filter: blur(10px) saturate(1.10); (isolation discount)",
           "file": "src\\render\\inspector\\inspector.css",
-          "surface": "inspector"
+          "surface": "inspector",
+          "scope": "runtime"
         },
         {
           "kind": "backdrop-filter",
@@ -1417,7 +2120,8 @@
           "line": 75,
           "detail": "-webkit-backdrop-filter: blur(10px) saturate(1.10); (isolation discount)",
           "file": "src\\render\\inspector\\inspector.css",
-          "surface": "inspector"
+          "surface": "inspector",
+          "scope": "runtime"
         },
         {
           "kind": "backdrop-filter",
@@ -1426,7 +2130,8 @@
           "line": 92,
           "detail": "backdrop-filter: none; (isolation discount)",
           "file": "src\\render\\inspector\\inspector.css",
-          "surface": "inspector"
+          "surface": "inspector",
+          "scope": "runtime"
         },
         {
           "kind": "backdrop-filter",
@@ -1435,7 +2140,8 @@
           "line": 93,
           "detail": "-webkit-backdrop-filter: none; (isolation discount)",
           "file": "src\\render\\inspector\\inspector.css",
-          "surface": "inspector"
+          "surface": "inspector",
+          "scope": "runtime"
         }
       ],
       "maxLevelUsed": "L3",
@@ -1459,7 +2165,100 @@
           "file": "src\\render\\inspector\\inspector.css",
           "line": 93
         }
-      ]
+      ],
+      "scopes": {
+        "runtime": {
+          "files": [
+            "src\\render\\inspector\\inspector.css",
+            "src\\render\\inspector\\RenderInspectorHost.tsx",
+            "src\\render\\inspector\\RenderInspectorPanel.tsx",
+            "src\\render\\inspector\\utils.ts"
+          ],
+          "effects": [
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 48,
+              "detail": "transform: none;",
+              "file": "src\\render\\inspector\\inspector.css",
+              "surface": "inspector",
+              "scope": "runtime"
+            },
+            {
+              "kind": "backdrop-filter",
+              "level": "L3",
+              "score": 8,
+              "line": 74,
+              "detail": "backdrop-filter: blur(10px) saturate(1.10); (isolation discount)",
+              "file": "src\\render\\inspector\\inspector.css",
+              "surface": "inspector",
+              "scope": "runtime"
+            },
+            {
+              "kind": "backdrop-filter",
+              "level": "L3",
+              "score": 8,
+              "line": 75,
+              "detail": "-webkit-backdrop-filter: blur(10px) saturate(1.10); (isolation discount)",
+              "file": "src\\render\\inspector\\inspector.css",
+              "surface": "inspector",
+              "scope": "runtime"
+            },
+            {
+              "kind": "backdrop-filter",
+              "level": "L3",
+              "score": 8,
+              "line": 92,
+              "detail": "backdrop-filter: none; (isolation discount)",
+              "file": "src\\render\\inspector\\inspector.css",
+              "surface": "inspector",
+              "scope": "runtime"
+            },
+            {
+              "kind": "backdrop-filter",
+              "level": "L3",
+              "score": 8,
+              "line": 93,
+              "detail": "-webkit-backdrop-filter: none; (isolation discount)",
+              "file": "src\\render\\inspector\\inspector.css",
+              "surface": "inspector",
+              "scope": "runtime"
+            }
+          ],
+          "maxLevelUsed": "L3",
+          "l3Count": 4,
+          "l4Count": 0,
+          "score": 32,
+          "backdropOccurrences": [
+            {
+              "file": "src\\render\\inspector\\inspector.css",
+              "line": 74
+            },
+            {
+              "file": "src\\render\\inspector\\inspector.css",
+              "line": 75
+            },
+            {
+              "file": "src\\render\\inspector\\inspector.css",
+              "line": 92
+            },
+            {
+              "file": "src\\render\\inspector\\inspector.css",
+              "line": 93
+            }
+          ]
+        },
+        "artifacts": {
+          "files": [],
+          "effects": [],
+          "maxLevelUsed": "L0",
+          "l3Count": 0,
+          "l4Count": 0,
+          "score": 0,
+          "backdropOccurrences": []
+        }
+      }
     },
     "stage": {
       "surface": "stage",
@@ -1481,7 +2280,8 @@
           "line": 27,
           "detail": "transform: translateZ(0);",
           "file": "src\\shared\\render\\stage\\stage.css",
-          "surface": "stage"
+          "surface": "stage",
+          "scope": "runtime"
         },
         {
           "kind": "transform",
@@ -1490,7 +2290,8 @@
           "line": 64,
           "detail": "transform: translateZ(0);",
           "file": "src\\shared\\render\\stage\\stage.css",
-          "surface": "stage"
+          "surface": "stage",
+          "scope": "runtime"
         },
         {
           "kind": "transform",
@@ -1499,7 +2300,8 @@
           "line": 27,
           "detail": "transform: translateZ(0);",
           "file": "src\\shared\\ui\\stage\\board.frame.css",
-          "surface": "stage"
+          "surface": "stage",
+          "scope": "runtime"
         },
         {
           "kind": "transform",
@@ -1508,7 +2310,8 @@
           "line": 83,
           "detail": "transform: translateZ(0);",
           "file": "src\\shared\\ui\\stage\\board.frame.css",
-          "surface": "stage"
+          "surface": "stage",
+          "scope": "runtime"
         },
         {
           "kind": "transform",
@@ -1517,7 +2320,8 @@
           "line": 143,
           "detail": "transform: translateZ(0);",
           "file": "src\\shared\\ui\\stage\\board.frame.css",
-          "surface": "stage"
+          "surface": "stage",
+          "scope": "runtime"
         },
         {
           "kind": "transform",
@@ -1526,7 +2330,8 @@
           "line": 162,
           "detail": "transform: translate3d(0, 0, 0) rotate(-6deg);",
           "file": "src\\shared\\ui\\stage\\board.frame.css",
-          "surface": "stage"
+          "surface": "stage",
+          "scope": "runtime"
         },
         {
           "kind": "transform",
@@ -1535,7 +2340,8 @@
           "line": 204,
           "detail": "transform: scaleY(-1);",
           "file": "src\\shared\\ui\\stage\\board.frame.css",
-          "surface": "stage"
+          "surface": "stage",
+          "scope": "runtime"
         },
         {
           "kind": "transform",
@@ -1544,7 +2350,8 @@
           "line": 43,
           "detail": "transform: translateZ(0);",
           "file": "src\\shared\\ui\\stage\\cosmic.stage.css",
-          "surface": "stage"
+          "surface": "stage",
+          "scope": "runtime"
         },
         {
           "kind": "will-change",
@@ -1553,7 +2360,8 @@
           "line": 44,
           "detail": "will-change: transform, opacity;",
           "file": "src\\shared\\ui\\stage\\cosmic.stage.css",
-          "surface": "stage"
+          "surface": "stage",
+          "scope": "runtime"
         },
         {
           "kind": "transform",
@@ -1562,7 +2370,8 @@
           "line": 81,
           "detail": "transform: translate3d(0, 0, 0) scale(1.02);",
           "file": "src\\shared\\ui\\stage\\cosmic.stage.css",
-          "surface": "stage"
+          "surface": "stage",
+          "scope": "runtime"
         },
         {
           "kind": "transform",
@@ -1571,7 +2380,8 @@
           "line": 105,
           "detail": "transform: scale(1.15);",
           "file": "src\\shared\\ui\\stage\\cosmic.stage.css",
-          "surface": "stage"
+          "surface": "stage",
+          "scope": "runtime"
         },
         {
           "kind": "transform",
@@ -1580,7 +2390,8 @@
           "line": 225,
           "detail": "transform: translateZ(0);",
           "file": "src\\shared\\ui\\stage\\cosmic.stage.css",
-          "surface": "stage"
+          "surface": "stage",
+          "scope": "runtime"
         },
         {
           "kind": "transform",
@@ -1589,7 +2400,8 @@
           "line": 286,
           "detail": "transform: scaleY(-1);",
           "file": "src\\shared\\ui\\stage\\cosmic.stage.css",
-          "surface": "stage"
+          "surface": "stage",
+          "scope": "runtime"
         },
         {
           "kind": "transform",
@@ -1598,178 +2410,254 @@
           "line": 61,
           "detail": "transform: `scale(${scale})`,",
           "file": "src\\shared\\ui\\stage\\ScaleFrame.tsx",
-          "surface": "stage"
+          "surface": "stage",
+          "scope": "runtime"
         }
       ],
       "maxLevelUsed": "L2",
       "l3Count": 0,
       "l4Count": 0,
       "score": 3,
-      "backdropOccurrences": []
+      "backdropOccurrences": [],
+      "scopes": {
+        "runtime": {
+          "files": [
+            "src\\shared\\render\\stage\\index.ts",
+            "src\\shared\\render\\stage\\stage.css",
+            "src\\shared\\ui\\stage\\board.frame.css",
+            "src\\shared\\ui\\stage\\BoardFrame.tsx",
+            "src\\shared\\ui\\stage\\cosmic.stage.css",
+            "src\\shared\\ui\\stage\\CosmicStage.tsx",
+            "src\\shared\\ui\\stage\\ScaleFrame.tsx"
+          ],
+          "effects": [
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 27,
+              "detail": "transform: translateZ(0);",
+              "file": "src\\shared\\render\\stage\\stage.css",
+              "surface": "stage",
+              "scope": "runtime"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 64,
+              "detail": "transform: translateZ(0);",
+              "file": "src\\shared\\render\\stage\\stage.css",
+              "surface": "stage",
+              "scope": "runtime"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 27,
+              "detail": "transform: translateZ(0);",
+              "file": "src\\shared\\ui\\stage\\board.frame.css",
+              "surface": "stage",
+              "scope": "runtime"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 83,
+              "detail": "transform: translateZ(0);",
+              "file": "src\\shared\\ui\\stage\\board.frame.css",
+              "surface": "stage",
+              "scope": "runtime"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 143,
+              "detail": "transform: translateZ(0);",
+              "file": "src\\shared\\ui\\stage\\board.frame.css",
+              "surface": "stage",
+              "scope": "runtime"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 162,
+              "detail": "transform: translate3d(0, 0, 0) rotate(-6deg);",
+              "file": "src\\shared\\ui\\stage\\board.frame.css",
+              "surface": "stage",
+              "scope": "runtime"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 204,
+              "detail": "transform: scaleY(-1);",
+              "file": "src\\shared\\ui\\stage\\board.frame.css",
+              "surface": "stage",
+              "scope": "runtime"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 43,
+              "detail": "transform: translateZ(0);",
+              "file": "src\\shared\\ui\\stage\\cosmic.stage.css",
+              "surface": "stage",
+              "scope": "runtime"
+            },
+            {
+              "kind": "will-change",
+              "level": "L2",
+              "score": 3,
+              "line": 44,
+              "detail": "will-change: transform, opacity;",
+              "file": "src\\shared\\ui\\stage\\cosmic.stage.css",
+              "surface": "stage",
+              "scope": "runtime"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 81,
+              "detail": "transform: translate3d(0, 0, 0) scale(1.02);",
+              "file": "src\\shared\\ui\\stage\\cosmic.stage.css",
+              "surface": "stage",
+              "scope": "runtime"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 105,
+              "detail": "transform: scale(1.15);",
+              "file": "src\\shared\\ui\\stage\\cosmic.stage.css",
+              "surface": "stage",
+              "scope": "runtime"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 225,
+              "detail": "transform: translateZ(0);",
+              "file": "src\\shared\\ui\\stage\\cosmic.stage.css",
+              "surface": "stage",
+              "scope": "runtime"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 286,
+              "detail": "transform: scaleY(-1);",
+              "file": "src\\shared\\ui\\stage\\cosmic.stage.css",
+              "surface": "stage",
+              "scope": "runtime"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 61,
+              "detail": "transform: `scale(${scale})`,",
+              "file": "src\\shared\\ui\\stage\\ScaleFrame.tsx",
+              "surface": "stage",
+              "scope": "runtime"
+            }
+          ],
+          "maxLevelUsed": "L2",
+          "l3Count": 0,
+          "l4Count": 0,
+          "score": 3,
+          "backdropOccurrences": []
+        },
+        "artifacts": {
+          "files": [],
+          "effects": [],
+          "maxLevelUsed": "L0",
+          "l3Count": 0,
+          "l4Count": 0,
+          "score": 0,
+          "backdropOccurrences": []
+        }
+      }
     }
   },
   "violations": [
-    {
-      "type": "no-per-panel-blur",
-      "surface": "ui",
-      "file": "src\\app\\styles\\globals.css",
-      "line": 89,
-      "message": "No per-panel blur: backdrop-filter on panel classes is forbidden.",
-      "id": "no-per-panel-blur-1"
-    },
-    {
-      "type": "no-per-panel-blur",
-      "surface": "ui",
-      "file": "src\\app\\styles\\hi-materials.css",
-      "line": 213,
-      "message": "No per-panel blur: backdrop-filter on panel classes is forbidden.",
-      "id": "no-per-panel-blur-2"
-    },
     {
       "type": "allow-marker",
       "surface": "inspector",
       "file": "src\\render\\inspector\\inspector.css",
       "line": 74,
       "message": "L3 effects require hi-allow:L3 in inspector files.",
-      "id": "allow-marker-3"
-    },
-    {
-      "type": "no-per-panel-blur",
-      "surface": "ui",
-      "file": "src\\rts\\styles\\hi-materials.css",
-      "line": 124,
-      "message": "No per-panel blur: backdrop-filter on panel classes is forbidden.",
-      "id": "no-per-panel-blur-4"
-    },
-    {
-      "type": "no-per-panel-blur",
-      "surface": "ui",
-      "file": "src\\shared\\render\\qa\\qa.stage.debug.css",
-      "line": 82,
-      "message": "No per-panel blur: backdrop-filter on panel classes is forbidden.",
-      "id": "no-per-panel-blur-5"
-    },
-    {
-      "type": "max-level",
-      "surface": "ui",
-      "file": null,
-      "line": null,
-      "message": "Max level exceeded: L4 used, L3 allowed.",
-      "id": "max-level-6"
-    },
-    {
-      "type": "max-l3",
-      "surface": "ui",
-      "file": null,
-      "line": null,
-      "message": "L3 count 57 exceeds budget 2.",
-      "id": "max-l3-7"
-    },
-    {
-      "type": "max-l4",
-      "surface": "ui",
-      "file": null,
-      "line": null,
-      "message": "L4 count 24 exceeds budget 0.",
-      "id": "max-l4-8"
-    },
-    {
-      "type": "score-budget",
-      "surface": "ui",
-      "file": null,
-      "line": null,
-      "message": "Score 745 exceeds budget 22.",
-      "id": "score-budget-9"
+      "scope": "runtime",
+      "id": "allow-marker-1"
     },
     {
       "type": "centralized-blur",
       "surface": "ui",
       "file": null,
       "line": null,
-      "message": "Centralized Blur Rule violated: 20 backdrop-filters found.",
+      "message": "Centralized Blur Rule violated: 12 backdrop-filters found.",
       "details": [
-        {
-          "file": "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\devtools\\RtsDebugOverlay.tsx",
-          "line": 52
-        },
-        {
-          "file": "src\\app\\styles\\globals.css",
-          "line": 89
-        },
-        {
-          "file": "src\\app\\styles\\globals.css",
-          "line": 90
-        },
-        {
-          "file": "src\\app\\styles\\hi-materials.css",
-          "line": 213
-        },
-        {
-          "file": "src\\app\\styles\\hi-materials.css",
-          "line": 214
-        },
         {
           "file": "src\\rts\\devtools\\RtsDebugOverlay.tsx",
           "line": 52
         },
         {
-          "file": "src\\rts\\styles\\hi-materials.css",
-          "line": 124
-        },
-        {
-          "file": "src\\rts\\styles\\hi-materials.css",
-          "line": 125
+          "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+          "line": 65
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 42
+          "line": 270
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 188
+          "line": 271
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 189
+          "line": 277
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 192
+          "line": 279
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 194
+          "line": 304
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 217
+          "line": 339
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 246
+          "line": 340
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 247
+          "line": 342
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 265
-        },
-        {
-          "file": "src\\shared\\render\\qa\\qa.stage.debug.css",
-          "line": 82
-        },
-        {
-          "file": "src\\shared\\render\\qa\\qa.stage.debug.css",
-          "line": 83
+          "line": 360
         },
         {
           "file": "src\\shared\\theme\\tokens.css",
           "line": 60
         }
       ],
-      "id": "centralized-blur-10"
+      "scope": "runtime",
+      "id": "centralized-blur-2"
     },
     {
       "type": "max-l3",
@@ -1777,7 +2665,8 @@
       "file": null,
       "line": null,
       "message": "L3 count 4 exceeds budget 0.",
-      "id": "max-l3-11"
+      "scope": "runtime",
+      "id": "max-l3-3"
     },
     {
       "type": "score-budget",
@@ -1785,7 +2674,8 @@
       "file": null,
       "line": null,
       "message": "Score 32 exceeds budget 10.",
-      "id": "score-budget-12"
+      "scope": "runtime",
+      "id": "score-budget-4"
     },
     {
       "type": "centralized-blur",
@@ -1811,7 +2701,8 @@
           "line": 93
         }
       ],
-      "id": "centralized-blur-13"
+      "scope": "runtime",
+      "id": "centralized-blur-5"
     }
   ]
 }

@@ -1,216 +1,69 @@
 {
   "policyVersion": "1.0",
-  "generatedAt": "2026-01-18T01:55:22.684Z",
+  "generatedAt": "2026-01-22T03:28:49.944Z",
   "violations": [
-    {
-      "type": "no-per-panel-blur",
-      "surface": "ui",
-      "file": "src\\app\\styles\\globals.css",
-      "line": 79,
-      "message": "No per-panel blur: backdrop-filter on panel classes is forbidden."
-    },
-    {
-      "type": "no-per-panel-blur",
-      "surface": "ui",
-      "file": "src\\app\\styles\\hi-materials.css",
-      "line": 13,
-      "message": "No per-panel blur: backdrop-filter on panel classes is forbidden."
-    },
     {
       "type": "allow-marker",
       "surface": "inspector",
       "file": "src\\render\\inspector\\inspector.css",
       "line": 74,
-      "message": "L3 effects require hi-allow:L3 in inspector files."
-    },
-    {
-      "type": "no-per-panel-blur",
-      "surface": "ui",
-      "file": "src\\rts\\styles\\hi-materials.css",
-      "line": 14,
-      "message": "No per-panel blur: backdrop-filter on panel classes is forbidden."
-    },
-    {
-      "type": "no-per-panel-blur",
-      "surface": "ui",
-      "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-      "line": 245,
-      "message": "No per-panel blur: backdrop-filter on panel classes is forbidden."
-    },
-    {
-      "type": "no-per-panel-blur",
-      "surface": "ui",
-      "file": "src\\shared\\render\\qa\\qa.stage.debug.css",
-      "line": 39,
-      "message": "No per-panel blur: backdrop-filter on panel classes is forbidden."
-    },
-    {
-      "type": "no-per-panel-blur",
-      "surface": "stage",
-      "file": "src\\shared\\ui\\stage\\board.frame.css",
-      "line": 40,
-      "message": "No per-panel blur: backdrop-filter on panel classes is forbidden."
-    },
-    {
-      "type": "no-per-panel-blur",
-      "surface": "stage",
-      "file": "src\\shared\\ui\\stage\\cosmic.stage.css",
-      "line": 25,
-      "message": "No per-panel blur: backdrop-filter on panel classes is forbidden."
-    },
-    {
-      "type": "max-level",
-      "surface": "ui",
-      "file": null,
-      "line": null,
-      "message": "Max level exceeded: L4 used, L3 allowed."
+      "message": "L3 effects require hi-allow:L3 in inspector files.",
+      "scope": "runtime"
     },
     {
       "type": "max-l3",
       "surface": "ui",
       "file": null,
       "line": null,
-      "message": "L3 count 57 exceeds budget 2."
-    },
-    {
-      "type": "max-l4",
-      "surface": "ui",
-      "file": null,
-      "line": null,
-      "message": "L4 count 24 exceeds budget 0."
+      "message": "L3 count 46 exceeds budget 2.",
+      "scope": "runtime"
     },
     {
       "type": "score-budget",
       "surface": "ui",
       "file": null,
       "line": null,
-      "message": "Score 745 exceeds budget 22."
+      "message": "Score 350 exceeds budget 22.",
+      "scope": "runtime"
     },
     {
       "type": "centralized-blur",
       "surface": "ui",
       "file": null,
       "line": null,
-      "message": "Centralized Blur Rule violated: 20 backdrop-filters found."
+      "message": "Centralized Blur Rule violated: 12 backdrop-filters found.",
+      "scope": "runtime"
     },
     {
       "type": "max-l3",
       "surface": "inspector",
       "file": null,
       "line": null,
-      "message": "L3 count 4 exceeds budget 0."
+      "message": "L3 count 4 exceeds budget 0.",
+      "scope": "runtime"
     },
     {
       "type": "score-budget",
       "surface": "inspector",
       "file": null,
       "line": null,
-      "message": "Score 32 exceeds budget 10."
+      "message": "Score 32 exceeds budget 10.",
+      "scope": "runtime"
     },
     {
       "type": "centralized-blur",
       "surface": "inspector",
       "file": null,
       "line": null,
-      "message": "Centralized Blur Rule violated: 4 backdrop-filters found."
-    },
-    {
-      "type": "max-level",
-      "surface": "stage",
-      "file": null,
-      "line": null,
-      "message": "Max level exceeded: L4 used, L2 allowed."
-    },
-    {
-      "type": "max-l3",
-      "surface": "stage",
-      "file": null,
-      "line": null,
-      "message": "L3 count 35 exceeds budget 0."
-    },
-    {
-      "type": "max-l4",
-      "surface": "stage",
-      "file": null,
-      "line": null,
-      "message": "L4 count 12 exceeds budget 0."
-    },
-    {
-      "type": "score-budget",
-      "surface": "stage",
-      "file": null,
-      "line": null,
-      "message": "Score 396 exceeds budget 10."
-    },
-    {
-      "type": "centralized-blur",
-      "surface": "stage",
-      "file": null,
-      "line": null,
-      "message": "Centralized Blur Rule violated: 2 backdrop-filters found."
-    },
-    {
-      "type": "blocked-classname",
-      "surface": "stage",
-      "file": "src\\shared\\ui\\stage\\board.frame.css",
-      "line": 40,
-      "message": "Blocked classname board-glass used in stage surface."
-    },
-    {
-      "type": "blocked-classname",
-      "surface": "stage",
-      "file": "src\\shared\\ui\\stage\\board.frame.css",
-      "line": 58,
-      "message": "Blocked classname board-glass used in stage surface."
-    },
-    {
-      "type": "blocked-classname",
-      "surface": "stage",
-      "file": "src\\shared\\ui\\stage\\BoardFrame.tsx",
-      "line": 9,
-      "message": "Blocked classname board-glass used in stage surface."
-    },
-    {
-      "type": "blocked-classname",
-      "surface": "stage",
-      "file": "src\\shared\\ui\\stage\\cosmic.stage.css",
-      "line": 25,
-      "message": "Blocked classname board-glass used in stage surface."
-    },
-    {
-      "type": "blocked-classname",
-      "surface": "stage",
-      "file": "src\\shared\\ui\\stage\\cosmic.stage.css",
-      "line": 302,
-      "message": "Blocked classname board-glass used in stage surface."
-    },
-    {
-      "type": "blocked-classname",
-      "surface": "stage",
-      "file": "src\\shared\\ui\\stage\\cosmic.stage.css",
-      "line": 307,
-      "message": "Blocked classname board-glass used in stage surface."
-    },
-    {
-      "type": "blocked-classname",
-      "surface": "stage",
-      "file": "src\\shared\\ui\\stage\\cosmic.stage.css",
-      "line": 316,
-      "message": "Blocked classname board-glass used in stage surface."
-    },
-    {
-      "type": "blocked-classname",
-      "surface": "stage",
-      "file": "src\\shared\\ui\\stage\\cosmic.stage.css",
-      "line": 329,
-      "message": "Blocked classname board-glass used in stage surface."
+      "message": "Centralized Blur Rule violated: 4 backdrop-filters found.",
+      "scope": "runtime"
     }
   ],
   "surfaces": {
     "ui": {
-      "score": 745,
-      "l3Count": 57,
-      "l4Count": 24
+      "score": 350,
+      "l3Count": 46,
+      "l4Count": 0
     },
     "inspector": {
       "score": 32,
@@ -218,9 +71,26 @@
       "l4Count": 0
     },
     "stage": {
-      "score": 396,
-      "l3Count": 35,
-      "l4Count": 12
+      "score": 3,
+      "l3Count": 0,
+      "l4Count": 0
+    }
+  },
+  "artifactSurfaces": {
+    "ui": {
+      "score": 34,
+      "l3Count": 4,
+      "l4Count": 0
+    },
+    "inspector": {
+      "score": 0,
+      "l3Count": 0,
+      "l4Count": 0
+    },
+    "stage": {
+      "score": 0,
+      "l3Count": 0,
+      "l4Count": 0
     }
   }
 }

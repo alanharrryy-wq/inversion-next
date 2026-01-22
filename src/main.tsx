@@ -2,6 +2,7 @@ import React from "react"
 import ReactDOM from "react-dom/client"
 import "@/index.css"
 import { App } from "@/app/App"
+import { PolicyHud } from "@/shared/render/policy/PolicyHud"
 
 declare global {
   interface Window {
@@ -43,5 +44,6 @@ void enableMocking()
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <App />
+    {import.meta.env?.DEV && <PolicyHud />}
   </React.StrictMode>,
 )

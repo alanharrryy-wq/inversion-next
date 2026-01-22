@@ -41,20 +41,8 @@
 
   opacity: 0.55;
 
-  animation:
-    hi-rimJitterA var(--hi-rim-period-a) ease-in-out infinite,
-    hi-rimJitterB var(--hi-rim-period-b) ease-in-out infinite;
 }
 
 /* Animaciones desfasadas */
-@keyframes hi-rimJitterA {
-  0%   { opacity: 0.52; }
-  50%  { opacity: calc(0.52 + var(--hi-rim-jitter-a)); }
-  100% { opacity: 0.52; }
-}
 
-@keyframes hi-rimJitterB {
-  0%   { opacity: 0.55; }
-  50%  { opacity: calc(0.55 + var(--hi-rim-jitter-b)); }
-  100% { opacity: 0.55; }
-}
+

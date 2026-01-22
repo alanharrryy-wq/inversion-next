@@ -92,7 +92,7 @@ export default function HiShaderBackground(props: { fixed?: boolean }) {
     })
     const mesh = new Mesh(gl, { geometry, program })
 
-    let raf = 0
+    let timer = 0
     const resize = () => {
       const w = host.clientWidth || window.innerWidth
       const h = host.clientHeight || window.innerHeight
@@ -100,19 +100,19 @@ export default function HiShaderBackground(props: { fixed?: boolean }) {
       program.uniforms.uResolution.value = [w, h]
     }
 
-    const update = (t: number) => {
-      raf = requestAnimationFrame(update)
+    const update = () => {
+      const t = performance.now()
+raf = setTimeout(update, 16)
       program.uniforms.uTime.value = t * 0.001
       renderer.render({ scene: mesh })
     }
 
     resize()
     window.addEventListener("resize", resize)
-    raf = requestAnimationFrame(update)
+    raf = setTimeout(update, 16)
 
     return () => {
-      cancelAnimationFrame(raf)
-      window.removeEventListener("resize", resize)
+      window.clearTimeout(timer)window.removeEventListener("resize", resize)
       try {
         host.removeChild(gl.canvas)
       } catch {

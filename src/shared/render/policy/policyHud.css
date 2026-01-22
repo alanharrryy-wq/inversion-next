@@ -1,0 +1,112 @@
+.hi-policy-hud {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 2147483647;
+  width: 420px;
+  max-width: calc(100vw - 24px);
+  background: rgba(12, 12, 14, 0.96);
+  color: #e7e7ea;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 12px;
+  line-height: 1.35;
+  letter-spacing: 0.2px;
+  user-select: text;
+}
+
+.hi-policy-hud * {
+  box-sizing: border-box;
+}
+
+.hi-policy-hud__header {
+  padding: 10px 10px 8px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.hi-policy-hud__title {
+  font-weight: 700;
+}
+
+.hi-policy-hud__btns {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.hi-policy-hud__btn {
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+  cursor: pointer;
+}
+
+.hi-policy-hud__btn:hover {
+  background: rgba(255, 255, 255, 0.10);
+}
+
+.hi-policy-hud__body {
+  padding: 10px;
+  display: grid;
+  gap: 10px;
+}
+
+.hi-policy-hud__grid {
+  display: grid;
+  gap: 8px;
+}
+
+.hi-policy-hud__row {
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.hi-policy-hud__rowHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.hi-policy-hud__badge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  font-weight: 700;
+}
+
+.hi-policy-hud__kv {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 10px;
+}
+
+.hi-policy-hud__kvLine {
+  opacity: 0.92;
+}
+
+.hi-policy-hud__small {
+  opacity: 0.78;
+  font-size: 11px;
+}
+
+.hi-policy-hud__list {
+  margin: 6px 0 0 0;
+  padding-left: 16px;
+}
+
+.hi-policy-hud__list li {
+  margin: 2px 0;
+}

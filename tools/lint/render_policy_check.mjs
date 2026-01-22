@@ -9,6 +9,7 @@ const reportDir = path.join(repoRoot, "tools", "lint");
 const reportJsonPath = path.join(reportDir, "render_policy_report.json");
 const reportMdPath = path.join(reportDir, "render_policy_report.md");
 const baselinePath = path.join(reportDir, "render_policy_baseline.json");
+const configPath = path.join(reportDir, "render_policy.config.json");
 const args = new Set(process.argv.slice(2));
 const writeBaseline = args.has("--baseline");
 
@@ -36,6 +37,130 @@ const stylesheetExts = new Set([".css", ".scss", ".sass", ".less"]);
 
 function toPosix(filePath) {
   return filePath.split(path.sep).join("/");
+}
+
+const defaultScopeConfig = {
+  catalogMarkers: ["@render-catalog"],
+  markerScanBytes: 4096,
+  fallbackArtifactPrefixes: ["src/slides/", "tools/bundles/", "hitech-templates/"]
+};
+
+function asArray(value, fallback = []) {
+  if (!value) return [...fallback];
+  if (Array.isArray(value)) return value.map(item => String(item)).filter(Boolean);
+  return [String(value)];
+}
+
+function normalizeCatalogMarkers(raw, fallback) {
+  if (!raw) return [...fallback];
+  if (Array.isArray(raw)) {
+    const out = raw.map(item => String(item)).filter(Boolean);
+    return out.length ? out : [...fallback];
+  }
+  if (typeof raw === "object") {
+    const merged = []
+      .concat(asArray(raw.all), asArray(raw.css), asArray(raw.code))
+      .map(item => String(item))
+      .filter(Boolean);
+    return merged.length ? merged : [...fallback];
+  }
+  const str = String(raw).trim();
+  return str ? [str] : [...fallback];
+}
+
+function readScopeConfig() {
+  if (!fs.existsSync(configPath)) {
+    return {
+      valid: false,
+      runtimeExclude: [],
+      artifactInclude: [],
+      catalogMarkers: [...defaultScopeConfig.catalogMarkers],
+      markerScanBytes: defaultScopeConfig.markerScanBytes
+    };
+  }
+  try {
+    const raw = JSON.parse(fs.readFileSync(configPath, "utf8"));
+    if (!raw || typeof raw !== "object") {
+      throw new Error("Invalid scope config");
+    }
+    const runtimeExclude = asArray(raw?.scopes?.runtime?.exclude ?? raw?.runtimeExclude ?? []);
+    const artifactInclude = asArray(raw?.scopes?.artifacts?.include ?? raw?.artifactInclude ?? []);
+    const catalogMarkers = normalizeCatalogMarkers(raw?.catalogMarkers, defaultScopeConfig.catalogMarkers);
+    const markerScanBytes = Number.isFinite(Number(raw?.markerScanBytes))
+      ? Math.max(256, Number(raw.markerScanBytes))
+      : defaultScopeConfig.markerScanBytes;
+    return {
+      valid: true,
+      runtimeExclude,
+      artifactInclude,
+      catalogMarkers,
+      markerScanBytes
+    };
+  } catch (err) {
+    console.warn(`[render-policy] Failed to read ${configPath}. Using fallback scope.`);
+    return {
+      valid: false,
+      runtimeExclude: [],
+      artifactInclude: [],
+      catalogMarkers: [...defaultScopeConfig.catalogMarkers],
+      markerScanBytes: defaultScopeConfig.markerScanBytes
+    };
+  }
+}
+
+function normalizeGlob(glob) {
+  return toPosix(String(glob).trim()).replace(/^\.\//, "");
+}
+
+function globToRegExp(glob) {
+  const normalized = normalizeGlob(glob);
+  const escaped = normalized.replace(/[.+^${}()|[\]\\]/g, "\\$&");
+  const placeholder = "__GLOBSTAR__";
+  const withGlobstar = escaped.replace(/\*\*/g, placeholder);
+  const withSingles = withGlobstar.replace(/\*/g, "[^/]*");
+  const finalPattern = withSingles.replace(new RegExp(placeholder, "g"), ".*");
+  return new RegExp(`^${finalPattern}$`);
+}
+
+function compileGlobSet(globs) {
+  return asArray(globs).map((g) => ({ glob: g, regex: globToRegExp(g) }));
+}
+
+function matchesAny(compiled, relPath) {
+  return compiled.some((entry) => entry.regex.test(relPath));
+}
+
+const scopeConfig = readScopeConfig();
+const compiledScopeGlobs = scopeConfig.valid
+  ? {
+      runtimeExclude: compileGlobSet(scopeConfig.runtimeExclude),
+      artifactInclude: compileGlobSet(scopeConfig.artifactInclude)
+    }
+  : { runtimeExclude: [], artifactInclude: [] };
+
+function hasCatalogMarker(content) {
+  if (!scopeConfig.catalogMarkers.length) return false;
+  const scan = content.slice(0, scopeConfig.markerScanBytes);
+  return scopeConfig.catalogMarkers.some(marker => marker && scan.includes(marker));
+}
+
+function classifyScope(relativePath, content) {
+  const posixPath = normalizeGlob(relativePath);
+  const catalogMarker = hasCatalogMarker(content);
+  if (catalogMarker) {
+    return { scope: "artifact", reason: "catalog-marker", catalogMarker };
+  }
+  if (scopeConfig.valid) {
+    if (matchesAny(compiledScopeGlobs.artifactInclude, posixPath) ||
+        matchesAny(compiledScopeGlobs.runtimeExclude, posixPath)) {
+      return { scope: "artifact", reason: "config-match", catalogMarker };
+    }
+    return { scope: "runtime", reason: "config-default", catalogMarker };
+  }
+  if (defaultScopeConfig.fallbackArtifactPrefixes.some(prefix => posixPath.startsWith(prefix))) {
+    return { scope: "artifact", reason: "fallback-prefix", catalogMarker };
+  }
+  return { scope: "runtime", reason: "fallback-default", catalogMarker };
 }
 
 function inferSurface(relativePath) {
@@ -344,6 +469,8 @@ for (const filePath of files) {
   const ext = path.extname(filePath).toLowerCase();
   const isStylesheet = stylesheetExts.has(ext);
   const content = fs.readFileSync(filePath, "utf8");
+  const scopeInfo = classifyScope(relativePath, content);
+  const scope = scopeInfo.scope;
   const lines = content.split(/\r?\n/);
   const allowMarker = content.includes(policy.allowMarker.comment);
   const hasIsolation = /\bisolation\s*[:=]\s*isolate\b/i.test(content);
@@ -383,6 +510,9 @@ for (const filePath of files) {
   fileRecords.push({
     filePath: relativePath,
     surface,
+    scope,
+    scopeReason: scopeInfo.reason,
+    catalogMarker: scopeInfo.catalogMarker,
     allowMarker,
     effects,
     blockedClasses,
@@ -394,6 +524,32 @@ for (const filePath of files) {
 
 const surfaces = {};
 const violations = [];
+const runtimeViolations = [];
+const artifactViolations = [];
+
+function createScopeAggregate() {
+  return {
+    files: [],
+    effects: [],
+    maxLevelUsed: "L0",
+    l3Count: 0,
+    l4Count: 0,
+    score: 0,
+    backdropOccurrences: []
+  };
+}
+
+function applyEffectAggregate(aggregate, effect) {
+  if (levelRank[effect.level] > levelRank[aggregate.maxLevelUsed]) {
+    aggregate.maxLevelUsed = effect.level;
+  }
+  if (effect.level === "L3") aggregate.l3Count += 1;
+  if (effect.level === "L4") aggregate.l4Count += 1;
+  aggregate.score += effect.score || 0;
+  if (effect.kind === "backdrop-filter") {
+    aggregate.backdropOccurrences.push({ file: effect.file, line: effect.line });
+  }
+}
 
 function ensureSurface(surface) {
   if (!surfaces[surface]) {
@@ -406,7 +562,11 @@ function ensureSurface(surface) {
       l3Count: 0,
       l4Count: 0,
       score: 0,
-      backdropOccurrences: []
+      backdropOccurrences: [],
+      scopes: {
+        runtime: createScopeAggregate(),
+        artifacts: createScopeAggregate()
+      }
     };
   }
   return surfaces[surface];
@@ -415,29 +575,40 @@ function ensureSurface(surface) {
 for (const record of fileRecords) {
   const surfaceData = ensureSurface(record.surface);
   surfaceData.files.push(record.filePath);
-  if (record.allowMarker) {
+  const scopeKey = record.scope === "artifact" ? "artifacts" : "runtime";
+  const scopeData = surfaceData.scopes[scopeKey];
+  scopeData.files.push(record.filePath);
+  if (record.allowMarker && record.scope === "runtime") {
     surfaceData.allowMarkerPresent = true;
   }
 
   for (const effect of record.effects) {
-    surfaceData.effects.push({ ...effect, file: record.filePath, surface: record.surface });
-    if (levelRank[effect.level] > levelRank[surfaceData.maxLevelUsed]) {
-      surfaceData.maxLevelUsed = effect.level;
-    }
-    if (effect.level === "L3") surfaceData.l3Count += 1;
-    if (effect.level === "L4") surfaceData.l4Count += 1;
-    surfaceData.score += effect.score || 0;
-    if (effect.kind === "backdrop-filter") {
-      surfaceData.backdropOccurrences.push({ file: record.filePath, line: effect.line });
-    }
+    const effectWithMeta = {
+      ...effect,
+      file: record.filePath,
+      surface: record.surface,
+      scope: record.scope === "artifact" ? "artifact" : "runtime"
+    };
+    surfaceData.effects.push(effectWithMeta);
+    scopeData.effects.push(effectWithMeta);
+    applyEffectAggregate(surfaceData, effectWithMeta);
+    applyEffectAggregate(scopeData, effectWithMeta);
   }
 }
 
 function addViolation(payload) {
-  violations.push({
+  const scope = payload.scope || "runtime";
+  const entry = {
     ...payload,
+    scope,
     id: `${payload.type}-${violations.length + 1}`
-  });
+  };
+  violations.push(entry);
+  if (scope === "artifact") {
+    artifactViolations.push(entry);
+  } else {
+    runtimeViolations.push(entry);
+  }
 }
 
 const aggregateViolationTypes = new Set([
@@ -452,10 +623,11 @@ function violationKey(violation) {
   const file = violation.file ?? "";
   const line = violation.line ?? "";
   const surface = violation.surface ?? "";
+  const scope = violation.scope ?? "runtime";
   if (aggregateViolationTypes.has(violation.type)) {
-    return `${violation.type}|${surface}|${file}|${line}`;
+    return `${violation.type}|${scope}|${surface}|${file}|${line}`;
   }
-  return `${violation.type}|${file}|${line}|${violation.message}`;
+  return `${violation.type}|${scope}|${file}|${line}|${violation.message}`;
 }
 
 for (const record of fileRecords) {
@@ -467,7 +639,8 @@ for (const record of fileRecords) {
         surface: record.surface,
         file: record.filePath,
         line: record.effects.find(effect => effect.level === "L3")?.line || 1,
-        message: `L3 effects require ${policy.allowMarker.comment} in ${record.surface} files.`
+        message: `L3 effects require ${policy.allowMarker.comment} in ${record.surface} files.`,
+        scope: record.scope
       });
     }
   }
@@ -478,79 +651,95 @@ for (const record of fileRecords) {
       surface: record.surface,
       file: record.filePath,
       line: record.panelBlurHits[0].line,
-      message: "No per-panel blur: backdrop-filter on panel classes is forbidden."
+      message: "No per-panel blur: backdrop-filter on panel classes is forbidden.",
+      scope: record.scope
     });
   }
 }
 
-for (const [surface, data] of Object.entries(surfaces)) {
+function resolveSurfaceBudget(surface, allowMarkerPresent) {
   const surfaceConfig = policy.budgets[surface] || {};
   let maxL3 = surfaceConfig.maxL3 ?? 0;
   let scoreBudget = surfaceConfig.scoreBudget ?? 0;
   let maxLevelAllowed = surfaceConfig.maxLevel || "L0";
   let maxL4 = surfaceConfig.maxL4 ?? 0;
+  let inspectorMode = null;
 
   if (surface === "inspector") {
-    const mode = data.allowMarkerPresent ? "unsafe" : "safe";
-    const inspectorBudget = surfaceConfig[mode] || surfaceConfig.safe || {};
+    inspectorMode = allowMarkerPresent ? "unsafe" : "safe";
+    const inspectorBudget = surfaceConfig[inspectorMode] || surfaceConfig.safe || {};
     maxL3 = inspectorBudget.maxL3 ?? maxL3;
     scoreBudget = inspectorBudget.scoreBudget ?? scoreBudget;
   }
 
-  if (surfaceConfig.requiresAllowMarkerForL3 && data.allowMarkerPresent && maxLevelAllowed === "L2") {
+  if (surfaceConfig.requiresAllowMarkerForL3 && allowMarkerPresent && maxLevelAllowed === "L2") {
     maxLevelAllowed = "L3";
   }
 
-  if (data.maxLevelUsed && levelRank[data.maxLevelUsed] > levelRank[maxLevelAllowed]) {
+  return { maxL3, maxL4, scoreBudget, maxLevelAllowed, inspectorMode };
+}
+
+function addBudgetViolations(surface, stats, budget, scope) {
+  if (stats.maxLevelUsed && levelRank[stats.maxLevelUsed] > levelRank[budget.maxLevelAllowed]) {
     addViolation({
       type: "max-level",
       surface,
       file: null,
       line: null,
-      message: `Max level exceeded: ${data.maxLevelUsed} used, ${maxLevelAllowed} allowed.`
+      message: `Max level exceeded: ${stats.maxLevelUsed} used, ${budget.maxLevelAllowed} allowed.`,
+      scope
     });
   }
 
-  if (data.l3Count > maxL3) {
+  if (stats.l3Count > budget.maxL3) {
     addViolation({
       type: "max-l3",
       surface,
       file: null,
       line: null,
-      message: `L3 count ${data.l3Count} exceeds budget ${maxL3}.`
+      message: `L3 count ${stats.l3Count} exceeds budget ${budget.maxL3}.`,
+      scope
     });
   }
 
-  if (data.l4Count > maxL4) {
+  if (stats.l4Count > budget.maxL4) {
     addViolation({
       type: "max-l4",
       surface,
       file: null,
       line: null,
-      message: `L4 count ${data.l4Count} exceeds budget ${maxL4}.`
+      message: `L4 count ${stats.l4Count} exceeds budget ${budget.maxL4}.`,
+      scope
     });
   }
 
-  if (data.score > scoreBudget) {
+  if (stats.score > budget.scoreBudget) {
     addViolation({
       type: "score-budget",
       surface,
       file: null,
       line: null,
-      message: `Score ${data.score} exceeds budget ${scoreBudget}.`
+      message: `Score ${stats.score} exceeds budget ${budget.scoreBudget}.`,
+      scope
     });
   }
 
-  if (data.backdropOccurrences.length > 1) {
+  if (stats.backdropOccurrences.length > 1) {
     addViolation({
       type: "centralized-blur",
       surface,
       file: null,
       line: null,
-      message: `Centralized Blur Rule violated: ${data.backdropOccurrences.length} backdrop-filters found.`,
-      details: data.backdropOccurrences
+      message: `Centralized Blur Rule violated: ${stats.backdropOccurrences.length} backdrop-filters found.`,
+      details: stats.backdropOccurrences,
+      scope
     });
   }
+}
+
+for (const [surface, data] of Object.entries(surfaces)) {
+  const budget = resolveSurfaceBudget(surface, data.allowMarkerPresent);
+  addBudgetViolations(surface, data.scopes.runtime, budget, "runtime");
 }
 
 const blockedClassnames = policy.blockedClassnames || {};
@@ -570,11 +759,23 @@ for (const record of fileRecords) {
         surface: record.surface,
         file: record.filePath,
         line: blocked.line,
-        message: `Blocked classname ${blocked.name} used in ${record.surface} surface.`
+        message: `Blocked classname ${blocked.name} used in ${record.surface} surface.`,
+        scope: record.scope
       });
     }
   }
 }
+
+const runtimeFileCount = fileRecords.filter(record => record.scope === "runtime").length;
+const artifactFileCount = fileRecords.filter(record => record.scope === "artifact").length;
+const runtimeEffectCount = fileRecords.reduce(
+  (sum, record) => sum + (record.scope === "runtime" ? record.effects.length : 0),
+  0
+);
+const artifactEffectCount = fileRecords.reduce(
+  (sum, record) => sum + (record.scope === "artifact" ? record.effects.length : 0),
+  0
+);
 
 const report = {
   policyVersion: policy.version,
@@ -583,42 +784,56 @@ const report = {
   summary: {
     fileCount: fileRecords.length,
     effectCount: fileRecords.reduce((sum, record) => sum + record.effects.length, 0),
-    violationCount: violations.length
+    violationCount: violations.length,
+    runtimeFileCount,
+    artifactFileCount,
+    runtimeEffectCount,
+    artifactEffectCount,
+    runtimeViolationCount: runtimeViolations.length,
+    artifactViolationCount: artifactViolations.length
   },
   surfaces: Object.fromEntries(
     Object.entries(surfaces).map(([surface, data]) => {
-      const surfaceConfig = policy.budgets[surface] || {};
-      let maxL3 = surfaceConfig.maxL3 ?? 0;
-      let scoreBudget = surfaceConfig.scoreBudget ?? 0;
-      let maxLevelAllowed = surfaceConfig.maxLevel || "L0";
-      let maxL4 = surfaceConfig.maxL4 ?? 0;
-      let inspectorMode = null;
-
-      if (surface === "inspector") {
-        inspectorMode = data.allowMarkerPresent ? "unsafe" : "safe";
-        const inspectorBudget = surfaceConfig[inspectorMode] || surfaceConfig.safe || {};
-        maxL3 = inspectorBudget.maxL3 ?? maxL3;
-        scoreBudget = inspectorBudget.scoreBudget ?? scoreBudget;
-      }
-
-      if (surfaceConfig.requiresAllowMarkerForL3 && data.allowMarkerPresent && maxLevelAllowed === "L2") {
-        maxLevelAllowed = "L3";
-      }
+      const budget = resolveSurfaceBudget(surface, data.allowMarkerPresent);
+      const runtime = data.scopes.runtime;
+      const artifacts = data.scopes.artifacts;
 
       return [
         surface,
         {
           files: data.files.length,
+          runtimeFiles: runtime.files.length,
+          artifactFiles: artifacts.files.length,
           allowMarkerPresent: data.allowMarkerPresent,
-          inspectorMode,
-          maxLevelUsed: data.maxLevelUsed,
-          maxLevelAllowed,
-          l3Count: data.l3Count,
-          l4Count: data.l4Count,
-          score: data.score,
-          maxL3,
-          maxL4,
-          scoreBudget
+          inspectorMode: budget.inspectorMode,
+          maxLevelUsed: runtime.maxLevelUsed,
+          maxLevelAllowed: budget.maxLevelAllowed,
+          l3Count: runtime.l3Count,
+          l4Count: runtime.l4Count,
+          score: runtime.score,
+          maxL3: budget.maxL3,
+          maxL4: budget.maxL4,
+          scoreBudget: budget.scoreBudget,
+          artifactMaxLevelUsed: artifacts.maxLevelUsed,
+          artifactL3Count: artifacts.l3Count,
+          artifactL4Count: artifacts.l4Count,
+          artifactScore: artifacts.score,
+          scopes: {
+            runtime: {
+              files: runtime.files.length,
+              maxLevelUsed: runtime.maxLevelUsed,
+              l3Count: runtime.l3Count,
+              l4Count: runtime.l4Count,
+              score: runtime.score
+            },
+            artifacts: {
+              files: artifacts.files.length,
+              maxLevelUsed: artifacts.maxLevelUsed,
+              l3Count: artifacts.l3Count,
+              l4Count: artifacts.l4Count,
+              score: artifacts.score
+            }
+          }
         }
       ];
     })
@@ -627,23 +842,44 @@ const report = {
   violations
 };
 
+const baselineViolations = runtimeViolations;
+
 const baselineData = {
   policyVersion: policy.version,
   generatedAt: new Date().toISOString(),
-  violations: report.violations.map(violation => ({
+  violations: baselineViolations.map(violation => ({
     type: violation.type,
     surface: violation.surface ?? null,
     file: violation.file ?? null,
     line: violation.line ?? null,
-    message: violation.message
+    message: violation.message,
+    scope: violation.scope ?? "runtime"
   })),
   surfaces: Object.fromEntries(
     Object.entries(report.surfaces).map(([surface, stats]) => [
       surface,
       { score: stats.score, l3Count: stats.l3Count, l4Count: stats.l4Count }
     ])
+  ),
+  artifactSurfaces: Object.fromEntries(
+    Object.entries(report.surfaces).map(([surface, stats]) => [
+      surface,
+      { score: stats.artifactScore, l3Count: stats.artifactL3Count, l4Count: stats.artifactL4Count }
+    ])
   )
 };
+
+if (!report.effects?.ui || !Array.isArray(report.effects.ui.effects)) {
+  console.warn("[render-policy] report.effects.ui.effects missing; creating empty array.");
+  report.effects = report.effects || {};
+  report.effects.ui = report.effects.ui || ensureSurface("ui");
+  if (!Array.isArray(report.effects.ui.effects)) report.effects.ui.effects = [];
+}
+
+const uiEffects = report.effects.ui.effects;
+if (!uiEffects.some(effect => effect && effect.scope)) {
+  console.warn("[render-policy] Warning: no scope found in report.effects.ui.effects.");
+}
 
 fs.mkdirSync(reportDir, { recursive: true });
 fs.writeFileSync(reportJsonPath, JSON.stringify(report, null, 2), "utf8");
@@ -651,15 +887,23 @@ fs.writeFileSync(reportJsonPath, JSON.stringify(report, null, 2), "utf8");
 let md = "# Render Effects Policy Report\n";
 md += `Generated: ${report.generatedAt}\n\n`;
 md += "## Summary\n";
-md += `- Files scanned: ${report.summary.fileCount}\n`;
-md += `- Effects detected: ${report.summary.effectCount}\n`;
-md += `- Violations: ${report.summary.violationCount}\n\n`;
+md += `- Files scanned: ${report.summary.fileCount} (runtime ${report.summary.runtimeFileCount}, artifacts ${report.summary.artifactFileCount})\n`;
+md += `- Effects detected: ${report.summary.effectCount} (runtime ${report.summary.runtimeEffectCount}, artifacts ${report.summary.artifactEffectCount})\n`;
+md += `- Violations: ${report.summary.violationCount} (runtime ${report.summary.runtimeViolationCount}, artifacts ${report.summary.artifactViolationCount})\n\n`;
 
-md += "## Surface Budgets\n";
+md += "## Surface Budgets (Runtime)\n";
 md += "| Surface | Max Level Used | Max Level Allowed | L3 Count | L4 Count | Score | Score Budget |\n";
 md += "| --- | --- | --- | --- | --- | --- | --- |\n";
 for (const [surface, stats] of Object.entries(report.surfaces)) {
   md += `| ${surface} | ${stats.maxLevelUsed} | ${stats.maxLevelAllowed} | ${stats.l3Count} | ${stats.l4Count} | ${stats.score} | ${stats.scoreBudget} |\n`;
+}
+md += "\n";
+
+md += "## Artifacts (Informational)\n";
+md += "| Surface | Max Level Used | L3 Count | L4 Count | Score | Files |\n";
+md += "| --- | --- | --- | --- | --- | --- |\n";
+for (const [surface, stats] of Object.entries(report.surfaces)) {
+  md += `| ${surface} | ${stats.artifactMaxLevelUsed} | ${stats.artifactL3Count} | ${stats.artifactL4Count} | ${stats.artifactScore} | ${stats.artifactFiles} |\n`;
 }
 md += "\n";
 
@@ -669,7 +913,8 @@ if (report.violations.length === 0) {
 } else {
   for (const violation of report.violations) {
     const location = violation.file ? `${violation.file}:${violation.line || 1}` : "surface aggregate";
-    md += `- [${violation.surface}] ${violation.message} (${location})\n`;
+    const scopeLabel = violation.scope === "artifact" ? "artifact" : "runtime";
+    md += `- [${violation.surface}:${scopeLabel}] ${violation.message} (${location})\n`;
   }
 }
 
@@ -689,12 +934,14 @@ if (fs.existsSync(baselinePath)) {
   baseline = JSON.parse(fs.readFileSync(baselinePath, "utf8"));
 }
 
-let newViolations = report.violations;
+const violationsForComparison = runtimeViolations;
+let newViolations = violationsForComparison;
 const surfaceIncreases = [];
 
 if (baseline) {
-  const baselineKeys = new Set((baseline.violations || []).map(violationKey));
-  newViolations = report.violations.filter(violation => !baselineKeys.has(violationKey(violation)));
+  const baselineViolationsList = (baseline.violations || []).filter(v => (v.scope ?? "runtime") !== "artifact");
+  const baselineKeys = new Set(baselineViolationsList.map(violationKey));
+  newViolations = violationsForComparison.filter(violation => !baselineKeys.has(violationKey(violation)));
 
   const baselineSurfaces = baseline.surfaces || {};
   for (const [surface, stats] of Object.entries(report.surfaces)) {
@@ -714,7 +961,7 @@ if (baseline) {
     }
   }
 
-  console.log("NEW violations");
+  console.log("NEW violations (runtime)");
   if (newViolations.length === 0) {
     console.log("None.");
   } else {
@@ -725,16 +972,17 @@ if (baseline) {
   }
 
   if (surfaceIncreases.length > 0) {
-    console.log("Surface budget increases");
+    console.log("Surface budget increases (runtime)");
     for (const increase of surfaceIncreases) {
       console.log(`- ${increase.surface}: ${increase.changes.join(", ")}`);
     }
   }
+
 }
 
 const shouldFail = baseline
   ? newViolations.length > 0 || surfaceIncreases.length > 0
-  : violations.length > 0;
+  : runtimeViolations.length > 0;
 
 if (shouldFail) {
   process.exit(1);

@@ -1,6 +1,6 @@
 # Glosario
 
-> Auto-generado desde docs/_meta/terms.json. Última generación: **2026-01-19**
+> Auto-generado desde docs/_meta/terms.json. Última generación: **2026-01-22**
 
 ## Baseline-aware lint
 

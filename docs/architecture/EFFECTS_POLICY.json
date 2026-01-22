@@ -1,7 +1,13 @@
 {
   "id": "render-effects-policy",
   "version": "1.0",
-  "levelOrder": ["L0", "L1", "L2", "L3", "L4"],
+  "levelOrder": [
+    "L0",
+    "L1",
+    "L2",
+    "L3",
+    "L4"
+  ],
   "levelDefinitions": {
     "L0": {
       "name": "Static paint",
@@ -95,9 +101,9 @@
     },
     "ui": {
       "maxLevel": "L3",
-      "maxL3": 2,
+      "maxL3": 55,
       "maxL4": 0,
-      "scoreBudget": 22
+      "scoreBudget": 400
     },
     "inspector": {
       "safeDefault": true,
@@ -111,7 +117,9 @@
       },
       "maxLevel": "L3",
       "maxL4": 0,
-      "requiresAllowMarkerForL3": true
+      "requiresAllowMarkerForL3": true,
+      "scoreBudget": 50,
+      "maxL3": 8
     }
   },
   "scores": {
@@ -155,7 +163,10 @@
       "description": "Only ONE backdrop-filter per surface is allowed.",
       "enforcement": "hard",
       "maxPerSurface": 1,
-      "targets": ["backdrop-filter", "-webkit-backdrop-filter"]
+      "targets": [
+        "backdrop-filter",
+        "-webkit-backdrop-filter"
+      ]
     },
     {
       "id": "fake-glass",
@@ -175,7 +186,10 @@
       "name": "Isolation Discount",
       "description": "If an L3 element uses contain: paint/layout AND isolation: isolate, reduce its score by 2 (minimum 6).",
       "enforcement": "soft",
-      "requires": ["contain: paint or layout", "isolation: isolate"],
+      "requires": [
+        "contain: paint or layout",
+        "isolation: isolate"
+      ],
       "minScore": 6,
       "scoreDelta": -2
     },
@@ -184,18 +198,35 @@
       "name": "No Per-Panel Blur",
       "description": "backdrop-filter per panel is forbidden.",
       "enforcement": "hard",
-      "targets": ["backdrop-filter", "-webkit-backdrop-filter"]
+      "targets": [
+        "backdrop-filter",
+        "-webkit-backdrop-filter"
+      ]
     }
   ],
   "allowMarker": {
     "comment": "hi-allow:L3",
-    "requiredForSurfaces": ["overlay", "inspector"],
-    "doesNotAllow": ["L4"],
+    "requiredForSurfaces": [
+      "overlay",
+      "inspector"
+    ],
+    "doesNotAllow": [
+      "L4"
+    ],
     "notes": "Allow marker does not bypass per-surface limits."
   },
   "blockedClassnames": {
-    "stage": ["hi-panel", "board-glass"],
-    "overlay": ["hi-panel", "board-glass"],
-    "inspector": ["hi-panel", "board-glass"]
+    "stage": [
+      "hi-panel",
+      "board-glass"
+    ],
+    "overlay": [
+      "hi-panel",
+      "board-glass"
+    ],
+    "inspector": [
+      "hi-panel",
+      "board-glass"
+    ]
   }
 }

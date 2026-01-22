@@ -12,18 +12,37 @@ const isDev = (() => {
   return true;
 })();
 
-type Surface = "stage" | "ui" | "overlay" | "inspector";
+export type Surface = "stage" | "ui" | "overlay" | "inspector";
 
-type InspectorMode = "safe" | "unsafe";
+export type InspectorMode = "safe" | "unsafe";
 
-type GuardOptions = {
+export type GuardOptions = {
   root?: Document | Element;
   surface?: Surface;
   allowL3?: boolean;
   inspectorMode?: InspectorMode;
+
+  /**
+   * If true, don't schedule automatically (you call the returned scan fn yourself).
+   * Default: true
+   */
+  schedule?: boolean;
+
+  /**
+   * If true, suppress console.warn/error spam (useful for HUD polling).
+   * Default: false
+   */
+  quiet?: boolean;
+
+  /**
+   * If true, throws an Error when violations (errors) exist.
+   * DEV-only. Great for "?hiPolicyFail=1".
+   * Default: false
+   */
+  failFast?: boolean;
 };
 
-type Budget = {
+export type Budget = {
   maxLevel: "L2" | "L3";
   maxL3: number;
   maxL4: number;
@@ -47,11 +66,6 @@ const SCORES = {
   filter: 8,
   mixBlendMode: 6,
   largeBlurShadow: 6,
-  animation: 12,
-  transition: 6,
-  willChange: 3,
-  willChangeBlur: 8
-};
 
 const LEVEL_RANK = { L0: 0, L1: 1, L2: 2, L3: 3, L4: 4 } as const;
 
@@ -61,6 +75,31 @@ type DetectedEffect = {
   level: "L2" | "L3" | "L4";
   score: number;
   kind: string;
+};
+
+export type SerializableEffect = {
+  label: string;
+  level: "L2" | "L3" | "L4";
+  score: number;
+  kind: string;
+};
+
+export type RuntimePolicyReport = {
+  at: number;
+  surface: Surface;
+  allowL3ForSurface: boolean;
+  inspectorMode: InspectorMode;
+  budget: Budget;
+
+  maxLevelUsed: "L0" | "L2" | "L3" | "L4";
+  l3Count: number;
+  l4Count: number;
+  backdropCount: number;
+  score: number;
+
+  errors: string[];
+  warnings: string[];
+  effects: SerializableEffect[];
 };
 
 function parseDurationMs(value: string): number[] {
@@ -108,8 +147,8 @@ function isLargeBlurShadow(value: string): boolean {
 function getElementLabel(element: Element): string {
   const id = element.id ? `#${element.id}` : "";
   const className =
-    typeof element.className === "string" && element.className.trim()
-      ? `.${element.className.trim().split(/\s+/).join(".")}`
+    typeof (element as HTMLElement).className === "string" && (element as HTMLElement).className.trim()
+      ? `.${(element as HTMLElement).className.trim().split(/\s+/).join(".")}`
       : "";
   return `${element.tagName.toLowerCase()}${id}${className}`;
 }
@@ -140,12 +179,42 @@ function canUseL3(surface: Surface, allowL3: boolean, inspectorMode: InspectorMo
   return false;
 }
 
-export function runtimePolicyGuard(options: GuardOptions = {}): () => void {
+const POLICY_IGNORE_SELECTOR = "[data-hi-policy-ignore='1']";
+
+export function runtimePolicyGuard(options: GuardOptions = {}): () => RuntimePolicyReport {
   if (!isDev) {
-    return () => undefined;
+    return () => ({
+      at: Date.now(),
+      surface: options.surface ?? "ui",
+      allowL3ForSurface: false,
+      inspectorMode: "safe",
+      budget: { maxLevel: "L2", maxL3: 0, maxL4: 0, scoreBudget: 0 },
+      maxLevelUsed: "L0",
+      l3Count: 0,
+      l4Count: 0,
+      backdropCount: 0,
+      score: 0,
+      errors: [],
+      warnings: [],
+      effects: []
+    });
   }
   if (typeof window === "undefined" || typeof document === "undefined") {
-    return () => undefined;
+    return () => ({
+      at: Date.now(),
+      surface: options.surface ?? "ui",
+      allowL3ForSurface: false,
+      inspectorMode: "safe",
+      budget: { maxLevel: "L2", maxL3: 0, maxL4: 0, scoreBudget: 0 },
+      maxLevelUsed: "L0",
+      l3Count: 0,
+      l4Count: 0,
+      backdropCount: 0,
+      score: 0,
+      errors: [],
+      warnings: [],
+      effects: []
+    });
   }
 
   const root = options.root ?? document.body;
@@ -155,7 +224,11 @@ export function runtimePolicyGuard(options: GuardOptions = {}): () => void {
   const budget = getBudget(surface, allowL3, inspectorMode);
   const allowL3ForSurface = canUseL3(surface, allowL3, inspectorMode);
 
-  const scan = () => {
+  const quiet = options.quiet === true;
+  const failFast = options.failFast === true;
+  const shouldSchedule = options.schedule !== false;
+
+  const scan = (): RuntimePolicyReport => {
     const elements: Element[] = [];
     if (root instanceof Element) {
       elements.push(root);
@@ -172,6 +245,10 @@ export function runtimePolicyGuard(options: GuardOptions = {}): () => void {
     let backdropCount = 0;
 
     for (const element of elements) {
+      if (element.closest(POLICY_IGNORE_SELECTOR)) {
+        continue;
+      }
+
       const style = window.getComputedStyle(element);
       const label = getElementLabel(element);
       const isIsolated = style.isolation === "isolate";
@@ -189,9 +266,13 @@ export function runtimePolicyGuard(options: GuardOptions = {}): () => void {
         if (effect.level === "L4") l4Count += 1;
       };
 
-      const backdrop = style.getPropertyValue("backdrop-filter") || (style as CSSStyleDeclaration).backdropFilter;
+      const backdrop =
+        style.getPropertyValue("backdrop-filter") || (style as CSSStyleDeclaration).backdropFilter;
       const webkitBackdrop = style.getPropertyValue("-webkit-backdrop-filter");
-      if ((backdrop && backdrop !== "none") || (webkitBackdrop && webkitBackdrop !== "none")) {
+      if (
+        (backdrop && backdrop !== "none") ||
+        (webkitBackdrop && webkitBackdrop !== "none")
+      ) {
         backdropCount += 1;
         const baseScore = SCORES.backdropFilter;
         const adjustedScore = Math.max(6, baseScore - discount);
@@ -218,7 +299,10 @@ export function runtimePolicyGuard(options: GuardOptions = {}): () => void {
 
       if (style.willChange && style.willChange !== "auto" && style.willChange !== "none") {
         const normalized = style.willChange.toLowerCase();
-        const isL3 = normalized.includes("filter") || normalized.includes("backdrop-filter") || normalized.includes("blur");
+        const isL3 =
+          normalized.includes("filter") ||
+          normalized.includes("backdrop-filter") ||
+          normalized.includes("blur");
         if (isL3) {
           const baseScore = SCORES.willChangeBlur;
           const adjustedScore = Math.max(6, baseScore - discount);
@@ -238,16 +322,23 @@ export function runtimePolicyGuard(options: GuardOptions = {}): () => void {
         addEffect({ element, label, level: "L4", score: SCORES.animation, kind: "animation" });
       }
 
-      const transitionProps = style.transitionProperty.split(",").map(item => item.trim().toLowerCase());
+      const transitionProps = style.transitionProperty
+        .split(",")
+        .map(item => item.trim().toLowerCase());
       const transitionDurations = parseDurationMs(style.transitionDuration);
       const hasTransitionDuration = transitionDurations.some(duration => duration > 0);
-      const hasTrackedTransition = transitionProps.includes("all") || transitionProps.some(prop => ["transform", "opacity", "filter"].includes(prop));
+      const hasTrackedTransition =
+        transitionProps.includes("all") ||
+        transitionProps.some(prop => ["transform", "opacity", "filter"].includes(prop));
       if (hasTransitionDuration && hasTrackedTransition) {
         addEffect({ element, label, level: "L4", score: SCORES.transition, kind: "transition" });
       }
 
       if (element.classList.contains("hi-panel") || element.classList.contains("board-glass")) {
-        if (style.getPropertyValue("backdrop-filter") && style.getPropertyValue("backdrop-filter") !== "none") {
+        if (
+          style.getPropertyValue("backdrop-filter") &&
+          style.getPropertyValue("backdrop-filter") !== "none"
+        ) {
           addEffect({ element, label, level: "L3", score: SCORES.backdropFilter, kind: "panel-blur" });
         }
       }
@@ -285,34 +376,62 @@ export function runtimePolicyGuard(options: GuardOptions = {}): () => void {
       errors.push(`Max level ${budget.maxLevel} exceeded on ${surface}.`);
     }
 
-    if (errors.length > 0) {
-      console.error("[render-policy] violations", {
-        surface,
-        errors,
-        warnings,
-        budget,
-        maxLevelUsed
-      });
-    } else if (warnings.length > 0) {
-      console.warn("[render-policy] budget warnings", {
-        surface,
-        warnings,
-        budget,
-        maxLevelUsed
-      });
+    const report: RuntimePolicyReport = {
+      at: Date.now(),
+      surface,
+      allowL3ForSurface,
+      inspectorMode,
+      budget,
+      maxLevelUsed,
+      l3Count,
+      l4Count,
+      backdropCount,
+      score,
+      errors,
+      warnings,
+      effects: effects.map(e => ({ label: e.label, level: e.level, score: e.score, kind: e.kind }))
+    };
+
+    if (!quiet) {
+      if (errors.length > 0) {
+        console.error("[render-policy] violations", {
+          surface,
+          errors,
+          warnings,
+          budget,
+          maxLevelUsed
+        });
+      } else if (warnings.length > 0) {
+        console.warn("[render-policy] budget warnings", {
+          surface,
+          warnings,
+          budget,
+          maxLevelUsed
+        });
+      }
     }
+
+    if (failFast && errors.length > 0) {
+      throw new Error(`[render-policy] FAIL-FAST on ${surface}: ${errors[0] ?? "violations"}`);
+    }
+
+    return report;
   };
 
   const schedule = () => {
-    window.requestAnimationFrame(() => {
-      window.setTimeout(scan, 0);
+    setTimeout((, 16) => {
+      window.setTimeout(() => {
+        void scan();
+      }, 0);
     });
   };
 
-  if (document.readyState === "loading") {
-    window.addEventListener("DOMContentLoaded", schedule, { once: true });
-  } else {
-    schedule();
+  if (shouldSchedule) {
+    if (document.readyState === "loading") {
+      window.addEventListener("DOMContentLoaded", schedule, { once: true });
+    } else {
+      schedule();
+    }
   }
 
   return scan;

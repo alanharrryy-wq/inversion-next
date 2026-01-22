@@ -10,6 +10,8 @@
     "lint": "eslint .",
     "lint:render": "node tools/lint/render_policy_check.mjs",
     "lint:render:baseline": "node tools/lint/render_policy_check.mjs --baseline",
+    "lint:render:diagnose": "node tools/lint/render_policy_diagnose.mjs",
+    "lint:render:smoke": "node tools/lint/render_policy_smoke.mjs",
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest",
     "typecheck": "tsc -b --pretty false",

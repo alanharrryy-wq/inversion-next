@@ -62,32 +62,7 @@
   /* Controlado para que NO se pinte dorado por el set */
   mix-blend-mode: var(--hi-glint-blend);
 
-  animation: hi-glintSlow var(--hi-glint-period) ease-in-out infinite;
 }
 
 /* Animación lenta, con “tiempo visible” extra */
-@keyframes hi-glintSlow {
-  0% {
-    opacity: 0;
-    transform: translateX(-22%) translateY(10%);
-  }
-  18% {
-    opacity: 0;
-  }
-  42% {
-    opacity: 1;
-    transform: translateX(-2%) translateY(2%);
-  }
-  55% {
-    opacity: 1;
-    transform: translateX(6%) translateY(-2%);
-  }
-  74% {
-    opacity: 0;
-    transform: translateX(18%) translateY(-8%);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(22%) translateY(-10%);
-  }
-}
+

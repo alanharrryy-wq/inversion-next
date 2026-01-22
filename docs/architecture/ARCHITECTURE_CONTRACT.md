@@ -1,3 +1,11 @@
+---
+title: Architecture Contract
+area: policies
+status: yellow
+tags: []
+owner: Alan
+updated: 2026-01-21
+---
 # 📐 ARCHITECTURE_CONTRACT.md
 ## Hitech Render Architecture Contract
 
@@ -99,3 +107,4 @@ Romper una capa = romper estabilidad, reutilización o performance.
 .panel {
   backdrop-filter: blur(12px); /* ❌ ILEGAL */
 }
+

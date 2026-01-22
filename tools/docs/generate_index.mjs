@@ -11,6 +11,10 @@ const OUTPUT_INDEX = path.join(ROOT, "docs", "INDEX.md");
 const OUTPUT_GLOSSARY = path.join(ROOT, "docs", "GLOSSARY.md");
 const TERMS_FILE = path.join(ROOT, "docs", "_meta", "terms.json");
 
+const RENDER_REPORT = path.join(ROOT, "tools", "lint", "render_policy_report.json");
+const HEALTH_START = "<!-- HEALTH:START -->";
+const HEALTH_END = "<!-- HEALTH:END -->";
+
 const AREA_ORDER = ["policies", "architecture", "slides", "tooling", "runbooks", "notes", "other"];
 
 const AREA_TITLES = {
@@ -149,6 +153,103 @@ function collectDocs() {
   return items;
 }
 
+function tryReadJson(filePath) {
+  if (!fs.existsSync(filePath)) return null;
+  try { return JSON.parse(readText(filePath)); } catch { return null; }
+}
+
+function escapeRegex(str) {
+  return String(str).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function extractExistingHealthBlock(prevIndexText) {
+  if (!prevIndexText) return null;
+  const re = new RegExp(`${escapeRegex(HEALTH_START)}[\\s\\S]*?${escapeRegex(HEALTH_END)}`, "m");
+  const m = prevIndexText.match(re);
+  return m ? m[0] : null;
+}
+
+function safeCell(x) {
+  return String(x ?? "").replace(/\|/g, "\\|").trim();
+}
+
+function buildHealthBlockFromReport(report) {
+  const lines = [];
+  lines.push(HEALTH_START);
+  lines.push("## 🩺 Salud del Sistema");
+  lines.push("");
+  lines.push("| Área | Estado | Detalle |");
+  lines.push("|---|---:|---|");
+
+  if (!report || !report.surfaces) {
+    lines.push("| render | 📝 | Sin reporte. Corre `npm run lint:render` para generar `tools/lint/render_policy_report.json`. |");
+    lines.push(HEALTH_END);
+    return lines.join("\n");
+  }
+
+  const names = Object.keys(report.surfaces).sort();
+  const artifactRows = [];
+  let hasArtifactData = false;
+  for (const name of names) {
+    const surf = report.surfaces[name] || {};
+    const l3 = Number.isFinite(Number(surf.l3Count)) ? Number(surf.l3Count) : 0;
+    const l4 = Number.isFinite(Number(surf.l4Count)) ? Number(surf.l4Count) : 0;
+    const score = Number.isFinite(Number(surf.score)) ? Number(surf.score) : null;
+    const budget = Number.isFinite(Number(surf.scoreBudget)) ? Number(surf.scoreBudget) : null;
+
+    let state = "🟢";
+    if (l4 > 0) state = "🔴";
+    else if (l3 > 0) state = "🟡";
+    else if (score !== null && budget !== null && score > budget) state = "🟡";
+
+    const parts = [];
+    if (score !== null && budget !== null) parts.push(`score ${score} / budget ${budget}`);
+    if (l3 > 0) parts.push(`L3=${l3}`);
+    if (l4 > 0) parts.push(`L4=${l4}`);
+    if (surf.maxLevelUsed) parts.push(`maxUsed=${surf.maxLevelUsed}`);
+    if (surf.maxLevelAllowed) parts.push(`maxAllowed=${surf.maxLevelAllowed}`);
+    const detail = parts.length ? safeCell(parts.join(" · ")) : "sin violaciones";
+
+    lines.push(`| ${safeCell(name)} | ${state} | ${detail} |`);
+
+    const artifactScore = Number.isFinite(Number(surf.artifactScore))
+      ? Number(surf.artifactScore)
+      : (Number.isFinite(Number(surf.scopes?.artifacts?.score)) ? Number(surf.scopes.artifacts.score) : null);
+    const artifactL3 = Number.isFinite(Number(surf.artifactL3Count))
+      ? Number(surf.artifactL3Count)
+      : (Number.isFinite(Number(surf.scopes?.artifacts?.l3Count)) ? Number(surf.scopes.artifacts.l3Count) : null);
+    const artifactL4 = Number.isFinite(Number(surf.artifactL4Count))
+      ? Number(surf.artifactL4Count)
+      : (Number.isFinite(Number(surf.scopes?.artifacts?.l4Count)) ? Number(surf.scopes.artifacts.l4Count) : null);
+    const artifactFiles = Number.isFinite(Number(surf.artifactFiles))
+      ? Number(surf.artifactFiles)
+      : (Number.isFinite(Number(surf.scopes?.artifacts?.files)) ? Number(surf.scopes.artifacts.files) : null);
+
+    if (artifactScore !== null || artifactL3 !== null || artifactL4 !== null || artifactFiles !== null) {
+      hasArtifactData = true;
+      const artifactParts = [];
+      if (artifactScore !== null) artifactParts.push(`score ${artifactScore}`);
+      if (artifactL3 !== null) artifactParts.push(`L3=${artifactL3}`);
+      if (artifactL4 !== null) artifactParts.push(`L4=${artifactL4}`);
+      if (artifactFiles !== null) artifactParts.push(`files=${artifactFiles}`);
+      const artifactDetail = artifactParts.length ? safeCell(artifactParts.join(" · ")) : "sin artifacts";
+      artifactRows.push(`| ${safeCell(name)} | ${artifactDetail} |`);
+    }
+  }
+
+  if (hasArtifactData) {
+    lines.push("");
+    lines.push("Artifacts (informacional)");
+    lines.push("");
+    lines.push("| Área | Detalle |");
+    lines.push("|---|---|");
+    lines.push(...artifactRows);
+  }
+
+  lines.push(HEALTH_END);
+  return lines.join("\n");
+}
+
 function loadTerms() {
   if (!fs.existsSync(TERMS_FILE)) return [];
   try {
@@ -167,7 +268,7 @@ function loadTerms() {
   }
 }
 
-function generateIndexMd(items) {
+function generateIndexMd(items, prevIndexText) {
   const today = new Date().toISOString().slice(0, 10);
 
   const byArea = new Map();
@@ -185,6 +286,14 @@ function generateIndexMd(items) {
   lines.push(`- “Vamos a trabajar en **policies**” → abre la sección **📜 Políticas**`);
   lines.push(`- “Vamos a trabajar en **slides**” → abre **🖼️ Slides**`);
   lines.push(`- “Dame el estatus del repo” → revisa **estatus** y **updated** aquí`);
+  lines.push(``);
+  lines.push(`---`);
+  lines.push(``);
+
+  const report = tryReadJson(RENDER_REPORT);
+  const prevHealth = extractExistingHealthBlock(prevIndexText);
+  const healthBlock = report ? buildHealthBlockFromReport(report) : (prevHealth || buildHealthBlockFromReport(null));
+  lines.push(healthBlock);
   lines.push(``);
   lines.push(`---`);
   lines.push(``);
@@ -258,8 +367,10 @@ function main() {
   ensureDir(path.join(ROOT, "docs", "_meta"));
   ensureDir(path.join(ROOT, "tools", "docs"));
 
+  const prevIndexText = fs.existsSync(OUTPUT_INDEX) ? readText(OUTPUT_INDEX) : "";
+
   const items = collectDocs();
-  const indexMd = generateIndexMd(items);
+  const indexMd = generateIndexMd(items, prevIndexText);
   fs.writeFileSync(OUTPUT_INDEX, indexMd, "utf8");
 
   const terms = loadTerms();

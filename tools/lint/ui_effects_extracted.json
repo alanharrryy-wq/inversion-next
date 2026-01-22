@@ -1,0 +1,620 @@
+{
+  "generatedAt": "2026-01-22T02:33:25.090Z",
+  "summary": {
+    "uiL4": 2,
+    "uiL3": 50,
+    "uiAll": 74
+  },
+  "topFilesL4": [
+    [
+      "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\styles\\visual_tokens.css",
+      1
+    ],
+    [
+      "src\\rts\\styles\\visual_tokens.css",
+      1
+    ]
+  ],
+  "topKindsL4": [
+    [
+      "animation",
+      2
+    ]
+  ],
+  "topFilesL3": [
+    [
+      "src\\app\\styles\\hi-materials.css",
+      14
+    ],
+    [
+      "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+      12
+    ],
+    [
+      "src\\rts\\styles\\hi-materials.css",
+      7
+    ],
+    [
+      "src\\shared\\render\\materials\\materials.css",
+      4
+    ],
+    [
+      "src\\shared\\render\\effects\\glintSlow.css",
+      2
+    ],
+    [
+      "src\\shared\\render\\qa\\qa.stage.debug.css",
+      2
+    ],
+    [
+      "src\\slides\\slide-02\\ui\\Slide02.tsx",
+      2
+    ],
+    [
+      "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\devtools\\RtsDebugOverlay.tsx",
+      1
+    ],
+    [
+      "src\\app\\styles\\globals.css",
+      1
+    ],
+    [
+      "src\\rts\\devtools\\RtsDebugOverlay.tsx",
+      1
+    ],
+    [
+      "src\\shared\\render\\effects\\chartSurfaceHighlight.css",
+      1
+    ],
+    [
+      "src\\shared\\render\\effects\\mirrorCine.css",
+      1
+    ],
+    [
+      "src\\shared\\theme\\tokens.css",
+      1
+    ],
+    [
+      "tools\\bundles\\slide02_full\\src\\slides\\slide-02\\ui\\Slide02.tsx",
+      1
+    ]
+  ],
+  "topKindsL3": [
+    [
+      "mix-blend-mode",
+      21
+    ],
+    [
+      "filter",
+      16
+    ],
+    [
+      "backdrop-filter",
+      13
+    ]
+  ],
+  "uiL4": [
+    {
+      "surface": "ui",
+      "level": "L4",
+      "kind": "animation",
+      "score": 12,
+      "file": "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\styles\\visual_tokens.css",
+      "line": 145,
+      "detail": ".vs-motion{ transition: none !important; animation: none !important; }",
+      "_path": "root.effects.ui.effects[2]"
+    },
+    {
+      "surface": "ui",
+      "level": "L4",
+      "kind": "animation",
+      "score": 12,
+      "file": "src\\rts\\styles\\visual_tokens.css",
+      "line": 139,
+      "detail": ".vs-motion{ transition: none !important; animation: none !important; }",
+      "_path": "root.effects.ui.effects[38]"
+    }
+  ],
+  "uiL3": [
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "backdrop-filter",
+      "score": 10,
+      "file": "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\devtools\\RtsDebugOverlay.tsx",
+      "line": 52,
+      "detail": "backdropFilter: \"blur(10px)\",",
+      "_path": "root.effects.ui.effects[0]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "mix-blend-mode",
+      "score": 6,
+      "file": "src\\app\\styles\\globals.css",
+      "line": 70,
+      "detail": "mix-blend-mode: overlay;",
+      "_path": "root.effects.ui.effects[5]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "filter",
+      "score": 8,
+      "file": "src\\app\\styles\\hi-materials.css",
+      "line": 106,
+      "detail": "filter: blur(0.4px);",
+      "_path": "root.effects.ui.effects[7]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "mix-blend-mode",
+      "score": 6,
+      "file": "src\\app\\styles\\hi-materials.css",
+      "line": 119,
+      "detail": "mix-blend-mode: overlay;",
+      "_path": "root.effects.ui.effects[8]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "mix-blend-mode",
+      "score": 6,
+      "file": "src\\app\\styles\\hi-materials.css",
+      "line": 226,
+      "detail": "mix-blend-mode: soft-light;",
+      "_path": "root.effects.ui.effects[9]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "mix-blend-mode",
+      "score": 6,
+      "file": "src\\app\\styles\\hi-materials.css",
+      "line": 292,
+      "detail": "mix-blend-mode: screen;",
+      "_path": "root.effects.ui.effects[10]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "filter",
+      "score": 8,
+      "file": "src\\app\\styles\\hi-materials.css",
+      "line": 345,
+      "detail": "filter: blur(18px);",
+      "_path": "root.effects.ui.effects[13]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "mix-blend-mode",
+      "score": 6,
+      "file": "src\\app\\styles\\hi-materials.css",
+      "line": 358,
+      "detail": "mix-blend-mode: overlay;",
+      "_path": "root.effects.ui.effects[14]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "mix-blend-mode",
+      "score": 6,
+      "file": "src\\app\\styles\\hi-materials.css",
+      "line": 373,
+      "detail": "mix-blend-mode: screen;",
+      "_path": "root.effects.ui.effects[15]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "mix-blend-mode",
+      "score": 6,
+      "file": "src\\app\\styles\\hi-materials.css",
+      "line": 404,
+      "detail": "mix-blend-mode: screen;",
+      "_path": "root.effects.ui.effects[16]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "filter",
+      "score": 8,
+      "file": "src\\app\\styles\\hi-materials.css",
+      "line": 405,
+      "detail": "filter: blur(0.2px);",
+      "_path": "root.effects.ui.effects[17]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "mix-blend-mode",
+      "score": 6,
+      "file": "src\\app\\styles\\hi-materials.css",
+      "line": 433,
+      "detail": "mix-blend-mode: screen;",
+      "_path": "root.effects.ui.effects[18]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "filter",
+      "score": 8,
+      "file": "src\\app\\styles\\hi-materials.css",
+      "line": 481,
+      "detail": "filter:",
+      "_path": "root.effects.ui.effects[19]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "mix-blend-mode",
+      "score": 6,
+      "file": "src\\app\\styles\\hi-materials.css",
+      "line": 499,
+      "detail": "mix-blend-mode: screen;",
+      "_path": "root.effects.ui.effects[20]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "mix-blend-mode",
+      "score": 6,
+      "file": "src\\app\\styles\\hi-materials.css",
+      "line": 510,
+      "detail": "mix-blend-mode: overlay;",
+      "_path": "root.effects.ui.effects[21]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "filter",
+      "score": 8,
+      "file": "src\\app\\styles\\hi-materials.css",
+      "line": 537,
+      "detail": "filter: blur(14px);",
+      "_path": "root.effects.ui.effects[22]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "backdrop-filter",
+      "score": 10,
+      "file": "src\\rts\\devtools\\RtsDebugOverlay.tsx",
+      "line": 52,
+      "detail": "backdropFilter: \"blur(10px)\",",
+      "_path": "root.effects.ui.effects[25]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "filter",
+      "score": 8,
+      "file": "src\\rts\\styles\\hi-materials.css",
+      "line": 83,
+      "detail": "filter: blur(0px);",
+      "_path": "root.effects.ui.effects[26]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "mix-blend-mode",
+      "score": 6,
+      "file": "src\\rts\\styles\\hi-materials.css",
+      "line": 96,
+      "detail": "mix-blend-mode: overlay;",
+      "_path": "root.effects.ui.effects[27]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "mix-blend-mode",
+      "score": 6,
+      "file": "src\\rts\\styles\\hi-materials.css",
+      "line": 152,
+      "detail": "mix-blend-mode: screen;",
+      "_path": "root.effects.ui.effects[29]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "mix-blend-mode",
+      "score": 6,
+      "file": "src\\rts\\styles\\hi-materials.css",
+      "line": 173,
+      "detail": "mix-blend-mode: overlay;",
+      "_path": "root.effects.ui.effects[30]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "mix-blend-mode",
+      "score": 6,
+      "file": "src\\rts\\styles\\hi-materials.css",
+      "line": 247,
+      "detail": "mix-blend-mode: overlay;",
+      "_path": "root.effects.ui.effects[33]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "mix-blend-mode",
+      "score": 6,
+      "file": "src\\rts\\styles\\hi-materials.css",
+      "line": 265,
+      "detail": "mix-blend-mode: screen;",
+      "_path": "root.effects.ui.effects[34]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "filter",
+      "score": 8,
+      "file": "src\\rts\\styles\\hi-materials.css",
+      "line": 292,
+      "detail": "filter: saturate(0.92);",
+      "_path": "root.effects.ui.effects[35]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "mix-blend-mode",
+      "score": 6,
+      "file": "src\\shared\\render\\effects\\chartSurfaceHighlight.css",
+      "line": 35,
+      "detail": "mix-blend-mode: screen;",
+      "_path": "root.effects.ui.effects[40]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "filter",
+      "score": 8,
+      "file": "src\\shared\\render\\effects\\glintSlow.css",
+      "line": 57,
+      "detail": "filter: blur(0.7px);",
+      "_path": "root.effects.ui.effects[41]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "mix-blend-mode",
+      "score": 6,
+      "file": "src\\shared\\render\\effects\\glintSlow.css",
+      "line": 63,
+      "detail": "mix-blend-mode: var(--hi-glint-blend);",
+      "_path": "root.effects.ui.effects[43]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "filter",
+      "score": 8,
+      "file": "src\\shared\\render\\effects\\mirrorCine.css",
+      "line": 36,
+      "detail": "filter: blur(var(--hi-mirror-blur));",
+      "_path": "root.effects.ui.effects[45]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "mix-blend-mode",
+      "score": 6,
+      "file": "src\\shared\\render\\materials\\materials.css",
+      "line": 73,
+      "detail": "mix-blend-mode: screen;",
+      "_path": "root.effects.ui.effects[47]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "filter",
+      "score": 8,
+      "file": "src\\shared\\render\\materials\\materials.css",
+      "line": 74,
+      "detail": "filter: blur(0.25px) saturate(1.10);",
+      "_path": "root.effects.ui.effects[48]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "mix-blend-mode",
+      "score": 6,
+      "file": "src\\shared\\render\\materials\\materials.css",
+      "line": 98,
+      "detail": "mix-blend-mode: screen;",
+      "_path": "root.effects.ui.effects[50]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "filter",
+      "score": 8,
+      "file": "src\\shared\\render\\materials\\materials.css",
+      "line": 99,
+      "detail": "filter: blur(0.8px);",
+      "_path": "root.effects.ui.effects[51]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "backdrop-filter",
+      "score": 10,
+      "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+      "line": 65,
+      "detail": "backdropFilter: 10,",
+      "_path": "root.effects.ui.effects[53]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "filter",
+      "score": 8,
+      "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+      "line": 66,
+      "detail": "filter: 8,",
+      "_path": "root.effects.ui.effects[54]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "mix-blend-mode",
+      "score": 6,
+      "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+      "line": 67,
+      "detail": "mixBlendMode: 6,",
+      "_path": "root.effects.ui.effects[55]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "backdrop-filter",
+      "score": 10,
+      "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+      "line": 270,
+      "detail": "style.getPropertyValue(\"backdrop-filter\") || (style as CSSStyleDeclaration).backdropFilter;",
+      "_path": "root.effects.ui.effects[56]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "backdrop-filter",
+      "score": 10,
+      "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+      "line": 271,
+      "detail": "const webkitBackdrop = style.getPropertyValue(\"-webkit-backdrop-filter\");",
+      "_path": "root.effects.ui.effects[57]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "backdrop-filter",
+      "score": 10,
+      "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+      "line": 277,
+      "detail": "const baseScore = SCORES.backdropFilter;",
+      "_path": "root.effects.ui.effects[58]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "backdrop-filter",
+      "score": 10,
+      "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+      "line": 279,
+      "detail": "addEffect({ element, label, level: \"L3\", score: adjustedScore, kind: \"backdrop-filter\" });",
+      "_path": "root.effects.ui.effects[59]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "backdrop-filter",
+      "score": 10,
+      "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+      "line": 304,
+      "detail": "normalized.includes(\"backdrop-filter\") ||",
+      "_path": "root.effects.ui.effects[60]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "backdrop-filter",
+      "score": 10,
+      "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+      "line": 339,
+      "detail": "style.getPropertyValue(\"backdrop-filter\") &&",
+      "_path": "root.effects.ui.effects[61]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "backdrop-filter",
+      "score": 10,
+      "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+      "line": 340,
+      "detail": "style.getPropertyValue(\"backdrop-filter\") !== \"none\"",
+      "_path": "root.effects.ui.effects[62]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "backdrop-filter",
+      "score": 10,
+      "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+      "line": 342,
+      "detail": "addEffect({ element, label, level: \"L3\", score: SCORES.backdropFilter, kind: \"panel-blur\" });",
+      "_path": "root.effects.ui.effects[63]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "backdrop-filter",
+      "score": 10,
+      "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
+      "line": 360,
+      "detail": "errors.push(`Centralized Blur Rule violated: ${backdropCount} backdrop-filters on ${surface}.`);",
+      "_path": "root.effects.ui.effects[64]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "mix-blend-mode",
+      "score": 6,
+      "file": "src\\shared\\render\\qa\\qa.stage.debug.css",
+      "line": 54,
+      "detail": "mix-blend-mode: normal !important;",
+      "_path": "root.effects.ui.effects[65]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "filter",
+      "score": 8,
+      "file": "src\\shared\\render\\qa\\qa.stage.debug.css",
+      "line": 80,
+      "detail": "filter: none !important;",
+      "_path": "root.effects.ui.effects[66]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "backdrop-filter",
+      "score": 10,
+      "file": "src\\shared\\theme\\tokens.css",
+      "line": 60,
+      "detail": "backdrop-filter: blur(10px);",
+      "_path": "root.effects.ui.effects[67]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "filter",
+      "score": 8,
+      "file": "src\\slides\\slide-02\\ui\\Slide02.tsx",
+      "line": 205,
+      "detail": "filter=\"url(#softGlow)\"",
+      "_path": "root.effects.ui.effects[70]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "filter",
+      "score": 8,
+      "file": "src\\slides\\slide-02\\ui\\Slide02.tsx",
+      "line": 429,
+      "detail": "<path d={d} fill=\"none\" stroke={`rgba(255,255,255,${strokeA.toFixed(2)})`} strokeWidth=\"1.6\" filter=\"url(#hiSparkGlow)\" />",
+      "_path": "root.effects.ui.effects[71]"
+    },
+    {
+      "surface": "ui",
+      "level": "L3",
+      "kind": "filter",
+      "score": 8,
+      "file": "tools\\bundles\\slide02_full\\src\\slides\\slide-02\\ui\\Slide02.tsx",
+      "line": 205,
+      "detail": "filter=\"url(#softGlow)\"",
+      "_path": "root.effects.ui.effects[73]"
+    }
+  ]
+}

@@ -1,3 +1,11 @@
+---
+title: Effects Catalog
+area: architecture
+status: yellow
+tags: []
+owner: Alan
+updated: 2026-01-21
+---
 # Effects Catalog
 
 Canonical list of render effects and materials.
@@ -1339,4 +1347,5 @@ Auto-scan found CSS sources that are not referenced in the curated catalog.
 | Path | Cost signals | Data attributes | Tokens |
 | --- | --- | --- | --- |
 | src/app/styles/hi-materials.css | `animation`, `backdrop-filter`, `filter`, `mix-blend-mode` | `data-chart-highlight="on"` | `--hi-bg-0`, `--hi-bg-1`, `--hi-bg-2`, `--hi-blur`, `--hi-blur-soft`, `--hi-chart-highlight-opacity`, `--hi-chart-highlight-period`, `--hi-cyan`, `--hi-cyan-soft`, `--hi-edge-inner`, `--hi-edge-outer`, `--hi-glint-a`, `--hi-glint-b`, `--hi-grain-url`, `--hi-panel-core`, `--hi-panel-deep`, `--hi-radius-lg`, `--hi-radius-xl`, `--hi-shadow-in`, `--hi-shadow-mid`, `--hi-shadow-out`, `--hi-spec-fade`, `--hi-spec-stop`, `--hi-spec-top-a`, `--hi-spec-top-b`, `--hi-steel-a`, `--hi-steel-b`, `--hi-steel-c`, `--hi-text`, `--hi-text-dim` |
+
 

@@ -1,3 +1,11 @@
+---
+title: Render Policy
+area: policies
+status: yellow
+tags: []
+owner: Alan
+updated: 2026-01-21
+---
 # Render Effects Policy
 
 This policy keeps glass-heavy UIs fast and stable by constraining expensive effects, enforcing per-surface budgets, and preventing uncontrolled effect stacking.
