@@ -37,7 +37,6 @@ void main(){
 
   float t = uTime * 0.04;
 
-  // “campo de luz” (muy suave)
   float l1 = exp(-length(p - vec2(-0.42, 0.26 + sin(t)*0.03)) * 2.5);
   float l2 = exp(-length(p - vec2(0.48, -0.12 + cos(t)*0.02)) * 3.1);
   float l3 = exp(-length(p - vec2(0.08, -0.52)) * 2.2);
@@ -46,18 +45,15 @@ void main(){
 
   vec3 base = vec3(0.028, 0.032, 0.045);
   vec3 steel = vec3(0.075, 0.090, 0.115);
-  vec3 cyan = vec3(0.008, 0.655, 0.792); // ~ #02A7CA
+  vec3 cyan = vec3(0.008, 0.655, 0.792);
   float cyanL = dot(cyan, vec3(0.299, 0.587, 0.114));
 
-  // bloom acumulado (controlado)
   vec3 glow = vec3(cyanL) * field * 0.22;
   vec3 color = mix(base, steel, field * 0.62) + glow;
 
-  // partículas (grano + polvo)
   float g = noise(uv * uResolution.xy * 0.33 + uTime);
   color += (g - 0.5) * 0.030;
 
-  // vignette
   float v = smoothstep(0.98, 0.35, length(uv - 0.5));
   color *= v;
 
@@ -92,7 +88,8 @@ export default function HiShaderBackground(props: { fixed?: boolean }) {
     })
     const mesh = new Mesh(gl, { geometry, program })
 
-    let timer = 0
+    let raf: ReturnType<typeof setTimeout> | null = null
+
     const resize = () => {
       const w = host.clientWidth || window.innerWidth
       const h = host.clientHeight || window.innerHeight
@@ -101,10 +98,9 @@ export default function HiShaderBackground(props: { fixed?: boolean }) {
     }
 
     const update = () => {
-      const t = performance.now()
-raf = setTimeout(update, 16)
-      program.uniforms.uTime.value = t * 0.001
+      program.uniforms.uTime.value = performance.now() * 0.001
       renderer.render({ scene: mesh })
+      raf = setTimeout(update, 16)
     }
 
     resize()
@@ -112,7 +108,8 @@ raf = setTimeout(update, 16)
     raf = setTimeout(update, 16)
 
     return () => {
-      window.clearTimeout(timer)window.removeEventListener("resize", resize)
+      if (raf) window.clearTimeout(raf)
+      window.removeEventListener("resize", resize)
       try {
         host.removeChild(gl.canvas)
       } catch {

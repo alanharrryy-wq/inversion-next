@@ -1,71 +1,47 @@
-import type { ReactNode } from "react"
+import * as React from "react"
 import { cn } from "@/shared/lib/cn"
 
 export function SlideShell(props: {
   title?: string
   kicker?: string
-  right?: ReactNode
-  children: ReactNode
-  footerLeft?: ReactNode
-  footerRight?: ReactNode
-
-  /** si false, no renderiza header/footer/card. Ideal para slides “cinematic”. */
-  chrome?: boolean
-
-  /** opcional */
+  footerLeft?: React.ReactNode
+  footerRight?: React.ReactNode
   className?: string
-
-  /** opcional: rig/grade para el stage */
-  rig?: "night-studio"
-  grade?: "contrast" | "soft"
+  chrome?: boolean
+  children: React.ReactNode
 }) {
   const chrome = props.chrome !== false
 
-  if (!chrome) {
-    return (
-      <div
-        className="hi-stage h-full w-full"
-        data-hi-rig={props.rig ?? "night-studio"}
-        data-hi-grade={props.grade ?? "contrast"}
-      >
-        <div className={cn("hi-screen h-full w-full", props.className)}>{props.children}</div>
-      </div>
-    )
-  }
-
   return (
-    <div
-      className="hi-stage h-full w-full"
-      data-hi-rig={props.rig ?? "night-studio"}
-      data-hi-grade={props.grade ?? "contrast"}
-    >
-      <div className={cn("hi-screen h-full w-full p-10", props.className)}>
-        <div
-          data-material="glassCold"
-          className="h-full w-full rounded-[var(--radius-xl)] border border-white/10 bg-white/5 shadow-[var(--shadow-soft)]"
-        >
-          <div className="grid h-full grid-rows-[auto_1fr_auto]">
-            <header className="flex items-start justify-between gap-6 px-10 pt-8">
-              <div className="min-w-0">
-                {props.kicker ? (
-                  <div className="text-xs font-medium tracking-wide opacity-75">{props.kicker}</div>
-                ) : null}
+    <div className="hi-stage relative h-full w-full p-10">
+      {/* STAGE CLEAN WRAPPER (no blur/filter/mix-blend/heavy shadows) */}
+      <div className="relative h-full w-full overflow-hidden rounded-[28px]">
+        {/* UI WRAPPER (todo lo caro vive aquí) */}
+        <div className={cn("hi-ui relative h-full w-full", props.className)}>
+          {chrome ? (
+            <div className="hi-shell relative flex h-full flex-col">
+              <header className="flex items-start justify-between px-8 pt-7">
+                <div>
+                  {props.kicker ? (
+                    <div className="text-xs tracking-[0.25em] opacity-70">{props.kicker}</div>
+                  ) : null}
+                  {props.title ? (
+                    <div className="mt-2 text-2xl font-semibold tracking-tight">{props.title}</div>
+                  ) : null}
+                </div>
+                <div className="text-xs opacity-60">Deck</div>
+              </header>
 
-                {props.title ? (
-                  <div className="mt-2 text-3xl font-semibold leading-tight">{props.title}</div>
-                ) : null}
-              </div>
+              <main className="flex-1 px-8 pb-7 pt-6">{props.children}</main>
 
-              {props.right ? <div className="shrink-0">{props.right}</div> : null}
-            </header>
-
-            <main className="min-h-0 px-10 py-8">{props.children}</main>
-
-            <footer className="flex items-center justify-between gap-4 border-t border-white/10 px-10 py-5 text-xs opacity-75">
-              <div>{props.footerLeft ?? <span className="tracking-wide">HITECH</span>}</div>
-              <div>{props.footerRight ?? <span className="font-mono">1600x900</span>}</div>
-            </footer>
-          </div>
+              <footer className="flex items-center justify-between px-8 pb-7 text-xs opacity-70">
+                <div>{props.footerLeft}</div>
+                <div>{props.footerRight}</div>
+              </footer>
+            </div>
+          ) : (
+            <div className="relative h-full w-full">{props.children}</div>
+          )}
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import { NotFoundPage } from "@/pages/not-found/NotFoundPage"
 
 import { CommandPalette } from "@/shared/ui/command-palette/CommandPalette"
 import HiShaderBackground from "@/components/hi/HiShaderBackground"
+import { PolicyHud } from "@/shared/render/policy/PolicyHud"
 
 export function App() {
   return (
@@ -12,6 +13,7 @@ export function App() {
       <HiShaderBackground />
       <CommandPalette />
 
+      {import.meta.env.DEV && <PolicyHud />}
       <HashRouter>
         <Routes>
           <Route path="/" element={<Navigate to="/deck" replace />} />

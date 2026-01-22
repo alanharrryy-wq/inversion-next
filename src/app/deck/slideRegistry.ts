@@ -35,5 +35,8 @@ export const slideRegistry: SlideEntry[] = [
     meta: { id: "slide-07", title: "RTS: Risks and Next Steps", tags: ["rts", "risks"] },
     Component: lazy(() => import("@/slides/slide-07").then(m => ({ default: m.default }))),
   },
+  {
+    meta: { id: "slide-08", title: "RTS: Executive Narrative (Clone)", tags: ["rts", "executive", "clone"] },
+    Component: lazy(() => import("@/slides/slide-08").then(m => ({ default: m.default }))),
+  },
 ]
-
