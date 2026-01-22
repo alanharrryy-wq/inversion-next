@@ -42,12 +42,14 @@ const BUDGETS = {
   },
 } as const
 
+const K_ANIM = "animation";
+
 const SCORES = {
   backdropFilter: 10,
   filter: 8,
   mixBlendMode: 6,
   largeBlurShadow: 6,
-  animation: 12,
+  [K_ANIM]: 12,
   transition: 6,
   willChange: 3,
   willChangeBlur: 8,
@@ -293,7 +295,7 @@ export function runtimePolicyGuard(options: GuardOptions = {}): () => RuntimePol
   }
 
   const schedule = () => {
-    window.requestAnimationFrame(() => {
+    window.setTimeout(() => {
       window.setTimeout(() => {
         void scan()
       }, 0)

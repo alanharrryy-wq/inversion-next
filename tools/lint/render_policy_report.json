@@ -1,30 +1,30 @@
 {
   "policyVersion": "1.0",
-  "generatedAt": "2026-01-22T03:36:34.431Z",
+  "generatedAt": "2026-01-22T11:23:10.877Z",
   "repoRoot": "F:\\repos\\inversion-next",
   "summary": {
-    "fileCount": 200,
-    "effectCount": 91,
+    "fileCount": 206,
+    "effectCount": 89,
     "violationCount": 5,
     "runtimeFileCount": 122,
-    "artifactFileCount": 78,
-    "runtimeEffectCount": 83,
-    "artifactEffectCount": 8,
+    "artifactFileCount": 84,
+    "runtimeEffectCount": 80,
+    "artifactEffectCount": 9,
     "runtimeViolationCount": 5,
     "artifactViolationCount": 0
   },
   "surfaces": {
     "ui": {
-      "files": 189,
+      "files": 195,
       "runtimeFiles": 111,
-      "artifactFiles": 78,
+      "artifactFiles": 84,
       "allowMarkerPresent": false,
       "inspectorMode": null,
       "maxLevelUsed": "L3",
       "maxLevelAllowed": "L3",
-      "l3Count": 46,
+      "l3Count": 42,
       "l4Count": 0,
-      "score": 350,
+      "score": 313,
       "maxL3": 55,
       "maxL4": 0,
       "scoreBudget": 400,
@@ -36,12 +36,12 @@
         "runtime": {
           "files": 111,
           "maxLevelUsed": "L3",
-          "l3Count": 46,
+          "l3Count": 42,
           "l4Count": 0,
-          "score": 350
+          "score": 313
         },
         "artifacts": {
-          "files": 78,
+          "files": 84,
           "maxLevelUsed": "L3",
           "l3Count": 4,
           "l4Count": 0,
@@ -299,6 +299,12 @@
         "src\\slides\\slide-06\\ui\\Slide06.tsx",
         "src\\slides\\slide-07\\index.ts",
         "src\\slides\\slide-07\\ui\\Slide07.tsx",
+        "src\\slides\\slide-08\\data\\slide02.adapter.ts",
+        "src\\slides\\slide-08\\data\\slide02.contract.ts",
+        "src\\slides\\slide-08\\data\\slide02.mock.ts",
+        "src\\slides\\slide-08\\data\\slide02.seed.ts",
+        "src\\slides\\slide-08\\index.ts",
+        "src\\slides\\slide-08\\ui\\Slide02.tsx",
         "src\\tests\\setup.ts",
         "src\\vite-env.d.ts",
         "src\\widgets\\slide-nav\\index.ts",
@@ -830,7 +836,7 @@
           "kind": "backdrop-filter",
           "level": "L3",
           "score": 10,
-          "line": 65,
+          "line": 48,
           "detail": "backdropFilter: 10,",
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
           "surface": "ui",
@@ -840,7 +846,7 @@
           "kind": "filter",
           "level": "L3",
           "score": 8,
-          "line": 66,
+          "line": 49,
           "detail": "filter: 8,",
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
           "surface": "ui",
@@ -850,18 +856,18 @@
           "kind": "mix-blend-mode",
           "level": "L3",
           "score": 6,
-          "line": 67,
+          "line": 50,
           "detail": "mixBlendMode: 6,",
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
           "surface": "ui",
           "scope": "runtime"
         },
         {
-          "kind": "backdrop-filter",
-          "level": "L3",
-          "score": 10,
-          "line": 270,
-          "detail": "style.getPropertyValue(\"backdrop-filter\") || (style as CSSStyleDeclaration).backdropFilter;",
+          "kind": "will-change",
+          "level": "L2",
+          "score": 3,
+          "line": 54,
+          "detail": "willChange: 3,",
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
           "surface": "ui",
           "scope": "runtime"
@@ -870,8 +876,8 @@
           "kind": "backdrop-filter",
           "level": "L3",
           "score": 10,
-          "line": 271,
-          "detail": "const webkitBackdrop = style.getPropertyValue(\"-webkit-backdrop-filter\");",
+          "line": 221,
+          "detail": "const backdrop = style.getPropertyValue(\"backdrop-filter\") || (style as any).backdropFilter",
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
           "surface": "ui",
           "scope": "runtime"
@@ -880,8 +886,8 @@
           "kind": "backdrop-filter",
           "level": "L3",
           "score": 10,
-          "line": 277,
-          "detail": "const baseScore = SCORES.backdropFilter;",
+          "line": 222,
+          "detail": "const webkitBackdrop = style.getPropertyValue(\"-webkit-backdrop-filter\")",
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
           "surface": "ui",
           "scope": "runtime"
@@ -890,8 +896,8 @@
           "kind": "backdrop-filter",
           "level": "L3",
           "score": 10,
-          "line": 279,
-          "detail": "addEffect({ element, label, level: \"L3\", score: adjustedScore, kind: \"backdrop-filter\" });",
+          "line": 225,
+          "detail": "add({ element: el, label, level: \"L3\", score: SCORES.backdropFilter, kind: \"backdrop-filter\" })",
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
           "surface": "ui",
           "scope": "runtime"
@@ -900,8 +906,8 @@
           "kind": "backdrop-filter",
           "level": "L3",
           "score": 10,
-          "line": 304,
-          "detail": "normalized.includes(\"backdrop-filter\") ||",
+          "line": 242,
+          "detail": "const isL3 = normalized.includes(\"filter\") || normalized.includes(\"backdrop-filter\") || normalized.includes(\"blur\")",
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
           "surface": "ui",
           "scope": "runtime"
@@ -910,38 +916,8 @@
           "kind": "backdrop-filter",
           "level": "L3",
           "score": 10,
-          "line": 339,
-          "detail": "style.getPropertyValue(\"backdrop-filter\") &&",
-          "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "surface": "ui",
-          "scope": "runtime"
-        },
-        {
-          "kind": "backdrop-filter",
-          "level": "L3",
-          "score": 10,
-          "line": 340,
-          "detail": "style.getPropertyValue(\"backdrop-filter\") !== \"none\"",
-          "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "surface": "ui",
-          "scope": "runtime"
-        },
-        {
-          "kind": "backdrop-filter",
-          "level": "L3",
-          "score": 10,
-          "line": 342,
-          "detail": "addEffect({ element, label, level: \"L3\", score: SCORES.backdropFilter, kind: \"panel-blur\" });",
-          "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "surface": "ui",
-          "scope": "runtime"
-        },
-        {
-          "kind": "backdrop-filter",
-          "level": "L3",
-          "score": 10,
-          "line": 360,
-          "detail": "errors.push(`Centralized Blur Rule violated: ${backdropCount} backdrop-filters on ${surface}.`);",
+          "line": 267,
+          "detail": "if (backdropCount > 1) errors.push(`Centralized Blur Rule violated: ${backdropCount} backdrop-filters on ${surface}.`)",
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
           "surface": "ui",
           "scope": "runtime"
@@ -990,9 +966,19 @@
           "kind": "transform",
           "level": "L2",
           "score": 0,
-          "line": 204,
+          "line": 177,
           "detail": "transform=\"rotate(-90 60 60)\"",
           "file": "src\\slides\\slide-02\\ui\\Slide02.tsx",
+          "surface": "ui",
+          "scope": "artifact"
+        },
+        {
+          "kind": "transform",
+          "level": "L2",
+          "score": 0,
+          "line": 204,
+          "detail": "transform=\"rotate(-90 60 60)\"",
+          "file": "src\\slides\\slide-08\\ui\\Slide02.tsx",
           "surface": "ui",
           "scope": "artifact"
         },
@@ -1002,7 +988,7 @@
           "score": 8,
           "line": 205,
           "detail": "filter=\"url(#softGlow)\"",
-          "file": "src\\slides\\slide-02\\ui\\Slide02.tsx",
+          "file": "src\\slides\\slide-08\\ui\\Slide02.tsx",
           "surface": "ui",
           "scope": "artifact"
         },
@@ -1012,7 +998,7 @@
           "score": 8,
           "line": 429,
           "detail": "<path d={d} fill=\"none\" stroke={`rgba(255,255,255,${strokeA.toFixed(2)})`} strokeWidth=\"1.6\" filter=\"url(#hiSparkGlow)\" />",
-          "file": "src\\slides\\slide-02\\ui\\Slide02.tsx",
+          "file": "src\\slides\\slide-08\\ui\\Slide02.tsx",
           "surface": "ui",
           "scope": "artifact"
         },
@@ -1038,9 +1024,9 @@
         }
       ],
       "maxLevelUsed": "L3",
-      "l3Count": 50,
+      "l3Count": 46,
       "l4Count": 0,
-      "score": 384,
+      "score": 347,
       "backdropOccurrences": [
         {
           "file": "hitech-templates\\templates\\rts-block2-v2\\src\\rts\\devtools\\RtsDebugOverlay.tsx",
@@ -1052,43 +1038,27 @@
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 65
+          "line": 48
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 270
+          "line": 221
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 271
+          "line": 222
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 277
+          "line": 225
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 279
+          "line": 242
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 304
-        },
-        {
-          "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 339
-        },
-        {
-          "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 340
-        },
-        {
-          "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 342
-        },
-        {
-          "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 360
+          "line": 267
         },
         {
           "file": "src\\shared\\theme\\tokens.css",
@@ -1695,7 +1665,7 @@
               "kind": "backdrop-filter",
               "level": "L3",
               "score": 10,
-              "line": 65,
+              "line": 48,
               "detail": "backdropFilter: 10,",
               "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
               "surface": "ui",
@@ -1705,7 +1675,7 @@
               "kind": "filter",
               "level": "L3",
               "score": 8,
-              "line": 66,
+              "line": 49,
               "detail": "filter: 8,",
               "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
               "surface": "ui",
@@ -1715,18 +1685,18 @@
               "kind": "mix-blend-mode",
               "level": "L3",
               "score": 6,
-              "line": 67,
+              "line": 50,
               "detail": "mixBlendMode: 6,",
               "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
               "surface": "ui",
               "scope": "runtime"
             },
             {
-              "kind": "backdrop-filter",
-              "level": "L3",
-              "score": 10,
-              "line": 270,
-              "detail": "style.getPropertyValue(\"backdrop-filter\") || (style as CSSStyleDeclaration).backdropFilter;",
+              "kind": "will-change",
+              "level": "L2",
+              "score": 3,
+              "line": 54,
+              "detail": "willChange: 3,",
               "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
               "surface": "ui",
               "scope": "runtime"
@@ -1735,8 +1705,8 @@
               "kind": "backdrop-filter",
               "level": "L3",
               "score": 10,
-              "line": 271,
-              "detail": "const webkitBackdrop = style.getPropertyValue(\"-webkit-backdrop-filter\");",
+              "line": 221,
+              "detail": "const backdrop = style.getPropertyValue(\"backdrop-filter\") || (style as any).backdropFilter",
               "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
               "surface": "ui",
               "scope": "runtime"
@@ -1745,8 +1715,8 @@
               "kind": "backdrop-filter",
               "level": "L3",
               "score": 10,
-              "line": 277,
-              "detail": "const baseScore = SCORES.backdropFilter;",
+              "line": 222,
+              "detail": "const webkitBackdrop = style.getPropertyValue(\"-webkit-backdrop-filter\")",
               "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
               "surface": "ui",
               "scope": "runtime"
@@ -1755,8 +1725,8 @@
               "kind": "backdrop-filter",
               "level": "L3",
               "score": 10,
-              "line": 279,
-              "detail": "addEffect({ element, label, level: \"L3\", score: adjustedScore, kind: \"backdrop-filter\" });",
+              "line": 225,
+              "detail": "add({ element: el, label, level: \"L3\", score: SCORES.backdropFilter, kind: \"backdrop-filter\" })",
               "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
               "surface": "ui",
               "scope": "runtime"
@@ -1765,8 +1735,8 @@
               "kind": "backdrop-filter",
               "level": "L3",
               "score": 10,
-              "line": 304,
-              "detail": "normalized.includes(\"backdrop-filter\") ||",
+              "line": 242,
+              "detail": "const isL3 = normalized.includes(\"filter\") || normalized.includes(\"backdrop-filter\") || normalized.includes(\"blur\")",
               "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
               "surface": "ui",
               "scope": "runtime"
@@ -1775,38 +1745,8 @@
               "kind": "backdrop-filter",
               "level": "L3",
               "score": 10,
-              "line": 339,
-              "detail": "style.getPropertyValue(\"backdrop-filter\") &&",
-              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-              "surface": "ui",
-              "scope": "runtime"
-            },
-            {
-              "kind": "backdrop-filter",
-              "level": "L3",
-              "score": 10,
-              "line": 340,
-              "detail": "style.getPropertyValue(\"backdrop-filter\") !== \"none\"",
-              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-              "surface": "ui",
-              "scope": "runtime"
-            },
-            {
-              "kind": "backdrop-filter",
-              "level": "L3",
-              "score": 10,
-              "line": 342,
-              "detail": "addEffect({ element, label, level: \"L3\", score: SCORES.backdropFilter, kind: \"panel-blur\" });",
-              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-              "surface": "ui",
-              "scope": "runtime"
-            },
-            {
-              "kind": "backdrop-filter",
-              "level": "L3",
-              "score": 10,
-              "line": 360,
-              "detail": "errors.push(`Centralized Blur Rule violated: ${backdropCount} backdrop-filters on ${surface}.`);",
+              "line": 267,
+              "detail": "if (backdropCount > 1) errors.push(`Centralized Blur Rule violated: ${backdropCount} backdrop-filters on ${surface}.`)",
               "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
               "surface": "ui",
               "scope": "runtime"
@@ -1853,9 +1793,9 @@
             }
           ],
           "maxLevelUsed": "L3",
-          "l3Count": 46,
+          "l3Count": 42,
           "l4Count": 0,
-          "score": 350,
+          "score": 313,
           "backdropOccurrences": [
             {
               "file": "src\\rts\\devtools\\RtsDebugOverlay.tsx",
@@ -1863,43 +1803,27 @@
             },
             {
               "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-              "line": 65
+              "line": 48
             },
             {
               "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-              "line": 270
+              "line": 221
             },
             {
               "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-              "line": 271
+              "line": 222
             },
             {
               "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-              "line": 277
+              "line": 225
             },
             {
               "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-              "line": 279
+              "line": 242
             },
             {
               "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-              "line": 304
-            },
-            {
-              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-              "line": 339
-            },
-            {
-              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-              "line": 340
-            },
-            {
-              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-              "line": 342
-            },
-            {
-              "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-              "line": 360
+              "line": 267
             },
             {
               "file": "src\\shared\\theme\\tokens.css",
@@ -1978,6 +1902,12 @@
             "src\\slides\\slide-06\\ui\\Slide06.tsx",
             "src\\slides\\slide-07\\index.ts",
             "src\\slides\\slide-07\\ui\\Slide07.tsx",
+            "src\\slides\\slide-08\\data\\slide02.adapter.ts",
+            "src\\slides\\slide-08\\data\\slide02.contract.ts",
+            "src\\slides\\slide-08\\data\\slide02.mock.ts",
+            "src\\slides\\slide-08\\data\\slide02.seed.ts",
+            "src\\slides\\slide-08\\index.ts",
+            "src\\slides\\slide-08\\ui\\Slide02.tsx",
             "tools\\bundles\\slide02\\vite.config.ts",
             "tools\\bundles\\slide02_full\\src\\shared\\hooks\\useHiGrain.ts",
             "tools\\bundles\\slide02_full\\src\\shared\\lib\\cn.ts",
@@ -2023,9 +1953,19 @@
               "kind": "transform",
               "level": "L2",
               "score": 0,
-              "line": 204,
+              "line": 177,
               "detail": "transform=\"rotate(-90 60 60)\"",
               "file": "src\\slides\\slide-02\\ui\\Slide02.tsx",
+              "surface": "ui",
+              "scope": "artifact"
+            },
+            {
+              "kind": "transform",
+              "level": "L2",
+              "score": 0,
+              "line": 204,
+              "detail": "transform=\"rotate(-90 60 60)\"",
+              "file": "src\\slides\\slide-08\\ui\\Slide02.tsx",
               "surface": "ui",
               "scope": "artifact"
             },
@@ -2035,7 +1975,7 @@
               "score": 8,
               "line": 205,
               "detail": "filter=\"url(#softGlow)\"",
-              "file": "src\\slides\\slide-02\\ui\\Slide02.tsx",
+              "file": "src\\slides\\slide-08\\ui\\Slide02.tsx",
               "surface": "ui",
               "scope": "artifact"
             },
@@ -2045,7 +1985,7 @@
               "score": 8,
               "line": 429,
               "detail": "<path d={d} fill=\"none\" stroke={`rgba(255,255,255,${strokeA.toFixed(2)})`} strokeWidth=\"1.6\" filter=\"url(#hiSparkGlow)\" />",
-              "file": "src\\slides\\slide-02\\ui\\Slide02.tsx",
+              "file": "src\\slides\\slide-08\\ui\\Slide02.tsx",
               "surface": "ui",
               "scope": "artifact"
             },
@@ -2605,7 +2545,7 @@
       "surface": "ui",
       "file": null,
       "line": null,
-      "message": "Centralized Blur Rule violated: 12 backdrop-filters found.",
+      "message": "Centralized Blur Rule violated: 8 backdrop-filters found.",
       "details": [
         {
           "file": "src\\rts\\devtools\\RtsDebugOverlay.tsx",
@@ -2613,43 +2553,27 @@
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 65
+          "line": 48
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 270
+          "line": 221
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 271
+          "line": 222
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 277
+          "line": 225
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 279
+          "line": 242
         },
         {
           "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 304
-        },
-        {
-          "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 339
-        },
-        {
-          "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 340
-        },
-        {
-          "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 342
-        },
-        {
-          "file": "src\\shared\\render\\policy\\runtimePolicyGuard.ts",
-          "line": 360
+          "line": 267
         },
         {
           "file": "src\\shared\\theme\\tokens.css",
