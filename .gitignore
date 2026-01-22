@@ -62,3 +62,8 @@ git-push.ps1
 # --- Local junk (never commit) ---
 tools/codex/B64/
 tools/git/run-all*.log
+
+# MCP artifacts / browser profiles
+.mcp/
+**/tools/mcp/out/
+
